@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bohème Production - Côte d'Azur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-color: #D4AF37;
+            --dark-bg: #0a0a0a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Effet de particules dorées */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Logo en filigrane */
+        .background-logo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            height: 90vh;
+            opacity: 0.08;
+            z-index: 0;
+            background: url('logo-boheme-en-or.png') center/contain no-repeat;
+        }
+
+        /* Container principal */
+        .main-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header avec logo */
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+        }
+
+        .logo {
+            max-width: 350px;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+            transition: all 0.5s ease;
+            animation: fadeInDown 1.5s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.9));
+        }
+
+        /* Texte avec effet or */
+        .golden-text {
+            color: var(--gold-color);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            position: relative;
+        }
+
+        .golden-text::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        .intro {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeIn 2s;
+        }
+
+        .intro h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .intro p {
+            font-size: 1.5em;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px 20px;
+            flex-wrap: wrap;
+            animation: fadeIn 2.5s;
+        }
+
+        .nav-button {
+            padding: 15px 35px;
+            background: linear-gradient(45deg, #8B7500, #D4AF37, #FFF380, #D4AF37, #8B7500);
+            background-size: 200% 200%;
+            border: none;
+            border-radius: 50px;
+            color: black;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .nav-button:hover {
+            box-shadow: 0 5px 25px rgba(212, 175, 55, 0.6);
+            transform: translateY(-3px);
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+            transition: 0.5s;
+        }
+
+        /* Sections contenu */
+        .content-section {
+            padding: 40px;
+            margin: 40px auto;
+            background: rgba(0, 0, 0, 0.7);
+            position: relative;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 3s;
+            overflow: hidden;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #8B7500, #D4AF37, #FFF380, #D4AF37, #8B7500) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            animation: borderAnimation 6s linear infinite;
+            background-size: 300% 300%;
+        }
+
+        .content-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 2px;
+            bottom: -10px;
+            left: 0;
+            background: linear-gradient(90deg, var(--gold-color), transparent);
+        }
+
+        .content-section p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        /* Grille d'artistes */
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .artist-card {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .artist-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #8B7500, #D4AF37, #FFF380, #D4AF37, #8B7500) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .artist-name {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: var(--gold-color);
+        }
+
+        .artist-title {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        /* Contact et adresse */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+
+        .contact-col {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--gold-color);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .footer p {
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8B7500, #D4AF37);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { width: 0; left: 0; }
+            50% { width: 100%; left: 0; }
+            100% { width: 0; left: 100%; }
+        }
+
+        @keyframes borderAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .intro h1 {
+                font-size: 3em;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particules dorées -->
+    <div id="particles-js"></div>
+
+    <!-- Logo en filigrane -->
+    <div class="background-logo"></div>
+
+    <!-- Container principal -->
+    <div class="main-container">
+        <!-- Header avec logo -->
+        <header class="header">
+            <img src="logo-boheme-en-or.png" alt="Bohème Production" class="logo">
+        </header>
+
+        <!-- Section introduction -->
+        <section class="intro">
+            <h1 class="golden-text">Bohème Production</h1>
+            <p class="golden-text">L'excellence lyrique sur la Côte d'Azur</p>
+        </section>
+
+        <!-- Boutons de navigation -->
+        <div class="nav-buttons">
+            <button class="nav-button">Nos Artistes</button>
+            <button class="nav-button">Productions</button>
+            <button class="nav-button">Bureau</button>
+            <button class="nav-button">Contact</button>
+        </div>
+
+        <!-- Présentation -->
+        <section class="content-section">
+            <h2 class="golden-text">Bohème Production</h2>
+            <p>Fondée et présidée par Patrick Elie Féré, baryton verdien, producteur et metteur en scène, Bohème Production est une association dédiée à l'excellence artistique.</p>
+            <p>Réunissant 47 chanteurs de renommée internationale et 3 pianistes exceptionnels, nous produisons des concerts lyriques, pop lyriques, comédies musicales et spectacles d'exception.</p>
+            <p>L'association a vu le jour grâce à la collaboration des talents exceptionnels de Richard Alexandre Rittelmann, Norah Amsallem et Patrick Elie Féré, avec l'ambition de réunir des chanteurs lyriques aux voix d'exception.</p>
+        </section>
+
+        <!-- Bureau -->
+        <section class="content-section">
+            <h2 class="golden-text">Notre Bureau</h2>
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-name">Patrick Elie Féré</div>
+                    <div class="artist-title">Fondateur - Président</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Richard Rittelmann</div>
+                    <div class="artist-title">Vice-président</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Norah Amsellem</div>
+                    <div class="artist-title">Vice-présidente</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Pascal Terrien</div>
+                    <div class="artist-title">Directeur artistique principal</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Avi Klemberg</div>
+                    <div class="artist-title">Directeur artistique</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Mickael Guedj</div>
+                    <div class="artist-title">Directeur artistique</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Patricia Rubino</div>
+                    <div class="artist-title">Secrétaire</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Marielle Bader</div>
+                    <div class="artist-title">Trésorière</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">David.Sk</div>
+                    <div class="artist-title">Administrateur réseaux sociaux</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Artistes -->
+        <section class="content-section">
+            <h2 class="golden-text">Nos Artistes</h2>
+
+            <h3 class="golden-text" style="margin: 30px 0 20px; font-size: 1.8em;">Sopranos & Mezzo-sopranos</h3>
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-name">Norah Amsellem</div>
+                    <div class="artist-title">Soprano</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Claudia Sorokina</div>
+                    <div class="artist-title">Soprano</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Adriana Bignani Lesca</div>
+                    <div class="artist-title">Mezzo Soprano</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Alisson Cook</div>
+                    <div class="artist-title">Mezzo Soprano</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Pauline Des Camps</div>
+                    <div class="artist-title">Mezzo Soprano</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Sylvette Ravier</div>
+                    <div class="artist-title">Mezzo Soprano</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Isabelle Gioanni</div>
+                    <div class="artist-title">Mezzo Colorature</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Vanessa Fouillet</div>
+                    <div class="artist-title">Soprano Colorature</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Rachel Duckett</div>
+                    <div class="artist-title">Soprano Colorature</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Léa Bianco Chinto</div>
+                    <div class="artist-title">Soprano</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Lidia Izossimova</div>
+                    <div class="artist-title">Soprano</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Stéphanie Portelli</div>
+                    <div class="artist-title">Soprano</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Mariam Fattakhova</div>
+                    <div class="artist-title">Soprano</div>
+                </div>
+            </div>
+
+            <h3 class="golden-text" style="margin: 30px 0 20px; font-size: 1.8em;">Ténors</h3>
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-name">Luca Lombardo</div>
+                    <div class="artist-title">Ténor</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Avi Klemberg</div>
+                    <div class="artist-title">Ténor</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Florian Laconi</div>
+                    <div class="artist-title">Ténor</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Franck Asparte</div>
+                    <div class="artist-title">Ténor</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Jean-François Marras</div>
+                    <div class="artist-title">Ténor</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Raphaël Jardin</div>
+                    <div class="artist-title">Ténor</div>
+                </div>
+            </div>
+
+            <h3 class="golden-text" style="margin: 30px 0 20px; font-size: 1.8em;">Barytons</h3>
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-name">Richard Alexandre Rittelmann</div>
+                    <div class="artist-title">Baryton</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Arie Atah</div>
+                    <div class="artist-title">Baryton</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Patrick Elie Féré</div>
+                    <div class="artist-title">Baryton Verdien</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Mickael Guedj</div>
+                    <div class="artist-title">Baryton</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Adrien Djouadou</div>
+                    <div class="artist-title">Baryton</div>
+                </div>
+            </div>
+
+            <h3 class="golden-text" style="margin: 30px 0 20px; font-size: 1.8em;">Pop Rock & Variété Internationale</h3>
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-name">Patrice Carmona</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Axel Saty</div>
+                    <div class="artist-title">Pop Rock</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Djelass</div>
+                    <div class="artist-title">Pop Rock</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">BRY</div>
+                    <div class="artist-title">Pop Rock</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Douchka</div>
+                    <div class="artist-title">Pop Rock</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Lili Laville</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Elodie Siby</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Virginie Behem (Aka Shiny)</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Stéphanie Caidj</div>
+                    <div class="artist-title">Pop Rock</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Alexis Hoffmann</div>
+                </div>
+            </div>
+
+            <h3 class="golden-text" style="margin: 30px 0 20px; font-size: 1.8em;">Jeunes Talents (The Voice Kids & Danse)</h3>
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-name">Jouhaina</div>
+                    <div class="artist-title">Danseuse</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Raymoune</div>
+                    <div class="artist-title">Danseuse</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Louison</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Mariastella Sardi</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Maëlys Luna</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Tom Kalimbadjian</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Manon Bava</div>
+                </div>
+            </div>
+
+            <h3 class="golden-text" style="margin: 30px 0 20px; font-size: 1.8em;">Pianistes & Chorégraphes</h3>
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-name">Stell'Art Show</div>
+                    <div class="artist-title">Compagnie de Danse</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Lola</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Ingrid Le Roch</div>
+                    <div class="artist-title">Pianiste et chef d'orchestre</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Valériya Kucherenko</div>
+                    <div class="artist-title">Pianiste</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Selin Atalay</div>
+                </div>
+            </div>
+
+            <h3 class="golden-text" style="margin: 30px 0 20px; font-size: 1.8em;">Producteurs & Mise en Scène</h3>
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-name">Frederico Alagna</div>
+                    <div class="artist-title">Compositeur</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Nagib Kerbouche</div>
+                    <div class="artist-title">Producteur</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Johann Perrier</div>
+                    <div class="artist-title">Producteur et Journaliste</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Henry Jean Servat</div>
+                    <div class="artist-title">Maître de Cérémonie</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Pascal Terrien</div>
+                    <div class="artist-title">Metteur en scène</div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-name">Kristian Frédric</div>
+                    <div class="artist-title">Metteur en scène, Auteur, Scénographe</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="content-section">
+            <h2 class="golden-text">Contact</h2>
+            <div class="contact-info">
+                <div class="contact-col">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>75 Avenue du XVème Corps<br>83700 Saint-Raphaël</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>07 61 77 54 94</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>Bohemeproduction.president@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <p>www.bohemeproduction.com</p>
+                    </div>
+                </div>
+                <div class="contact-col">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2891.8677559283893!2d6.7685!3d43.4235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12ce91bca9a0b0b3%3A0x3f5e3c1626b6b1e0!2s75%20Av.%20du%20XVe%20Corps%2C%2083700%20Saint-Rapha%C3%ABl!5e0!3m2!1sfr!2sfr!4v1623456789012!5m2!1sfr!2sfr" width="100%" height="250" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2023 Bohème Production. Tous droits réservés.</p>
+            <p><a href="#" style="color: #666; text-decoration: none;">Mentions légales</a></p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+    // Configuration des particules
+    particlesJS("particles-js", {
+        particles: {
+            number: {
+                value: 60,
+                density: {
+                    enable: true,
+                    value_area: 800
+                }
+            },
+            color: {
+                value: "#D4AF37"
+            },
+            shape: {
+                type: "circle"
+            },
+            opacity: {
+                value: 0.5,
+                random: true,
+                animation: {
+                    enable: true,
+                    speed: 1,
+                    minimumValue: 0.1,
+                    sync: false
+                }
+            },
+            size: {
+                value: 3,
+                random: true,
+                animation: {
+                    enable: true,
+                    speed: 4,
+                    minimumValue: 0.3,
+                    sync: false
+                }
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#D4AF37",
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 2,
+                direction: "none",
+                random: false,
+                straight: false,
+                out_mode: "out",
+                bounce: false,
+            }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: "repulse"
+                },
+                onclick: {
+                    enable: true,
+                    mode: "push"
+                },
+                resize: true
+            },
+            modes: {
+                repulse: {
+                    distance: 100,
+                    duration: 0.4
+                },
+                push: {
+                    particles_nb: 4
+                }
+            }
+        },
+        retina_detect: true
+    });
+
+    // Animation de défilement doux
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Animation des sections au défilement
+    const observerOptions = {
+        root: null,
+        threshold: 0.1,
+        rootMargin: "0px"
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.style.opacity = "0";
+        section.style.transform = "translateY(20px)";
+        section.style.transition = "all 0.5s ease-out";
+        observer.observe(section);
+    });
+
+    // Animation du logo au chargement
+    window.addEventListener('load', () => {
+        document.querySelector('.logo').style.opacity = "1";
+        document.querySelector('.logo').style.transform = "translateY(0)";
+    });
+
+    // Effet de parallaxe sur le logo en filigrane
+    window.addEventListener('scroll', () => {
+        const scroll = window.pageYOffset;
+        document.querySelector('.background-logo').style.transform =
+            `translate(-50%, -50%) translateY(${scroll * 0.1}px)`;
+    });
+
+    // Animation des cartes d'artistes
+    document.querySelectorAll('.artist-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = "translateY(-10px)";
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = "translateY(0)";
+        });
+    });
+</script>
+</body>
+</html>
