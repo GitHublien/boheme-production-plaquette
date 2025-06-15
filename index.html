@@ -2,318 +2,387 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plaquette Bohème Production</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bohème Production - Plaquette Interactive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
             --gold: #D4AF37;
             --gold-light: #F9F1DB;
             --gold-dark: #A58728;
+            --gold-gradient: linear-gradient(135deg, #D4AF37, #F9E076, #D4AF37);
             --cream: #FFFCF6;
             --dark: #1A1A1A;
             --gray: #767676;
+            --light-gray: #F5F5F5;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(to right, #EAE2D0, #F7F3EB, #EAE2D0);
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--dark);
-            overflow: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
-        /* Book container */
-        .book-container {
-            width: 90%;
-            height: 85vh;
-            max-width: 1400px;
-            position: relative;
-            perspective: 2000px;
-        }
-
-        .book {
-            position: absolute;
-            width: 100%;
+        html, body {
             height: 100%;
-            transform-style: preserve-3d;
-            transition: transform 0.5s ease;
-        }
-
-        /* Pages */
-        .pages {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            display: flex;
-            z-index: 1;
-        }
-
-        .page-spread {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            display: flex;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .page-spread.active {
-            opacity: 1;
-            visibility: visible;
-            z-index: 2;
-        }
-
-        .page-left, .page-right {
-            flex: 1;
-            height: 100%;
-            background: white;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
             overflow: hidden;
-            position: relative;
+            background: var(--cream);
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--dark);
         }
 
-        .page-left {
-            border-radius: 5px 0 0 5px;
-            border-right: 1px solid #f0f0f0;
-        }
-
-        .page-right {
-            border-radius: 0 5px 5px 0;
-            border-left: 1px solid #f0f0f0;
-        }
-
-        /* Page content */
-        .page-content {
-            padding: 40px;
+        /* Main container */
+        .boheme-plaquette {
+            position: fixed;
+            width: 100%;
             height: 100%;
-            overflow-y: auto;
-            position: relative;
+            overflow: hidden;
         }
 
-        /* Cover styling */
-        .cover {
+        /* Main layout elements */
+        .plaquette-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Full page sections */
+        .section {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            height: 100%;
-            background: white;
-            position: relative;
-            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease, visibility 1s ease;
+            overflow: hidden;
         }
 
-        .cover::after {
-            content: '';
+        .section.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+        }
+
+        /* Gold particles background for luxury effect */
+        .gold-particles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(212,175,55,0.08) 0%, rgba(255,255,255,0) 70%);
-            z-index: 0;
-        }
-
-        .cover .logo-placeholder {
-            width: 200px;
-            height: 200px;
-            margin-bottom: 40px;
-            position: relative;
+            pointer-events: none;
             z-index: 1;
+            opacity: 0.5;
         }
 
-        .logo-placeholder::before {
-            content: 'Logo Bohème';
+        .particle {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--gold);
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.2;
+            }
+        }
+
+        /* Section specific styles */
+        /* Cover */
+        .cover-section {
+            background-color: white;
+            text-align: center;
+        }
+
+        .cover-content {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            max-height: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin-bottom: 40px;
+            border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .logo-placeholder {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 20px;
+            font-size: 24px;
+            color: var(--gold-dark);
         }
 
-        .cover h1 {
+        .logo-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 4s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+        }
+
+        .cover-title {
             font-family: 'Playfair Display', serif;
-            font-size: 42px;
+            font-size: 4rem;
             font-weight: 400;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            line-height: 1.2;
             color: var(--dark);
-            letter-spacing: 2px;
             position: relative;
-            z-index: 1;
         }
 
-        .cover h2 {
+        .cover-subtitle {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 26px;
+            font-size: 1.8rem;
             font-weight: 300;
             font-style: italic;
+            margin-bottom: 50px;
             color: var(--gold-dark);
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
         }
 
-        .cover-decoration {
-            position: relative;
-            width: 80%;
+        .golden-line {
+            width: 60%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin-bottom: 40px;
-            z-index: 1;
+            background: var(--gold-gradient);
+            margin: 30px 0;
+            position: relative;
         }
 
-        /* Navigation controls */
-        .nav-controls {
+        .golden-line::before {
+            content: "";
             position: absolute;
-            bottom: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            opacity: 0.5;
+            filter: blur(1px);
+        }
+
+        .cover-scroll-indicator {
+            position: absolute;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 20px;
-            z-index: 100;
+            flex-direction: column;
             align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
-        .nav-btn {
-            width: 50px;
-            height: 50px;
+        .cover-scroll-indicator:hover {
+            transform: translateX(-50%) translateY(5px);
+        }
+
+        .scroll-text {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: var(--gray);
+        }
+
+        .scroll-arrow {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 1px solid var(--gold);
             cursor: pointer;
             transition: all 0.3s ease;
-            border: none;
-            color: var(--dark);
         }
 
-        .nav-btn:hover {
+        .nav-dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+
+        .nav-dot:hover {
             background: var(--gold-light);
-            transform: translateY(-2px);
+            transform: scale(1.2);
         }
 
-        .page-indicator {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            color: var(--gray);
+        .nav-tooltip {
+            position: absolute;
+            right: 25px;
             background: white;
-            padding: 5px 15px;
-            border-radius: 20px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            transform: translateX(-10px);
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
 
-        /* TOC page */
-        .toc {
-            padding: 60px 40px;
+        .nav-dot:hover .nav-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
         }
 
-        .toc h2 {
+        /* Content sections styling */
+        .section-container {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            height: 85%;
+            max-height: 800px;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            z-index: 2;
+        }
+
+        .section-header {
+            position: relative;
+            padding: 30px 40px;
+            background: var(--light-gray);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--dark);
             position: relative;
             display: inline-block;
         }
 
-        .toc h2::after {
+        .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
             left: 0;
-            width: 50%;
-            height: 1px;
+            bottom: -5px;
+            width: 60%;
+            height: 2px;
             background: var(--gold);
         }
 
-        .toc-list {
-            list-style: none;
-        }
-
-        .toc-item {
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .toc-item:hover {
-            transform: translateX(10px);
-            color: var(--gold-dark);
-        }
-
-        .toc-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            margin-right: 20px;
-            color: var(--gold);
-            opacity: 0.8;
-        }
-
-        .toc-text {
-            font-size: 22px;
-        }
-
-        /* Introduction page */
-        .intro {
-            padding: 60px 40px;
-            background: white;
+        .section-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
             position: relative;
+        }
+
+        /* Introduction section */
+        .intro-content {
+            display: flex;
+            flex-direction: column;
             height: 100%;
         }
 
-        .intro::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 150px;
-            height: 150px;
-            background: var(--gold-light);
-            opacity: 0.6;
-            border-radius: 0 0 0 100%;
-            z-index: 0;
-        }
-
-        .intro h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            margin-bottom: 40px;
-            position: relative;
-            color: var(--dark);
-            z-index: 1;
-        }
-
-        .intro p {
-            font-size: 20px;
+        .intro-text {
+            font-size: 1.25rem;
             line-height: 1.8;
             margin-bottom: 25px;
             position: relative;
-            z-index: 1;
-            max-width: 90%;
+            z-index: 2;
         }
 
         .gold-text {
@@ -321,707 +390,1155 @@
             font-style: italic;
         }
 
-        /* Artist page */
-        .artist-page {
-            padding: 60px 40px;
-            height: 100%;
+        .intro-decoration {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            opacity: 0.1;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="%23D4AF37" d="M69.5,-23.3C83.9,1.8,86.2,37.4,69.8,58.3C53.5,79.2,18.5,85.4,-11.8,76.7C-42.1,68.1,-67.7,44.5,-72.4,17.1C-77.2,-10.3,-61,-41.4,-40,-55.2C-19,-69,6.9,-65.3,26.4,-52.9C45.9,-40.5,55.2,-48.4,69.5,-23.3Z" transform="translate(100 100)" /></svg>');
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .artist-category {
-            margin-bottom: 30px;
+        /* Bureau section */
+        .bureau-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
         }
 
-        .artist-category h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: var(--gold-dark);
+        .bureau-card {
+            background: white;
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 8px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
             position: relative;
-            display: inline-block;
+            overflow: hidden;
         }
 
-        .artist-category h3::after {
+        .bureau-card::before {
             content: '';
             position: absolute;
-            bottom: -5px;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 1px;
-            background: var(--gold);
-            opacity: 0.5;
+            height: 5px;
+            background: var(--gold-gradient);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
         }
 
-        .artist-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-        }
-
-        .artist-card {
-            background: white;
-            border: 1px solid rgba(212,175,55,0.2);
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-        }
-
-        .artist-card:hover {
+        .bureau-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-color: var(--gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
-        .artist-name {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 5px;
+        .bureau-card:hover::before {
+            transform: translateY(0);
         }
 
-        .artist-title {
-            font-size: 14px;
+        .bureau-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .bureau-title {
+            font-size: 1rem;
             color: var(--gray);
             font-style: italic;
         }
 
-        /* Contact page */
-        .contact-page {
-            padding: 60px 40px;
+        .bureau-photo-placeholder {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: var(--gold);
+            overflow: hidden;
+        }
+
+        /* Artistes section */
+        .artistes-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .artiste-tab {
+            padding: 10px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .artiste-tab.active {
+            color: var(--gold-dark);
+            font-weight: 500;
+        }
+
+        .artiste-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .artiste-category {
+            display: none;
+        }
+
+        .artiste-category.active {
+            display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .artiste-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .artiste-card {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .artiste-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: var(--gold-light);
+        }
+
+        .artiste-photo-placeholder {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: var(--gold);
+            overflow: hidden;
+        }
+
+        .artiste-name {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .artiste-role {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        /* Productions section */
+        .production-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .production-card {
+            position: relative;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
             height: 100%;
         }
 
-        .contact-page h2 {
+        .production-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .production-image {
+            height: 180px;
+            background: var(--gold-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .production-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.3));
+        }
+
+        .production-content {
+            padding: 25px;
+        }
+
+        .production-title {
             font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            margin-bottom: 40px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .production-description {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Contact section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            height: 100%;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .contact-icon {
-            width: 40px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
             color: var(--gold);
-            margin-right: 20px;
         }
 
         .contact-text {
-            font-size: 20px;
+            font-size: 1.1rem;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        .contact-text span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        .contact-social {
+            margin-top: 40px;
+        }
+
+        .contact-social-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gold-dark);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-link:hover {
+            background: var(--gold-light);
+            transform: translateY(-5px);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+            background: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
         }
 
         .map-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 200px;
-            background: var(--gold-light);
-            margin-top: 40px;
+            height: 100%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: var(--gold-dark);
+            align-items: center;
+            color: var(--gray);
             font-style: italic;
-            border-radius: 4px;
         }
 
-        /* Page transitions */
-        .fade-in {
-            animation: fadeIn 0.8s ease forwards;
+        /* Animation classes */
+        .fade-up {
+            animation: fadeUp 1s ease forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Gold brush stroke decoration */
-        .gold-brush {
-            position: absolute;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200"><path fill="%23D4AF37" opacity="0.2" d="M20,100 C100,50 400,150 480,100 C400,150 100,50 20,100 Z"></path></svg>');
-            background-repeat: no-repeat;
-            background-size: contain;
-            width: 200px;
-            height: 80px;
-            z-index: 0;
+        .fade-in-delay-1 {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.3s;
         }
 
-        /* Bookmark tabs */
-        .bookmarks {
-            position: absolute;
-            top: 0;
-            right: -20px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding: 20px 0;
-            z-index: 10;
+        .fade-in-delay-2 {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.6s;
         }
 
-        .bookmark {
-            width: 30px;
-            height: 80px;
-            background: var(--gold);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 0 5px 5px 0;
+        .fade-in-delay-3 {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.9s;
         }
 
-        .bookmark:hover {
-            transform: translateX(-5px);
-            background: var(--gold-dark);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-            .book-container {
+        /* Responsive styles */
+        @media (max-width: 1200px) {
+            .section-container {
                 width: 95%;
-                height: 90vh;
+                height: 90%;
             }
 
-            .page-content {
-                padding: 30px;
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
-            .cover h1 {
-                font-size: 36px;
+            .map-container {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .cover-title {
+                font-size: 3rem;
             }
 
-            .intro h2, .contact-page h2 {
-                font-size: 28px;
+            .cover-subtitle {
+                font-size: 1.5rem;
             }
 
-            .intro p {
-                font-size: 18px;
+            .section-title {
+                font-size: 2rem;
             }
 
-            .artist-list {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            .bureau-grid, .production-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
         }
 
         @media (max-width: 768px) {
-            .book-container {
+            .section-container {
                 width: 100%;
-                height: 100vh;
+                height: 100%;
+                border-radius: 0;
             }
 
-            .page-content {
+            .section-content {
                 padding: 20px;
             }
 
-            .bookmarks {
+            .section-header {
+                padding: 20px;
+            }
+
+            .cover-title {
+                font-size: 2.5rem;
+            }
+
+            .cover-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .intro-text {
+                font-size: 1.1rem;
+            }
+
+            .navigation {
+                bottom: 20px;
+                top: auto;
+                right: 50%;
+                transform: translateX(50%);
+                flex-direction: row;
+            }
+
+            .nav-tooltip {
                 display: none;
             }
 
-            .cover h1 {
-                font-size: 30px;
-            }
-
-            .cover h2 {
-                font-size: 20px;
-            }
-
-            .intro p {
-                font-size: 16px;
-            }
-
-            .artist-list {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            .bureau-grid, .artiste-grid, .production-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
             }
         }
 
-        /* Special blank page styling */
-        .blank-page {
-            background: var(--cream);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-style: italic;
-            color: var(--gray);
-            font-size: 18px;
+        @media (max-width: 576px) {
+            .cover-title {
+                font-size: 2rem;
+            }
+
+            .logo-container {
+                width: 180px;
+                height: 180px;
+            }
+
+            .logo-placeholder {
+                width: 150px;
+                height: 150px;
+                font-size: 20px;
+            }
+
+            .bureau-grid, .artiste-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .production-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .artistes-tabs {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Custom scrollbar */
+        .section-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .section-content::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+
+        .section-content::-webkit-scrollbar-thumb {
+            background: var(--gold-light);
+            border-radius: 4px;
+        }
+
+        .section-content::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+
+        /* Page transition effects */
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 1000;
+            transform: translateY(100%);
+            pointer-events: none;
+        }
+
+        .transition-overlay.active {
+            animation: pageTransition 1.5s ease-in-out forwards;
+        }
+
+        @keyframes pageTransition {
+            0% { transform: translateY(100%); }
+            50% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+
+        /* Gold reflections effect */
+        .gold-reflection {
+            position: absolute;
+            background: var(--gold);
+            opacity: 0.1;
+            filter: blur(20px);
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-    <div class="book-container">
-        <div class="book">
-            <div class="pages">
-                <!-- Spread 1: Cover & Blank -->
-                <div class="page-spread active" id="spread-1">
-                    <div class="page-left cover">
-                        <div class="logo-placeholder"></div>
-                        <h1>Bohème Production</h1>
-                        <h2>L'excellence lyrique en Côte d'Azur</h2>
-                        <div class="cover-decoration"></div>
-                        <p style="margin-top: 40px; font-style: italic; color: var(--gray);">Plaquette Interactive</p>
-                    </div>
-                    <div class="page-right blank-page">
-                        Tournez la page pour commencer
+    <div class="boheme-plaquette">
+        <!-- Gold particles background -->
+        <div class="gold-particles" id="gold-particles"></div>
+
+        <!-- Gold reflections -->
+        <div class="gold-reflection" style="width: 300px; height: 300px; top: -150px; right: -150px;"></div>
+        <div class="gold-reflection" style="width: 200px; height: 200px; bottom: -100px; left: -100px;"></div>
+
+        <!-- Navigation dots -->
+        <div class="navigation">
+            <div class="nav-dot active" data-section="cover">
+                <div class="nav-tooltip">Couverture</div>
+            </div>
+            <div class="nav-dot" data-section="intro">
+                <div class="nav-tooltip">Présentation</div>
+            </div>
+            <div class="nav-dot" data-section="bureau">
+                <div class="nav-tooltip">Notre Bureau</div>
+            </div>
+            <div class="nav-dot" data-section="artistes">
+                <div class="nav-tooltip">Nos Artistes</div>
+            </div>
+            <div class="nav-dot" data-section="productions">
+                <div class="nav-tooltip">Productions</div>
+            </div>
+            <div class="nav-dot" data-section="contact">
+                <div class="nav-tooltip">Contact</div>
+            </div>
+        </div>
+
+        <!-- Section: Cover -->
+        <section class="section cover-section active" id="cover">
+            <div class="cover-content">
+                <div class="logo-container fade-up">
+                    <div class="logo-placeholder">Logo Bohème</div>
+                    <div class="logo-glow"></div>
+                </div>
+                <h1 class="cover-title fade-in-delay-1">Bohème Production</h1>
+                <h2 class="cover-subtitle fade-in-delay-2">L'excellence lyrique en Côte d'Azur</h2>
+                <div class="golden-line fade-in-delay-3"></div>
+                <p class="fade-in-delay-3" style="margin-top: 30px; font-style: italic; color: var(--gray);">Plaquette Interactive</p>
+
+                <div class="cover-scroll-indicator" id="start-exploration">
+                    <div class="scroll-text">Explorer</div>
+                    <div class="scroll-arrow">
+                        <span class="material-icons">keyboard_arrow_down</span>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Spread 2: TOC & Intro -->
-                <div class="page-spread" id="spread-2">
-                    <div class="page-left">
-                        <div class="page-content toc">
-                            <h2>Sommaire</h2>
-                            <ul class="toc-list">
-                                <li class="toc-item" data-spread="2">
-                                    <span class="toc-number">01</span>
-                                    <span class="toc-text">Présentation</span>
-                                </li>
-                                <li class="toc-item" data-spread="3">
-                                    <span class="toc-number">02</span>
-                                    <span class="toc-text">Notre Bureau</span>
-                                </li>
-                                <li class="toc-item" data-spread="4">
-                                    <span class="toc-number">03</span>
-                                    <span class="toc-text">Nos Artistes</span>
-                                </li>
-                                <li class="toc-item" data-spread="5">
-                                    <span class="toc-number">04</span>
-                                    <span class="toc-text">Productions</span>
-                                </li>
-                                <li class="toc-item" data-spread="6">
-                                    <span class="toc-number">05</span>
-                                    <span class="toc-text">Contact</span>
-                                </li>
-                            </ul>
-                            <div class="gold-brush" style="bottom: 40px; right: 20px;"></div>
+        <!-- Section: Introduction -->
+        <section class="section" id="intro">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Présentation</h2>
+                </div>
+                <div class="section-content intro-content">
+                    <div class="intro-decoration"></div>
+
+                    <p class="intro-text">
+                        Fondée et présidée par <span class="gold-text">Patrick Elie Féré</span>, baryton verdien, producteur et metteur en scène, <span class="gold-text">Bohème Production</span> est une association dédiée à l'excellence artistique.
+                    </p>
+
+                    <p class="intro-text">
+                        Réunissant <span class="gold-text">47 chanteurs de renommée internationale</span> et <span class="gold-text">3 pianistes exceptionnels</span>, nous produisons des concerts lyriques, pop lyriques, comédies musicales et spectacles d'exception.
+                    </p>
+
+                    <p class="intro-text">
+                        L'association a vu le jour grâce à la collaboration des talents exceptionnels de <span class="gold-text">Richard Alexandre Rittelmann</span>, <span class="gold-text">Norah Amsallem</span> et <span class="gold-text">Patrick Elie Féré</span>, avec l'ambition de réunir des chanteurs lyriques aux voix d'exception.
+                    </p>
+
+                    <p class="intro-text">
+                        Notre mission est de promouvoir l'art lyrique sous toutes ses formes, tout en créant des ponts avec d'autres genres musicaux pour offrir des expériences artistiques uniques et mémorables.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Bureau -->
+        <section class="section" id="bureau">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Notre Bureau</h2>
+                </div>
+                <div class="section-content">
+                    <div class="bureau-grid">
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Patrick Elie Féré</h3>
+                            <p class="bureau-title">Fondateur - Président</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Richard Rittelmann</h3>
+                            <p class="bureau-title">Vice-président</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Norah Amsellem</h3>
+                            <p class="bureau-title">Vice-présidente</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Pascal Terrien</h3>
+                            <p class="bureau-title">Directeur artistique principal</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Avi Klemberg</h3>
+                            <p class="bureau-title">Directeur artistique</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Mickael Guedj</h3>
+                            <p class="bureau-title">Directeur artistique</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Patricia Rubino</h3>
+                            <p class="bureau-title">Secrétaire</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Marielle Bader</h3>
+                            <p class="bureau-title">Trésorière</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">David.Sk</h3>
+                            <p class="bureau-title">Administrateur réseaux sociaux</p>
                         </div>
                     </div>
-                    <div class="page-right">
-                        <div class="page-content intro">
-                            <h2>Bohème Production</h2>
-                            <p>Fondée et présidée par <span class="gold-text">Patrick Elie Féré</span>, baryton verdien, producteur et metteur en scène, <span class="gold-text">Bohème Production</span> est une association dédiée à l'excellence artistique.</p>
 
-                            <p>Réunissant <span class="gold-text">47 chanteurs de renommée internationale</span> et <span class="gold-text">3 pianistes exceptionnels</span>, nous produisons des concerts lyriques, pop lyriques, comédies musicales et spectacles d'exception.</p>
-
-                            <p>L'association a vu le jour grâce à la collaboration des talents exceptionnels de <span class="gold-text">Richard Alexandre Rittelmann</span>, <span class="gold-text">Norah Amsallem</span> et <span class="gold-text">Patrick Elie Féré</span>, avec l'ambition de réunir des chanteurs lyriques aux voix d'exception.</p>
-
-                            <p>Notre mission est de promouvoir l'art lyrique sous toutes ses formes, tout en créant des ponts avec d'autres genres musicaux pour offrir des expériences artistiques uniques et mémorables.</p>
-                        </div>
+                    <div style="text-align: center; margin-top: 40px; font-style: italic; color: var(--gray);">
+                        Une équipe passionnée au service de l'excellence artistique
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Spread 3: Bureau -->
-                <div class="page-spread" id="spread-3">
-                    <div class="page-left">
-                        <div class="page-content">
-                            <div style="padding: 20px;">
-                                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 40px; color: var(--gold-dark);">Notre Bureau</h2>
-
-                                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-top: 40px;">
-                                    <div class="artist-card">
-                                        <div class="artist-name">Patrick Elie Féré</div>
-                                        <div class="artist-title">Fondateur - Président</div>
-                                    </div>
-                                    <div class="artist-card">
-                                        <div class="artist-name">Richard Rittelmann</div>
-                                        <div class="artist-title">Vice-président</div>
-                                    </div>
-                                    <div class="artist-card">
-                                        <div class="artist-name">Norah Amsellem</div>
-                                        <div class="artist-title">Vice-présidente</div>
-                                    </div>
-                                    <div class="artist-card">
-                                        <div class="artist-name">Pascal Terrien</div>
-                                        <div class="artist-title">Directeur artistique principal</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-right">
-                        <div class="page-content">
-                            <div style="padding: 20px; height: 100%;">
-                                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-top: 100px;">
-                                    <div class="artist-card">
-                                        <div class="artist-name">Avi Klemberg</div>
-                                        <div class="artist-title">Directeur artistique</div>
-                                    </div>
-                                    <div class="artist-card">
-                                        <div class="artist-name">Mickael Guedj</div>
-                                        <div class="artist-title">Directeur artistique</div>
-                                    </div>
-                                    <div class="artist-card">
-                                        <div class="artist-name">Patricia Rubino</div>
-                                        <div class="artist-title">Secrétaire</div>
-                                    </div>
-                                    <div class="artist-card">
-                                        <div class="artist-name">Marielle Bader</div>
-                                        <div class="artist-title">Trésorière</div>
-                                    </div>
-                                    <div class="artist-card">
-                                        <div class="artist-name">David.Sk</div>
-                                        <div class="artist-title">Administrateur réseaux sociaux</div>
-                                    </div>
-                                </div>
-
-                                <div style="text-align: center; margin-top: 40px; font-style: italic; color: var(--gray);">
-                                    Une équipe passionnée au service de l'excellence artistique
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Section: Artistes -->
+        <section class="section" id="artistes">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Nos Artistes</h2>
                 </div>
+                <div class="section-content">
+                    <div class="artistes-tabs">
+                        <div class="artiste-tab active" data-category="sopranos">Sopranos</div>
+                        <div class="artiste-tab" data-category="tenors">Ténors</div>
+                        <div class="artiste-tab" data-category="barytons">Barytons</div>
+                        <div class="artiste-tab" data-category="pianistes">Pianistes</div>
+                    </div>
 
-                <!-- Spread 4: Artistes -->
-                <div class="page-spread" id="spread-4">
-                    <div class="page-left artist-page">
-                        <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 40px; color: var(--gold-dark);">Nos Artistes</h2>
-
-                        <div class="artist-category">
-                            <h3>Sopranos & Mezzo-sopranos</h3>
-                            <div class="artist-list">
-                                <div class="artist-card">
-                                    <div class="artist-name">Norah Amsellem</div>
-                                    <div class="artist-title">Soprano</div>
+                    <!-- Sopranos -->
+                    <div class="artiste-category active" id="sopranos">
+                        <div class="artiste-grid">
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
                                 </div>
-                                <div class="artist-card">
-                                    <div class="artist-name">Claudia Sorokina</div>
-                                    <div class="artist-title">Soprano</div>
-                                </div>
-                                <div class="artist-card">
-                                    <div class="artist-name">Adriana Bignani Lesca</div>
-                                    <div class="artist-title">Mezzo Soprano</div>
-                                </div>
-                                <div class="artist-card">
-                                    <div class="artist-name">Alisson Cook</div>
-                                    <div class="artist-title">Mezzo Soprano</div>
-                                </div>
+                                <h3 class="artiste-name">Norah Amsellem</h3>
+                                <p class="artiste-role">Soprano</p>
                             </div>
-                        </div>
-
-                        <div class="artist-category">
-                            <h3>Ténors</h3>
-                            <div class="artist-list">
-                                <div class="artist-card">
-                                    <div class="artist-name">Luca Lombardo</div>
-                                    <div class="artist-title">Ténor</div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
                                 </div>
-                                <div class="artist-card">
-                                    <div class="artist-name">Avi Klemberg</div>
-                                    <div class="artist-title">Ténor</div>
+                                <h3 class="artiste-name">Claudia Sorokina</h3>
+                                <p class="artiste-role">Soprano</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
                                 </div>
-                                <div class="artist-card">
-                                    <div class="artist-name">Florian Laconi</div>
-                                    <div class="artist-title">Ténor</div>
+                                <h3 class="artiste-name">Adriana Bignani Lesca</h3>
+                                <p class="artiste-role">Mezzo Soprano</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
                                 </div>
+                                <h3 class="artiste-name">Alisson Cook</h3>
+                                <p class="artiste-role">Mezzo Soprano</p>
                             </div>
                         </div>
                     </div>
-                    <div class="page-right artist-page">
-                        <div class="artist-category" style="margin-top: 100px;">
-                            <h3>Barytons</h3>
-                            <div class="artist-list">
-                                <div class="artist-card">
-                                    <div class="artist-name">Richard A. Rittelmann</div>
-                                    <div class="artist-title">Baryton</div>
+
+                    <!-- Ténors -->
+                    <div class="artiste-category" id="tenors">
+                        <div class="artiste-grid">
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
                                 </div>
-                                <div class="artist-card">
-                                    <div class="artist-name">Patrick Elie Féré</div>
-                                    <div class="artist-title">Baryton Verdien</div>
+                                <h3 class="artiste-name">Luca Lombardo</h3>
+                                <p class="artiste-role">Ténor</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
                                 </div>
-                                <div class="artist-card">
-                                    <div class="artist-name">Mickael Guedj</div>
-                                    <div class="artist-title">Baryton</div>
+                                <h3 class="artiste-name">Avi Klemberg</h3>
+                                <p class="artiste-role">Ténor</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
                                 </div>
+                                <h3 class="artiste-name">Florian Laconi</h3>
+                                <p class="artiste-role">Ténor</p>
                             </div>
                         </div>
-
-                        <div class="artist-category">
-                            <h3>Pianistes</h3>
-                            <div class="artist-list">
-                                <div class="artist-card">
-                                    <div class="artist-name">Elisabeth Berger</div>
-                                    <div class="artist-title">Piano</div>
-                                </div>
-                                <div class="artist-card">
-                                    <div class="artist-name">Giulio Zappa</div>
-                                    <div class="artist-title">Piano</div>
-                                </div>
-                                <div class="artist-card">
-                                    <div class="artist-name">Fabrice Alibert</div>
-                                    <div class="artist-title">Piano</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <p style="text-align: center; margin-top: 30px; font-style: italic; color: var(--gold-dark);">
-                            ...et 35 autres artistes d'exception
-                        </p>
                     </div>
+
+                    <!-- Barytons -->
+                    <div class="artiste-category" id="barytons">
+                        <div class="artiste-grid">
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Richard A. Rittelmann</h3>
+                                <p class="artiste-role">Baryton</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Patrick Elie Féré</h3>
+                                <p class="artiste-role">Baryton Verdien</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Mickael Guedj</h3>
+                                <p class="artiste-role">Baryton</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pianistes -->
+                    <div class="artiste-category" id="pianistes">
+                        <div class="artiste-grid">
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">piano</span>
+                                </div>
+                                <h3 class="artiste-name">Elisabeth Berger</h3>
+                                <p class="artiste-role">Piano</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">piano</span>
+                                </div>
+                                <h3 class="artiste-name">Giulio Zappa</h3>
+                                <p class="artiste-role">Piano</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">piano</span>
+                                </div>
+                                <h3 class="artiste-name">Fabrice Alibert</h3>
+                                <p class="artiste-role">Piano</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="text-align: center; margin-top: 30px; font-style: italic; color: var(--gold-dark);">
+                        ...et 35 autres artistes d'exception
+                    </p>
                 </div>
+            </div>
+        </section>
 
-                <!-- Spread 5: Productions -->
-                <div class="page-spread" id="spread-5">
-                    <div class="page-left">
-                        <div class="page-content">
-                            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 40px; color: var(--gold-dark);">Nos Productions</h2>
-
-                            <div style="position: relative; background: var(--gold-light); padding: 30px; margin-bottom: 40px; border-radius: 4px;">
-                                <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px;">Concerts Lyriques</h3>
-                                <p style="font-size: 18px; line-height: 1.6;">
+        <!-- Section: Productions -->
+        <section class="section" id="productions">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Nos Productions</h2>
+                </div>
+                <div class="section-content">
+                    <div class="production-grid">
+                        <div class="production-card">
+                            <div class="production-image">
+                                <div class="production-image-overlay"></div>
+                            </div>
+                            <div class="production-content">
+                                <h3 class="production-title">Concerts Lyriques</h3>
+                                <p class="production-description">
                                     Des performances d'exception mettant en valeur des répertoires classiques interprétés par nos artistes de renommée internationale. Chaque concert est une expérience émotionnelle unique mêlant virtuosité vocale et profondeur artistique.
                                 </p>
                             </div>
+                        </div>
 
-                            <div style="position: relative; background: white; padding: 30px; margin-bottom: 40px; border: 1px solid var(--gold-light); border-radius: 4px;">
-                                <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px;">Pop Lyrique</h3>
-                                <p style="font-size: 18px; line-height: 1.6;">
+                        <div class="production-card">
+                            <div class="production-image">
+                                <div class="production-image-overlay"></div>
+                            </div>
+                            <div class="production-content">
+                                <h3 class="production-title">Pop Lyrique</h3>
+                                <p class="production-description">
                                     Une fusion innovante entre technique lyrique et répertoire contemporain. Nos artistes apportent une dimension nouvelle à des morceaux populaires, créant un pont accessible entre le monde classique et moderne.
                                 </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="page-right">
-                        <div class="page-content" style="padding-top: 100px;">
-                            <div style="position: relative; background: var(--gold-light); padding: 30px; border-radius: 4px; margin-bottom: 40px;">
-                                <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px;">Comédies Musicales</h3>
-                                <p style="font-size: 18px; line-height: 1.6;">
+
+                        <div class="production-card">
+                            <div class="production-image">
+                                <div class="production-image-overlay"></div>
+                            </div>
+                            <div class="production-content">
+                                <h3 class="production-title">Comédies Musicales</h3>
+                                <p class="production-description">
                                     Des spectacles complets alliant chant, théâtre et chorégraphie. Nos productions de comédies musicales transportent le public dans des univers captivants grâce à la polyvalence exceptionnelle de nos artistes.
                                 </p>
                             </div>
+                        </div>
 
-                            <div style="position: relative; background: white; padding: 30px; border: 1px solid var(--gold-light); border-radius: 4px;">
-                                <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px;">Évènements Privés</h3>
-                                <p style="font-size: 18px; line-height: 1.6;">
+                        <div class="production-card">
+                            <div class="production-image">
+                                <div class="production-image-overlay"></div>
+                            </div>
+                            <div class="production-content">
+                                <h3 class="production-title">Évènements Privés</h3>
+                                <p class="production-description">
                                     Des prestations sur mesure pour vos célébrations exclusives. Notre équipe artistique s'adapte à vos besoins pour créer des moments inoubliables lors de vos mariages, anniversaires, galas ou soirées d'entreprise.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Spread 6: Contact -->
-                <div class="page-spread" id="spread-6">
-                    <div class="page-left contact-page">
-                        <h2>Contact</h2>
-
-                        <div class="contact-item">
-                            <span class="contact-icon material-icons">place</span>
-                            <span class="contact-text">75 Avenue du XVème Corps<br>83700 Saint-Raphaël</span>
-                        </div>
-
-                        <div class="contact-item">
-                            <span class="contact-icon material-icons">phone</span>
-                            <span class="contact-text">07 61 77 54 94</span>
-                        </div>
-
-                        <div class="contact-item">
-                            <span class="contact-icon material-icons">email</span>
-                            <span class="contact-text">Bohemeproduction.president@gmail.com</span>
-                        </div>
-
-                        <div class="contact-item">
-                            <span class="contact-icon material-icons">language</span>
-                            <span class="contact-text">www.bohemeproduction.com</span>
-                        </div>
-
-                        <div class="map-placeholder">
-                            Carte interactive de Saint-Raphaël
-                        </div>
-                    </div>
-                    <div class="page-right contact-page">
-                        <h2>Suivez-nous</h2>
-
-                        <div style="display: flex; gap: 20px; margin-top: 40px;">
-                            <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--gold-light); display: flex; align-items: center; justify-content: center;">
-                                <span class="material-icons" style="color: var(--gold-dark); font-size: 30px;">facebook</span>
+        <!-- Section: Contact -->
+        <section class="section" id="contact">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Contact</h2>
+                </div>
+                <div class="section-content">
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <span class="material-icons">place</span>
+                                </div>
+                                <div class="contact-text">
+                                    75 Avenue du XVème Corps<br>
+                                    <span>83700 Saint-Raphaël</span>
+                                </div>
                             </div>
-                            <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--gold-light); display: flex; align-items: center; justify-content: center;">
-                                <span class="material-icons" style="color: var(--gold-dark); font-size: 30px;">photo_camera</span>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <span class="material-icons">phone</span>
+                                </div>
+                                <div class="contact-text">
+                                    07 61 77 54 94
+                                </div>
                             </div>
-                            <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--gold-light); display: flex; align-items: center; justify-content: center;">
-                                <span class="material-icons" style="color: var(--gold-dark); font-size: 30px;">play_circle</span>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <span class="material-icons">email</span>
+                                </div>
+                                <div class="contact-text">
+                                    Bohemeproduction.president@gmail.com
+                                </div>
                             </div>
-                        </div>
 
-                        <div style="margin-top: 60px;">
-                            <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px;">Nous Contacter</h3>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <span class="material-icons">language</span>
+                                </div>
+                                <div class="contact-text">
+                                    www.bohemeproduction.com
+                                </div>
+                            </div>
 
-                            <div style="background: var(--gold-light); padding: 20px; border-radius: 4px;">
-                                <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
-                                    Pour toute demande d'information sur nos spectacles ou pour organiser une représentation, n'hésitez pas à nous contacter.
-                                </p>
-
-                                <div style="text-align: center; margin-top: 30px;">
-                                    <div style="display: inline-block; background: var(--gold); color: white; padding: 12px 30px; border-radius: 30px; cursor: pointer; font-family: 'Montserrat', sans-serif; transition: all 0.3s ease;">
-                                        Envoyer un message
+                            <div class="contact-social">
+                                <h3 class="contact-social-title">Suivez-nous</h3>
+                                <div class="social-links">
+                                    <div class="social-link">
+                                        <span class="material-icons">facebook</span>
+                                    </div>
+                                    <div class="social-link">
+                                        <span class="material-icons">photo_camera</span>
+                                    </div>
+                                    <div class="social-link">
+                                        <span class="material-icons">play_circle</span>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                Carte interactive de Saint-Raphaël
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Bookmarks -->
-            <div class="bookmarks">
-                <div class="bookmark" data-spread="2">Présentation</div>
-                <div class="bookmark" data-spread="3">Bureau</div>
-                <div class="bookmark" data-spread="4">Artistes</div>
-                <div class="bookmark" data-spread="5">Productions</div>
-                <div class="bookmark" data-spread="6">Contact</div>
-            </div>
-        </div>
-
-        <!-- Navigation Controls -->
-        <div class="nav-controls">
-            <button class="nav-btn" id="prev-btn">
-                <span class="material-icons">arrow_back</span>
-            </button>
-            <div class="page-indicator">
-                <span id="current-spread">1</span>/<span id="total-spreads">6</span>
-            </div>
-            <button class="nav-btn" id="next-btn">
-                <span class="material-icons">arrow_forward</span>
-            </button>
-        </div>
+        <!-- Page transition overlay -->
+        <div class="transition-overlay" id="transition-overlay"></div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const spreads = document.querySelectorAll('.page-spread');
-            const totalSpreads = spreads.length;
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const currentSpreadSpan = document.getElementById('current-spread');
-            const totalSpreadsSpan = document.getElementById('total-spreads');
+            // Initialize variables
+            const sections = document.querySelectorAll('.section');
+            const navDots = document.querySelectorAll('.nav-dot');
+            const transitionOverlay = document.getElementById('transition-overlay');
+            let isAnimating = false;
+            let currentSection = 0;
+            let touchStartY = 0;
+            let touchEndY = 0;
 
-            let currentSpread = 1;
-            totalSpreadsSpan.textContent = totalSpreads;
+            // Create gold particles for luxury effect
+            createGoldParticles();
 
-            // Function to show a specific spread
-            function showSpread(spreadNum) {
-                if (spreadNum < 1 || spreadNum > totalSpreads) return;
-
-                // Update current spread
-                currentSpread = spreadNum;
-                currentSpreadSpan.textContent = currentSpread;
-
-                // Hide all spreads
-                spreads.forEach(spread => {
-                    spread.classList.remove('active');
+            // Setup navigation dots click events
+            navDots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    if (!isAnimating && currentSection !== index) {
+                        navigateToSection(index);
+                    }
                 });
+            });
 
-                // Show current spread
-                const currentSpreadEl = document.getElementById(`spread-${currentSpread}`);
-                currentSpreadEl.classList.add('active');
+            // "Start exploration" button
+            document.getElementById('start-exploration').addEventListener('click', function() {
+                navigateToSection(1);
+            });
 
-                // Add fade-in animation to the content
-                const contents = currentSpreadEl.querySelectorAll('.page-content');
-                contents.forEach(content => {
-                    content.classList.add('fade-in');
+            // Artiste tabs
+            const artisteTabs = document.querySelectorAll('.artiste-tab');
+            const artisteCategories = document.querySelectorAll('.artiste-category');
+
+            artisteTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+
+                    // Update active tab
+                    artisteTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Show corresponding category
+                    artisteCategories.forEach(c => c.classList.remove('active'));
+                    document.getElementById(category).classList.add('active');
                 });
+            });
 
-                // Enable/disable navigation buttons
-                prevBtn.disabled = currentSpread === 1;
-                nextBtn.disabled = currentSpread === totalSpreads;
+            // Wheel navigation
+            window.addEventListener('wheel', function(e) {
+                if (isAnimating) return;
 
-                // Update URL with current spread (for shareable links)
-                history.replaceState(null, null, `#spread-${currentSpread}`);
-            }
-
-            // Next button
-            nextBtn.addEventListener('click', function() {
-                if (currentSpread < totalSpreads) {
-                    showSpread(currentSpread + 1);
+                if (e.deltaY > 0) {
+                    // Scroll down
+                    if (currentSection < sections.length - 1) {
+                        navigateToSection(currentSection + 1);
+                    }
+                } else {
+                    // Scroll up
+                    if (currentSection > 0) {
+                        navigateToSection(currentSection - 1);
+                    }
                 }
             });
 
-            // Previous button
-            prevBtn.addEventListener('click', function() {
-                if (currentSpread > 1) {
-                    showSpread(currentSpread - 1);
-                }
+            // Touch events for mobile
+            document.addEventListener('touchstart', function(e) {
+                touchStartY = e.touches[0].clientY;
             });
 
-            // Bookmark navigation
-            document.querySelectorAll('.bookmark').forEach(bookmark => {
-                bookmark.addEventListener('click', function() {
-                    const spreadNum = parseInt(this.getAttribute('data-spread'));
-                    showSpread(spreadNum);
-                });
-            });
+            document.addEventListener('touchend', function(e) {
+                if (isAnimating) return;
 
-            // TOC navigation
-            document.querySelectorAll('.toc-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const spreadNum = parseInt(this.getAttribute('data-spread'));
-                    showSpread(spreadNum);
-                });
+                touchEndY = e.changedTouches[0].clientY;
+                handleSwipeVertical();
             });
 
             // Keyboard navigation
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                    if (currentSpread < totalSpreads) {
-                        showSpread(currentSpread + 1);
+                if (isAnimating) return;
+
+                if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+                    if (currentSection < sections.length - 1) {
+                        navigateToSection(currentSection + 1);
                     }
-                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                    if (currentSpread > 1) {
-                        showSpread(currentSpread - 1);
+                } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                    if (currentSection > 0) {
+                        navigateToSection(currentSection - 1);
                     }
                 }
             });
 
-            // Touch/swipe support
-            let touchStartX = 0;
-            let touchEndX = 0;
+            // Function to navigate to a specific section
+            function navigateToSection(index) {
+                if (index === currentSection || isAnimating) return;
 
-            document.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
+                isAnimating = true;
 
-            document.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
+                // Start transition animation
+                transitionOverlay.classList.add('active');
 
-            function handleSwipe() {
+                setTimeout(() => {
+                    // Update active section
+                    sections.forEach(section => section.classList.remove('active'));
+                    sections[index].classList.add('active');
+
+                    // Update active navigation dot
+                    navDots.forEach(dot => dot.classList.remove('active'));
+                    navDots[index].classList.add('active');
+
+                    // Update current section index
+                    currentSection = index;
+
+                    // Remove transition overlay class after animation completes
+                    setTimeout(() => {
+                        transitionOverlay.classList.remove('active');
+                        isAnimating = false;
+                    }, 800);
+                }, 750);
+            }
+
+            // Function to handle vertical swipe on mobile
+            function handleSwipeVertical() {
                 const swipeThreshold = 50;
 
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    // Swipe left - next page
-                    if (currentSpread < totalSpreads) {
-                        showSpread(currentSpread + 1);
+                if (touchEndY < touchStartY - swipeThreshold) {
+                    // Swipe up - next section
+                    if (currentSection < sections.length - 1) {
+                        navigateToSection(currentSection + 1);
                     }
                 }
 
-                if (touchEndX > touchStartX + swipeThreshold) {
-                    // Swipe right - previous page
-                    if (currentSpread > 1) {
-                        showSpread(currentSpread - 1);
+                if (touchEndY > touchStartY + swipeThreshold) {
+                    // Swipe down - previous section
+                    if (currentSection > 0) {
+                        navigateToSection(currentSection - 1);
                     }
                 }
             }
 
-            // Check for hash in URL (for direct links to specific spreads)
-            if (window.location.hash) {
-                const spreadId = window.location.hash.substring(1);
-                const spreadNum = parseInt(spreadId.replace('spread-', ''));
-                if (!isNaN(spreadNum) && spreadNum >= 1 && spreadNum <= totalSpreads) {
-                    showSpread(spreadNum);
+            // Create gold particles background
+            function createGoldParticles() {
+                const particlesContainer = document.getElementById('gold-particles');
+                const numberOfParticles = 30;
+
+                for (let i = 0; i < numberOfParticles; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+
+                    // Random size
+                    const size = Math.random() * 6 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+
+                    // Random animation duration and delay
+                    const duration = Math.random() * 10 + 5;
+                    const delay = Math.random() * 5;
+                    particle.style.animation = `float ${duration}s infinite ease-in-out ${delay}s`;
+
+                    // Random movement distance
+                    const translateX = (Math.random() - 0.5) * 100;
+                    const translateY = (Math.random() - 0.5) * 100;
+                    particle.style.animationName = 'none';
+                    particle.offsetHeight; // Trigger reflow
+                    particle.style.animationName = '';
+
+                    // Apply keyframes programmatically
+                    particle.style.setProperty('--translate-x', `${translateX}px`);
+                    particle.style.setProperty('--translate-y', `${translateY}px`);
+
+                    particlesContainer.appendChild(particle);
                 }
             }
 
-            // Initialize with first spread active
-            showSpread(1);
+            // Function to create dynamic parallax effect on mouse move
+            document.addEventListener('mousemove', function(e) {
+                const mouseX = e.clientX / window.innerWidth - 0.5;
+                const mouseY = e.clientY / window.innerHeight - 0.5;
+
+                // Subtle parallax effect for active section
+                const activeSection = document.querySelector('.section.active');
+                if (activeSection) {
+                    const content = activeSection.querySelector('.section-container') || activeSection.querySelector('.cover-content');
+                    if (content) {
+                        content.style.transform = `translate(${mouseX * -20}px, ${mouseY * -20}px)`;
+                    }
+                }
+
+                // Move gold reflections
+                const reflections = document.querySelectorAll('.gold-reflection');
+                reflections.forEach(reflection => {
+                    reflection.style.transform = `translate(${mouseX * 50}px, ${mouseY * 50}px)`;
+                });
+            });
         });
     </script>
 </body>
