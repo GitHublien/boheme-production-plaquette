@@ -13,7 +13,6 @@
             --gold: #D4AF37;
             --gold-light: #F9F1DB;
             --gold-dark: #A58728;
-            --gold-gradient: linear-gradient(135deg, #D4AF37, #F9E076, #D4AF37);
             --cream: #FFFCF6;
             --dark: #1A1A1A;
             --gray: #767676;
@@ -76,46 +75,43 @@
             z-index: 10;
         }
 
-        /* Gold particles background for luxury effect */
-        .gold-particles {
+        /* Video background */
+        .video-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            overflow: hidden;
             z-index: 1;
-            opacity: 0.5;
         }
 
-        .particle {
+        .video-background video {
             position: absolute;
-            background: var(--gold);
-            border-radius: 50%;
-            opacity: 0;
-            animation: float 15s infinite ease-in-out;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 0.4;
+            object-fit: cover;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.2;
-            }
-            50% {
-                opacity: 0.1;
-            }
-            90% {
-                opacity: 0.2;
-            }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.8) 70%);
+            z-index: 2;
         }
 
-        /* Section specific styles */
-        /* Cover */
+        /* Cover section */
         .cover-section {
-            background-color: white;
+            background-color: var(--cream);
             text-align: center;
         }
 
@@ -130,7 +126,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            z-index: 2;
+            z-index: 3;
         }
 
         .logo-container {
@@ -138,45 +134,16 @@
             width: 220px;
             height: 220px;
             margin-bottom: 40px;
-            border-radius: 50%;
-            background: var(--cream);
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             overflow: hidden;
         }
 
-        .logo-placeholder {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 24px;
-            color: var(--gold-dark);
-        }
-
-        .logo-glow {
-            position: absolute;
+        .logo {
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(255,255,255,0) 70%);
-            animation: pulse 4s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0.7;
-                transform: scale(1.1);
-            }
+            object-fit: contain;
         }
 
         .cover-title {
@@ -186,7 +153,7 @@
             margin-bottom: 20px;
             line-height: 1.2;
             color: var(--dark);
-            position: relative;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
 
         .cover-subtitle {
@@ -196,26 +163,16 @@
             font-style: italic;
             margin-bottom: 50px;
             color: var(--gold-dark);
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
         }
 
         .golden-line {
             width: 60%;
-            height: 1px;
-            background: var(--gold-gradient);
+            height: 2px;
+            background: var(--gold);
             margin: 30px 0;
             position: relative;
-        }
-
-        .golden-line::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gold);
-            opacity: 0.5;
-            filter: blur(1px);
+            box-shadow: 0 0 10px rgba(212,175,55,0.5);
         }
 
         .cover-scroll-indicator {
@@ -240,7 +197,7 @@
             font-size: 0.8rem;
             letter-spacing: 2px;
             margin-bottom: 10px;
-            color: var(--gray);
+            color: var(--gold-dark);
         }
 
         .scroll-arrow {
@@ -252,6 +209,7 @@
             justify-content: center;
             align-items: center;
             animation: bounce 2s infinite;
+            color: var(--gold);
         }
 
         @keyframes bounce {
@@ -283,7 +241,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: white;
+            background: var(--gold-light);
             border: 1px solid var(--gold);
             cursor: pointer;
             transition: all 0.3s ease;
@@ -302,7 +260,7 @@
         .nav-tooltip {
             position: absolute;
             right: 25px;
-            background: white;
+            background: rgba(0,0,0,0.7);
             padding: 5px 10px;
             border-radius: 15px;
             font-family: 'Montserrat', sans-serif;
@@ -312,7 +270,7 @@
             visibility: hidden;
             transition: all 0.3s ease;
             transform: translateX(-10px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            color: var(--gold);
         }
 
         .nav-dot:hover .nav-tooltip {
@@ -330,18 +288,18 @@
             max-height: 800px;
             display: flex;
             flex-direction: column;
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             z-index: 2;
         }
 
         .section-header {
             position: relative;
             padding: 30px 40px;
-            background: var(--light-gray);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
 
         .section-title {
@@ -368,6 +326,7 @@
             padding: 40px;
             overflow-y: auto;
             position: relative;
+            color: var(--dark);
         }
 
         /* Introduction section */
@@ -386,7 +345,7 @@
         }
 
         .gold-text {
-            color: var(--gold-dark);
+            color: var(--gold);
             font-style: italic;
         }
 
@@ -397,7 +356,7 @@
             width: 150px;
             height: 150px;
             opacity: 0.1;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="%23D4AF37" d="M69.5,-23.3C83.9,1.8,86.2,37.4,69.8,58.3C53.5,79.2,18.5,85.4,-11.8,76.7C-42.1,68.1,-67.7,44.5,-72.4,17.1C-77.2,-10.3,-61,-41.4,-40,-55.2C-19,-69,6.9,-65.3,26.4,-52.9C45.9,-40.5,55.2,-48.4,69.5,-23.3Z" transform="translate(100 100)" /></svg>');
+            background-image: url('data:image/png;base64,'); /* Base64 encoded image of the gold foil */
             background-repeat: no-repeat;
             pointer-events: none;
             z-index: 1;
@@ -412,7 +371,7 @@
         }
 
         .bureau-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.8);
             border: 1px solid rgba(212,175,55,0.3);
             border-radius: 8px;
             padding: 25px 20px;
@@ -420,27 +379,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-        }
-
-        .bureau-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gold-gradient);
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .bureau-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-
-        .bureau-card:hover::before {
-            transform: translateY(0);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .bureau-name {
@@ -484,10 +423,11 @@
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
+            color: var(--dark);
         }
 
         .artiste-tab.active {
-            color: var(--gold-dark);
+            color: var(--gold);
             font-weight: 500;
         }
 
@@ -522,19 +462,15 @@
         }
 
         .artiste-card {
-            background: white;
-            border: 1px solid rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0,0,0,0.1);
             border-radius: 8px;
             padding: 15px;
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
-        }
-
-        .artiste-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-color: var(--gold-light);
+            position: relative;
+            overflow: hidden;
         }
 
         .artiste-photo-placeholder {
@@ -572,17 +508,12 @@
 
         .production-card {
             position: relative;
-            background: white;
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
             height: 100%;
-        }
-
-        .production-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .production-image {
@@ -686,9 +617,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--gold-dark);
+            color: var(--gold);
             transition: all 0.3s ease;
             cursor: pointer;
+            border: 1px solid rgba(212,175,55,0.3);
         }
 
         .social-link:hover {
@@ -743,7 +675,287 @@
             animation: fadeIn 1s ease forwards 0.9s;
         }
 
-        /* Responsive styles */
+        /* Gold border style */
+        .gold-border {
+            position: relative;
+            border: 5px solid transparent;
+            padding: 10px;
+            background-clip: padding-box;
+        }
+
+        .gold-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: -5px;
+            background: url('image-en-or.png');
+            background-size: cover;
+            background-repeat: repeat;
+            z-index: -1;
+        }
+
+        /* Background effects */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: var(--gold);
+            opacity: 0;
+            border-radius: 50%;
+            transform: translateZ(0) rotate(45deg);
+            animation: shootingStar linear;
+        }
+
+        @keyframes shootingStar {
+            0% {
+                opacity: 0;
+                transform: translateX(0) translateY(0) rotate(45deg) scale(0);
+            }
+            10% {
+                opacity: 1;
+                transform: translateX(10vw) translateY(10vh) rotate(45deg) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(100vw) translateY(100vh) rotate(45deg) scale(0.5);
+            }
+        }
+
+        .firework {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .firework-particle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            transform-origin: center;
+        }
+
+        @keyframes fireworkExplode {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty));
+                opacity: 0;
+            }
+        }
+
+        /* Gold foil texture overlay for titles */
+        .gold-title {
+            position: relative;
+            display: inline-block;
+            color: var(--dark);
+            z-index: 1;
+        }
+
+        .gold-title::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('image-en-or.png');
+            background-size: cover;
+            mix-blend-mode: overlay;
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        /* External links button */
+        .external-links-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212,175,55,0.3);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .external-links-button:hover {
+            transform: scale(1.1);
+            background: var(--gold-light);
+        }
+
+        .external-links-panel {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            z-index: 99;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 220px;
+            border: 1px solid var(--gold-light);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .external-links-panel.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .external-links-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            text-align: center;
+            border-bottom: 1px solid var(--gold-light);
+            padding-bottom: 8px;
+        }
+
+        .external-link {
+            display: flex;
+            align-items: center;
+            padding: 8px 5px;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border-radius: 5px;
+        }
+
+        .external-link:hover {
+            background: var(--gold-light);
+            transform: translateX(5px);
+        }
+
+        .external-link-icon {
+            margin-right: 10px;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        /* Page transition effect */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+        }
+
+        /* Gold frame around pages */
+        .gold-frame-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .gold-frame-border {
+            position: absolute;
+            background: url('image-en-or.png');
+            background-size: cover;
+        }
+
+        .gold-frame-top, .gold-frame-bottom {
+            height: 15px;
+            width: 100%;
+        }
+
+        .gold-frame-left, .gold-frame-right {
+            width: 15px;
+            height: 100%;
+        }
+
+        .gold-frame-top {
+            top: 0;
+            left: 0;
+        }
+
+        .gold-frame-bottom {
+            bottom: 0;
+            left: 0;
+        }
+
+        .gold-frame-left {
+            top: 0;
+            left: 0;
+        }
+
+        .gold-frame-right {
+            top: 0;
+            right: 0;
+        }
+
+        .gold-frame-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url('image-en-or.png');
+            background-size: cover;
+            z-index: 101;
+        }
+
+        .gold-frame-corner-tl {
+            top: 0;
+            left: 0;
+        }
+
+        .gold-frame-corner-tr {
+            top: 0;
+            right: 0;
+        }
+
+        .gold-frame-corner-bl {
+            bottom: 0;
+            left: 0;
+        }
+
+        .gold-frame-corner-br {
+            bottom: 0;
+            right: 0;
+        }
+
+        /* Responsive styling */
         @media (max-width: 1200px) {
             .section-container {
                 width: 95%;
@@ -821,6 +1033,16 @@
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 15px;
             }
+
+            .logo-container {
+                width: 180px;
+                height: 180px;
+            }
+
+            .gold-frame-border {
+                width: 10px;
+                height: 10px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -829,14 +1051,8 @@
             }
 
             .logo-container {
-                width: 180px;
-                height: 180px;
-            }
-
-            .logo-placeholder {
                 width: 150px;
                 height: 150px;
-                font-size: 20px;
             }
 
             .bureau-grid, .artiste-grid {
@@ -852,71 +1068,37 @@
             }
 
             .artistes-tabs {
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
+                overflow-x: auto;
             }
-        }
 
-        /* Custom scrollbar */
-        .section-content::-webkit-scrollbar {
-            width: 8px;
-        }
+            .golden-line {
+                width: 80%;
+            }
 
-        .section-content::-webkit-scrollbar-track {
-            background: var(--light-gray);
-        }
-
-        .section-content::-webkit-scrollbar-thumb {
-            background: var(--gold-light);
-            border-radius: 4px;
-        }
-
-        .section-content::-webkit-scrollbar-thumb:hover {
-            background: var(--gold);
-        }
-
-        /* Page transition effects */
-        .transition-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 1000;
-            transform: translateY(100%);
-            pointer-events: none;
-        }
-
-        .transition-overlay.active {
-            animation: pageTransition 1.5s ease-in-out forwards;
-        }
-
-        @keyframes pageTransition {
-            0% { transform: translateY(100%); }
-            50% { transform: translateY(0); }
-            100% { transform: translateY(-100%); }
-        }
-
-        /* Gold reflections effect */
-        .gold-reflection {
-            position: absolute;
-            background: var(--gold);
-            opacity: 0.1;
-            filter: blur(20px);
-            border-radius: 50%;
-            z-index: 1;
-            pointer-events: none;
+            .external-links-button {
+                bottom: 15px;
+                left: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="boheme-plaquette">
-        <!-- Gold particles background -->
-        <div class="gold-particles" id="gold-particles"></div>
+        <!-- Background effects container -->
+        <div class="stars-container" id="stars-container"></div>
 
-        <!-- Gold reflections -->
-        <div class="gold-reflection" style="width: 300px; height: 300px; top: -150px; right: -150px;"></div>
-        <div class="gold-reflection" style="width: 200px; height: 200px; bottom: -100px; left: -100px;"></div>
+        <!-- Gold frame border -->
+        <div class="gold-frame-container">
+            <div class="gold-frame-border gold-frame-top"></div>
+            <div class="gold-frame-border gold-frame-bottom"></div>
+            <div class="gold-frame-border gold-frame-left"></div>
+            <div class="gold-frame-border gold-frame-right"></div>
+            <div class="gold-frame-corner gold-frame-corner-tl"></div>
+            <div class="gold-frame-corner gold-frame-corner-tr"></div>
+            <div class="gold-frame-corner gold-frame-corner-bl"></div>
+            <div class="gold-frame-corner gold-frame-corner-br"></div>
+        </div>
 
         <!-- Navigation dots -->
         <div class="navigation">
@@ -940,17 +1122,52 @@
             </div>
         </div>
 
+        <!-- External links button -->
+        <div class="external-links-button" id="external-links-button">
+            <span class="material-icons">link</span>
+        </div>
+
+        <!-- External links panel -->
+        <div class="external-links-panel" id="external-links-panel">
+            <div class="external-links-title">Liens Utiles</div>
+            <a href="https://www.bohemeproduction.com" target="_blank" class="external-link">
+                <span class="material-icons external-link-icon">language</span>
+                Site Web Officiel
+            </a>
+            <a href="#" target="_blank" class="external-link">
+                <span class="material-icons external-link-icon">facebook</span>
+                Facebook
+            </a>
+            <a href="#" target="_blank" class="external-link">
+                <span class="material-icons external-link-icon">photo_camera</span>
+                Instagram
+            </a>
+            <a href="#" target="_blank" class="external-link">
+                <span class="material-icons external-link-icon">play_circle</span>
+                YouTube
+            </a>
+        </div>
+
         <!-- Section: Cover -->
         <section class="section cover-section active" id="cover">
+            <!-- Video Background -->
+            <div class="video-background">
+                <div class="video-overlay"></div>
+                <!-- Placeholder for video (will be replaced with actual video) -->
+                <video id="cover-video" autoplay muted loop>
+                    <source src="" type="video/mp4">
+                </video>
+            </div>
+
             <div class="cover-content">
                 <div class="logo-container fade-up">
-                    <div class="logo-placeholder">Logo Bohème</div>
-                    <div class="logo-glow"></div>
+                    <!-- Use the logo image provided by the user -->
+                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'><circle cx=\'100\' cy=\'100\' r=\'90\' fill=\'%23000\' stroke=\'%23D4AF37\' stroke-width=\'5\'/><text x=\'100\' y=\'100\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\' text-anchor=\'middle\' dominant-baseline=\'middle\'>BP</text><text x=\'100\' y=\'130\' font-family=\'Arial\' font-size=\'12\' fill=\'%23D4AF37\' text-anchor=\'middle\'>Bohème Production</text></svg>'">
                 </div>
-                <h1 class="cover-title fade-in-delay-1">Bohème Production</h1>
+                <h1 class="cover-title gold-title fade-in-delay-1">Bohème Production</h1>
                 <h2 class="cover-subtitle fade-in-delay-2">L'excellence lyrique en Côte d'Azur</h2>
                 <div class="golden-line fade-in-delay-3"></div>
-                <p class="fade-in-delay-3" style="margin-top: 30px; font-style: italic; color: var(--gray);">Plaquette Interactive</p>
+                <p class="fade-in-delay-3" style="margin-top: 30px; font-style: italic; color: var(--gold-dark);">Plaquette Interactive</p>
 
                 <div class="cover-scroll-indicator" id="start-exploration">
                     <div class="scroll-text">Explorer</div>
@@ -965,11 +1182,9 @@
         <section class="section" id="intro">
             <div class="section-container">
                 <div class="section-header">
-                    <h2 class="section-title">Présentation</h2>
+                    <h2 class="section-title gold-title">Présentation</h2>
                 </div>
                 <div class="section-content intro-content">
-                    <div class="intro-decoration"></div>
-
                     <p class="intro-text">
                         Fondée et présidée par <span class="gold-text">Patrick Elie Féré</span>, baryton verdien, producteur et metteur en scène, <span class="gold-text">Bohème Production</span> est une association dédiée à l'excellence artistique.
                     </p>
@@ -985,6 +1200,10 @@
                     <p class="intro-text">
                         Notre mission est de promouvoir l'art lyrique sous toutes ses formes, tout en créant des ponts avec d'autres genres musicaux pour offrir des expériences artistiques uniques et mémorables.
                     </p>
+
+                    <p class="intro-text">
+                        Basée sur la Côte d'Azur, <span class="gold-text">Bohème Production</span> rayonne dans toute la région et au-delà, apportant l'excellence de l'art lyrique à un public toujours plus large et diversifié.
+                    </p>
                 </div>
             </div>
         </section>
@@ -993,7 +1212,7 @@
         <section class="section" id="bureau">
             <div class="section-container">
                 <div class="section-header">
-                    <h2 class="section-title">Notre Bureau</h2>
+                    <h2 class="section-title gold-title">Notre Bureau</h2>
                 </div>
                 <div class="section-content">
                     <div class="bureau-grid">
@@ -1062,7 +1281,7 @@
                         </div>
                     </div>
 
-                    <div style="text-align: center; margin-top: 40px; font-style: italic; color: var(--gray);">
+                    <div style="text-align: center; margin-top: 40px; font-style: italic; color: var(--gold-dark);">
                         Une équipe passionnée au service de l'excellence artistique
                     </div>
                 </div>
@@ -1073,7 +1292,7 @@
         <section class="section" id="artistes">
             <div class="section-container">
                 <div class="section-header">
-                    <h2 class="section-title">Nos Artistes</h2>
+                    <h2 class="section-title gold-title">Nos Artistes</h2>
                 </div>
                 <div class="section-content">
                     <div class="artistes-tabs">
@@ -1209,7 +1428,7 @@
         <section class="section" id="productions">
             <div class="section-container">
                 <div class="section-header">
-                    <h2 class="section-title">Nos Productions</h2>
+                    <h2 class="section-title gold-title">Nos Productions</h2>
                 </div>
                 <div class="section-content">
                     <div class="production-grid">
@@ -1269,7 +1488,7 @@
         <section class="section" id="contact">
             <div class="section-container">
                 <div class="section-header">
-                    <h2 class="section-title">Contact</h2>
+                    <h2 class="section-title gold-title">Contact</h2>
                 </div>
                 <div class="section-content">
                     <div class="contact-content">
@@ -1337,8 +1556,8 @@
             </div>
         </section>
 
-        <!-- Page transition overlay -->
-        <div class="transition-overlay" id="transition-overlay"></div>
+        <!-- Page transition effect -->
+        <div class="page-transition" id="page-transition"></div>
     </div>
 
     <script>
@@ -1346,14 +1565,21 @@
             // Initialize variables
             const sections = document.querySelectorAll('.section');
             const navDots = document.querySelectorAll('.nav-dot');
-            const transitionOverlay = document.getElementById('transition-overlay');
+            const pageTransition = document.getElementById('page-transition');
+            const externalLinksButton = document.getElementById('external-links-button');
+            const externalLinksPanel = document.getElementById('external-links-panel');
             let isAnimating = false;
             let currentSection = 0;
             let touchStartY = 0;
             let touchEndY = 0;
+            let lastTouch = 0;
+            let touchTimeout = null;
 
-            // Create gold particles for luxury effect
-            createGoldParticles();
+            // Create stars for background
+            createStars();
+
+            // Create fireworks effect
+            setInterval(createFirework, 3000);
 
             // Setup navigation dots click events
             navDots.forEach((dot, index) => {
@@ -1367,6 +1593,18 @@
             // "Start exploration" button
             document.getElementById('start-exploration').addEventListener('click', function() {
                 navigateToSection(1);
+            });
+
+            // External links button toggle
+            externalLinksButton.addEventListener('click', function() {
+                externalLinksPanel.classList.toggle('active');
+            });
+
+            // Close external links panel when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!externalLinksButton.contains(e.target) && !externalLinksPanel.contains(e.target)) {
+                    externalLinksPanel.classList.remove('active');
+                }
             });
 
             // Artiste tabs
@@ -1387,33 +1625,57 @@
                 });
             });
 
-            // Wheel navigation
+            // Wheel navigation with debounce
+            let wheelTimeout = null;
             window.addEventListener('wheel', function(e) {
                 if (isAnimating) return;
 
-                if (e.deltaY > 0) {
-                    // Scroll down
-                    if (currentSection < sections.length - 1) {
-                        navigateToSection(currentSection + 1);
+                // Clear previous timeout
+                clearTimeout(wheelTimeout);
+
+                // Set new timeout
+                wheelTimeout = setTimeout(() => {
+                    if (e.deltaY > 0) {
+                        // Scroll down
+                        if (currentSection < sections.length - 1) {
+                            navigateToSection(currentSection + 1);
+                        }
+                    } else {
+                        // Scroll up
+                        if (currentSection > 0) {
+                            navigateToSection(currentSection - 1);
+                        }
                     }
-                } else {
-                    // Scroll up
-                    if (currentSection > 0) {
-                        navigateToSection(currentSection - 1);
-                    }
-                }
+                }, 100);
             });
 
-            // Touch events for mobile
+            // Touch events for mobile with improved control
             document.addEventListener('touchstart', function(e) {
                 touchStartY = e.touches[0].clientY;
+                lastTouch = Date.now();
+
+                // Clear any existing timeout
+                if (touchTimeout) {
+                    clearTimeout(touchTimeout);
+                }
             });
 
             document.addEventListener('touchend', function(e) {
                 if (isAnimating) return;
 
                 touchEndY = e.changedTouches[0].clientY;
-                handleSwipeVertical();
+                const touchDuration = Date.now() - lastTouch;
+
+                // Only process swipe if it's fast enough (< 300ms)
+                // and the user isn't just trying to scroll the content
+                if (touchDuration < 300) {
+                    handleSwipeVertical();
+                } else {
+                    // For slower swipes/scrolls, add a small delay to ensure user is done scrolling
+                    touchTimeout = setTimeout(() => {
+                        handleSwipeVertical();
+                    }, 200);
+                }
             });
 
             // Keyboard navigation
@@ -1437,8 +1699,8 @@
 
                 isAnimating = true;
 
-                // Start transition animation
-                transitionOverlay.classList.add('active');
+                // Show page transition effect
+                pageTransition.classList.add('active');
 
                 setTimeout(() => {
                     // Update active section
@@ -1452,94 +1714,121 @@
                     // Update current section index
                     currentSection = index;
 
-                    // Remove transition overlay class after animation completes
+                    // Create a new firework to celebrate the page change
+                    createFirework();
+
+                    // Remove page transition effect
                     setTimeout(() => {
-                        transitionOverlay.classList.remove('active');
+                        pageTransition.classList.remove('active');
                         isAnimating = false;
-                    }, 800);
-                }, 750);
+                    }, 300);
+                }, 500);
             }
 
             // Function to handle vertical swipe on mobile
             function handleSwipeVertical() {
                 const swipeThreshold = 50;
+                const distanceY = touchEndY - touchStartY;
+                const activeSection = document.querySelector('.section.active');
+                const sectionContent = activeSection.querySelector('.section-content');
 
-                if (touchEndY < touchStartY - swipeThreshold) {
-                    // Swipe up - next section
+                if (distanceY < -swipeThreshold) { // Swipe up
                     if (currentSection < sections.length - 1) {
-                        navigateToSection(currentSection + 1);
+                        // Check if section content is scrolled to bottom
+                        if (!sectionContent || sectionContent.scrollHeight - sectionContent.scrollTop <= sectionContent.clientHeight + 10) {
+                            navigateToSection(currentSection + 1);
+                        }
                     }
-                }
-
-                if (touchEndY > touchStartY + swipeThreshold) {
-                    // Swipe down - previous section
+                } else if (distanceY > swipeThreshold) { // Swipe down
                     if (currentSection > 0) {
-                        navigateToSection(currentSection - 1);
+                        // Check if section content is scrolled to top
+                        if (!sectionContent || sectionContent.scrollTop <= 0) {
+                            navigateToSection(currentSection - 1);
+                        }
                     }
                 }
             }
 
-            // Create gold particles background
-            function createGoldParticles() {
-                const particlesContainer = document.getElementById('gold-particles');
-                const numberOfParticles = 30;
+            // Create shooting stars effect
+            function createStars() {
+                const starsContainer = document.getElementById('stars-container');
 
-                for (let i = 0; i < numberOfParticles; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
+                // Create shooting stars at random intervals
+                setInterval(() => {
+                    const star = document.createElement('div');
+                    star.classList.add('star');
 
                     // Random size
-                    const size = Math.random() * 6 + 2;
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
+                    const size = Math.random() * 3 + 1;
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
 
-                    // Random position
-                    const posX = Math.random() * 100;
-                    const posY = Math.random() * 100;
-                    particle.style.left = `${posX}%`;
-                    particle.style.top = `${posY}%`;
+                    // Random position and angle
+                    const startPosX = Math.random() * -10;
+                    const startPosY = Math.random() * 50;
+                    star.style.left = `${startPosX}%`;
+                    star.style.top = `${startPosY}%`;
 
-                    // Random animation duration and delay
-                    const duration = Math.random() * 10 + 5;
-                    const delay = Math.random() * 5;
-                    particle.style.animation = `float ${duration}s infinite ease-in-out ${delay}s`;
+                    // Animation duration
+                    const duration = Math.random() * 2 + 1;
+                    star.style.animation = `shootingStar ${duration}s linear forwards`;
 
-                    // Random movement distance
-                    const translateX = (Math.random() - 0.5) * 100;
-                    const translateY = (Math.random() - 0.5) * 100;
-                    particle.style.animationName = 'none';
-                    particle.offsetHeight; // Trigger reflow
-                    particle.style.animationName = '';
+                    starsContainer.appendChild(star);
 
-                    // Apply keyframes programmatically
-                    particle.style.setProperty('--translate-x', `${translateX}px`);
-                    particle.style.setProperty('--translate-y', `${translateY}px`);
-
-                    particlesContainer.appendChild(particle);
-                }
+                    // Remove star after animation completes
+                    setTimeout(() => {
+                        star.remove();
+                    }, duration * 1000);
+                }, 800);
             }
 
-            // Function to create dynamic parallax effect on mouse move
-            document.addEventListener('mousemove', function(e) {
-                const mouseX = e.clientX / window.innerWidth - 0.5;
-                const mouseY = e.clientY / window.innerHeight - 0.5;
+            // Create firework effect
+            function createFirework() {
+                const starsContainer = document.getElementById('stars-container');
+                const firework = document.createElement('div');
+                firework.classList.add('firework');
 
-                // Subtle parallax effect for active section
-                const activeSection = document.querySelector('.section.active');
-                if (activeSection) {
-                    const content = activeSection.querySelector('.section-container') || activeSection.querySelector('.cover-content');
-                    if (content) {
-                        content.style.transform = `translate(${mouseX * -20}px, ${mouseY * -20}px)`;
-                    }
+                // Random position
+                const posX = Math.random() * 80 + 10; // Keep away from edges
+                const posY = Math.random() * 80 + 10;
+                firework.style.left = `${posX}%`;
+                firework.style.top = `${posY}%`;
+
+                starsContainer.appendChild(firework);
+
+                // Create particles
+                const particleCount = 30;
+                const colors = ['#D4AF37', '#FFC107', '#FFD700', '#F9E076', '#FDFFB6'];
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('firework-particle');
+
+                    // Random color
+                    const colorIndex = Math.floor(Math.random() * colors.length);
+                    particle.style.backgroundColor = colors[colorIndex];
+
+                    // Random direction
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = Math.random() * 100 + 50;
+                    const tx = Math.cos(angle) * distance;
+                    const ty = Math.sin(angle) * distance;
+                    particle.style.setProperty('--tx', `${tx}px`);
+                    particle.style.setProperty('--ty', `${ty}px`);
+
+                    // Animation
+                    const duration = Math.random() * 2 + 1;
+                    particle.style.animation = `fireworkExplode ${duration}s ease-out forwards`;
+
+                    firework.appendChild(particle);
                 }
 
-                // Move gold reflections
-                const reflections = document.querySelectorAll('.gold-reflection');
-                reflections.forEach(reflection => {
-                    reflection.style.transform = `translate(${mouseX * 50}px, ${mouseY * 50}px)`;
-                });
-            });
+                // Remove firework after animation completes
+                setTimeout(() => {
+                    firework.remove();
+                }, 2000);
+            }
         });
     </script>
 </body>
-</html>
+</html>            
