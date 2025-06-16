@@ -56,28 +56,29 @@
             width: auto;
             height: auto;
             transform: translateX(-50%) translateY(-50%);
-            opacity: 1; /* Suppression de l'opacité comme demandé */
+            opacity: 1;
             object-fit: cover;
         }
 
-        /* Audio controls */
+        /* Audio controls - repositioned for mobile */
         .audio-controls {
             position: fixed;
             top: 20px;
-            left: 20px;
+            right: 20px;
             z-index: 1000;
             display: flex;
-            gap: 10px;
+            gap: 8px;
             background: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 25px;
+            padding: 8px;
+            border-radius: 20px;
             box-shadow: 0 3px 15px rgba(0,0,0,0.2);
             border: 2px solid var(--gold);
+            font-size: 12px;
         }
 
         .audio-control-btn {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border: none;
             border-radius: 50%;
             background: var(--gold);
@@ -96,17 +97,21 @@
             transform: scale(1.1);
         }
 
+        .audio-control-btn .material-icons {
+            font-size: 18px;
+        }
+
         .volume-slider {
-            width: 80px;
-            height: 40px;
+            width: 60px;
+            height: 35px;
             display: flex;
             align-items: center;
-            padding: 0 10px;
+            padding: 0 8px;
         }
 
         .volume-slider input {
             width: 100%;
-            height: 4px;
+            height: 3px;
             background: var(--gold-light);
             border-radius: 2px;
             outline: none;
@@ -115,8 +120,8 @@
 
         .volume-slider input::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
             background: var(--gold);
             border-radius: 50%;
             cursor: pointer;
@@ -129,17 +134,6 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-        }
-
-        /* Main layout elements */
-        .plaquette-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
         }
 
         /* Full page sections */
@@ -185,7 +179,7 @@
 
         .logo-container {
             position: relative;
-            width: 550px; /* Encore plus gros comme demandé */
+            width: 550px;
             height: 550px;
             margin-bottom: 40px;
             display: flex;
@@ -214,7 +208,6 @@
             position: relative;
             display: inline-block;
             padding: 15px 25px;
-            /* Utilisation de la vraie feuille d'or */
             background: url('image-en-or.png') center/cover;
             border-radius: 15px;
             border: 3px solid var(--black);
@@ -233,20 +226,25 @@
             font-weight: 300;
             font-style: italic;
             margin-bottom: 30px;
-            color: var(--gold);
-            text-shadow: 2px 2px 4px var(--black), 0 0 10px rgba(212,175,55,0.8);
-            -webkit-text-stroke: 1px var(--black);
+            color: white;
+            text-shadow:
+                2px 2px 4px var(--black),
+                0 0 15px rgba(255,255,255,0.8),
+                0 0 25px rgba(255,255,255,0.6),
+                0 0 35px rgba(255,255,255,0.4);
         }
 
         .cover-interactive-text {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.4rem;
-            font-weight: 500;
+            font-weight: 400;
             margin-top: 20px;
             font-style: italic;
             color: var(--gold);
-            text-shadow: 2px 2px 4px var(--black), 0 0 8px rgba(212,175,55,0.7);
-            -webkit-text-stroke: 1px var(--black);
+            text-shadow:
+                1px 1px 2px var(--black),
+                0 0 10px rgba(212,175,55,0.8),
+                0 0 20px rgba(212,175,55,0.6);
         }
 
         .golden-line {
@@ -403,7 +401,6 @@
             color: var(--black);
             position: relative;
             display: inline-block;
-            /* Utilisation de la vraie feuille d'or avec effet brillant */
             background: url('image-en-or.png') center/cover;
             padding: 10px 20px;
             border-radius: 10px;
@@ -451,30 +448,11 @@
         .gold-text {
             color: var(--gold);
             font-style: italic;
-            font-weight: 600; /* Plus gras pour plus de visibilité */
-            font-size: 1.1em; /* Légèrement plus gros */
-            text-shadow: 2px 2px 4px var(--black), 0 0 10px rgba(212,175,55,0.9);
-            -webkit-text-stroke: 1px var(--black); /* Ajout du contour noir pour plus de visibilité */
-            /* Ajout d'un arrière-plan subtil pour plus d'élégance */
-            background: linear-gradient(45deg, rgba(212,175,55,0.2), rgba(249,241,219,0.3));
-            padding: 2px 6px;
-            border-radius: 4px;
-            display: inline-block;
-            margin: 0 2px;
-        }
-
-        .intro-decoration {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 150px;
-            height: 150px;
-            opacity: 0.1;
-            background-image: url('image-en-or.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            pointer-events: none;
-            z-index: 1;
+            font-weight: 400;
+            font-size: 1.05em;
+            text-shadow:
+                1px 1px 2px var(--black),
+                0 0 8px rgba(212,175,55,0.8);
         }
 
         /* Bureau section */
@@ -532,6 +510,23 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2), inset 0 0 20px rgba(212,175,55,0.2);
         }
 
+        .bureau-photo-real {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px rgba(212,175,55,0.3);
+        }
+
+        .bureau-photo-real img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
         /* Artistes section */
         .artistes-tabs {
             display: flex;
@@ -549,15 +544,15 @@
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
-            color: var(--dark);
+            color: var(--black);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         .artiste-tab.active {
-            color: var(--gold);
+            color: var(--black);
             font-weight: 600;
             background: url('image-en-or.png') center/cover;
-            text-shadow: 1px 1px 2px var(--black);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
         .artiste-tab.active::after {
@@ -636,6 +631,51 @@
             font-size: 0.9rem;
             color: var(--gray);
             font-style: italic;
+        }
+
+        .artistes-website-link {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(249,241,219,0.3));
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .artistes-website-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .artistes-website-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            background: url('image-en-or.png') center/cover;
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--black);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        .artistes-website-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .artistes-website-button .material-icons {
+            margin-right: 8px;
+            font-size: 1.2rem;
         }
 
         /* Productions section */
@@ -804,6 +844,16 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
+        .bureau-footer-text {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 60px;
+            font-style: italic;
+            color: var(--gold-dark);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            padding: 0 20px;
+        }
+
         /* Animation classes */
         .fade-up {
             animation: fadeUp 1s ease forwards;
@@ -829,89 +879,6 @@
             animation: fadeIn 1s ease forwards 0.9s;
         }
 
-        /* External links button */
-        .external-links-button {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 100;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid var(--gold-dark);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .external-links-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-
-        .external-links-panel {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            z-index: 99;
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            width: 250px;
-            border: 2px solid var(--gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 20px rgba(212,175,55,0.3);
-            transform: translateY(20px);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .external-links-panel.active {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .external-links-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-            text-align: center;
-            border-bottom: 2px solid var(--gold);
-            padding-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .external-link {
-            display: flex;
-            align-items: center;
-            padding: 10px 8px;
-            color: var(--dark);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-            border-radius: 8px;
-            margin-bottom: 5px;
-        }
-
-        .external-link:hover {
-            background: var(--gold-light);
-            transform: translateX(5px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .external-link-icon {
-            margin-right: 12px;
-            color: var(--gold);
-            font-size: 1.2rem;
-        }
-
         /* Page transition effect */
         .page-transition {
             position: fixed;
@@ -928,82 +895,6 @@
 
         .page-transition.active {
             opacity: 1;
-        }
-
-        /* Gold frame around pages */
-        .gold-frame-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        .gold-frame-border {
-            position: absolute;
-            background: url('image-en-or.png') center/cover;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
-        }
-
-        .gold-frame-top, .gold-frame-bottom {
-            height: 15px;
-            width: 100%;
-        }
-
-        .gold-frame-left, .gold-frame-right {
-            width: 15px;
-            height: 100%;
-        }
-
-        .gold-frame-top {
-            top: 0;
-            left: 0;
-        }
-
-        .gold-frame-bottom {
-            bottom: 0;
-            left: 0;
-        }
-
-        .gold-frame-left {
-            top: 0;
-            left: 0;
-        }
-
-        .gold-frame-right {
-            top: 0;
-            right: 0;
-        }
-
-        .gold-frame-corner {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: url('image-en-or.png') center/cover;
-            z-index: 101;
-            box-shadow: 0 0 15px rgba(212,175,55,0.7);
-        }
-
-        .gold-frame-corner-tl {
-            top: 0;
-            left: 0;
-        }
-
-        .gold-frame-corner-tr {
-            top: 0;
-            right: 0;
-        }
-
-        .gold-frame-corner-bl {
-            bottom: 0;
-            left: 0;
-        }
-
-        .gold-frame-corner-br {
-            bottom: 0;
-            right: 0;
         }
 
         /* Responsive styling */
@@ -1056,6 +947,7 @@
             }
             .section-content {
                 padding: 20px;
+                padding-bottom: 80px;
             }
             .section-header {
                 padding: 20px;
@@ -1084,6 +976,10 @@
                 right: 50%;
                 transform: translateX(50%);
                 flex-direction: row;
+                background: rgba(255,255,255,0.9);
+                padding: 10px 15px;
+                border-radius: 25px;
+                border: 2px solid var(--gold);
             }
             .nav-tooltip {
                 display: none;
@@ -1096,22 +992,27 @@
                 width: 320px;
                 height: 320px;
             }
-            .gold-frame-border {
-                width: 10px;
-                height: 10px;
-            }
             .audio-controls {
                 top: 10px;
-                left: 10px;
-                padding: 8px;
+                right: 10px;
+                padding: 6px;
+                gap: 6px;
             }
             .audio-control-btn {
-                width: 35px;
-                height: 35px;
+                width: 30px;
+                height: 30px;
+            }
+            .audio-control-btn .material-icons {
+                font-size: 16px;
             }
             .volume-slider {
-                width: 60px;
-                height: 35px;
+                width: 50px;
+                height: 30px;
+                padding: 0 6px;
+            }
+            .bureau-footer-text {
+                margin-bottom: 80px;
+                font-size: 0.9rem;
             }
         }
 
@@ -1140,13 +1041,6 @@
             .golden-line {
                 width: 80%;
             }
-            .external-links-button {
-                bottom: 15px;
-                left: 15px;
-            }
-            .external-links-panel {
-                width: 200px;
-            }
             .intro-text, .production-description, .contact-text {
                 font-size: 1rem;
                 text-align: left;
@@ -1155,6 +1049,24 @@
             }
             .cover-interactive-text {
                 font-size: 0.9rem;
+            }
+            .audio-controls {
+                top: 5px;
+                right: 5px;
+                padding: 5px;
+                gap: 5px;
+            }
+            .audio-control-btn {
+                width: 28px;
+                height: 28px;
+            }
+            .audio-control-btn .material-icons {
+                font-size: 14px;
+            }
+            .volume-slider {
+                width: 45px;
+                height: 28px;
+                padding: 0 5px;
             }
         }
     </style>
@@ -1186,18 +1098,6 @@
             </div>
         </div>
 
-        <!-- Gold frame border -->
-        <div class="gold-frame-container">
-            <div class="gold-frame-border gold-frame-top"></div>
-            <div class="gold-frame-border gold-frame-bottom"></div>
-            <div class="gold-frame-border gold-frame-left"></div>
-            <div class="gold-frame-border gold-frame-right"></div>
-            <div class="gold-frame-corner gold-frame-corner-tl"></div>
-            <div class="gold-frame-corner gold-frame-corner-tr"></div>
-            <div class="gold-frame-corner gold-frame-corner-bl"></div>
-            <div class="gold-frame-corner gold-frame-corner-br"></div>
-        </div>
-
         <!-- Navigation dots -->
         <div class="navigation">
             <div class="nav-dot active" data-section="cover">
@@ -1218,32 +1118,6 @@
             <div class="nav-dot" data-section="contact">
                 <div class="nav-tooltip">Contact</div>
             </div>
-        </div>
-
-        <!-- External links button -->
-        <div class="external-links-button" id="external-links-button">
-            <span class="material-icons">link</span>
-        </div>
-
-        <!-- External links panel -->
-        <div class="external-links-panel" id="external-links-panel">
-            <div class="external-links-title">Liens Utiles</div>
-            <a href="https://www.bohemeproduction.com" target="_blank" class="external-link">
-                <span class="material-icons external-link-icon">language</span>
-                Site Web Officiel
-            </a>
-            <a href="#" target="_blank" class="external-link">
-                <span class="material-icons external-link-icon">facebook</span>
-                Facebook
-            </a>
-            <a href="#" target="_blank" class="external-link">
-                <span class="material-icons external-link-icon">photo_camera</span>
-                Instagram
-            </a>
-            <a href="#" target="_blank" class="external-link">
-                <span class="material-icons external-link-icon">play_circle</span>
-                YouTube
-            </a>
         </div>
 
         <!-- Section: Cover -->
@@ -1303,8 +1177,8 @@
                 <div class="section-content">
                     <div class="bureau-grid">
                         <div class="bureau-card">
-                            <div class="bureau-photo-placeholder">
-                                <span class="material-icons">person</span>
+                            <div class="bureau-photo-real">
+                                <img src="Elie Féré HD.jpg" alt="Patrick Elie Féré" onerror="this.parentNode.innerHTML='<div class=bureau-photo-placeholder><span class=material-icons>person</span></div>'">
                             </div>
                             <h3 class="bureau-name">Patrick Elie Féré</h3>
                             <p class="bureau-title">Fondateur - Président</p>
@@ -1367,7 +1241,7 @@
                         </div>
                     </div>
 
-                    <div style="text-align: center; margin-top: 40px; font-style: italic; color: var(--gold-dark); text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
+                    <div class="bureau-footer-text">
                         Une équipe passionnée au service de l'excellence artistique
                     </div>
                 </div>
@@ -1503,9 +1377,16 @@
                         </div>
                     </div>
 
-                    <p style="text-align: center; margin-top: 30px; font-style: italic; color: var(--gold-dark); text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
-                        ...et 35 autres artistes d'exception
-                    </p>
+                    <!-- Section remplaçant "35 autres artistes" par un lien vers le site -->
+                    <div class="artistes-website-link">
+                        <p class="artistes-website-text">
+                            Découvrez l'ensemble de nos 35 autres artistes d'exception sur notre site officiel
+                        </p>
+                        <a href="https://www.bohemeproduction.com" target="_blank" class="artistes-website-button">
+                            <span class="material-icons">language</span>
+                            Voir tous nos artistes
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1652,8 +1533,6 @@
             const sections = document.querySelectorAll('.section');
             const navDots = document.querySelectorAll('.nav-dot');
             const pageTransition = document.getElementById('page-transition');
-            const externalLinksButton = document.getElementById('external-links-button');
-            const externalLinksPanel = document.getElementById('external-links-panel');
             const backgroundMusic = document.getElementById('background-music');
             const playPauseBtn = document.getElementById('play-pause-btn');
             const muteBtn = document.getElementById('mute-btn');
@@ -1682,18 +1561,6 @@
             // "Start exploration" button
             document.getElementById('start-exploration').addEventListener('click', function() {
                 navigateToSection(1);
-            });
-
-            // External links button toggle
-            externalLinksButton.addEventListener('click', function() {
-                externalLinksPanel.classList.toggle('active');
-            });
-
-            // Close external links panel when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!externalLinksButton.contains(e.target) && !externalLinksPanel.contains(e.target)) {
-                    externalLinksPanel.classList.remove('active');
-                }
             });
 
             // Audio controls
