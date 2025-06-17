@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -41,6 +40,8 @@ html
             background: var(--cream);
             font-family: 'Cormorant Garamond', serif;
             color: var(--dark);
+            /* CORRECTION MOBILE - Empêcher le zoom sur double-tap */
+            touch-action: pan-y pinch-zoom;
         }
 
         /* Global background video */
@@ -439,6 +440,8 @@ html
             backdrop-filter: blur(10px);
             border-bottom: 2px solid var(--gold);
             overflow: hidden;
+            /* MOBILE - Permettre le toucher */
+            touch-action: manipulation;
         }
 
         .section-header-video {
@@ -498,9 +501,13 @@ html
             color: var(--dark);
             background: rgba(255, 255, 255, 0.1);
             padding: 0;
+            /* MOBILE - Configuration scroll important */
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            touch-action: pan-y;
         }
 
-        /* === SECTION PRÉSENTATION MAGAZINE CORRIGÉE === */
+        /* === SECTION PRÉSENTATION MAGAZINE CORRIGÉE MOBILE === */
         .intro-content-magazine {
             position: relative;
             width: 100%;
@@ -508,6 +515,10 @@ html
             overflow-y: auto;
             padding: 0;
             background: transparent;
+            /* MOBILE - Scroll fluide */
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            touch-action: pan-y;
         }
 
         /* Container avec dégradé PLUS FONCÉ */
@@ -523,6 +534,8 @@ html
                 rgba(20,20,20,0.98) 100%
             );
             box-shadow: inset 0 0 150px rgba(212,175,55,0.2);
+            /* MOBILE - Scroll sécurisé */
+            touch-action: pan-y;
         }
 
         /* Photo principale avec titre STYLE VOGUE */
@@ -1558,7 +1571,7 @@ html
             opacity: 1;
         }
 
-        /* Responsive styling */
+        /* RESPONSIVE MOBILE CORRIGÉ */
         @media (max-width: 1200px) {
             .section-container {
                 width: 95%;
@@ -1619,6 +1632,7 @@ html
                 width: 380px;
                 height: 380px;
             }
+            /* MOBILE - Photo Saty sans float */
             .saty-image-inline {
                 float: none;
                 margin: 20px auto;
@@ -1659,11 +1673,17 @@ html
             .section-content {
                 padding-bottom: 120px;
                 background: rgba(255, 255, 255, 0.1);
+                /* MOBILE - Scroll important */
+                touch-action: pan-y;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
             }
             .section-header {
                 padding: 20px;
                 text-align: center;
                 background: rgba(255, 255, 255, 0.8);
+                /* MOBILE - Permettre interaction */
+                touch-action: manipulation;
             }
             .section-title {
                 text-align: center;
@@ -1739,10 +1759,14 @@ html
             .hero-image-title {
                 font-size: 1.5rem;
             }
+            /* MOBILE - Photo Saty style bloc */
             .saty-image-inline {
                 float: none;
                 width: 100%;
                 margin: 20px 0;
+                max-width: 300px;
+                margin-left: auto;
+                margin-right: auto;
             }
             .artists-highlight-grid {
                 grid-template-columns: 1fr;
@@ -1767,6 +1791,24 @@ html
                 max-width: 500px;
                 padding: 50px;
             }
+            /* MOBILE - Sections avec padding mobile */
+            .saty-integrated-text-container,
+            .artists-highlight-container,
+            .polyvalent-artists-container,
+            .content-section-container,
+            .collaboration-container,
+            .excellence-container {
+                padding: 20px;
+                margin: 15px 0;
+            }
+            .highlight-quote {
+                padding: 25px;
+                margin: 25px 0;
+            }
+            .patrick-quote-highlight {
+                padding: 30px 20px 20px 20px;
+                margin: 40px 0;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1790,6 +1832,8 @@ html
             .artistes-tabs {
                 flex-wrap: nowrap;
                 overflow-x: auto;
+                /* MOBILE - Scroll horizontal */
+                touch-action: pan-x;
             }
             .golden-line {
                 width: 80%;
@@ -1827,6 +1871,7 @@ html
             }
             .magazine-paragraph {
                 font-size: 1.2rem;
+                text-align: left; /* Plus facile à lire sur mobile */
             }
             .boheme-signature-image {
                 max-width: 400px;
@@ -1838,6 +1883,27 @@ html
             .decorative-logo-section {
                 max-width: 400px;
                 padding: 40px;
+            }
+            /* MOBILE PETIT - Réduction padding */
+            .magazine-content-wrapper {
+                padding: 15px;
+            }
+            .saty-integrated-text-container,
+            .artists-highlight-container,
+            .polyvalent-artists-container,
+            .content-section-container,
+            .collaboration-container,
+            .excellence-container {
+                padding: 15px;
+                margin: 10px 0;
+            }
+            .highlight-quote {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            .patrick-quote-highlight {
+                padding: 25px 15px 15px 15px;
+                margin: 30px 0;
             }
         }
     </style>
@@ -1913,7 +1979,7 @@ html
             </div>
         </section>
 
-        <!-- Section: PRÉSENTATION PARFAITEMENT CORRIGÉE -->
+        <!-- Section: PRÉSENTATION PARFAITEMENT CORRIGÉE MOBILE -->
         <section class="section" id="intro">
             <div class="section-container">
                 <div class="section-header">
@@ -2062,866 +2128,922 @@ html
                                         <h4 class="magazine-section-title">Nos Artistes Polyvalents Chanteur et Metteur en Scène</h4>
 
                                         <!-- PASCAL TERRIEN -->
-                                          <div class="polyvalent-artists-container">
-                                              <div class="artists-highlight-grid">
-                                                  <div class="artist-highlight">
-                                                      <div class="artist-name">Pascal Terrien</div>
-                                                      <div class="artist-description">Baryton à l'élégance vocale raffinée, maître de cérémonie et directeur artistique principal de Bohème Production</div>
-                                                  </div>
-                                              </div>
-                                          </div>
-
-                                          <h4 class="magazine-section-title">Nos Étoiles de la Pop et de la Variété</h4>
-
-                                          <!-- POP ET VARIÉTÉ -->
-                                          <div class="content-section-container">
-                                              <p class="magazine-paragraph">
-                                                  L'univers de la chanson populaire rayonne à travers nos artistes aux parcours extraordinaires :
-                                              </p>
-
-                                              <div class="artists-highlight-grid">
-                                                  <div class="artist-highlight">
-                                                      <div class="artist-name">Patrice Carmona</div>
-                                                      <div class="artist-description">Artiste polyvalent révélé dans l'univers des "Dix Commandements" où il a souvent remplacé Daniel Lévy</div>
-                                                  </div>
-                                                  <div class="artist-highlight">
-                                                      <div class="artist-name">Alexis Hoffman</div>
-                                                      <div class="artist-description">Prodige finaliste d'"Incroyable Talent", ambassadeur de la nouvelle génération artistique</div>
-                                                  </div>
-                                                  <div class="artist-highlight">
-                                                      <div class="artist-name">Saty Djelass</div>
-                                                      <div class="artist-description">Artiste polyvalent au talent multiple, frère de Maître Gims</div>
-                                                  </div>
-                                                  <div class="artist-highlight">
-                                                      <div class="artist-name">Virginie Behem</div>
-                                                      <div class="artist-description">Soprano délicate et choriste fidèle de Gilbert Montagné</div>
-                                                  </div>
-                                              </div>
-                                          </div>
-
-                                          <h4 class="magazine-section-title">Nos Producteurs et Créateurs</h4>
-
-                                          <!-- PRODUCTEURS -->
-                                          <div class="content-section-container">
-                                              <div class="artists-highlight-grid">
-                                                  <div class="artist-highlight">
-                                                      <div class="artist-name">Frederico Alagna</div>
-                                                      <div class="artist-description">Producteur et auteur de talent, frère du ténor mondialement connu Roberto Alagna</div>
-                                                  </div>
-                                              </div>
-                                          </div>
-
-                                          <h4 class="magazine-section-title">La Magie de la Polyvalence Chacun sa Pierre à l'Édifice</h4>
-
-                                          <!-- POLYVALENCE -->
-                                          <div class="content-section-container">
-                                              <p class="magazine-paragraph">
-                                                  Au cœur de Bohème Production, chaque âme généreuse apporte sa pierre précieuse à l'édifice artistique. Qu'il s'agisse de talents cachés en informatique, de créativité dans la publication de belles affiches, de maîtrise dans la réalisation de vidéos captivantes, ou d'expertise dans mille autres domaines, chaque membre de notre famille dévoile des facettes insoupçonnées.
-                                              </p>
-
-                                              <!-- Citation STYLE ADORÉ -->
-                                              <div class="highlight-quote">
-                                                  Cette mosaïque de talents complémentaires tisse la toile magique de nos spectacles, où l'excellence technique rencontre la beauté artistique dans une symphonie parfaite. Il y a la possibilité de tout faire avec Bohème !
-                                              </div>
-
-                                              <p class="magazine-paragraph">
-                                                  Chaque artiste dans Bohème Production est une étoile scintillante aux multiples facettes, unis dans une symphonie de passion pour vous offrir des prestations sublimes. Ouvrez bien vos yeux car Bohème Production va vous éblouir dans un kaléidoscope de voix divines !
-                                              </p>
-                                          </div>
-
-                                          <h4 class="magazine-section-title">L'Art Sans Limites - Tout Devient Possible</h4>
-
-                                          <!-- ART SANS LIMITES -->
-                                          <div class="content-section-container">
-                                              <p class="magazine-paragraph">
-                                                  Bohème Production transcende les frontières du spectacle pour vous offrir des créations sur mesure aux dimensions infinies :
-                                              </p>
-                                              <div class="clean-list">
-                                                  <div class="clean-list-item">• <span class="text-gold">Spectacles grandioses</span> pour un nombre exponentiel de spectateurs</div>
-                                                  <div class="clean-list-item">• <span class="text-gold">Comédies musicales féeriques</span> où chaque note raconte une histoire</div>
-                                                  <div class="clean-list-item">• <span class="text-gold">Excellence acoustique</span> portée par nos maîtres sonorisateurs</div>
-                                                  <div class="clean-list-item">• <span class="text-gold">Ballet des arts</span> : danseurs, acteurs, metteurs en scène dans une harmonie créative totale</div>
-                                              </div>
-                                          </div>
-
-                                          <h4 class="magazine-section-title">Rayonnement Azuréen vers l'Universel</h4>
-
-                                          <!-- RAYONNEMENT -->
-                                          <div class="highlight-quote">
-                                              Depuis l'écrin doré de la Côte d'Azur, Bohème Production déploie ses ailes artistiques vers tous les horizons. Nos créations ont déjà caressé les plus belles scènes et ont scintillé sous les feux des plus prestigieux festivals.
-                                          </div>
-
-                                          <!-- MESSAGE PATRICK avec SIGNATURE ENCORE PLUS GROSSE -->
-                                          <div class="patrick-quote-highlight">
-                                              <h4 class="patrick-quote-title">La Promesse d'un Enchantement Éternel</h4>
-                                              <h5 style="color: var(--gold); font-style: italic; margin-bottom: 20px; font-size: 1.3rem;">Mot de notre président Patrick Elie Féré</h5>
-                                              <div class="patrick-quote">
-                                                  Notre quête transcende la simple mélodie : nous tissons des ponts entre les âmes à travers la magie universelle de la musique. <span class="text-gold-shimmer">Des voix cristallines aux rythmes envoûtants</span> résonnent dans chaque création, portées par cette <span class="text-gold-shimmer">production d'exception</span> où brillent nos <span class="text-gold-shimmer">talents en éclosion</span>.
-                                                  <br><br>
-                                                  Chaque spectacle devient un tableau vivant où les voix se mêlent dans une synergie de bonheur pur, touchant le cœur de chaque spectateur, qu'il soit novice ou connaisseur éclairé. <span class="text-gold-shimmer">Transformant les rêves en parcours qui flamboient</span>, nous révélons des destinées artistiques exceptionnelles.
-                                                  <br><br>
-                                                  <span class="text-gold-shimmer">La musique nous transporte</span>, et <span class="text-gold-shimmer">Bohème ouvre les portes</span> de vos plus beaux rêves artistiques, créant une alchimie magique où chaque note devient une promesse d'éternité, chaque voix une caresse pour l'âme, chaque spectacle un voyage inoubliable vers l'excellence artistique universelle.
-                                              </div>
-
-                                              <!-- SIGNATURE ENCORE PLUS GROSSE -->
-                                              <div class="patrick-signature-integrated">
-                                                  <img src="Boheme Production en blanc.png" alt="Bohème Production" class="boheme-signature-image"
-                                                       onerror="this.parentNode.innerHTML='<div class=boheme-signature-placeholder>BOHÈME PRODUCTION</div>'">
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-
-                                  <!-- LOGO DÉCORATIF ENCORE PLUS GRAND FORMAT -->
-                                  <div class="decorative-logo-section">
-                                      <div class="decorative-video-background">
-                                          <video autoplay muted loop playsinline>
-                                              <source src="magique-fumee.mp4" type="video/mp4">
-                                          </video>
-                                      </div>
-                                      <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="decorative-logo"
-                                           onerror="this.parentNode.innerHTML='<div class=decorative-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=decorative-logo-placeholder>BOHÈME<br>PRODUCTION</div>'">
-                                  </div>
-
-                                  <!-- CRÉDITS -->
-                                  <div class="final-credits">
-                                      <p><em>Toutes les créations musicales originales : <span class="credits-highlight">Mickaël Guedj</span></em></p>
-                                      <p><em>Créations lyriques : <span class="credits-highlight">Stéphanie Domejean</span> | Musique : <span class="credits-highlight">Mickaël Guedj</span> | Photos : <span class="credits-highlight">Stéphanie Domejean</span></em></p>
-                                      <p><strong>Conception & Réalisation : <span class="credits-highlight">Mickaël Guedj</span></strong></p>
-                                      <p><strong>Création Interactive : © 2025 <span class="credits-highlight">Mickaël Guedj</span> pour Bohème Production</strong></p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Section: Bureau GARDÉE avec VIDÉO LASERS -->
-          <section class="section" id="bureau">
-              <div class="section-container">
-                  <div class="section-header">
-                      <!-- VIDÉO LASERS COULEURS -->
-                      <div class="section-header-video">
-                          <video autoplay muted loop playsinline preload="auto">
-                              <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                          </video>
-                      </div>
-                      <h2 class="section-title">Notre Bureau</h2>
-                  </div>
-                  <div class="section-content">
-                      <div class="bureau-grid">
-                          <div class="bureau-card">
-                              <div class="bureau-photo-real">
-                                  <img src="Elie Féré HD.jpg" alt="Patrick Elie Féré" onerror="this.parentNode.innerHTML='<div class=bureau-photo-placeholder><span class=material-icons>person</span></div>'">
-                              </div>
-                              <h3 class="bureau-name">Patrick Elie Féré</h3>
-                              <p class="bureau-title">Fondateur - Président</p>
-                          </div>
-                          <div class="bureau-card">
-                              <div class="bureau-photo-placeholder">
-                                  <span class="material-icons">person</span>
-                              </div>
-                              <h3 class="bureau-name">Richard Rittelmann</h3>
-                              <p class="bureau-title">Vice-président</p>
-                          </div>
-                          <div class="bureau-card">
-                              <div class="bureau-photo-placeholder">
-                                  <span class="material-icons">person</span>
-                              </div>
-                              <h3 class="bureau-name">Norah Amsellem</h3>
-                              <p class="bureau-title">Vice-présidente</p>
-                          </div>
-                          <div class="bureau-card">
-                              <div class="bureau-photo-placeholder">
-                                  <span class="material-icons">person</span>
-                              </div>
-                              <h3 class="bureau-name">Pascal Terrien</h3>
-                              <p class="bureau-title">Directeur artistique principal</p>
-                          </div>
-                          <div class="bureau-card">
-                              <div class="bureau-photo-placeholder">
-                                  <span class="material-icons">person</span>
-                              </div>
-                              <h3 class="bureau-name">Avi Klemberg</h3>
-                              <p class="bureau-title">Directeur artistique</p>
-                          </div>
-                          <div class="bureau-card">
-                              <div class="bureau-photo-placeholder">
-                                  <span class="material-icons">person</span>
-              </div>
-                              <h3 class="bureau-name">Mickael Guedj</h3>
-                              <p class="bureau-title">Directeur artistique</p>
-                          </div>
-                          <div class="bureau-card">
-                              <div class="bureau-photo-placeholder">
-                                  <span class="material-icons">person</span>
-                              </div>
-                              <h3 class="bureau-name">Patricia Rubino</h3>
-                              <p class="bureau-title">Secrétaire</p>
-                          </div>
-                          <div class="bureau-card">
-                              <div class="bureau-photo-placeholder">
-                                  <span class="material-icons">person</span>
-                              </div>
-                              <h3 class="bureau-name">Marielle Bader</h3>
-                              <p class="bureau-title">Trésorière</p>
-                          </div>
-                          <div class="bureau-card">
-                              <div class="bureau-photo-placeholder">
-                                  <span class="material-icons">person</span>
-                              </div>
-                              <h3 class="bureau-name">David.Sk</h3>
-                              <p class="bureau-title">Administrateur réseaux sociaux</p>
-                          </div>
-                      </div>
-
-                      <div class="bureau-footer-text">
-                          Une équipe passionnée au service de l'excellence artistique
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Section: Artistes GARDÉE avec VIDÉO LASERS -->
-          <section class="section" id="artistes">
-              <div class="section-container">
-                  <div class="section-header">
-                      <!-- VIDÉO LASERS COULEURS -->
-                      <div class="section-header-video">
-                          <video autoplay muted loop playsinline preload="auto">
-                              <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                          </video>
-                      </div>
-                      <h2 class="section-title">Nos Artistes</h2>
-                  </div>
-                  <div class="section-content">
-                      <div class="artistes-tabs">
-                          <div class="artiste-tab active" data-category="sopranos">Sopranos</div>
-                          <div class="artiste-tab" data-category="tenors">Ténors</div>
-                          <div class="artiste-tab" data-category="barytons">Barytons</div>
-                          <div class="artiste-tab" data-category="pianistes">Pianistes</div>
-                      </div>
-
-                      <!-- Sopranos -->
-                      <div class="artiste-category active" id="sopranos">
-                          <div class="artiste-grid">
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">person</span>
-                                  </div>
-                                  <h3 class="artiste-name">Norah Amsellem</h3>
-                                  <p class="artiste-role">Soprano</p>
-                              </div>
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">person</span>
-                                  </div>
-                                  <h3 class="artiste-name">Claudia Sorokina</h3>
-                                  <p class="artiste-role">Soprano</p>
-                              </div>
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">person</span>
-                                  </div>
-                                  <h3 class="artiste-name">Adriana Bignani Lesca</h3>
-                                  <p class="artiste-role">Mezzo Soprano</p>
-                              </div>
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">person</span>
-                                  </div>
-                                  <h3 class="artiste-name">Alisson Cook</h3>
-                                  <p class="artiste-role">Mezzo Soprano</p>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!-- Ténors -->
-                      <div class="artiste-category" id="tenors">
-                          <div class="artiste-grid">
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">person</span>
-                                  </div>
-                                  <h3 class="artiste-name">Luca Lombardo</h3>
-                                  <p class="artiste-role">Ténor</p>
-                              </div>
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">person</span>
-                                  </div>
-                                  <h3 class="artiste-name">Avi Klemberg</h3>
-                                  <p class="artiste-role">Ténor</p>
-                              </div>
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">person</span>
-                                  </div>
-                                  <h3 class="artiste-name">Florian Laconi</h3>
-                                  <p class="artiste-role">Ténor</p>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!-- Barytons -->
-                      <div class="artiste-category" id="barytons">
-                          <div class="artiste-grid">
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">person</span>
-                                  </div>
-                                  <h3 class="artiste-name">Richard A. Rittelmann</h3>
-                                  <p class="artiste-role">Baryton</p>
-                              </div>
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">person</span>
-                                  </div>
-                                  <h3 class="artiste-name">Patrick Elie Féré</h3>
-                                  <p class="artiste-role">Baryton Verdien</p>
-                              </div>
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">person</span>
-                                  </div>
-                                  <h3 class="artiste-name">Mickael Guedj</h3>
-                                  <p class="artiste-role">Baryton</p>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!-- Pianistes -->
-                      <div class="artiste-category" id="pianistes">
-                          <div class="artiste-grid">
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">piano</span>
-                                  </div>
-                                  <h3 class="artiste-name">Elisabeth Berger</h3>
-                                  <p class="artiste-role">Piano</p>
-                              </div>
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">piano</span>
-                                  </div>
-                                  <h3 class="artiste-name">Giulio Zappa</h3>
-                                  <p class="artiste-role">Piano</p>
-                              </div>
-                              <div class="artiste-card">
-                                  <div class="artiste-photo-placeholder">
-                                      <span class="material-icons">piano</span>
-                                  </div>
-                                  <h3 class="artiste-name">Fabrice Alibert</h3>
-                                  <p class="artiste-role">Piano</p>
-                              </div>
-                          </div>
-                      </div>
-
-                      <div class="artistes-website-link">
-                          <p class="artistes-website-text">
-                              Découvrez l'ensemble de nos 41 artistes d'exception sur notre site officiel
-                          </p>
-                          <a href="https://www.bohemeproduction.com" target="_blank" class="artistes-website-button">
-                              <span class="material-icons">language</span>
-                              Voir tous nos artistes
-                          </a>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Section: Productions GARDÉE avec VIDÉO LASERS -->
-          <section class="section" id="productions">
-              <div class="section-container">
-                  <div class="section-header">
-                      <!-- VIDÉO LASERS COULEURS -->
-                      <div class="section-header-video">
-                          <video autoplay muted loop playsinline preload="auto">
-                              <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                          </video>
-                      </div>
-                      <h2 class="section-title">Nos Productions</h2>
-                  </div>
-                  <div class="section-content">
-                      <div class="production-grid">
-                          <div class="production-card">
-                              <div class="production-image">
-                                  <div class="production-image-overlay"></div>
-                              </div>
-                              <div class="production-content">
-                                  <h3 class="production-title">Concerts Lyriques</h3>
-                                  <p class="production-description">
-                                      Des performances d'exception mettant en valeur des répertoires classiques interprétés par nos artistes de renommée internationale.
-                                  </p>
-                              </div>
-                          </div>
-
-                          <div class="production-card">
-                              <div class="production-image">
-                                  <div class="production-image-overlay"></div>
-                              </div>
-                              <div class="production-content">
-                                  <h3 class="production-title">Pop Lyrique</h3>
-                                  <p class="production-description">
-                                      Une fusion innovante entre technique lyrique et répertoire contemporain créant un pont accessible.
-                                  </p>
-                              </div>
-                          </div>
-
-                          <div class="production-card">
-                              <div class="production-image">
-                                  <div class="production-image-overlay"></div>
-                              </div>
-                              <div class="production-content">
-                                  <h3 class="production-title">Comédies Musicales</h3>
-                                  <p class="production-description">
-                                      Des spectacles complets alliant chant, théâtre et chorégraphie dans des univers captivants.
-                                  </p>
-                              </div>
-                          </div>
-
-                          <div class="production-card">
-                              <div class="production-image">
-                                  <div class="production-image-overlay"></div>
-                              </div>
-                              <div class="production-content">
-                                  <h3 class="production-title">Évènements Privés</h3>
-                                  <p class="production-description">
-                                      Des prestations sur mesure pour vos célébrations exclusives adaptées à tous vos besoins.
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Section: Contact GARDÉE avec VIDÉO LASERS -->
-          <section class="section" id="contact">
-              <div class="section-container">
-                  <div class="section-header">
-                      <!-- VIDÉO LASERS COULEURS -->
-                      <div class="section-header-video">
-                          <video autoplay muted loop playsinline preload="auto">
-                              <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                          </video>
-                      </div>
-                      <h2 class="section-title">Contact</h2>
-                  </div>
-                  <div class="section-content">
-                      <div class="contact-content">
-                          <div class="contact-info">
-                              <div class="contact-item">
-                                  <div class="contact-icon">
-                                      <span class="material-icons">place</span>
-                                  </div>
-                                  <div class="contact-text">
-                                      75 Avenue du XVème Corps<br>
-                                      <span>83700 Saint-Raphaël</span>
-                                  </div>
-                              </div>
-
-                              <div class="contact-item">
-                                  <div class="contact-icon">
-                                      <span class="material-icons">phone</span>
-                                  </div>
-                                  <div class="contact-text">
-                                      +33(0)6 08 72 71 26
-                                  </div>
-                              </div>
-
-                              <div class="contact-item">
-                                  <div class="contact-icon">
-                                      <span class="material-icons">email</span>
-                                  </div>
-                                  <div class="contact-text">
-                                      Bohemeproduction.president@gmail.com
-                                  </div>
-                              </div>
-
-                              <div class="contact-item">
-                                  <div class="contact-icon">
-                                      <span class="material-icons">language</span>
-                                  </div>
-                                  <div class="contact-text">
-                                      www.bohemeproduction.com
-                                  </div>
-                              </div>
-
-                              <div class="contact-social">
-                                  <h3 class="contact-social-title">Suivez-nous</h3>
-                                  <div class="social-links">
-                                      <div class="social-link">
-                                          <span class="material-icons">facebook</span>
-                                      </div>
-                                      <div class="social-link">
-                                          <span class="material-icons">photo_camera</span>
-                                      </div>
-                                      <div class="social-link">
-                                          <span class="material-icons">play_circle</span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="map-container">
-                              <div class="map-placeholder">
-                                  Carte interactive de Saint-Raphaël
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Page transition effect -->
-          <div class="page-transition" id="page-transition"></div>
-      </div>
-
-      <script>
-          document.addEventListener('DOMContentLoaded', function() {
-              // Variables globales
-              const sections = document.querySelectorAll('.section');
-              const navDots = document.querySelectorAll('.nav-dot');
-              const pageTransition = document.getElementById('page-transition');
-              const backgroundMusic = document.getElementById('background-music');
-              const playPauseBtn = document.getElementById('play-pause-btn');
-              const muteBtn = document.getElementById('mute-btn');
-              const volumeSlider = document.getElementById('volume-slider');
-              let isAnimating = false;
-              let currentSection = 0;
-              let touchStartY = 0;
-              let touchEndY = 0;
-              let lastTouch = 0;
-              let touchTimeout = null;
-              let isAudioPlaying = false;
-              let audioFadeTimeout = null;
-
-              // Initialisation audio
-              initializeAudio();
-
-              // Navigation dots
-              navDots.forEach((dot, index) => {
-                  dot.addEventListener('click', function() {
-                      if (!isAnimating && currentSection !== index) {
-                          navigateToSection(index);
-                      }
-                  });
-              });
-
-              // Start exploration button
-              document.getElementById('start-exploration').addEventListener('click', function() {
-                  navigateToSection(1);
-              });
-
-              // Audio controls
-              playPauseBtn.addEventListener('click', togglePlayPause);
-              muteBtn.addEventListener('click', toggleMute);
-              volumeSlider.addEventListener('input', function() {
-                  const volume = this.value / 100;
-                  backgroundMusic.volume = volume;
-
-                  const muteIcon = muteBtn.querySelector('.material-icons');
-                  if (volume === 0) {
-                      muteIcon.textContent = 'volume_off';
-                  } else if (volume < 0.5) {
-                      muteIcon.textContent = 'volume_down';
-                  } else {
-                      muteIcon.textContent = 'volume_up';
-                  }
-              });
-
-              // Artiste tabs
-              const artisteTabs = document.querySelectorAll('.artiste-tab');
-              const artisteCategories = document.querySelectorAll('.artiste-category');
-
-              artisteTabs.forEach(tab => {
-                  tab.addEventListener('click', function() {
-                      const category = this.getAttribute('data-category');
-
-                      artisteTabs.forEach(t => t.classList.remove('active'));
-                      this.classList.add('active');
-
-                      artisteCategories.forEach(c => c.classList.remove('active'));
-                      document.getElementById(category).classList.add('active');
-                  });
-              });
-
-              // CORRECTION BOUCLE VIDÉO - Pour éviter les blocages
-              const videos = document.querySelectorAll('video');
-              videos.forEach(video => {
-                  // Forcer la relecture à la fin pour éviter les pauses
-                  video.addEventListener('ended', function() {
-                      this.currentTime = 0;
-                      this.play();
-                  });
-
-                  // Vérification périodique pour s'assurer que la vidéo joue
-                  setInterval(() => {
-                      if (video.paused && video.muted && video.loop) {
-                          video.play().catch(e => console.log('Video play failed:', e));
-                      }
-                  }, 5000);
-              });
-
-              // Navigation par molette CORRIGÉE pour scroll dans présentation
-              let wheelTimeout = null;
-              window.addEventListener('wheel', function(e) {
-                  if (isAnimating) return;
-
-                  const activeSection = document.querySelector('.section.active');
-
-                  // Si on est dans la section présentation avec contenu scrollable
-                  if (currentSection === 1 && activeSection) {
-                      const scrollableContainer = activeSection.querySelector('.intro-content-magazine');
-                      if (scrollableContainer) {
-                          // Vérifier si on est en haut ou en bas du contenu scrollable
-                          const isAtTop = scrollableContainer.scrollTop === 0;
-                          const isAtBottom = scrollableContainer.scrollTop + scrollableContainer.clientHeight >= scrollableContainer.scrollHeight - 10;
-
-                          // Navigation entre sections seulement si on est aux extrémités du scroll
-                          if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
-                              e.preventDefault();
-                              clearTimeout(wheelTimeout);
-                              wheelTimeout = setTimeout(() => {
-                                  if (e.deltaY > 0) {
-                                      if (currentSection < sections.length - 1) {
-                                          navigateToSection(currentSection + 1);
-                                      }
-                                  } else {
-                                      if (currentSection > 0) {
-                                          navigateToSection(currentSection - 1);
-                                      }
-                                  }
-                              }, 100);
-                          }
-                          return; // Laisser le scroll naturel dans le contenu
-                      }
-                  }
-
-                  // Pour les autres sections - navigation normale
-                  e.preventDefault();
-                  clearTimeout(wheelTimeout);
-                  wheelTimeout = setTimeout(() => {
-                      if (e.deltaY > 0) {
-                          if (currentSection < sections.length - 1) {
-                              navigateToSection(currentSection + 1);
-                          }
-                      } else {
-                          if (currentSection > 0) {
-                              navigateToSection(currentSection - 1);
-                          }
-                      }
-                  }, 100);
-              }, { passive: false });
-
-              // Touch events
-              document.addEventListener('touchstart', function(e) {
-                  touchStartY = e.touches[0].clientY;
-                  lastTouch = Date.now();
-
-                  if (touchTimeout) {
-                      clearTimeout(touchTimeout);
-                  }
-              });
-
-              document.addEventListener('touchend', function(e) {
-                  if (isAnimating) return;
-
-                  touchEndY = e.changedTouches[0].clientY;
-                  const touchDuration = Date.now() - lastTouch;
-
-                  if (touchDuration < 300) {
-                      handleSwipeVertical();
-                  } else {
-                      touchTimeout = setTimeout(() => {
-                          handleSwipeVertical();
-                      }, 200);
-                  }
-              });
-
-              // Keyboard navigation
-              document.addEventListener('keydown', function(e) {
-                  if (isAnimating) return;
-
-                  if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-                      if (currentSection < sections.length - 1) {
-                          navigateToSection(currentSection + 1);
-                      }
-                  } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-                      if (currentSection > 0) {
-                          navigateToSection(currentSection - 1);
-                      }
-                  }
-              });
-
-              function initializeAudio() {
-                  backgroundMusic.volume = 0.3;
-
-                  const attemptAutoplay = () => {
-                      const playPromise = backgroundMusic.play();
-                      if (playPromise !== undefined) {
-                          playPromise.then(() => {
-                              isAudioPlaying = true;
-                              playPauseBtn.querySelector('.material-icons').textContent = 'pause';
-                              fadeAudioIn();
-                          }).catch(error => {
-                              setupUserInteractionTriggers();
-                          });
-                      }
-                  };
-
-                  const setupUserInteractionTriggers = () => {
-                      const startAudioOnInteraction = () => {
-                          if (!isAudioPlaying) {
-                              playAudio();
-                          }
-                      };
-
-                      const events = ['click', 'touchstart', 'keydown', 'mousemove'];
-                      events.forEach(event => {
-                          document.addEventListener(event, startAudioOnInteraction, { once: true });
-                      });
-                  };
-
-                  if (backgroundMusic.readyState >= 2) {
-                      attemptAutoplay();
-                  } else {
-                      backgroundMusic.addEventListener('canplaythrough', attemptAutoplay, { once: true });
-                      backgroundMusic.addEventListener('loadeddata', attemptAutoplay, { once: true });
-                  }
-
-                  backgroundMusic.load();
-                  setTimeout(attemptAutoplay, 500);
-
-                  backgroundMusic.addEventListener('ended', function() {
-                      if (isAudioPlaying) {
-                          fadeAudioIn();
-                      }
-                  });
-
-                  document.addEventListener('visibilitychange', function() {
-                      if (!document.hidden && !isAudioPlaying) {
-                          setTimeout(attemptAutoplay, 100);
-                      }
-                  });
-              }
-
-              function togglePlayPause() {
-                  if (isAudioPlaying) {
-                      pauseAudio();
-                  } else {
-                      playAudio();
-                  }
-              }
-
-              function toggleMute() {
-                  if (backgroundMusic.volume > 0) {
-                      backgroundMusic.volume = 0;
-                      volumeSlider.value = 0;
-                      muteBtn.querySelector('.material-icons').textContent = 'volume_off';
-                  } else {
-                      backgroundMusic.volume = 0.3;
-                      volumeSlider.value = 30;
-                      muteBtn.querySelector('.material-icons').textContent = 'volume_up';
-                  }
-              }
-
-              function playAudio() {
-                  const playPromise = backgroundMusic.play();
-                  if (playPromise !== undefined) {
-                      playPromise.then(() => {
-                          isAudioPlaying = true;
-                          playPauseBtn.querySelector('.material-icons').textContent = 'pause';
-                          fadeAudioIn();
-                      }).catch(error => {
-                          console.log('Audio play failed:', error);
-                      });
-                  }
-              }
-
-              function pauseAudio() {
-                  fadeAudioOut(() => {
-                      backgroundMusic.pause();
-                      isAudioPlaying = false;
-                      playPauseBtn.querySelector('.material-icons').textContent = 'play_arrow';
-                  });
-              }
-
-              function fadeAudioIn() {
-                  clearTimeout(audioFadeTimeout);
-                  let volume = 0;
-                  const targetVolume = volumeSlider.value / 100;
-                  const fadeStep = targetVolume / 20;
-
-                  function fade() {
-                      volume += fadeStep;
-                      if (volume >= targetVolume) {
-                          backgroundMusic.volume = targetVolume;
-                          return;
-                      }
-                      backgroundMusic.volume = volume;
-                      audioFadeTimeout = setTimeout(fade, 50);
-                  }
-                  fade();
-              }
-
-              function fadeAudioOut(callback) {
-                  clearTimeout(audioFadeTimeout);
-                  let volume = backgroundMusic.volume;
-                  const fadeStep = volume / 20;
-
-                  function fade() {
-                      volume -= fadeStep;
-                      if (volume <= 0) {
-                          backgroundMusic.volume = 0;
-                          if (callback) callback();
-                          return;
-                      }
-                      backgroundMusic.volume = volume;
-                      audioFadeTimeout = setTimeout(fade, 50);
-                  }
-                  fade();
-              }
-
-              function navigateToSection(index) {
-                  if (index === currentSection || isAnimating) return;
-
-                  isAnimating = true;
-                  pageTransition.classList.add('active');
-
-                  setTimeout(() => {
-                      sections.forEach(section => section.classList.remove('active'));
-                      sections[index].classList.add('active');
-
-                      navDots.forEach(dot => dot.classList.remove('active'));
-                      navDots[index].classList.add('active');
-
-                      currentSection = index;
-
-                      setTimeout(() => {
-                          pageTransition.classList.remove('active');
-                          isAnimating = false;
-                      }, 300);
-                  }, 500);
-              }
-
-              function handleSwipeVertical() {
-                  const swipeThreshold = 50;
-                  const distanceY = touchEndY - touchStartY;
-
-                  if (distanceY < -swipeThreshold) {
-                      if (currentSection < sections.length - 1) {
-                          navigateToSection(currentSection + 1);
-                      }
-                  } else if (distanceY > swipeThreshold) {
-                      if (currentSection > 0) {
-                          navigateToSection(currentSection - 1);
-                      }
-                  }
-              }
-          });
-      </script>
-  </body>
-  </html>
+                                        <div class="polyvalent-artists-container">
+                                            <div class="artists-highlight-grid">
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Pascal Terrien</div>
+                                                    <div class="artist-description">Baryton à l'élégance vocale raffinée, maître de cérémonie et directeur artistique principal de Bohème Production</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">Nos Étoiles de la Pop et de la Variété</h4>
+
+                                        <!-- POP ET VARIÉTÉ -->
+                                        <div class="content-section-container">
+                                            <p class="magazine-paragraph">
+                                                L'univers de la chanson populaire rayonne à travers nos artistes aux parcours extraordinaires :
+                                            </p>
+
+                                            <div class="artists-highlight-grid">
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Patrice Carmona</div>
+                                                    <div class="artist-description">Artiste polyvalent révélé dans l'univers des "Dix Commandements" où il a souvent remplacé Daniel Lévy</div>
+                                                </div>
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Alexis Hoffman</div>
+                                                    <div class="artist-description">Prodige finaliste d'"Incroyable Talent", ambassadeur de la nouvelle génération artistique</div>
+                                                </div>
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Saty Djelass</div>
+                                                    <div class="artist-description">Artiste polyvalent au talent multiple, frère de Maître Gims</div>
+                                                </div>
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Virginie Behem</div>
+                                                    <div class="artist-description">Soprano délicate et choriste fidèle de Gilbert Montagné</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">Nos Producteurs et Créateurs</h4>
+
+                                        <!-- PRODUCTEURS -->
+                                        <div class="content-section-container">
+                                            <div class="artists-highlight-grid">
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Frederico Alagna</div>
+                                                    <div class="artist-description">Producteur et auteur de talent, frère du ténor mondialement connu Roberto Alagna</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">La Magie de la Polyvalence Chacun sa Pierre à l'Édifice</h4>
+
+                                        <!-- POLYVALENCE -->
+                                        <div class="content-section-container">
+                                            <p class="magazine-paragraph">
+                                                Au cœur de Bohème Production, chaque âme généreuse apporte sa pierre précieuse à l'édifice artistique. Qu'il s'agisse de talents cachés en informatique, de créativité dans la publication de belles affiches, de maîtrise dans la réalisation de vidéos captivantes, ou d'expertise dans mille autres domaines, chaque membre de notre famille dévoile des facettes insoupçonnées.
+                                            </p>
+
+                                            <!-- Citation STYLE ADORÉ -->
+                                            <div class="highlight-quote">
+                                                Cette mosaïque de talents complémentaires tisse la toile magique de nos spectacles, où l'excellence technique rencontre la beauté artistique dans une symphonie parfaite. Il y a la possibilité de tout faire avec Bohème !
+                                            </div>
+
+                                            <p class="magazine-paragraph">
+                                                Chaque artiste dans Bohème Production est une étoile scintillante aux multiples facettes, unis dans une symphonie de passion pour vous offrir des prestations sublimes. Ouvrez bien vos yeux car Bohème Production va vous éblouir dans un kaléidoscope de voix divines !
+                                            </p>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">L'Art Sans Limites - Tout Devient Possible</h4>
+
+                                        <!-- ART SANS LIMITES -->
+                                        <div class="content-section-container">
+                                            <p class="magazine-paragraph">
+                                                Bohème Production transcende les frontières du spectacle pour vous offrir des créations sur mesure aux dimensions infinies :
+                                            </p>
+                                            <div class="clean-list">
+                                                <div class="clean-list-item">• <span class="text-gold">Spectacles grandioses</span> pour un nombre exponentiel de spectateurs</div>
+                                                <div class="clean-list-item">• <span class="text-gold">Comédies musicales féeriques</span> où chaque note raconte une histoire</div>
+                                                <div class="clean-list-item">• <span class="text-gold">Excellence acoustique</span> portée par nos maîtres sonorisateurs</div>
+                                                <div class="clean-list-item">• <span class="text-gold">Ballet des arts</span> : danseurs, acteurs, metteurs en scène dans une harmonie créative totale</div>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">Rayonnement Azuréen vers l'Universel</h4>
+
+                                        <!-- RAYONNEMENT -->
+                                        <div class="highlight-quote">
+                                            Depuis l'écrin doré de la Côte d'Azur, Bohème Production déploie ses ailes artistiques vers tous les horizons. Nos créations ont déjà caressé les plus belles scènes et ont scintillé sous les feux des plus prestigieux festivals.
+                                        </div>
+
+                                        <!-- MESSAGE PATRICK avec SIGNATURE ENCORE PLUS GROSSE -->
+                                        <div class="patrick-quote-highlight">
+                                            <h4 class="patrick-quote-title">La Promesse d'un Enchantement Éternel</h4>
+                                            <h5 style="color: var(--gold); font-style: italic; margin-bottom: 20px; font-size: 1.3rem;">Mot de notre président Patrick Elie Féré</h5>
+                                            <div class="patrick-quote">
+                                                Notre quête transcende la simple mélodie : nous tissons des ponts entre les âmes à travers la magie universelle de la musique. <span class="text-gold-shimmer">Des voix cristallines aux rythmes envoûtants</span> résonnent dans chaque création, portées par cette <span class="text-gold-shimmer">production d'exception</span> où brillent nos <span class="text-gold-shimmer">talents en éclosion</span>.
+                                                <br><br>
+                                                Chaque spectacle devient un tableau vivant où les voix se mêlent dans une synergie de bonheur pur, touchant le cœur de chaque spectateur, qu'il soit novice ou connaisseur éclairé. <span class="text-gold-shimmer">Transformant les rêves en parcours qui flamboient</span>, nous révélons des destinées artistiques exceptionnelles.
+                                                <br><br>
+                                                <span class="text-gold-shimmer">La musique nous transporte</span>, et <span class="text-gold-shimmer">Bohème ouvre les portes</span> de vos plus beaux rêves artistiques, créant une alchimie magique où chaque note devient une promesse d'éternité, chaque voix une caresse pour l'âme, chaque spectacle un voyage inoubliable vers l'excellence artistique universelle.
+                                            </div>
+
+                                            <!-- SIGNATURE ENCORE PLUS GROSSE -->
+                                            <div class="patrick-signature-integrated">
+                                                <img src="Boheme Production en blanc.png" alt="Bohème Production" class="boheme-signature-image"
+                                                     onerror="this.parentNode.innerHTML='<div class=boheme-signature-placeholder>BOHÈME PRODUCTION</div>'">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- LOGO DÉCORATIF ENCORE PLUS GRAND FORMAT -->
+                                <div class="decorative-logo-section">
+                                    <div class="decorative-video-background">
+                                        <video autoplay muted loop playsinline>
+                                            <source src="magique-fumee.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="decorative-logo"
+                                         onerror="this.parentNode.innerHTML='<div class=decorative-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=decorative-logo-placeholder>BOHÈME<br>PRODUCTION</div>'">
+                                </div>
+
+                                <!-- CRÉDITS -->
+                                <div class="final-credits">
+                                    <p><em>Toutes les créations musicales originales : <span class="credits-highlight">Mickaël Guedj</span></em></p>
+                                    <p><em>Créations lyriques : <span class="credits-highlight">Stéphanie Domejean</span> | Musique : <span class="credits-highlight">Mickaël Guedj</span> | Photos : <span class="credits-highlight">Stéphanie Domejean</span></em></p>
+                                    <p><strong>Conception & Réalisation : <span class="credits-highlight">Mickaël Guedj</span></strong></p>
+                                    <p><strong>Création Interactive : © 2025 <span class="credits-highlight">Mickaël Guedj</span> pour Bohème Production</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Bureau GARDÉE avec VIDÉO LASERS -->
+        <section class="section" id="bureau">
+            <div class="section-container">
+                <div class="section-header">
+                    <!-- VIDÉO LASERS COULEURS -->
+                    <div class="section-header-video">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h2 class="section-title">Notre Bureau</h2>
+                </div>
+                <div class="section-content">
+                    <div class="bureau-grid">
+                        <div class="bureau-card">
+                            <div class="bureau-photo-real">
+                                <img src="Elie Féré HD.jpg" alt="Patrick Elie Féré" onerror="this.parentNode.innerHTML='<div class=bureau-photo-placeholder><span class=material-icons>person</span></div>'">
+                            </div>
+                            <h3 class="bureau-name">Patrick Elie Féré</h3>
+                            <p class="bureau-title">Fondateur - Président</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Richard Rittelmann</h3>
+                            <p class="bureau-title">Vice-président</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Norah Amsellem</h3>
+                            <p class="bureau-title">Vice-présidente</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Pascal Terrien</h3>
+                            <p class="bureau-title">Directeur artistique principal</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Avi Klemberg</h3>
+                            <p class="bureau-title">Directeur artistique</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+            </div>
+                            <h3 class="bureau-name">Mickael Guedj</h3>
+                            <p class="bureau-title">Directeur artistique</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Patricia Rubino</h3>
+                            <p class="bureau-title">Secrétaire</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">Marielle Bader</h3>
+                            <p class="bureau-title">Trésorière</p>
+                        </div>
+                        <div class="bureau-card">
+                            <div class="bureau-photo-placeholder">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h3 class="bureau-name">David.Sk</h3>
+                            <p class="bureau-title">Administrateur réseaux sociaux</p>
+                        </div>
+                    </div>
+
+                    <div class="bureau-footer-text">
+                        Une équipe passionnée au service de l'excellence artistique
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Artistes GARDÉE avec VIDÉO LASERS -->
+        <section class="section" id="artistes">
+            <div class="section-container">
+                <div class="section-header">
+                    <!-- VIDÉO LASERS COULEURS -->
+                    <div class="section-header-video">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h2 class="section-title">Nos Artistes</h2>
+                </div>
+                <div class="section-content">
+                    <div class="artistes-tabs">
+                        <div class="artiste-tab active" data-category="sopranos">Sopranos</div>
+                        <div class="artiste-tab" data-category="tenors">Ténors</div>
+                        <div class="artiste-tab" data-category="barytons">Barytons</div>
+                        <div class="artiste-tab" data-category="pianistes">Pianistes</div>
+                    </div>
+
+                    <!-- Sopranos -->
+                    <div class="artiste-category active" id="sopranos">
+                        <div class="artiste-grid">
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Norah Amsellem</h3>
+                                <p class="artiste-role">Soprano</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Claudia Sorokina</h3>
+                                <p class="artiste-role">Soprano</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Adriana Bignani Lesca</h3>
+                                <p class="artiste-role">Mezzo Soprano</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Alisson Cook</h3>
+                                <p class="artiste-role">Mezzo Soprano</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ténors -->
+                    <div class="artiste-category" id="tenors">
+                        <div class="artiste-grid">
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Luca Lombardo</h3>
+                                <p class="artiste-role">Ténor</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Avi Klemberg</h3>
+                                <p class="artiste-role">Ténor</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Florian Laconi</h3>
+                                <p class="artiste-role">Ténor</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Barytons -->
+                    <div class="artiste-category" id="barytons">
+                        <div class="artiste-grid">
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Richard A. Rittelmann</h3>
+                                <p class="artiste-role">Baryton</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Patrick Elie Féré</h3>
+                                <p class="artiste-role">Baryton Verdien</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">person</span>
+                                </div>
+                                <h3 class="artiste-name">Mickael Guedj</h3>
+                                <p class="artiste-role">Baryton</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pianistes -->
+                    <div class="artiste-category" id="pianistes">
+                        <div class="artiste-grid">
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">piano</span>
+                                </div>
+                                <h3 class="artiste-name">Elisabeth Berger</h3>
+                                <p class="artiste-role">Piano</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">piano</span>
+                                </div>
+                                <h3 class="artiste-name">Giulio Zappa</h3>
+                                <p class="artiste-role">Piano</p>
+                            </div>
+                            <div class="artiste-card">
+                                <div class="artiste-photo-placeholder">
+                                    <span class="material-icons">piano</span>
+                                </div>
+                                <h3 class="artiste-name">Fabrice Alibert</h3>
+                                <p class="artiste-role">Piano</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="artistes-website-link">
+                        <p class="artistes-website-text">
+                            Découvrez l'ensemble de nos 41 artistes d'exception sur notre site officiel
+                        </p>
+                        <a href="https://www.bohemeproduction.com" target="_blank" class="artistes-website-button">
+                            <span class="material-icons">language</span>
+                            Voir tous nos artistes
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Productions GARDÉE avec VIDÉO LASERS -->
+        <section class="section" id="productions">
+            <div class="section-container">
+                <div class="section-header">
+                    <!-- VIDÉO LASERS COULEURS -->
+                    <div class="section-header-video">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h2 class="section-title">Nos Productions</h2>
+                </div>
+                <div class="section-content">
+                    <div class="production-grid">
+                        <div class="production-card">
+                            <div class="production-image">
+                                <div class="production-image-overlay"></div>
+                            </div>
+                            <div class="production-content">
+                                <h3 class="production-title">Concerts Lyriques</h3>
+                                <p class="production-description">
+                                    Des performances d'exception mettant en valeur des répertoires classiques interprétés par nos artistes de renommée internationale.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="production-card">
+                            <div class="production-image">
+                                <div class="production-image-overlay"></div>
+                            </div>
+                            <div class="production-content">
+                                <h3 class="production-title">Pop Lyrique</h3>
+                                <p class="production-description">
+                                    Une fusion innovante entre technique lyrique et répertoire contemporain créant un pont accessible.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="production-card">
+                            <div class="production-image">
+                                <div class="production-image-overlay"></div>
+                            </div>
+                            <div class="production-content">
+                                <h3 class="production-title">Comédies Musicales</h3>
+                                <p class="production-description">
+                                    Des spectacles complets alliant chant, théâtre et chorégraphie dans des univers captivants.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="production-card">
+                            <div class="production-image">
+                                <div class="production-image-overlay"></div>
+                            </div>
+                            <div class="production-content">
+                                <h3 class="production-title">Évènements Privés</h3>
+                                <p class="production-description">
+                                    Des prestations sur mesure pour vos célébrations exclusives adaptées à tous vos besoins.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Contact GARDÉE avec VIDÉO LASERS -->
+        <section class="section" id="contact">
+            <div class="section-container">
+                <div class="section-header">
+                    <!-- VIDÉO LASERS COULEURS -->
+                    <div class="section-header-video">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h2 class="section-title">Contact</h2>
+                </div>
+                <div class="section-content">
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <span class="material-icons">place</span>
+                                </div>
+                                <div class="contact-text">
+                                    75 Avenue du XVème Corps<br>
+                                    <span>83700 Saint-Raphaël</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <span class="material-icons">phone</span>
+                                </div>
+                                <div class="contact-text">
+                                    +33(0)6 08 72 71 26
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <span class="material-icons">email</span>
+                                </div>
+                                <div class="contact-text">
+                                    Bohemeproduction.president@gmail.com
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <span class="material-icons">language</span>
+                                </div>
+                                <div class="contact-text">
+                                    www.bohemeproduction.com
+                                </div>
+                            </div>
+
+                            <div class="contact-social">
+                                <h3 class="contact-social-title">Suivez-nous</h3>
+                                <div class="social-links">
+                                    <div class="social-link">
+                                        <span class="material-icons">facebook</span>
+                                    </div>
+                                    <div class="social-link">
+                                        <span class="material-icons">photo_camera</span>
+                                    </div>
+                                    <div class="social-link">
+                                        <span class="material-icons">play_circle</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                Carte interactive de Saint-Raphaël
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page transition effect -->
+        <div class="page-transition" id="page-transition"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables globales
+            const sections = document.querySelectorAll('.section');
+            const navDots = document.querySelectorAll('.nav-dot');
+            const pageTransition = document.getElementById('page-transition');
+            const backgroundMusic = document.getElementById('background-music');
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const muteBtn = document.getElementById('mute-btn');
+            const volumeSlider = document.getElementById('volume-slider');
+            let isAnimating = false;
+            let currentSection = 0;
+            let touchStartY = 0;
+            let touchEndY = 0;
+            let lastTouch = 0;
+            let isAudioPlaying = false;
+            let audioFadeTimeout = null;
+
+            // MOBILE - Variables pour gestion tactile améliorée
+            let isTouchScrolling = false;
+            let touchScrollThreshold = 50;
+            let touchNavTimeout = null;
+
+            // Initialisation audio
+            initializeAudio();
+
+            // Navigation dots
+            navDots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    if (!isAnimating && currentSection !== index) {
+                        navigateToSection(index);
+                    }
+                });
+            });
+
+            // Start exploration button
+            document.getElementById('start-exploration').addEventListener('click', function() {
+                navigateToSection(1);
+            });
+
+            // Audio controls
+            playPauseBtn.addEventListener('click', togglePlayPause);
+            muteBtn.addEventListener('click', toggleMute);
+            volumeSlider.addEventListener('input', function() {
+                const volume = this.value / 100;
+                backgroundMusic.volume = volume;
+
+                const muteIcon = muteBtn.querySelector('.material-icons');
+                if (volume === 0) {
+                    muteIcon.textContent = 'volume_off';
+                } else if (volume < 0.5) {
+                    muteIcon.textContent = 'volume_down';
+                } else {
+                    muteIcon.textContent = 'volume_up';
+                }
+            });
+
+            // Artiste tabs
+            const artisteTabs = document.querySelectorAll('.artiste-tab');
+            const artisteCategories = document.querySelectorAll('.artiste-category');
+
+            artisteTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+
+                    artisteTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    artisteCategories.forEach(c => c.classList.remove('active'));
+                    document.getElementById(category).classList.add('active');
+                });
+            });
+
+            // CORRECTION BOUCLE VIDÉO - Pour éviter les blocages
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                // Forcer la relecture à la fin pour éviter les pauses
+                video.addEventListener('ended', function() {
+                    this.currentTime = 0;
+                    this.play();
+                });
+
+                // Vérification périodique pour s'assurer que la vidéo joue
+                setInterval(() => {
+                    if (video.paused && video.muted && video.loop) {
+                        video.play().catch(e => console.log('Video play failed:', e));
+                    }
+                }, 5000);
+            });
+
+            // NAVIGATION TACTILE MOBILE COMPLÈTEMENT CORRIGÉE
+            document.addEventListener('touchstart', function(e) {
+                touchStartY = e.touches[0].clientY;
+                lastTouch = Date.now();
+                isTouchScrolling = false;
+
+                // Annuler tout timeout de navigation en cours
+                if (touchNavTimeout) {
+                    clearTimeout(touchNavTimeout);
+                    touchNavTimeout = null;
+                }
+            }, { passive: true });
+
+            document.addEventListener('touchmove', function(e) {
+                // Si on bouge le doigt, c'est qu'on scrolle
+                isTouchScrolling = true;
+
+                // Annuler la navigation si on scrolle
+                if (touchNavTimeout) {
+                    clearTimeout(touchNavTimeout);
+                    touchNavTimeout = null;
+                }
+            }, { passive: true });
+
+            document.addEventListener('touchend', function(e) {
+                if (isAnimating) return;
+
+                touchEndY = e.changedTouches[0].clientY;
+                const touchDuration = Date.now() - lastTouch;
+
+                // Si on a scrollé, ne pas naviguer
+                if (isTouchScrolling) {
+                    return;
+                }
+
+                // Seulement si c'est un swipe rapide et sans scroll
+                if (touchDuration < 300) {
+                    touchNavTimeout = setTimeout(() => {
+                        handleSwipeVerticalSafe();
+                    }, 150); // Délai pour s'assurer qu'on ne scroll pas
+                }
+            }, { passive: true });
+
+            function handleSwipeVerticalSafe() {
+                if (isAnimating || isTouchScrolling) return;
+
+                const distanceY = touchEndY - touchStartY;
+                const activeSection = document.querySelector('.section.active');
+
+                // Si on est dans la section présentation
+                if (currentSection === 1 && activeSection) {
+                    const scrollableContainer = activeSection.querySelector('.intro-content-magazine');
+                    if (scrollableContainer) {
+                        // Vérifier position du scroll
+                        const isAtTop = scrollableContainer.scrollTop <= 10;
+                        const isAtBottom = scrollableContainer.scrollTop + scrollableContainer.clientHeight >= scrollableContainer.scrollHeight - 10;
+
+                        // Navigation verticale seulement aux extrémités
+                        if (distanceY < -touchScrollThreshold && isAtBottom) {
+                            // Swipe vers le haut depuis le bas - section suivante
+                            if (currentSection < sections.length - 1) {
+                                navigateToSection(currentSection + 1);
+                            }
+                            return;
+                        } else if (distanceY > touchScrollThreshold && isAtTop) {
+                            // Swipe vers le bas depuis le haut - section précédente
+                            if (currentSection > 0) {
+                                navigateToSection(currentSection - 1);
+                            }
+                            return;
+                        }
+                        // Sinon laisser le scroll naturel
+                        return;
+                    }
+                }
+
+                // Pour les autres sections - navigation normale
+                if (Math.abs(distanceY) > touchScrollThreshold) {
+                    if (distanceY < 0) {
+                        // Swipe vers le haut - section suivante
+                        if (currentSection < sections.length - 1) {
+                            navigateToSection(currentSection + 1);
+                        }
+                    } else {
+                        // Swipe vers le bas - section précédente
+                        if (currentSection > 0) {
+                            navigateToSection(currentSection - 1);
+                        }
+                    }
+                }
+            }
+
+            // Navigation par molette CORRIGÉE pour scroll dans présentation
+            let wheelTimeout = null;
+            window.addEventListener('wheel', function(e) {
+                if (isAnimating) return;
+
+                const activeSection = document.querySelector('.section.active');
+
+                // Si on est dans la section présentation avec contenu scrollable
+                if (currentSection === 1 && activeSection) {
+                    const scrollableContainer = activeSection.querySelector('.intro-content-magazine');
+                    if (scrollableContainer) {
+                        // Vérifier si on est en haut ou en bas du contenu scrollable
+                        const isAtTop = scrollableContainer.scrollTop <= 5;
+                        const isAtBottom = scrollableContainer.scrollTop + scrollableContainer.clientHeight >= scrollableContainer.scrollHeight - 10;
+
+                        // Navigation entre sections seulement si on est aux extrémités du scroll
+                        if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
+                            e.preventDefault();
+                            clearTimeout(wheelTimeout);
+                            wheelTimeout = setTimeout(() => {
+                                if (e.deltaY > 0) {
+                                    if (currentSection < sections.length - 1) {
+                                        navigateToSection(currentSection + 1);
+                                    }
+                                } else {
+                                    if (currentSection > 0) {
+                                        navigateToSection(currentSection - 1);
+                                    }
+                                }
+                            }, 100);
+                        }
+                        return; // Laisser le scroll naturel dans le contenu
+                    }
+                }
+
+                // Pour les autres sections - navigation normale
+                e.preventDefault();
+                clearTimeout(wheelTimeout);
+                wheelTimeout = setTimeout(() => {
+                    if (e.deltaY > 0) {
+                        if (currentSection < sections.length - 1) {
+                            navigateToSection(currentSection + 1);
+                        }
+                    } else {
+                        if (currentSection > 0) {
+                            navigateToSection(currentSection - 1);
+                        }
+                    }
+                }, 100);
+            }, { passive: false });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (isAnimating) return;
+
+                if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+                    if (currentSection < sections.length - 1) {
+                        navigateToSection(currentSection + 1);
+                    }
+                } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                    if (currentSection > 0) {
+                        navigateToSection(currentSection - 1);
+                    }
+                }
+            });
+
+            function initializeAudio() {
+                backgroundMusic.volume = 0.3;
+
+                const attemptAutoplay = () => {
+                    const playPromise = backgroundMusic.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            isAudioPlaying = true;
+                            playPauseBtn.querySelector('.material-icons').textContent = 'pause';
+                            fadeAudioIn();
+                        }).catch(error => {
+                            setupUserInteractionTriggers();
+                        });
+                    }
+                };
+
+                const setupUserInteractionTriggers = () => {
+                    const startAudioOnInteraction = () => {
+                        if (!isAudioPlaying) {
+                            playAudio();
+                        }
+                    };
+
+                    const events = ['click', 'touchstart', 'keydown', 'mousemove'];
+                    events.forEach(event => {
+                        document.addEventListener(event, startAudioOnInteraction, { once: true });
+                    });
+                };
+
+                if (backgroundMusic.readyState >= 2) {
+                    attemptAutoplay();
+                } else {
+                    backgroundMusic.addEventListener('canplaythrough', attemptAutoplay, { once: true });
+                    backgroundMusic.addEventListener('loadeddata', attemptAutoplay, { once: true });
+                }
+
+                backgroundMusic.load();
+                setTimeout(attemptAutoplay, 500);
+
+                backgroundMusic.addEventListener('ended', function() {
+                    if (isAudioPlaying) {
+                        fadeAudioIn();
+                    }
+                });
+
+                document.addEventListener('visibilitychange', function() {
+                    if (!document.hidden && !isAudioPlaying) {
+                        setTimeout(attemptAutoplay, 100);
+                    }
+                });
+            }
+
+            function togglePlayPause() {
+                if (isAudioPlaying) {
+                    pauseAudio();
+                } else {
+                    playAudio();
+                }
+            }
+
+            function toggleMute() {
+                if (backgroundMusic.volume > 0) {
+                    backgroundMusic.volume = 0;
+                    volumeSlider.value = 0;
+                    muteBtn.querySelector('.material-icons').textContent = 'volume_off';
+                } else {
+                    backgroundMusic.volume = 0.3;
+                    volumeSlider.value = 30;
+                    muteBtn.querySelector('.material-icons').textContent = 'volume_up';
+                }
+            }
+
+            function playAudio() {
+                const playPromise = backgroundMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        isAudioPlaying = true;
+                        playPauseBtn.querySelector('.material-icons').textContent = 'pause';
+                        fadeAudioIn();
+                    }).catch(error => {
+                        console.log('Audio play failed:', error);
+                    });
+                }
+            }
+
+            function pauseAudio() {
+                fadeAudioOut(() => {
+                    backgroundMusic.pause();
+                    isAudioPlaying = false;
+                    playPauseBtn.querySelector('.material-icons').textContent = 'play_arrow';
+                });
+            }
+
+            function fadeAudioIn() {
+                clearTimeout(audioFadeTimeout);
+                let volume = 0;
+                const targetVolume = volumeSlider.value / 100;
+                const fadeStep = targetVolume / 20;
+
+                function fade() {
+                    volume += fadeStep;
+                    if (volume >= targetVolume) {
+                        backgroundMusic.volume = targetVolume;
+                        return;
+                    }
+                    backgroundMusic.volume = volume;
+                    audioFadeTimeout = setTimeout(fade, 50);
+                }
+                fade();
+            }
+
+            function fadeAudioOut(callback) {
+                clearTimeout(audioFadeTimeout);
+                let volume = backgroundMusic.volume;
+                const fadeStep = volume / 20;
+
+                function fade() {
+                    volume -= fadeStep;
+                    if (volume <= 0) {
+                        backgroundMusic.volume = 0;
+                        if (callback) callback();
+                        return;
+                    }
+                    backgroundMusic.volume = volume;
+                    audioFadeTimeout = setTimeout(fade, 50);
+                }
+                fade();
+            }
+
+            function navigateToSection(index) {
+                if (index === currentSection || isAnimating) return;
+
+                isAnimating = true;
+                pageTransition.classList.add('active');
+
+                setTimeout(() => {
+                    sections.forEach(section => section.classList.remove('active'));
+                    sections[index].classList.add('active');
+
+                    navDots.forEach(dot => dot.classList.remove('active'));
+                    navDots[index].classList.add('active');
+
+                    currentSection = index;
+
+                    setTimeout(() => {
+                        pageTransition.classList.remove('active');
+                        isAnimating = false;
+                    }, 300);
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
