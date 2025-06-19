@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -502,14 +503,14 @@
             border: 1px solid var(--black);
         }
 
-        /* SECTION CONTENT - DÉFILEMENT STANDARD */
+        /* SECTION CONTENT - DÉFILEMENT STANDARD AVEC ZONE DE SÉCURITÉ */
         .section-content {
             flex: 1;
             position: relative;
             color: var(--dark);
             background: rgba(255, 255, 255, 0.1);
             padding: 0;
-            padding-bottom: 50px;
+            padding-bottom: 100px; /* 🔥 ZONE DE SÉCURITÉ - CRUCIAL ! */
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
@@ -522,7 +523,7 @@
             height: 100%;
             padding: 0;
             background: transparent;
-            padding-bottom: 80px;
+            padding-bottom: 150px; /* 🔥 ZONE DE SÉCURITÉ RENFORCÉE pour cette section */
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
@@ -541,7 +542,7 @@
                 rgba(20,20,20,0.98) 100%
             );
             box-shadow: inset 0 0 150px rgba(212,175,55,0.2);
-            padding-bottom: 80px;
+            padding-bottom: 150px; /* 🔥 ZONE DE SÉCURITÉ DANS LE CONTENU */
         }
 
         /* Photo principale avec titre STYLE VOGUE */
@@ -1633,8 +1634,14 @@
                 background: rgba(255, 255, 255, 0.7);
             }
             .section-content {
-                padding-bottom: 100px;
+                padding-bottom: 150px; /* 🔥 ZONE DE SÉCURITÉ MOBILE RENFORCÉE */
                 background: rgba(255, 255, 255, 0.1);
+            }
+            .intro-content-magazine {
+                padding-bottom: 200px; /* 🔥 ZONE DE SÉCURITÉ MOBILE MAXIMALE */
+            }
+            .scrollable-content {
+                padding-bottom: 200px; /* 🔥 ZONE DE SÉCURITÉ DANS CONTENU MOBILE */
             }
             .section-header {
                 padding: 20px;
@@ -1700,7 +1707,7 @@
                 padding: 0 6px;
             }
             .bureau-footer-text {
-                margin-bottom: 120px;
+                margin-bottom: 180px; /* 🔥 PLUS D'ESPACE POUR ZONE SÉCURITÉ */
                 font-size: 0.9rem;
             }
             .magazine-content-wrapper {
@@ -1762,9 +1769,6 @@
             .patrick-quote-highlight {
                 padding: 30px 20px 20px 20px;
                 margin: 40px 0;
-            }
-            .intro-content-magazine {
-                padding-bottom: 120px;
             }
         }
 
@@ -1866,6 +1870,12 @@
             .patrick-quote-highlight {
                 padding: 25px 15px 15px 15px;
                 margin: 30px 0;
+            }
+            .section-content {
+                padding-bottom: 180px; /* 🔥 ZONE SÉCURITÉ MOBILE TRÈS GRANDE */
+            }
+            .intro-content-magazine {
+                padding-bottom: 220px; /* 🔥 ZONE SÉCURITÉ MAXIMALE MOBILE */
             }
         }
     </style>
@@ -2543,379 +2553,392 @@
                                 </div>
                                 <div class="contact-text">
                                     Disponible 7j/7
-                                    <span>Pour vos projets artistiques</span>
-                                </div>
-                            </div>
-                            <div class="contact-social">
-                                <h3 class="contact-social-title">Suivez-nous</h3>
-                                <div class="social-links">
-                                    <div class="social-link" title="Instagram">
-                                        <span class="material-icons">camera_alt</span>
-                                    </div>
-                                    <div class="social-link" title="Facebook">
-                                        <span class="material-icons">facebook</span>
-                                    </div>
-                                    <div class="social-link" title="YouTube">
-                                        <span class="material-icons">play_arrow</span>
-                                    </div>
-                                    <div class="social-link" title="LinkedIn">
-                                        <span class="material-icons">business</span>
+                                    <span class="material-icons">language</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="map-container">
                             <div class="map-placeholder">
-                                <span class="material-icons" style="font-size: 4rem; margin-bottom: 15px;">place</span>
-                                <p>Carte interactive disponible<br>Côte d'Azur - France</p>
+                                <span class="material-icons" style="font-size: 48px; margin-bottom: 20px; color: var(--gold);">place</span>
+                                <p>Côte d'Azur, France</p>
+                                <p>Rayonnement international</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Page transition overlay -->
-        <div class="page-transition"></div>
     </div>
 
+    <!-- Page transition overlay -->
+    <div class="page-transition" id="page-transition"></div>
+
     <script>
-class BohemePlaquette {
-    constructor() {
-        this.currentSection = 0;
-        this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
-        this.isTransitioning = false;
-
-        // 🚨 SCROLL ULTRA RESTRICTIF - VRAIES CORRECTIONS
-        this.lastWheelTime = 0;
-        this.wheelCooldown = 1500; // Cooldown TRÈS LONG pour PC
-        this.lastTouchTime = 0;
-        this.touchCooldown = 1200; // Cooldown TRÈS LONG pour mobile
-        this.wheelAccumulator = 0;
-        this.wheelTimeout = null;
-        this.minForcedSwipeDistance = 200; // Distance énorme pour mobile
-        this.minWheelThreshold = 500; // Seuil énorme pour PC
-
-        this.initializeAudio();
-        this.initializeNavigation();
-        this.initializeScrolling();
-        this.initializeArtisteTabs();
-        this.initializeAnimations();
-    }
-
-    initializeAudio() {
-        const audio = document.getElementById('background-music');
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const muteBtn = document.getElementById('mute-btn');
-        const volumeSlider = document.getElementById('volume-slider');
-
-        audio.volume = 0.3;
-
-        const playAudio = () => {
-            audio.play().catch(e => {
-                console.log('Autoplay prevented:', e);
-                playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
-            });
-        };
-
-        document.addEventListener('click', playAudio, { once: true });
-        document.addEventListener('touchstart', playAudio, { once: true });
-
-        playPauseBtn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play();
-                playPauseBtn.innerHTML = '<span class="material-icons">pause</span>';
-            } else {
-                audio.pause();
-                playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
-            }
-        });
-
-        muteBtn.addEventListener('click', () => {
-            audio.muted = !audio.muted;
-            muteBtn.innerHTML = audio.muted ?
-                '<span class="material-icons">volume_off</span>' :
-                '<span class="material-icons">volume_up</span>';
-        });
-
-        volumeSlider.addEventListener('input', (e) => {
-            audio.volume = e.target.value / 100;
-        });
-    }
-
-    initializeNavigation() {
-        const navDots = document.querySelectorAll('.nav-dot');
-        const startBtn = document.getElementById('start-exploration');
-
-        navDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                this.goToSection(index);
-            });
-        });
-
-        if (startBtn) {
-            startBtn.addEventListener('click', () => {
-                this.goToSection(1);
-            });
-        }
-
-        // Navigation clavier
-        document.addEventListener('keydown', (e) => {
-            if (this.isTransitioning) return;
-
-            switch(e.key) {
-                case 'ArrowDown':
-                case 'ArrowRight':
-                    e.preventDefault();
-                    this.nextSection();
-                    break;
-                case 'ArrowUp':
-                case 'ArrowLeft':
-                    e.preventDefault();
-                    this.previousSection();
-                    break;
-            }
-        });
-    }
-
-    initializeScrolling() {
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-        if (isMobile) {
-            this.initializeMobileScroll();
-        } else {
-            this.initializeDesktopScroll();
-        }
-    }
-
-    // 🔥 MOBILE - ULTRA RESTRICTIF
-    initializeMobileScroll() {
-        let startY = 0;
-        let currentY = 0;
-        let startTime = 0;
-        let isScrolling = false;
-
-        document.addEventListener('touchstart', (e) => {
-            startY = e.touches[0].clientY;
-            startTime = Date.now();
-            isScrolling = false;
-        }, { passive: true });
-
-        document.addEventListener('touchmove', (e) => {
-            currentY = e.touches[0].clientY;
-            const diff = Math.abs(startY - currentY);
-
-            if (diff > 20) {
-                isScrolling = true;
-            }
-        }, { passive: true });
-
-        document.addEventListener('touchend', (e) => {
-            if (!isScrolling || this.isTransitioning) return;
-
-            const currentTime = Date.now();
-            if (currentTime - this.lastTouchTime < this.touchCooldown) return;
-
-            const diff = startY - currentY;
-            const distance = Math.abs(diff);
-            const duration = currentTime - startTime;
-            const velocity = distance / duration;
-
-            const activeSection = document.querySelector('.section.active');
-            const sectionContent = activeSection?.querySelector('.section-content');
-
-            if (sectionContent) {
-                const isAtTop = sectionContent.scrollTop <= 5;
-                const isAtBottom = sectionContent.scrollTop >= (sectionContent.scrollHeight - sectionContent.clientHeight - 5);
-
-                // 🚨 CONDITIONS EXTRÊMEMENT STRICTES
-                const requiresVeryLongSwipe = distance > this.minForcedSwipeDistance; // 200px minimum !
-                const requiresHighVelocity = velocity > 1; // Vitesse très élevée !
-                const requiresLongDuration = duration > 300 && duration < 600; // Geste intentionnel mais pas trop lent
-
-                if (requiresVeryLongSwipe && requiresHighVelocity && requiresLongDuration) {
-                    if (diff > 0 && isAtBottom) {
-                        // Swipe up très long et rapide au bas du contenu
-                        this.nextSection();
-                        this.lastTouchTime = currentTime;
-                    } else if (diff < 0 && isAtTop) {
-                        // Swipe down très long et rapide au haut du contenu
-                        this.previousSection();
-                        this.lastTouchTime = currentTime;
-                    }
-                }
-            }
-        }, { passive: true });
-    }
-
-    // 🔥 PC - ULTRA RESTRICTIF
-    initializeDesktopScroll() {
-        document.addEventListener('wheel', (e) => {
-            if (this.isTransitioning) {
-                e.preventDefault();
-                return;
-            }
-
-            const activeSection = document.querySelector('.section.active');
-            const sectionContent = activeSection?.querySelector('.section-content');
-
-            if (!sectionContent) return;
-
-            const isAtTop = sectionContent.scrollTop <= 5;
-            const isAtBottom = sectionContent.scrollTop >= (sectionContent.scrollHeight - sectionContent.clientHeight - 5);
-            const currentTime = Date.now();
-
-            // SCROLL NORMAL si on n'est pas aux bords
-            if (!isAtTop && !isAtBottom) {
-                return; // Laisser le scroll normal
-            }
-
-            // AUX BORDS : accumulation MASSIVE required
-            this.wheelAccumulator += Math.abs(e.deltaY);
-
-            // Reset de l'accumulateur après délai court
-            clearTimeout(this.wheelTimeout);
-            this.wheelTimeout = setTimeout(() => {
-                this.wheelAccumulator = 0;
-            }, 100);
-
-            // 🚨 CHANGEMENT DE PAGE SEULEMENT SI ÉNORME ACCUMULATION
-            if (this.wheelAccumulator > this.minWheelThreshold && currentTime - this.lastWheelTime > this.wheelCooldown) {
-                if (e.deltaY > 0 && isAtBottom) {
-                    // Scroll vers le bas ÉNORME au bas du contenu
-                    e.preventDefault();
-                    this.nextSection();
-                    this.lastWheelTime = currentTime;
-                    this.wheelAccumulator = 0;
-                } else if (e.deltaY < 0 && isAtTop) {
-                    // Scroll vers le haut ÉNORME au haut du contenu
-                    e.preventDefault();
-                    this.previousSection();
-                    this.lastWheelTime = currentTime;
-                    this.wheelAccumulator = 0;
-                }
-            }
-        }, { passive: false });
-    }
-
-    initializeArtisteTabs() {
-        const tabs = document.querySelectorAll('.artiste-tab');
-        const categories = document.querySelectorAll('.artiste-category');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const category = tab.dataset.category;
-
-                tabs.forEach(t => t.classList.remove('active'));
-                categories.forEach(c => c.classList.remove('active'));
-
-                tab.classList.add('active');
-                document.getElementById(category)?.classList.add('active');
-            });
-        });
-    }
-
-    initializeAnimations() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-up');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.bureau-card, .artiste-card, .production-card').forEach(card => {
-            observer.observe(card);
-        });
-    }
-
-    nextSection() {
-        if (this.currentSection < this.sections.length - 1) {
-            this.goToSection(this.currentSection + 1);
-        }
-    }
-
-    previousSection() {
-        if (this.currentSection > 0) {
-            this.goToSection(this.currentSection - 1);
-        }
-    }
-
-    goToSection(index) {
-        if (this.isTransitioning || index === this.currentSection || index < 0 || index >= this.sections.length) {
-            return;
-        }
-
-        this.isTransitioning = true;
-        this.showPageTransition();
-
-        setTimeout(() => {
-            // Masquer toutes les sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Afficher la nouvelle section
-            const newSection = document.getElementById(this.sections[index]);
-            newSection.classList.add('active');
-
-            // Scroll au top de la nouvelle section
-            const sectionContent = newSection.querySelector('.section-content');
-            if (sectionContent) {
-                sectionContent.scrollTop = 0;
-            }
-
-            // Mettre à jour navigation
-            document.querySelectorAll('.nav-dot').forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-
-            this.currentSection = index;
-
-            setTimeout(() => {
-                this.hidePageTransition();
+        class BohemePlaquette {
+            constructor() {
+                this.currentSection = 0;
+                this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
                 this.isTransitioning = false;
-            }, 300);
-        }, 250);
-    }
 
-    showPageTransition() {
-        const transition = document.querySelector('.page-transition');
-        transition.classList.add('active');
-    }
+                // Variables pour le swipe AVEC ZONE DE SÉCURITÉ
+                this.touchStart = { x: 0, y: 0, time: 0 };
+                this.touchEnd = { x: 0, y: 0, time: 0 };
+                this.minSwipeDistance = 50; // Distance minimale pour swipe
+                this.minSwipeDistanceStrict = 200; // Distance minimale pour swipe en milieu de contenu
+                this.minVelocity = 0.3; // Vélocité minimale pour swipe facile
+                this.minVelocityStrict = 1.0; // Vélocité minimale pour swipe strict
 
-    hidePageTransition() {
-        const transition = document.querySelector('.page-transition');
-        transition.classList.remove('active');
-    }
-}
+                this.init();
+            }
 
-// Initialisation quand le DOM est chargé
-document.addEventListener('DOMContentLoaded', () => {
-    new BohemePlaquette();
-});
+            init() {
+                this.setupAudio();
+                this.setupNavigation();
+                this.setupArtisteTabs();
+                this.setupTouchNavigation();
+                this.setupKeyboardNavigation();
+                this.startAnimations();
 
-// Gestion du redimensionnement
-window.addEventListener('resize', () => {
-    const sections = document.querySelectorAll('.section-content');
-    sections.forEach(section => {
-        if (section.scrollTop > 0) {
-            section.scrollTop = 0;
+                // Auto-start exploration from cover
+                document.getElementById('start-exploration')?.addEventListener('click', () => {
+                    this.goToSection(1);
+                });
+            }
+
+            setupAudio() {
+                const audio = document.getElementById('background-music');
+                const playPauseBtn = document.getElementById('play-pause-btn');
+                const muteBtn = document.getElementById('mute-btn');
+                const volumeSlider = document.getElementById('volume-slider');
+
+                // Set initial volume
+                audio.volume = 0.3;
+
+                // Play/Pause
+                playPauseBtn?.addEventListener('click', () => {
+                    if (audio.paused) {
+                        audio.play().catch(e => console.log('Audio play failed:', e));
+                        playPauseBtn.innerHTML = '<span class="material-icons">pause</span>';
+                    } else {
+                        audio.pause();
+                        playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
+                    }
+                });
+
+                // Mute/Unmute
+                muteBtn?.addEventListener('click', () => {
+                    audio.muted = !audio.muted;
+                    muteBtn.innerHTML = audio.muted ?
+                        '<span class="material-icons">volume_off</span>' :
+                        '<span class="material-icons">volume_up</span>';
+                });
+
+                // Volume control
+                volumeSlider?.addEventListener('input', (e) => {
+                    audio.volume = e.target.value / 100;
+                });
+
+                // Auto-play attempt
+                const tryAutoplay = () => {
+                    audio.play().catch(() => {
+                        // Si l'autoplay échoue, on met le bouton en état pause
+                        playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
+                    });
+                };
+
+                // Try autoplay on user interaction
+                document.addEventListener('click', tryAutoplay, { once: true });
+                document.addEventListener('touchstart', tryAutoplay, { once: true });
+            }
+
+            setupNavigation() {
+                const navDots = document.querySelectorAll('.nav-dot');
+                navDots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        this.goToSection(index);
+                    });
+                });
+            }
+
+            setupArtisteTabs() {
+                const tabs = document.querySelectorAll('.artiste-tab');
+                const categories = document.querySelectorAll('.artiste-category');
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const category = tab.dataset.category;
+
+                        // Remove active class from all tabs and categories
+                        tabs.forEach(t => t.classList.remove('active'));
+                        categories.forEach(c => c.classList.remove('active'));
+
+                        // Add active class to clicked tab and corresponding category
+                        tab.classList.add('active');
+                        document.getElementById(category)?.classList.add('active');
+                    });
+                });
+            }
+
+            setupTouchNavigation() {
+                let touchStartTime = 0;
+
+                // Touch start
+                document.addEventListener('touchstart', (e) => {
+                    if (this.isTransitioning) return;
+
+                    const touch = e.touches[0];
+                    this.touchStart = {
+                        x: touch.clientX,
+                        y: touch.clientY,
+                        time: Date.now()
+                    };
+                    touchStartTime = Date.now();
+                }, { passive: true });
+
+                // Touch end
+                document.addEventListener('touchend', (e) => {
+                    if (this.isTransitioning) return;
+
+                    const touch = e.changedTouches[0];
+                    this.touchEnd = {
+                        x: touch.clientX,
+                        y: touch.clientY,
+                        time: Date.now()
+                    };
+
+                    this.handleSwipe();
+                }, { passive: true });
+
+                // 🔥 MOUSE WHEEL AVEC ZONE DE SÉCURITÉ
+                document.addEventListener('wheel', (e) => {
+                    if (this.isTransitioning) return;
+
+                    const activeSection = document.querySelector('.section.active');
+                    const sectionContent = activeSection?.querySelector('.section-content');
+
+                    if (!sectionContent) return;
+
+                    // Vérifier si on est dans une zone de sécurité
+                    const isInSafetyZone = this.checkSafetyZone(sectionContent);
+
+                    if (isInSafetyZone) {
+                        const direction = e.deltaY > 0 ? 'down' : 'up';
+                        this.handleDirectionalNavigation(direction);
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+            }
+
+            // 🔥 FONCTION CLEF : VÉRIFICATION DE LA ZONE DE SÉCURITÉ
+            checkSafetyZone(sectionContent) {
+                const scrollTop = sectionContent.scrollTop;
+                const scrollHeight = sectionContent.scrollHeight;
+                const clientHeight = sectionContent.clientHeight;
+
+                // Zone de sécurité en haut (80px depuis le début)
+                const topSafetyZone = scrollTop <= 80;
+
+                // Zone de sécurité en bas (80px avant la fin)
+                const bottomSafetyZone = scrollTop >= (scrollHeight - clientHeight - 80);
+
+                // Vérifier qu'on est vraiment au bout du contenu
+                const isAtTop = scrollTop <= 5;
+                const isAtBottom = scrollTop >= (scrollHeight - clientHeight - 5);
+
+                return (isAtTop && topSafetyZone) || (isAtBottom && bottomSafetyZone);
+            }
+
+            handleSwipe() {
+                const deltaX = this.touchEnd.x - this.touchStart.x;
+                const deltaY = this.touchEnd.y - this.touchStart.y;
+                const deltaTime = this.touchEnd.time - this.touchStart.time;
+
+                // Calculer la distance et la vélocité
+                const distance = Math.abs(deltaY);
+                const velocity = distance / (deltaTime || 1); // Éviter division par 0
+
+                // Ignorer les swipes horizontaux
+                if (Math.abs(deltaX) > Math.abs(deltaY)) return;
+
+                // Vérifier la section active et son contenu
+                const activeSection = document.querySelector('.section.active');
+                const sectionContent = activeSection?.querySelector('.section-content');
+
+                if (!sectionContent) return;
+
+                // 🔥 LOGIQUE AVEC ZONE DE SÉCURITÉ
+                const isInSafetyZone = this.checkSafetyZone(sectionContent);
+
+                let shouldNavigate = false;
+
+                if (isInSafetyZone) {
+                    // 🔥 EN ZONE DE SÉCURITÉ : Conditions faciles
+                    shouldNavigate = distance > this.minSwipeDistance && velocity > this.minVelocity;
+                } else {
+                    // 🔥 EN MILIEU DE CONTENU : Conditions strictes
+                    shouldNavigate = distance > this.minSwipeDistanceStrict &&
+                                   velocity > this.minVelocityStrict &&
+                                   deltaTime > 300;
+                }
+
+                if (shouldNavigate) {
+                    const direction = deltaY > 0 ? 'up' : 'down';
+                    this.handleDirectionalNavigation(direction);
+                }
+            }
+
+            handleDirectionalNavigation(direction) {
+                if (direction === 'down' && this.currentSection < this.sections.length - 1) {
+                    this.goToSection(this.currentSection + 1);
+                } else if (direction === 'up' && this.currentSection > 0) {
+                    this.goToSection(this.currentSection - 1);
+                }
+            }
+
+            setupKeyboardNavigation() {
+                document.addEventListener('keydown', (e) => {
+                    if (this.isTransitioning) return;
+
+                    switch(e.key) {
+                        case 'ArrowUp':
+                        case 'PageUp':
+                            e.preventDefault();
+                            if (this.currentSection > 0) {
+                                this.goToSection(this.currentSection - 1);
+                            }
+                            break;
+                        case 'ArrowDown':
+                        case 'PageDown':
+                        case ' ': // Spacebar
+                            e.preventDefault();
+                            if (this.currentSection < this.sections.length - 1) {
+                                this.goToSection(this.currentSection + 1);
+                            }
+                            break;
+                        case 'Home':
+                            e.preventDefault();
+                            this.goToSection(0);
+                            break;
+                        case 'End':
+                            e.preventDefault();
+                            this.goToSection(this.sections.length - 1);
+                            break;
+                    }
+                });
+            }
+
+            goToSection(index) {
+                if (index === this.currentSection || this.isTransitioning) return;
+                if (index < 0 || index >= this.sections.length) return;
+
+                this.isTransitioning = true;
+
+                // Show transition overlay
+                const transition = document.getElementById('page-transition');
+                transition?.classList.add('active');
+
+                setTimeout(() => {
+                    // Hide current section
+                    const currentSectionEl = document.getElementById(this.sections[this.currentSection]);
+                    currentSectionEl?.classList.remove('active');
+
+                    // Show new section
+                    const newSectionEl = document.getElementById(this.sections[index]);
+                    newSectionEl?.classList.add('active');
+
+                    // Reset scroll position
+                    const sectionContent = newSectionEl?.querySelector('.section-content');
+                    if (sectionContent) {
+                        sectionContent.scrollTop = 0;
+                    }
+
+                    // Update navigation
+                    this.updateNavigation(index);
+                    this.currentSection = index;
+
+                    // Hide transition overlay
+                    setTimeout(() => {
+                        transition?.classList.remove('active');
+                        this.isTransitioning = false;
+                    }, 500);
+                }, 250);
+            }
+
+            updateNavigation(index) {
+                const navDots = document.querySelectorAll('.nav-dot');
+                navDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            startAnimations() {
+                // Add staggered animations to cover elements
+                const coverElements = document.querySelectorAll('.cover-content > *');
+                coverElements.forEach((el, index) => {
+                    el.style.animationDelay = `${index * 0.3}s`;
+                });
+
+                // Animate sections when they become visible
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const animatedElements = entry.target.querySelectorAll('[class*="fade"]');
+                            animatedElements.forEach((el, index) => {
+                                setTimeout(() => {
+                                    el.style.opacity = '1';
+                                    el.style.transform = 'translateY(0)';
+                                }, index * 100);
+                            });
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.section').forEach(section => {
+                    observer.observe(section);
+                });
+            }
         }
-    });
-});
 
-// Optimisation des performances vidéo
-document.addEventListener('visibilitychange', () => {
-    const videos = document.querySelectorAll('video');
-    videos.forEach(video => {
-        if (document.hidden) {
-            video.pause();
-        } else {
-            video.play().catch(e => console.log('Video play failed:', e));
-        }
-    });
-});
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new BohemePlaquette();
+        });
+
+        // Handle video loading errors gracefully
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('error', function() {
+                console.log('Video failed to load:', this.src);
+                // Hide video container if video fails
+                this.parentElement.style.display = 'none';
+            });
+
+            // Ensure videos loop properly
+            video.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play().catch(e => console.log('Video replay failed:', e));
+            });
+        });
+
+        // Optimize performance
+        window.addEventListener('load', () => {
+            // Preload next section videos when page is loaded
+            document.querySelectorAll('video').forEach(video => {
+                video.preload = 'metadata';
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            // Reset any animations or layouts that might need adjustment
+            const activeSection = document.querySelector('.section.active');
+            if (activeSection) {
+                const sectionContent = activeSection.querySelector('.section-content');
+                if (sectionContent) {
+                    sectionContent.scrollTop = 0;
+                }
+            }
+        });
     </script>
 </body>
 </html>
