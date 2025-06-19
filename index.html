@@ -40,7 +40,6 @@
             background: var(--cream);
             font-family: 'Cormorant Garamond', serif;
             color: var(--dark);
-            /* CORRECTION MOBILE - Empêcher le zoom sur double-tap */
             touch-action: pan-y pinch-zoom;
         }
 
@@ -440,7 +439,6 @@
             backdrop-filter: blur(10px);
             border-bottom: 2px solid var(--gold);
             overflow: hidden;
-            /* MOBILE - Permettre le toucher */
             touch-action: manipulation;
         }
 
@@ -501,10 +499,11 @@
             color: var(--dark);
             background: rgba(255, 255, 255, 0.1);
             padding: 0;
-            /* MOBILE - Configuration scroll important */
             -webkit-overflow-scrolling: touch;
             overscroll-behavior: contain;
             touch-action: pan-y;
+            /* AJOUT D'ESPACE EN BAS pour scroll complet */
+            padding-bottom: 80px;
         }
 
         /* === SECTION PRÉSENTATION MAGAZINE CORRIGÉE MOBILE === */
@@ -515,10 +514,11 @@
             overflow-y: auto;
             padding: 0;
             background: transparent;
-            /* MOBILE - Scroll fluide */
             -webkit-overflow-scrolling: touch;
             overscroll-behavior: contain;
             touch-action: pan-y;
+            /* ESPACE SUPPLÉMENTAIRE EN BAS */
+            padding-bottom: 100px;
         }
 
         /* Container avec dégradé PLUS FONCÉ */
@@ -534,8 +534,9 @@
                 rgba(20,20,20,0.98) 100%
             );
             box-shadow: inset 0 0 150px rgba(212,175,55,0.2);
-            /* MOBILE - Scroll sécurisé */
             touch-action: pan-y;
+            /* ESPACE EN BAS pour permettre scroll complet */
+            padding-bottom: 120px;
         }
 
         /* Photo principale avec titre STYLE VOGUE */
@@ -1003,7 +1004,7 @@
             text-align: center;
         }
 
-        /* LOGO DÉCORATIF ENCORE PLUS GRAND FORMAT */
+        /* LOGO DÉCORATIF ENCORE PLUS GRAND FORMAT - CORRECTION MOBILE */
         .decorative-logo-section {
             margin: 50px 0;
             padding: 80px;
@@ -1018,6 +1019,10 @@
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+            /* CORRECTION MOBILE - Centrage forcé */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .decorative-video-background {
@@ -1048,6 +1053,9 @@
             max-width: 500px;
             height: auto;
             filter: brightness(1.3) contrast(1.3) drop-shadow(0 0 25px rgba(212,175,55,0.9));
+            /* CORRECTION MOBILE - Centrage */
+            margin: 0 auto;
+            display: block;
         }
 
         .decorative-logo-placeholder {
@@ -1085,27 +1093,36 @@
             font-weight: 700;
         }
 
-        /* CRÉDITS FINAUX */
+        /* COPYRIGHT NORMAL ET DISCRET - VRAIMENT PETIT */
         .final-credits {
-            text-align: center;
-            padding: 35px;
-            background: rgba(0,0,0,0.98);
-            color: var(--gold);
-            font-size: 1.1rem;
-            font-style: italic;
-            border-top: 3px solid var(--gold);
+            background: #f8f8f8;
+            color: #666666;
+            padding: 15px 20px;
             margin-top: 40px;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border-top: 1px solid #dddddd;
+            font-family: 'Arial', sans-serif;
+            font-size: 11px;
+            line-height: 1.4;
+            text-align: center;
         }
 
-        .final-credits p {
-            margin: 10px 0;
+        .credits-line {
+            margin: 3px 0;
+            color: #777777;
         }
 
-        .credits-highlight {
+        .credits-name {
             font-weight: 600;
-            color: var(--gold);
+            color: #555555;
+        }
+
+        .credits-copyright {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #eeeeee;
+            font-weight: 600;
+            color: #333333;
+            font-size: 12px;
         }
 
         /* Autres sections restent identiques... */
@@ -1521,6 +1538,7 @@
             width: 100%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: var(--gray);
@@ -1632,7 +1650,6 @@
                 width: 380px;
                 height: 380px;
             }
-            /* MOBILE - Photo Saty sans float */
             .saty-image-inline {
                 float: none;
                 margin: 20px auto;
@@ -1673,7 +1690,6 @@
             .section-content {
                 padding-bottom: 120px;
                 background: rgba(255, 255, 255, 0.1);
-                /* MOBILE - Scroll important */
                 touch-action: pan-y;
                 -webkit-overflow-scrolling: touch;
                 overscroll-behavior: contain;
@@ -1682,7 +1698,6 @@
                 padding: 20px;
                 text-align: center;
                 background: rgba(255, 255, 255, 0.8);
-                /* MOBILE - Permettre interaction */
                 touch-action: manipulation;
             }
             .section-title {
@@ -1759,7 +1774,6 @@
             .hero-image-title {
                 font-size: 1.5rem;
             }
-            /* MOBILE - Photo Saty style bloc */
             .saty-image-inline {
                 float: none;
                 width: 100%;
@@ -1787,11 +1801,20 @@
                 font-size: 3.5rem;
                 padding: 15px;
             }
+            /* MOBILE - Logo décoratif centré forcé */
             .decorative-logo-section {
-                max-width: 500px;
-                padding: 50px;
+                max-width: 90%;
+                padding: 30px 20px;
+                margin: 30px auto;
             }
-            /* MOBILE - Sections avec padding mobile */
+            .decorative-logo {
+                max-width: 300px;
+            }
+            .decorative-logo-placeholder {
+                width: 300px;
+                height: 300px;
+                font-size: 2.5rem;
+            }
             .saty-integrated-text-container,
             .artists-highlight-container,
             .polyvalent-artists-container,
@@ -1832,7 +1855,6 @@
             .artistes-tabs {
                 flex-wrap: nowrap;
                 overflow-x: auto;
-                /* MOBILE - Scroll horizontal */
                 touch-action: pan-x;
             }
             .golden-line {
@@ -1871,7 +1893,7 @@
             }
             .magazine-paragraph {
                 font-size: 1.2rem;
-                text-align: left; /* Plus facile à lire sur mobile */
+                text-align: left;
             }
             .boheme-signature-image {
                 max-width: 400px;
@@ -1881,10 +1903,18 @@
                 padding: 10px;
             }
             .decorative-logo-section {
-                max-width: 400px;
-                padding: 40px;
+                max-width: 95%;
+                padding: 25px 15px;
+                margin: 20px auto;
             }
-            /* MOBILE PETIT - Réduction padding */
+            .decorative-logo {
+                max-width: 250px;
+            }
+            .decorative-logo-placeholder {
+                width: 250px;
+                height: 250px;
+                font-size: 2rem;
+            }
             .magazine-content-wrapper {
                 padding: 15px;
             }
@@ -2249,12 +2279,11 @@
                                          onerror="this.parentNode.innerHTML='<div class=decorative-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=decorative-logo-placeholder>BOHÈME<br>PRODUCTION</div>'">
                                 </div>
 
-                                <!-- CRÉDITS -->
+                                <!-- COPYRIGHT NORMAL ET DISCRET -->
                                 <div class="final-credits">
-                                    <p><em>Toutes les créations musicales originales : <span class="credits-highlight">Mickaël Guedj</span></em></p>
-                                    <p><em>Créations lyriques : <span class="credits-highlight">Stéphanie Domejean</span> | Musique : <span class="credits-highlight">Mickaël Guedj</span> | Photos : <span class="credits-highlight">Stéphanie Domejean</span></em></p>
-                                    <p><strong>Conception & Réalisation : <span class="credits-highlight">Mickaël Guedj</span></strong></p>
-                                    <p><strong>Création Interactive : © 2025 <span class="credits-highlight">Mickaël Guedj</span> pour Bohème Production</strong></p>
+                                    <div class="credits-line"><span class="credits-name">Mickaël Guedj</span> - Conception d'expérience interactive et musicale, Design numérique, Musique originale, Réalisation, Production assistée par IA</div>
+                                    <div class="credits-line"><span class="credits-name">Stéphanie Doméjean</span> - Créations textuelles et visuelles, Paroles, Photographies</div>
+                                    <div class="credits-copyright">© 2025 Bohème Production</div>
                                 </div>
                             </div>
                         </div>
@@ -2315,7 +2344,7 @@
                         <div class="bureau-card">
                             <div class="bureau-photo-placeholder">
                                 <span class="material-icons">person</span>
-            </div>
+                            </div>
                             <h3 class="bureau-name">Mickael Guedj</h3>
                             <p class="bureau-title">Directeur artistique</p>
                         </div>
@@ -2530,7 +2559,7 @@
                             <div class="production-content">
                                 <h3 class="production-title">Pop Lyrique</h3>
                                 <p class="production-description">
-                                    Une fusion innovante entre technique lyrique et répertoire contemporain créant un pont accessible.
+                                    Une fusion innovante entre technique lyrique et répertoire contemporain créant un pont accessible entre tradition et modernité.
                                 </p>
                             </div>
                         </div>
@@ -2542,7 +2571,7 @@
                             <div class="production-content">
                                 <h3 class="production-title">Comédies Musicales</h3>
                                 <p class="production-description">
-                                    Des spectacles complets alliant chant, théâtre et chorégraphie dans des univers captivants.
+                                    Des spectacles complets alliant chant, danse et théâtre dans des productions originales et revisitées.
                                 </p>
                             </div>
                         </div>
@@ -2552,9 +2581,33 @@
                                 <div class="production-image-overlay"></div>
                             </div>
                             <div class="production-content">
-                                <h3 class="production-title">Évènements Privés</h3>
+                                <h3 class="production-title">Spectacles Thématiques</h3>
                                 <p class="production-description">
-                                    Des prestations sur mesure pour vos célébrations exclusives adaptées à tous vos besoins.
+                                    Des créations sur mesure adaptées à vos événements privés ou professionnels avec nos artistes polyvalents.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="production-card">
+                            <div class="production-image">
+                                <div class="production-image-overlay"></div>
+                            </div>
+                            <div class="production-content">
+                                <h3 class="production-title">Galas de Prestige</h3>
+                                <p class="production-description">
+                                    Des soirées d'exception dans les plus beaux lieux de la Côte d'Azur et au-delà.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="production-card">
+                            <div class="production-image">
+                                <div class="production-image-overlay"></div>
+                            </div>
+                            <div class="production-content">
+                                <h3 class="production-title">Collaborations Artistiques</h3>
+                                <p class="production-description">
+                                    Des partenariats avec des festivals, théâtres et institutions culturelles prestigieuses.
                                 </p>
                             </div>
                         </div>
@@ -2580,20 +2633,11 @@
                         <div class="contact-info">
                             <div class="contact-item">
                                 <div class="contact-icon">
-                                    <span class="material-icons">place</span>
-                                </div>
-                                <div class="contact-text">
-                                    75 Avenue du XVème Corps<br>
-                                    <span>83700 Saint-Raphaël</span>
-                                </div>
-                            </div>
-
-                            <div class="contact-item">
-                                <div class="contact-icon">
                                     <span class="material-icons">phone</span>
                                 </div>
                                 <div class="contact-text">
-                                    +33(0)6 08 72 71 26
+                                    +33 (0)4 93 XX XX XX
+                                    <span>Ligne directe</span>
                                 </div>
                             </div>
 
@@ -2602,30 +2646,45 @@
                                     <span class="material-icons">email</span>
                                 </div>
                                 <div class="contact-text">
-                                    Bohemeproduction.president@gmail.com
+                                    contact@bohemeproduction.com
+                                    <span>Contact professionnel</span>
                                 </div>
                             </div>
 
                             <div class="contact-item">
                                 <div class="contact-icon">
-                                    <span class="material-icons">language</span>
+                                    <span class="material-icons">location_on</span>
                                 </div>
                                 <div class="contact-text">
-                                    www.bohemeproduction.com
+                                    Côte d'Azur, France
+                                    <span>Rayonnement international</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <span class="material-icons">schedule</span>
+                                </div>
+                                <div class="contact-text">
+                                    Disponible 7j/7
+                                    <span>Pour vos projets artistiques</span>
                                 </div>
                             </div>
 
                             <div class="contact-social">
                                 <h3 class="contact-social-title">Suivez-nous</h3>
                                 <div class="social-links">
-                                    <div class="social-link">
+                                    <div class="social-link" title="Instagram">
+                                        <span class="material-icons">camera_alt</span>
+                                    </div>
+                                    <div class="social-link" title="Facebook">
                                         <span class="material-icons">facebook</span>
                                     </div>
-                                    <div class="social-link">
-                                        <span class="material-icons">photo_camera</span>
+                                    <div class="social-link" title="YouTube">
+                                        <span class="material-icons">play_arrow</span>
                                     </div>
-                                    <div class="social-link">
-                                        <span class="material-icons">play_circle</span>
+                                    <div class="social-link" title="LinkedIn">
+                                        <span class="material-icons">business</span>
                                     </div>
                                 </div>
                             </div>
@@ -2633,7 +2692,8 @@
 
                         <div class="map-container">
                             <div class="map-placeholder">
-                                Carte interactive de Saint-Raphaël
+                                <span class="material-icons" style="font-size: 4rem; margin-bottom: 15px;">place</span>
+                                <p>Carte interactive disponible<br>Côte d'Azur - France</p>
                             </div>
                         </div>
                     </div>
@@ -2641,409 +2701,291 @@
             </div>
         </section>
 
-        <!-- Page transition effect -->
-        <div class="page-transition" id="page-transition"></div>
+        <!-- Page transition overlay -->
+        <div class="page-transition"></div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Variables globales
-            const sections = document.querySelectorAll('.section');
-            const navDots = document.querySelectorAll('.nav-dot');
-            const pageTransition = document.getElementById('page-transition');
-            const backgroundMusic = document.getElementById('background-music');
-            const playPauseBtn = document.getElementById('play-pause-btn');
-            const muteBtn = document.getElementById('mute-btn');
-            const volumeSlider = document.getElementById('volume-slider');
-            let isAnimating = false;
-            let currentSection = 0;
-            let touchStartY = 0;
-            let touchEndY = 0;
-            let lastTouch = 0;
-            let isAudioPlaying = false;
-            let audioFadeTimeout = null;
+<script>
+class BohemePlaquette {
+    constructor() {
+        this.currentSection = 0;
+        this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
+        this.isTransitioning = false;
+        this.scrollThreshold = 100;
+        this.scrollTimeout = null;
+        this.isMobile = window.innerWidth <= 768; // DÉTECTION MOBILE/PC
 
-            // MOBILE - Variables pour gestion tactile améliorée
-            let isTouchScrolling = false;
-            let touchScrollThreshold = 50;
-            let touchNavTimeout = null;
+        this.initializeAudio();
+        this.initializeNavigation();
+        this.initializeScrolling();
+        this.initializeArtisteTabs();
+        this.initializeAnimations();
 
-            // Initialisation audio
-            initializeAudio();
+        // MISE À JOUR DE LA DÉTECTION AU REDIMENSIONNEMENT
+        window.addEventListener('resize', () => {
+            this.isMobile = window.innerWidth <= 768;
+        });
+    }
 
-            // Navigation dots
-            navDots.forEach((dot, index) => {
-                dot.addEventListener('click', function() {
-                    if (!isAnimating && currentSection !== index) {
-                        navigateToSection(index);
-                    }
-                });
+    initializeAudio() {
+        const audio = document.getElementById('background-music');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const muteBtn = document.getElementById('mute-btn');
+        const volumeSlider = document.getElementById('volume-slider');
+
+        // Set initial volume
+        audio.volume = 0.3;
+
+        // Autoplay with error handling
+        const playAudio = () => {
+            audio.play().catch(e => {
+                console.log('Autoplay prevented:', e);
+                playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
             });
+        };
 
-            // Start exploration button
-            document.getElementById('start-exploration').addEventListener('click', function() {
-                navigateToSection(1);
-            });
+        // Try autoplay when user interacts
+        document.addEventListener('click', playAudio, { once: true });
+        document.addEventListener('touchstart', playAudio, { once: true });
 
-            // Audio controls
-            playPauseBtn.addEventListener('click', togglePlayPause);
-            muteBtn.addEventListener('click', toggleMute);
-            volumeSlider.addEventListener('input', function() {
-                const volume = this.value / 100;
-                backgroundMusic.volume = volume;
-
-                const muteIcon = muteBtn.querySelector('.material-icons');
-                if (volume === 0) {
-                    muteIcon.textContent = 'volume_off';
-                } else if (volume < 0.5) {
-                    muteIcon.textContent = 'volume_down';
-                } else {
-                    muteIcon.textContent = 'volume_up';
-                }
-            });
-
-            // Artiste tabs
-            const artisteTabs = document.querySelectorAll('.artiste-tab');
-            const artisteCategories = document.querySelectorAll('.artiste-category');
-
-            artisteTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-
-                    artisteTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-
-                    artisteCategories.forEach(c => c.classList.remove('active'));
-                    document.getElementById(category).classList.add('active');
-                });
-            });
-
-            // CORRECTION BOUCLE VIDÉO - Pour éviter les blocages
-            const videos = document.querySelectorAll('video');
-            videos.forEach(video => {
-                // Forcer la relecture à la fin pour éviter les pauses
-                video.addEventListener('ended', function() {
-                    this.currentTime = 0;
-                    this.play();
-                });
-
-                // Vérification périodique pour s'assurer que la vidéo joue
-                setInterval(() => {
-                    if (video.paused && video.muted && video.loop) {
-                        video.play().catch(e => console.log('Video play failed:', e));
-                    }
-                }, 5000);
-            });
-
-            // NAVIGATION TACTILE MOBILE COMPLÈTEMENT CORRIGÉE
-            document.addEventListener('touchstart', function(e) {
-                touchStartY = e.touches[0].clientY;
-                lastTouch = Date.now();
-                isTouchScrolling = false;
-
-                // Annuler tout timeout de navigation en cours
-                if (touchNavTimeout) {
-                    clearTimeout(touchNavTimeout);
-                    touchNavTimeout = null;
-                }
-            }, { passive: true });
-
-            document.addEventListener('touchmove', function(e) {
-                // Si on bouge le doigt, c'est qu'on scrolle
-                isTouchScrolling = true;
-
-                // Annuler la navigation si on scrolle
-                if (touchNavTimeout) {
-                    clearTimeout(touchNavTimeout);
-                    touchNavTimeout = null;
-                }
-            }, { passive: true });
-
-            document.addEventListener('touchend', function(e) {
-                if (isAnimating) return;
-
-                touchEndY = e.changedTouches[0].clientY;
-                const touchDuration = Date.now() - lastTouch;
-
-                // Si on a scrollé, ne pas naviguer
-                if (isTouchScrolling) {
-                    return;
-                }
-
-                // Seulement si c'est un swipe rapide et sans scroll
-                if (touchDuration < 300) {
-                    touchNavTimeout = setTimeout(() => {
-                        handleSwipeVerticalSafe();
-                    }, 150); // Délai pour s'assurer qu'on ne scroll pas
-                }
-            }, { passive: true });
-
-            function handleSwipeVerticalSafe() {
-                if (isAnimating || isTouchScrolling) return;
-
-                const distanceY = touchEndY - touchStartY;
-                const activeSection = document.querySelector('.section.active');
-
-                // Si on est dans la section présentation
-                if (currentSection === 1 && activeSection) {
-                    const scrollableContainer = activeSection.querySelector('.intro-content-magazine');
-                    if (scrollableContainer) {
-                        // Vérifier position du scroll
-                        const isAtTop = scrollableContainer.scrollTop <= 10;
-                        const isAtBottom = scrollableContainer.scrollTop + scrollableContainer.clientHeight >= scrollableContainer.scrollHeight - 10;
-
-                        // Navigation verticale seulement aux extrémités
-                        if (distanceY < -touchScrollThreshold && isAtBottom) {
-                            // Swipe vers le haut depuis le bas - section suivante
-                            if (currentSection < sections.length - 1) {
-                                navigateToSection(currentSection + 1);
-                            }
-                            return;
-                        } else if (distanceY > touchScrollThreshold && isAtTop) {
-                            // Swipe vers le bas depuis le haut - section précédente
-                            if (currentSection > 0) {
-                                navigateToSection(currentSection - 1);
-                            }
-                            return;
-                        }
-                        // Sinon laisser le scroll naturel
-                        return;
-                    }
-                }
-
-                // Pour les autres sections - navigation normale
-                if (Math.abs(distanceY) > touchScrollThreshold) {
-                    if (distanceY < 0) {
-                        // Swipe vers le haut - section suivante
-                        if (currentSection < sections.length - 1) {
-                            navigateToSection(currentSection + 1);
-                        }
-                    } else {
-                        // Swipe vers le bas - section précédente
-                        if (currentSection > 0) {
-                            navigateToSection(currentSection - 1);
-                        }
-                    }
-                }
-            }
-
-            // Navigation par molette CORRIGÉE pour scroll dans présentation
-            let wheelTimeout = null;
-            window.addEventListener('wheel', function(e) {
-                if (isAnimating) return;
-
-                const activeSection = document.querySelector('.section.active');
-
-                // Si on est dans la section présentation avec contenu scrollable
-                if (currentSection === 1 && activeSection) {
-                    const scrollableContainer = activeSection.querySelector('.intro-content-magazine');
-                    if (scrollableContainer) {
-                        // Vérifier si on est en haut ou en bas du contenu scrollable
-                        const isAtTop = scrollableContainer.scrollTop <= 5;
-                        const isAtBottom = scrollableContainer.scrollTop + scrollableContainer.clientHeight >= scrollableContainer.scrollHeight - 10;
-
-                        // Navigation entre sections seulement si on est aux extrémités du scroll
-                        if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
-                            e.preventDefault();
-                            clearTimeout(wheelTimeout);
-                            wheelTimeout = setTimeout(() => {
-                                if (e.deltaY > 0) {
-                                    if (currentSection < sections.length - 1) {
-                                        navigateToSection(currentSection + 1);
-                                    }
-                                } else {
-                                    if (currentSection > 0) {
-                                        navigateToSection(currentSection - 1);
-                                    }
-                                }
-                            }, 100);
-                        }
-                        return; // Laisser le scroll naturel dans le contenu
-                    }
-                }
-
-                // Pour les autres sections - navigation normale
-                e.preventDefault();
-                clearTimeout(wheelTimeout);
-                wheelTimeout = setTimeout(() => {
-                    if (e.deltaY > 0) {
-                        if (currentSection < sections.length - 1) {
-                            navigateToSection(currentSection + 1);
-                        }
-                    } else {
-                        if (currentSection > 0) {
-                            navigateToSection(currentSection - 1);
-                        }
-                    }
-                }, 100);
-            }, { passive: false });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (isAnimating) return;
-
-                if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-                    if (currentSection < sections.length - 1) {
-                        navigateToSection(currentSection + 1);
-                    }
-                } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-                    if (currentSection > 0) {
-                        navigateToSection(currentSection - 1);
-                    }
-                }
-            });
-
-            function initializeAudio() {
-                backgroundMusic.volume = 0.3;
-
-                const attemptAutoplay = () => {
-                    const playPromise = backgroundMusic.play();
-                    if (playPromise !== undefined) {
-                        playPromise.then(() => {
-                            isAudioPlaying = true;
-                            playPauseBtn.querySelector('.material-icons').textContent = 'pause';
-                            fadeAudioIn();
-                        }).catch(error => {
-                            setupUserInteractionTriggers();
-                        });
-                    }
-                };
-
-                const setupUserInteractionTriggers = () => {
-                    const startAudioOnInteraction = () => {
-                        if (!isAudioPlaying) {
-                            playAudio();
-                        }
-                    };
-
-                    const events = ['click', 'touchstart', 'keydown', 'mousemove'];
-                    events.forEach(event => {
-                        document.addEventListener(event, startAudioOnInteraction, { once: true });
-                    });
-                };
-
-                if (backgroundMusic.readyState >= 2) {
-                    attemptAutoplay();
-                } else {
-                    backgroundMusic.addEventListener('canplaythrough', attemptAutoplay, { once: true });
-                    backgroundMusic.addEventListener('loadeddata', attemptAutoplay, { once: true });
-                }
-
-                backgroundMusic.load();
-                setTimeout(attemptAutoplay, 500);
-
-                backgroundMusic.addEventListener('ended', function() {
-                    if (isAudioPlaying) {
-                        fadeAudioIn();
-                    }
-                });
-
-                document.addEventListener('visibilitychange', function() {
-                    if (!document.hidden && !isAudioPlaying) {
-                        setTimeout(attemptAutoplay, 100);
-                    }
-                });
-            }
-
-            function togglePlayPause() {
-                if (isAudioPlaying) {
-                    pauseAudio();
-                } else {
-                    playAudio();
-                }
-            }
-
-            function toggleMute() {
-                if (backgroundMusic.volume > 0) {
-                    backgroundMusic.volume = 0;
-                    volumeSlider.value = 0;
-                    muteBtn.querySelector('.material-icons').textContent = 'volume_off';
-                } else {
-                    backgroundMusic.volume = 0.3;
-                    volumeSlider.value = 30;
-                    muteBtn.querySelector('.material-icons').textContent = 'volume_up';
-                }
-            }
-
-            function playAudio() {
-                const playPromise = backgroundMusic.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        isAudioPlaying = true;
-                        playPauseBtn.querySelector('.material-icons').textContent = 'pause';
-                        fadeAudioIn();
-                    }).catch(error => {
-                        console.log('Audio play failed:', error);
-                    });
-                }
-            }
-
-            function pauseAudio() {
-                fadeAudioOut(() => {
-                    backgroundMusic.pause();
-                    isAudioPlaying = false;
-                    playPauseBtn.querySelector('.material-icons').textContent = 'play_arrow';
-                });
-            }
-
-            function fadeAudioIn() {
-                clearTimeout(audioFadeTimeout);
-                let volume = 0;
-                const targetVolume = volumeSlider.value / 100;
-                const fadeStep = targetVolume / 20;
-
-                function fade() {
-                    volume += fadeStep;
-                    if (volume >= targetVolume) {
-                        backgroundMusic.volume = targetVolume;
-                        return;
-                    }
-                    backgroundMusic.volume = volume;
-                    audioFadeTimeout = setTimeout(fade, 50);
-                }
-                fade();
-            }
-
-            function fadeAudioOut(callback) {
-                clearTimeout(audioFadeTimeout);
-                let volume = backgroundMusic.volume;
-                const fadeStep = volume / 20;
-
-                function fade() {
-                    volume -= fadeStep;
-                    if (volume <= 0) {
-                        backgroundMusic.volume = 0;
-                        if (callback) callback();
-                        return;
-                    }
-                    backgroundMusic.volume = volume;
-                    audioFadeTimeout = setTimeout(fade, 50);
-                }
-                fade();
-            }
-
-            function navigateToSection(index) {
-                if (index === currentSection || isAnimating) return;
-
-                isAnimating = true;
-                pageTransition.classList.add('active');
-
-                setTimeout(() => {
-                    sections.forEach(section => section.classList.remove('active'));
-                    sections[index].classList.add('active');
-
-                    navDots.forEach(dot => dot.classList.remove('active'));
-                    navDots[index].classList.add('active');
-
-                    currentSection = index;
-
-                    setTimeout(() => {
-                        pageTransition.classList.remove('active');
-                        isAnimating = false;
-                    }, 300);
-                }, 500);
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.innerHTML = '<span class="material-icons">pause</span>';
+            } else {
+                audio.pause();
+                playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
             }
         });
-    </script>
+
+        muteBtn.addEventListener('click', () => {
+            audio.muted = !audio.muted;
+            muteBtn.innerHTML = audio.muted ?
+                '<span class="material-icons">volume_off</span>' :
+                '<span class="material-icons">volume_up</span>';
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value / 100;
+        });
+    }
+
+    initializeNavigation() {
+        const navDots = document.querySelectorAll('.nav-dot');
+        const startBtn = document.getElementById('start-exploration');
+
+        navDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                this.navigateToSection(index);
+            });
+        });
+
+        if (startBtn) {
+            startBtn.addEventListener('click', () => {
+                this.navigateToSection(1);
+            });
+        }
+    }
+
+    initializeScrolling() {
+        // SCROLL PC vs MOBILE - COMPORTEMENT DIFFÉRENT
+        document.addEventListener('wheel', (e) => {
+            if (this.isTransitioning) return;
+
+            const activeSection = document.querySelector('.section.active');
+            const sectionContent = activeSection.querySelector('.section-content');
+
+            if (!sectionContent) return;
+
+            const scrollTop = sectionContent.scrollTop;
+            const scrollHeight = sectionContent.scrollHeight;
+            const clientHeight = sectionContent.clientHeight;
+
+            const isAtBottom = scrollTop >= (scrollHeight - clientHeight - this.scrollThreshold);
+            const isAtTop = scrollTop <= this.scrollThreshold;
+
+            // SUR MOBILE SEULEMENT : changement automatique
+            if (this.isMobile) {
+                clearTimeout(this.scrollTimeout);
+
+                this.scrollTimeout = setTimeout(() => {
+                    if (e.deltaY > 0 && isAtBottom) {
+                        e.preventDefault();
+                        if (this.currentSection < this.sections.length - 1) {
+                            this.navigateToSection(this.currentSection + 1);
+                        }
+                    } else if (e.deltaY < 0 && isAtTop) {
+                        e.preventDefault();
+                        if (this.currentSection > 0) {
+                            this.navigateToSection(this.currentSection - 1);
+                        }
+                    }
+                }, 150);
+            }
+            // SUR PC : pas de changement automatique, scroll normal
+        }, { passive: false });
+
+        // Touch events UNIQUEMENT pour mobile
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            if (!this.isMobile) return;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!this.isMobile || this.isTransitioning) return;
+            touchEndY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', () => {
+            if (!this.isMobile || this.isTransitioning) return;
+
+            const activeSection = document.querySelector('.section.active');
+            const sectionContent = activeSection.querySelector('.section-content');
+
+            if (!sectionContent) return;
+
+            const scrollTop = sectionContent.scrollTop;
+            const scrollHeight = sectionContent.scrollHeight;
+            const clientHeight = sectionContent.clientHeight;
+
+            const isAtBottom = scrollTop >= (scrollHeight - clientHeight - this.scrollThreshold);
+            const isAtTop = scrollTop <= this.scrollThreshold;
+
+            const swipeDistance = Math.abs(touchEndY - touchStartY);
+            const threshold = 50;
+
+            if (swipeDistance > threshold) {
+                if (touchStartY > touchEndY && isAtBottom) {
+                    if (this.currentSection < this.sections.length - 1) {
+                        this.navigateToSection(this.currentSection + 1);
+                    }
+                } else if (touchStartY < touchEndY && isAtTop) {
+                    if (this.currentSection > 0) {
+                        this.navigateToSection(this.currentSection - 1);
+                    }
+                }
+            }
+        }, { passive: true });
+    }
+
+    navigateToSection(index) {
+        if (this.isTransitioning || index === this.currentSection) return;
+
+        this.isTransitioning = true;
+
+        // Show transition
+        const transition = document.querySelector('.page-transition');
+        transition.classList.add('active');
+
+        setTimeout(() => {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show target section
+            const targetSection = document.getElementById(this.sections[index]);
+            if (targetSection) {
+                targetSection.classList.add('active');
+
+                // Reset scroll position
+                const sectionContent = targetSection.querySelector('.section-content');
+                if (sectionContent) {
+                    sectionContent.scrollTop = 0;
+                }
+            }
+
+            // Update navigation
+            document.querySelectorAll('.nav-dot').forEach(dot => {
+                dot.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-dot')[index].classList.add('active');
+
+            this.currentSection = index;
+
+            // Hide transition
+            setTimeout(() => {
+                transition.classList.remove('active');
+                this.isTransitioning = false;
+            }, 250);
+
+        }, 250);
+    }
+
+    initializeArtisteTabs() {
+        const tabs = document.querySelectorAll('.artiste-tab');
+        const categories = document.querySelectorAll('.artiste-category');
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and categories
+                tabs.forEach(t => t.classList.remove('active'));
+                categories.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                // Show corresponding category
+                const categoryId = tab.getAttribute('data-category');
+                const targetCategory = document.getElementById(categoryId);
+                if (targetCategory) {
+                    targetCategory.classList.add('active');
+                }
+            });
+        });
+    }
+
+    initializeAnimations() {
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-up');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '50px'
+        });
+
+        // Observe elements for animation
+        document.querySelectorAll('.bureau-card, .artiste-card, .production-card').forEach(el => {
+            observer.observe(el);
+        });
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new BohemePlaquette();
+});
+
+// Handle visibility change (for video optimization)
+document.addEventListener('visibilitychange', () => {
+    const videos = document.querySelectorAll('video');
+
+    if (document.hidden) {
+        videos.forEach(video => video.pause());
+    } else {
+        videos.forEach(video => {
+            if (video.closest('.section.active') || video.closest('.global-background-video')) {
+                video.play().catch(e => console.log('Video play error:', e));
+            }
+        });
+    }
+});
+
+// Error handling for videos
+document.querySelectorAll('video').forEach(video => {
+    video.addEventListener('error', (e) => {
+        console.log('Video error:', e);
+        video.style.display = 'none';
+    });
+});
+</script>
+
 </body>
 </html>
