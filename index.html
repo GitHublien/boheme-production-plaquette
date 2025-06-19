@@ -958,7 +958,7 @@
             text-align: center;
         }
 
-        /* LOGO DÉCORATIF AVEC BORDURE DORÉE - CORRECTIONS APPLIQUÉES */
+        /* LOGO DÉCORATIF - BORDURE DORÉE CLASSIQUE CORRIGÉE */
         .decorative-logo-section {
             margin: 50px 0;
             padding: 80px;
@@ -967,8 +967,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 5px solid;
-            border-image: url('images-en-or-2.png') 10;
+            border: 5px solid var(--gold);
             box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 40px rgba(212,175,55,0.5);
             clear: both;
             max-width: 900px;
@@ -2365,7 +2364,7 @@
                                 <p class="artiste-role">Baryton Verdien</p>
                             </div>
                             <div class="artiste-card">
-                                <div class="artiste-photo-placeholder">
+                                <div class="artiste-placeholder">
                                     <span class="material-icons">person</span>
                                 </div>
                                 <h3 class="artiste-name">Mickael Guedj</h3>
@@ -2587,13 +2586,15 @@ class BohemePlaquette {
         this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
         this.isTransitioning = false;
 
-        // NOUVEAUX PARAMÈTRES PLUS PRÉCIS POUR LE SCROLL
+        // 🚨 SCROLL ULTRA RESTRICTIF - VRAIES CORRECTIONS
         this.lastWheelTime = 0;
-        this.wheelCooldown = 800; // Cooldown SEULEMENT pour changement de page
+        this.wheelCooldown = 1500; // Cooldown TRÈS LONG pour PC
         this.lastTouchTime = 0;
-        this.touchCooldown = 600;
-        this.wheelAccumulator = 0; // Accumulateur de scroll pour PC
+        this.touchCooldown = 1200; // Cooldown TRÈS LONG pour mobile
+        this.wheelAccumulator = 0;
         this.wheelTimeout = null;
+        this.minForcedSwipeDistance = 200; // Distance énorme pour mobile
+        this.minWheelThreshold = 500; // Seuil énorme pour PC
 
         this.initializeAudio();
         this.initializeNavigation();
@@ -2687,7 +2688,7 @@ class BohemePlaquette {
         }
     }
 
-    // 🔧 MOBILE SCROLL CORRIGÉ
+    // 🔥 MOBILE - ULTRA RESTRICTIF
     initializeMobileScroll() {
         let startY = 0;
         let currentY = 0;
@@ -2704,7 +2705,7 @@ class BohemePlaquette {
             currentY = e.touches[0].clientY;
             const diff = Math.abs(startY - currentY);
 
-            if (diff > 15) { // Petit mouvement = scroll normal
+            if (diff > 20) {
                 isScrolling = true;
             }
         }, { passive: true });
@@ -2718,7 +2719,7 @@ class BohemePlaquette {
             const diff = startY - currentY;
             const distance = Math.abs(diff);
             const duration = currentTime - startTime;
-            const velocity = distance / duration; // Vitesse du geste
+            const velocity = distance / duration;
 
             const activeSection = document.querySelector('.section.active');
             const sectionContent = activeSection?.querySelector('.section-content');
@@ -2727,17 +2728,18 @@ class BohemePlaquette {
                 const isAtTop = sectionContent.scrollTop <= 5;
                 const isAtBottom = sectionContent.scrollTop >= (sectionContent.scrollHeight - sectionContent.clientHeight - 5);
 
-                // NOUVELLES CONDITIONS PLUS STRICTES
-                const minDistance = 120; // Distance minimum
-                const minVelocity = 0.3;  // Vitesse minimum
+                // 🚨 CONDITIONS EXTRÊMEMENT STRICTES
+                const requiresVeryLongSwipe = distance > this.minForcedSwipeDistance; // 200px minimum !
+                const requiresHighVelocity = velocity > 1; // Vitesse très élevée !
+                const requiresLongDuration = duration > 300 && duration < 600; // Geste intentionnel mais pas trop lent
 
-                if (distance > minDistance && velocity > minVelocity) {
+                if (requiresVeryLongSwipe && requiresHighVelocity && requiresLongDuration) {
                     if (diff > 0 && isAtBottom) {
-                        // Swipe up rapide au bas du contenu
+                        // Swipe up très long et rapide au bas du contenu
                         this.nextSection();
                         this.lastTouchTime = currentTime;
                     } else if (diff < 0 && isAtTop) {
-                        // Swipe down rapide au haut du contenu
+                        // Swipe down très long et rapide au haut du contenu
                         this.previousSection();
                         this.lastTouchTime = currentTime;
                     }
@@ -2746,7 +2748,7 @@ class BohemePlaquette {
         }, { passive: true });
     }
 
-    // 🔧 PC SCROLL COMPLÈTEMENT REFAIT
+    // 🔥 PC - ULTRA RESTRICTIF
     initializeDesktopScroll() {
         document.addEventListener('wheel', (e) => {
             if (this.isTransitioning) {
@@ -2765,29 +2767,28 @@ class BohemePlaquette {
 
             // SCROLL NORMAL si on n'est pas aux bords
             if (!isAtTop && !isAtBottom) {
-                // Laisser le scroll normal se faire, pas d'intervention
-                return;
+                return; // Laisser le scroll normal
             }
 
-            // AUX BORDS : accumuler le scroll pour éviter les changements accidentels
+            // AUX BORDS : accumulation MASSIVE required
             this.wheelAccumulator += Math.abs(e.deltaY);
 
-            // Reset de l'accumulateur après un délai
+            // Reset de l'accumulateur après délai court
             clearTimeout(this.wheelTimeout);
             this.wheelTimeout = setTimeout(() => {
                 this.wheelAccumulator = 0;
-            }, 150);
+            }, 100);
 
-            // Changement de page SEULEMENT si beaucoup de scroll accumulé
-            if (this.wheelAccumulator > 200 && currentTime - this.lastWheelTime > this.wheelCooldown) {
+            // 🚨 CHANGEMENT DE PAGE SEULEMENT SI ÉNORME ACCUMULATION
+            if (this.wheelAccumulator > this.minWheelThreshold && currentTime - this.lastWheelTime > this.wheelCooldown) {
                 if (e.deltaY > 0 && isAtBottom) {
-                    // Scroll vers le bas au bas du contenu
+                    // Scroll vers le bas ÉNORME au bas du contenu
                     e.preventDefault();
                     this.nextSection();
                     this.lastWheelTime = currentTime;
                     this.wheelAccumulator = 0;
                 } else if (e.deltaY < 0 && isAtTop) {
-                    // Scroll vers le haut au haut du contenu
+                    // Scroll vers le haut ÉNORME au haut du contenu
                     e.preventDefault();
                     this.previousSection();
                     this.lastWheelTime = currentTime;
