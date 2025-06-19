@@ -958,7 +958,7 @@
             text-align: center;
         }
 
-        /* LOGO DÉCORATIF AVEC BORDURE DORÉE */
+        /* LOGO DÉCORATIF AVEC BORDURE DORÉE - CORRECTIONS APPLIQUÉES */
         .decorative-logo-section {
             margin: 50px 0;
             padding: 80px;
@@ -2586,10 +2586,14 @@ class BohemePlaquette {
         this.currentSection = 0;
         this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
         this.isTransitioning = false;
+
+        // NOUVEAUX PARAMÈTRES PLUS PRÉCIS POUR LE SCROLL
         this.lastWheelTime = 0;
-        this.wheelCooldown = 500; // Réduit pour être plus réactif
+        this.wheelCooldown = 800; // Cooldown SEULEMENT pour changement de page
         this.lastTouchTime = 0;
-        this.touchCooldown = 800; // Réduit pour mobile
+        this.touchCooldown = 600;
+        this.wheelAccumulator = 0; // Accumulateur de scroll pour PC
+        this.wheelTimeout = null;
 
         this.initializeAudio();
         this.initializeNavigation();
@@ -2683,21 +2687,24 @@ class BohemePlaquette {
         }
     }
 
+    // 🔧 MOBILE SCROLL CORRIGÉ
     initializeMobileScroll() {
         let startY = 0;
         let currentY = 0;
+        let startTime = 0;
         let isScrolling = false;
 
         document.addEventListener('touchstart', (e) => {
             startY = e.touches[0].clientY;
+            startTime = Date.now();
             isScrolling = false;
         }, { passive: true });
 
         document.addEventListener('touchmove', (e) => {
             currentY = e.touches[0].clientY;
-            const diff = startY - currentY;
+            const diff = Math.abs(startY - currentY);
 
-            if (Math.abs(diff) > 10) {
+            if (diff > 15) { // Petit mouvement = scroll normal
                 isScrolling = true;
             }
         }, { passive: true });
@@ -2709,6 +2716,10 @@ class BohemePlaquette {
             if (currentTime - this.lastTouchTime < this.touchCooldown) return;
 
             const diff = startY - currentY;
+            const distance = Math.abs(diff);
+            const duration = currentTime - startTime;
+            const velocity = distance / duration; // Vitesse du geste
+
             const activeSection = document.querySelector('.section.active');
             const sectionContent = activeSection?.querySelector('.section-content');
 
@@ -2716,14 +2727,17 @@ class BohemePlaquette {
                 const isAtTop = sectionContent.scrollTop <= 5;
                 const isAtBottom = sectionContent.scrollTop >= (sectionContent.scrollHeight - sectionContent.clientHeight - 5);
 
-                // Changement de page uniquement aux bords ET si geste suffisant
-                if (Math.abs(diff) > 50) {
+                // NOUVELLES CONDITIONS PLUS STRICTES
+                const minDistance = 120; // Distance minimum
+                const minVelocity = 0.3;  // Vitesse minimum
+
+                if (distance > minDistance && velocity > minVelocity) {
                     if (diff > 0 && isAtBottom) {
-                        // Swipe up au bas du contenu
+                        // Swipe up rapide au bas du contenu
                         this.nextSection();
                         this.lastTouchTime = currentTime;
                     } else if (diff < 0 && isAtTop) {
-                        // Swipe down au haut du contenu
+                        // Swipe down rapide au haut du contenu
                         this.previousSection();
                         this.lastTouchTime = currentTime;
                     }
@@ -2732,6 +2746,7 @@ class BohemePlaquette {
         }, { passive: true });
     }
 
+    // 🔧 PC SCROLL COMPLÈTEMENT REFAIT
     initializeDesktopScroll() {
         document.addEventListener('wheel', (e) => {
             if (this.isTransitioning) {
@@ -2739,31 +2754,45 @@ class BohemePlaquette {
                 return;
             }
 
-            const currentTime = Date.now();
-            if (currentTime - this.lastWheelTime < this.wheelCooldown) {
-                return;
-            }
-
             const activeSection = document.querySelector('.section.active');
             const sectionContent = activeSection?.querySelector('.section-content');
 
-            if (sectionContent) {
-                const isAtTop = sectionContent.scrollTop <= 5;
-                const isAtBottom = sectionContent.scrollTop >= (sectionContent.scrollHeight - sectionContent.clientHeight - 5);
+            if (!sectionContent) return;
 
-                // Seulement changer de page À LA FIN du scroll
+            const isAtTop = sectionContent.scrollTop <= 5;
+            const isAtBottom = sectionContent.scrollTop >= (sectionContent.scrollHeight - sectionContent.clientHeight - 5);
+            const currentTime = Date.now();
+
+            // SCROLL NORMAL si on n'est pas aux bords
+            if (!isAtTop && !isAtBottom) {
+                // Laisser le scroll normal se faire, pas d'intervention
+                return;
+            }
+
+            // AUX BORDS : accumuler le scroll pour éviter les changements accidentels
+            this.wheelAccumulator += Math.abs(e.deltaY);
+
+            // Reset de l'accumulateur après un délai
+            clearTimeout(this.wheelTimeout);
+            this.wheelTimeout = setTimeout(() => {
+                this.wheelAccumulator = 0;
+            }, 150);
+
+            // Changement de page SEULEMENT si beaucoup de scroll accumulé
+            if (this.wheelAccumulator > 200 && currentTime - this.lastWheelTime > this.wheelCooldown) {
                 if (e.deltaY > 0 && isAtBottom) {
-                    // Scroll vers le bas ET on est au bas du contenu
+                    // Scroll vers le bas au bas du contenu
                     e.preventDefault();
                     this.nextSection();
                     this.lastWheelTime = currentTime;
+                    this.wheelAccumulator = 0;
                 } else if (e.deltaY < 0 && isAtTop) {
-                    // Scroll vers le haut ET on est au haut du contenu
+                    // Scroll vers le haut au haut du contenu
                     e.preventDefault();
                     this.previousSection();
                     this.lastWheelTime = currentTime;
+                    this.wheelAccumulator = 0;
                 }
-                // Sinon, laisser le scroll normal se faire
             }
         }, { passive: false });
     }
@@ -2886,7 +2915,6 @@ document.addEventListener('visibilitychange', () => {
         }
     });
 });
-
     </script>
 </body>
 </html>
