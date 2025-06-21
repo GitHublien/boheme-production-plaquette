@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-
     <title>Bohème Production - Plaquette Interactive</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    connect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes:wght@400&family=Cinzel:ital,wght@0,400;0,500;0,600;1,400&family=Didot:wght@400;700&family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -371,7 +371,7 @@
             }
         }
 
-        /* 🔥 NAVIGATION ULTRA-CLEAN + CERCLES MAGIQUES */
+        /* Navigation avec l'or */
         .navigation {
             position: fixed;
             top: 50%;
@@ -397,31 +397,6 @@
             user-select: none;
             -webkit-user-select: none;
             touch-action: manipulation;
-        }
-
-        /* 🔥 CERCLES MAGIQUES PC */
-        @media (min-width: 769px) {
-            .nav-dot::before {
-                content: '';
-                position: absolute;
-                top: -8px;
-                left: -8px;
-                width: calc(100% + 16px);
-                height: calc(100% + 16px);
-                border-radius: 50%;
-                border: 1px solid rgba(212,175,55,0.3);
-                opacity: 0;
-                transition: all 0.3s ease;
-                transform: scale(0.8);
-            }
-
-            .nav-dot:hover::before,
-            .nav-dot.active::before {
-                opacity: 1;
-                transform: scale(1);
-                border-color: rgba(212,175,55,0.8);
-                box-shadow: 0 0 15px rgba(212,175,55,0.4);
-            }
         }
 
         .nav-dot.active {
@@ -458,7 +433,7 @@
             transform: translateX(0);
         }
 
-        /* 🔥 SECTION CONTAINER - SUPPRESSION TOTALE BACKGROUND GRIS */
+        /* Content sections styling */
         .section-container {
             position: relative;
             width: 90%;
@@ -467,7 +442,8 @@
             max-height: 800px;
             display: flex;
             flex-direction: column;
-            background: transparent;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(0,0,0,0.3), 0 0 30px rgba(212,175,55,0.3);
@@ -478,7 +454,8 @@
         .section-header {
             position: relative;
             padding: 30px 40px;
-            background: transparent;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
             border-bottom: 2px solid var(--gold);
             overflow: hidden;
             touch-action: manipulation;
@@ -534,17 +511,18 @@
             border: 1px solid var(--black);
         }
 
-        /* 🔥 SECTION CONTENT - SUPPRESSION BACKGROUND GRIS */
+        /* 🔥 SECTION SCROLLABLE AVEC ZONE DE SCROLL PROTÉGÉE */
         .section-content {
             flex: 1;
             position: relative;
             color: var(--dark);
-            background: transparent;
+            background: rgba(255, 255, 255, 0.1);
             padding: 0;
             padding-bottom: 100px;
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
+            /* 🔥 IMPORTANT: Marquer cette zone comme zone de scroll */
             touch-action: pan-y;
         }
 
@@ -558,6 +536,7 @@
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
+            /* 🔥 IMPORTANT: Zone de scroll protégée */
             touch-action: pan-y;
         }
 
@@ -574,6 +553,7 @@
             );
             box-shadow: inset 0 0 150px rgba(212,175,55,0.2);
             padding-bottom: 150px;
+            /* 🔥 IMPORTANT: Zone de scroll protégée */
             touch-action: pan-y;
         }
 
@@ -802,6 +782,7 @@
             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
         }
 
+        /* 🔥 CORRECTION: Réintégration de la vidéo de fond pour boheme-artistic-collage.png */
         .video-content-block {
             position: relative;
             margin: 40px 0;
@@ -887,6 +868,7 @@
         .magazine-content-wrapper {
             padding: 40px;
             position: relative;
+            /* 🔥 IMPORTANT: Zone de scroll protégée */
             touch-action: pan-y;
         }
 
@@ -1764,6 +1746,23 @@
                 width: 450px;
                 height: 450px;
             }
+            .boheme-signature-image {
+                max-width: 700px;
+            }
+            .boheme-signature-placeholder {
+                font-size: 5rem;
+            }
+            .decorative-logo {
+                max-width: 400px;
+            }
+            .decorative-logo-placeholder {
+                width: 400px;
+                height: 400px;
+            }
+            .decorative-logo-section {
+                max-width: 800px;
+                padding: 70px;
+            }
         }
 
         @media (max-width: 992px) {
@@ -1787,17 +1786,41 @@
                 width: 380px;
                 height: 380px;
             }
+            .magazine-title-main {
+                font-size: 2.8rem;
+            }
+            .polyvalent-artists-container {
+                margin: 10px 0 20px 0;
+            }
+            .boheme-signature-image {
+                max-width: 600px;
+            }
+            .boheme-signature-placeholder {
+                font-size: 4rem;
+            }
+            .decorative-logo-section {
+                max-width: 700px;
+                padding: 60px;
+            }
+            .decorative-logo {
+                max-width: 350px;
+            }
+            .decorative-logo-placeholder {
+                width: 350px;
+                height: 350px;
+            }
         }
 
-        /* 🔥 MOBILE - NAVIGATION AVEC CERCLES MAGIQUES */
         @media (max-width: 768px) {
             .section-container {
                 width: 100%;
                 height: 100%;
                 border-radius: 0;
+                background: rgba(255, 255, 255, 0.7);
             }
             .section-content {
                 padding-bottom: 150px;
+                background: rgba(255, 255, 255, 0.1);
             }
             .intro-content-magazine {
                 padding-bottom: 200px;
@@ -1808,50 +1831,8 @@
             .section-header {
                 padding: 20px;
                 text-align: center;
+                background: rgba(255, 255, 255, 0.8);
             }
-
-            /* 🔥 NAVIGATION MOBILE AVEC CERCLES */
-            .navigation {
-                bottom: 30px;
-                top: auto;
-                right: 50%;
-                transform: translateX(50%);
-                flex-direction: row;
-                background: rgba(0,0,0,0.8);
-                backdrop-filter: blur(15px);
-                padding: 12px 25px;
-                border-radius: 30px;
-                border: 2px solid var(--gold);
-                box-shadow: 0 8px 25px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.6);
-            }
-
-            .nav-dot::before {
-                content: '';
-                position: absolute;
-                top: -8px;
-                left: -8px;
-                width: calc(100% + 16px);
-                height: calc(100% + 16px);
-                border-radius: 50%;
-                border: 1px solid rgba(212,175,55,0.3);
-                opacity: 0;
-                transition: all 0.3s ease;
-                transform: scale(0.8);
-            }
-
-            .nav-dot:hover::before,
-            .nav-dot.active::before {
-                opacity: 1;
-                transform: scale(1);
-                border-color: rgba(212,175,55,0.8);
-                box-shadow: 0 0 20px rgba(212,175,55,0.4);
-            }
-
-            .nav-dot.active {
-                transform: scale(1.4);
-                box-shadow: 0 0 25px rgba(212,175,55,0.9);
-            }
-
             .section-title {
                 text-align: center;
                 font-size: 2rem;
@@ -1864,6 +1845,19 @@
             }
             .cover-interactive-text {
                 font-size: 1.2rem;
+            }
+            .navigation {
+                bottom: 30px;
+                top: auto;
+                right: 50%;
+                transform: translateX(50%);
+                flex-direction: row;
+                background: rgba(255,255,255,0.95);
+                padding: 15px 20px;
+                border-radius: 30px;
+                border: 2px solid var(--gold);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             }
             .cover-scroll-indicator {
                 bottom: 120px;
@@ -1878,6 +1872,92 @@
             .logo-container {
                 width: 320px;
                 height: 320px;
+            }
+            .audio-controls {
+                top: 10px;
+                right: 10px;
+                padding: 6px;
+                gap: 6px;
+            }
+            .audio-control-btn {
+                width: 30px;
+                height: 30px;
+            }
+            .audio-control-btn .material-icons {
+                font-size: 16px;
+            }
+            .volume-slider {
+                width: 50px;
+                height: 30px;
+                padding: 0 6px;
+            }
+            .bureau-footer-text {
+                margin-bottom: 180px;
+                font-size: 0.9rem;
+            }
+            .magazine-content-wrapper {
+                padding: 20px;
+            }
+            .magazine-title-main {
+                font-size: 2.5rem;
+            }
+            .hero-image-container {
+                height: 300px;
+            }
+            .hero-image-title {
+                font-size: 1.5rem;
+            }
+            .artists-highlight-grid {
+                grid-template-columns: 1fr;
+            }
+            .patrick-quote {
+                font-size: 1.3rem;
+            }
+            .patrick-quote-title {
+                font-size: 1.7rem;
+            }
+            .magazine-paragraph {
+                font-size: 1.3rem;
+            }
+            .boheme-signature-image {
+                max-width: 500px;
+            }
+            .boheme-signature-placeholder {
+                font-size: 3.5rem;
+                padding: 15px;
+            }
+            .decorative-logo-section {
+                max-width: 90%;
+                padding: 30px 20px;
+                margin: 30px auto;
+            }
+            .decorative-logo {
+                max-width: 300px;
+            }
+            .decorative-logo-placeholder {
+                width: 300px;
+                height: 300px;
+                font-size: 2.5rem;
+            }
+            .artists-highlight-container,
+            .polyvalent-artists-container,
+            .content-section-container,
+            .collaboration-container,
+            .excellence-container,
+            .content-text-block {
+                padding: 20px;
+                margin: 15px 0;
+            }
+            .highlight-quote {
+                padding: 25px;
+                margin: 25px 0;
+            }
+            .patrick-quote-highlight {
+                padding: 30px 20px 20px 20px;
+                margin: 40px 0;
+            }
+            .video-content-block {
+                margin: 20px 0;
             }
         }
 
@@ -1898,6 +1978,94 @@
             .section-title {
                 font-size: 1.8rem;
                 text-align: center;
+            }
+            .artistes-tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            .golden-line {
+                width: 80%;
+            }
+            .cover-interactive-text {
+                font-size: 1rem;
+            }
+            .audio-controls {
+                top: 5px;
+                right: 5px;
+                padding: 5px;
+                gap: 5px;
+            }
+            .audio-control-btn {
+                width: 28px;
+                height: 28px;
+            }
+            .audio-control-btn .material-icons {
+                font-size: 14px;
+            }
+            .volume-slider {
+                width: 45px;
+                height: 28px;
+                padding: 0 5px;
+            }
+            .magazine-title-main {
+                font-size: 2rem;
+            }
+            .magazine-section-title, .magazine-section-title-center {
+                font-size: 1.6rem;
+                padding: 15px 20px;
+            }
+            .patrick-quote-title {
+                font-size: 1.5rem;
+            }
+            .magazine-paragraph, .content-text {
+                font-size: 1.2rem;
+                text-align: left;
+            }
+            .boheme-signature-image {
+                max-width: 400px;
+            }
+            .boheme-signature-placeholder {
+                font-size: 3rem;
+                padding: 10px;
+            }
+            .decorative-logo-section {
+                max-width: 95%;
+                padding: 25px 15px;
+                margin: 20px auto;
+            }
+            .decorative-logo {
+                max-width: 250px;
+            }
+            .decorative-logo-placeholder {
+                width: 250px;
+                height: 250px;
+                font-size: 2rem;
+            }
+            .magazine-content-wrapper {
+                padding: 15px;
+            }
+            .artists-highlight-container,
+            .polyvalent-artists-container,
+            .content-section-container,
+            .collaboration-container,
+            .excellence-container,
+            .content-text-block {
+                padding: 15px;
+                margin: 10px 0;
+            }
+            .highlight-quote {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            .patrick-quote-highlight {
+                padding: 25px 15px 15px 15px;
+                margin: 30px 0;
+            }
+            .section-content {
+                padding-bottom: 180px;
+            }
+            .intro-content-magazine {
+                padding-bottom: 220px;
             }
         }
     </style>
@@ -1929,7 +2097,7 @@
             </div>
         </div>
 
-        <!-- 🔥 NAVIGATION AVEC CERCLES MAGIQUES -->
+        <!-- Navigation dots -->
         <div class="navigation">
             <div class="nav-dot active" data-section="cover">
                 <div class="nav-tooltip">Couverture</div>
@@ -2019,6 +2187,7 @@
                                         <!-- Nouvelle section 1: Une Constellation Artistique Complète -->
                                         <h4 class="magazine-section-title-center">Une Constellation Artistique Complète</h4>
 
+                                        <!-- 🔥 CORRECTION: Réintégration de la vidéo magique-fumee.mp4 pour boheme-artistic-collage.png -->
                                         <div class="video-content-block">
                                             <div class="video-background-container">
                                                 <video autoplay muted loop playsinline>
@@ -2535,8 +2704,8 @@
                 // Variables pour le swipe SIMPLIFIÉES
                 this.touchStart = { x: 0, y: 0, time: 0 };
                 this.touchEnd = { x: 0, y: 0, time: 0 };
-                this.minSwipeDistance = 50;
-                this.minVelocity = 0.3;
+                this.minSwipeDistance = 50; // 🔥 AUGMENTÉ pour éviter navigation accidentelle
+                this.minVelocity = 0.3; // 🔥 AUGMENTÉ pour éviter navigation accidentelle
 
                 this.init();
             }
@@ -2549,7 +2718,7 @@
                 this.setupKeyboardNavigation();
                 this.startAnimations();
 
-                // Auto-start exploration + LECTURE AUTOMATIQUE MUSIQUE
+                // 🔥 CORRECTION: Auto-start exploration + LECTURE AUTOMATIQUE MUSIQUE
                 document.getElementById('start-exploration')?.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -2563,7 +2732,7 @@
                 });
             }
 
-            // Démarrage automatique de la musique
+            // 🔥 NOUVELLE FONCTION: Démarrage automatique de la musique
             startMusicOnExploration() {
                 const audio = document.getElementById('background-music');
                 const playPauseBtn = document.getElementById('play-pause-btn');
@@ -2584,13 +2753,15 @@
                     dot.addEventListener('click', (e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        console.log(`Navigation vers section ${index}`);
+                        console.log(`Navigation vers section ${index}`); // DEBUG
                         this.goToSection(index);
                     });
                 });
             }
 
+            // 🔥 TOUCH NAVIGATION ULTRA-SÉLECTIVE POUR ÉVITER L'AUTO-SCROLL
             setupTouchNavigation() {
+                // Variables pour détecter les zones de scroll
                 let isInScrollableArea = false;
 
                 document.addEventListener('touchstart', (e) => {
@@ -2603,6 +2774,7 @@
                         time: Date.now()
                     };
 
+                    // 🔥 DÉTECTER SI ON EST DANS UNE ZONE SCROLLABLE
                     const target = e.target;
                     const scrollableElements = [
                         '.section-content',
@@ -2627,15 +2799,18 @@
                         time: Date.now()
                     };
 
+                    // 🔥 NAVIGATION SEULEMENT SI PAS DANS ZONE SCROLLABLE
                     if (!isInScrollableArea) {
                         this.handleSwipeSimple();
                     }
 
                 }, { passive: true });
 
+                // 🔥 WHEEL ULTRA-SÉLECTIF POUR ÉVITER AUTO-SCROLL
                 document.addEventListener('wheel', (e) => {
                     if (this.isTransitioning) return;
 
+                    // Vérifier si on fait du wheel sur le contenu principal
                     const target = e.target;
                     const sectionContent = target.closest('.section-content');
 
@@ -2643,6 +2818,8 @@
                         const isAtTop = sectionContent.scrollTop <= 5;
                         const isAtBottom = sectionContent.scrollTop >= (sectionContent.scrollHeight - sectionContent.clientHeight - 5);
 
+                        // 🔥 NAVIGATION SEULEMENT si on est VRAIMENT en haut/bas ET scroll dans cette direction
+                        // ET que le scroll est assez fort (éviter micro-scrolls accidentels)
                         const strongScroll = Math.abs(e.deltaY) > 50;
 
                         if (strongScroll && ((e.deltaY < -50 && isAtTop) || (e.deltaY > 50 && isAtBottom))) {
@@ -2654,18 +2831,23 @@
                 }, { passive: false });
             }
 
+            // 🔥 SWIPE TRÈS SÉLECTIF
             handleSwipeSimple() {
                 const deltaX = this.touchEnd.x - this.touchStart.x;
                 const deltaY = this.touchEnd.y - this.touchStart.y;
                 const deltaTime = this.touchEnd.time - this.touchStart.time;
 
+                // Ignorer les swipes horizontaux
                 if (Math.abs(deltaX) > Math.abs(deltaY)) return;
 
+                // 🔥 CONDITIONS PLUS STRICTES pour éviter navigation accidentelle
                 const distance = Math.abs(deltaY);
                 if (distance < this.minSwipeDistance || deltaTime < 200) return;
 
+                // Calculer vélocité
                 const velocity = distance / (deltaTime || 1);
 
+                // 🔥 CONDITIONS STRICTES
                 if (velocity > this.minVelocity && distance > 80) {
                     const direction = deltaY > 0 ? 'up' : 'down';
                     console.log(`🔥 Swipe détecté: ${direction}, distance: ${distance}, velocity: ${velocity}`);
@@ -2674,7 +2856,7 @@
             }
 
             handleDirectionalNavigation(direction) {
-                console.log(`Navigation ${direction}`);
+                console.log(`Navigation ${direction}`); // DEBUG
 
                 if (direction === 'down' && this.currentSection < this.sections.length - 1) {
                     this.goToSection(this.currentSection + 1);
@@ -2697,7 +2879,7 @@
                             break;
                         case 'ArrowDown':
                         case 'PageDown':
-                        case ' ':
+                        case ' ': // Spacebar
                             e.preventDefault();
                             if (this.currentSection < this.sections.length - 1) {
                                 this.goToSection(this.currentSection + 1);
@@ -2725,11 +2907,13 @@
                         e.stopPropagation();
 
                         const category = tab.dataset.category;
-                        console.log(`Onglet cliqué: ${category}`);
+                        console.log(`Onglet cliqué: ${category}`); // DEBUG
 
+                        // Remove active class from all tabs and categories
                         tabs.forEach(t => t.classList.remove('active'));
                         categories.forEach(c => c.classList.remove('active'));
 
+                        // Add active class to clicked tab and corresponding category
                         tab.classList.add('active');
                         document.getElementById(category)?.classList.add('active');
                     });
@@ -2744,10 +2928,13 @@
 
                 if (!audio) return;
 
+                // Set initial volume
                 audio.volume = 0.3;
 
+                // 🔥 CORRECTION: Icône play par défaut (musique en pause au début)
                 playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
 
+                // Play/Pause
                 playPauseBtn?.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -2764,6 +2951,7 @@
                     }
                 });
 
+                // Mute/Unmute
                 muteBtn?.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -2774,6 +2962,7 @@
                         '<span class="material-icons">volume_up</span>';
                 });
 
+                // Volume control
                 volumeSlider?.addEventListener('input', (e) => {
                     audio.volume = e.target.value / 100;
                 });
@@ -2783,28 +2972,34 @@
                 if (index === this.currentSection || this.isTransitioning) return;
                 if (index < 0 || index >= this.sections.length) return;
 
-                console.log(`Transition vers section ${index}: ${this.sections[index]}`);
+                console.log(`Transition vers section ${index}: ${this.sections[index]}`); // DEBUG
 
                 this.isTransitioning = true;
 
+                // Show transition overlay
                 const transition = document.getElementById('page-transition');
                 transition?.classList.add('active');
 
                 setTimeout(() => {
+                    // Hide current section
                     const currentSectionEl = document.getElementById(this.sections[this.currentSection]);
                     currentSectionEl?.classList.remove('active');
 
+                    // Show new section
                     const newSectionEl = document.getElementById(this.sections[index]);
                     newSectionEl?.classList.add('active');
 
+                    // Reset scroll position
                     const sectionContent = newSectionEl?.querySelector('.section-content');
                     if (sectionContent) {
                         sectionContent.scrollTop = 0;
                     }
 
+                    // Update navigation
                     this.updateNavigation(index);
                     this.currentSection = index;
 
+                    // Hide transition overlay
                     setTimeout(() => {
                         transition?.classList.remove('active');
                         this.isTransitioning = false;
@@ -2820,6 +3015,7 @@
             }
 
             startAnimations() {
+                // Add staggered animations to cover elements
                 const coverElements = document.querySelectorAll('.cover-content > *');
                 coverElements.forEach((el, index) => {
                     el.style.animationDelay = `${index * 0.3}s`;
@@ -2830,11 +3026,11 @@
         // INITIALISATION ROBUSTE
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
-                console.log('🔥 Initialisation Bohème Plaquette');
+                console.log('🔥 Initialisation Bohème Plaquette'); // DEBUG
                 new BohemePlaquette();
             });
         } else {
-            console.log('🔥 Initialisation immédiate Bohème Plaquette');
+            console.log('🔥 Initialisation immédiate Bohème Plaquette'); // DEBUG
             new BohemePlaquette();
         }
 
