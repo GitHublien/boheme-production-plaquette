@@ -2085,7 +2085,6 @@
             track: function(event, data) {
                 this.events.push({
                     event: event,
-
                     timestamp: new Date().toISOString()
                 });
                 console.log('Analytics:', event, data);
@@ -2740,15 +2739,15 @@
                 this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
                 this.isTransitioning = false;
 
-                // 🔥 VARIABLES SWIPE OPTIMISÉES POUR MOBILE
+                // 🔥 FIXES SCROLL - VARIABLES SWIPE TRÈS STRICTES
                 this.touchStart = { x: 0, y: 0, time: 0 };
                 this.touchEnd = { x: 0, y: 0, time: 0 };
 
-                // 🔥 SEUILS PLUS STRICTS POUR ÉVITER NAVIGATION ACCIDENTELLE
-                this.minSwipeDistance = 80; // Augmenté de 50 à 80
-                this.minSwipeDistanceStrict = 250; // Augmenté de 200 à 250
-                this.minVelocity = 0.5; // Augmenté de 0.3 à 0.5
-                this.minVelocityStrict = 1.5; // Augmenté de 1.0 à 1.5
+                // 🔥 SEUILS BEAUCOUP PLUS STRICTS
+                this.minSwipeDistance = 200; // Augmenté à 200px
+                this.minSwipeDistanceStrict = 500; // Augmenté à 500px
+                this.minVelocity = 1.5; // Augmenté à 1.5
+                this.minVelocityStrict = 3.0; // Augmenté à 3.0
                 this.maxSwipeTime = 800; // Temps maximum pour swipe valide
 
                 // Variables pour optimisation vidéos
@@ -2917,25 +2916,11 @@
                     };
                 }, { passive: true });
 
-                // Touch move - prévenir le scroll natif si swipe vertical potentiel
+                // Touch move - 🔥 PERMISSIF - NE JAMAIS BLOQUER LE SCROLL
                 document.addEventListener('touchmove', (e) => {
-                    if (!isTouching || this.isTransitioning) return;
-
-                    const touch = e.touches[0];
-                    const deltaY = touch.clientY - this.touchStart.y;
-                    const deltaX = touch.clientX - this.touchStart.x;
-
-                    // Si mouvement principalement vertical et assez important
-                    if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 30) {
-                        const activeSection = document.querySelector('.section.active');
-                        const sectionContent = activeSection?.querySelector('.section-content');
-
-                        if (sectionContent && this.checkSafetyZone(sectionContent)) {
-                            // En zone de sécurité, empêcher scroll natif
-                            e.preventDefault();
-                        }
-                    }
-                }, { passive: false });
+                    // 🔥 TOUJOURS LAISSER LE SCROLL NATUREL FONCTIONNER
+                    // Ne rien faire ici
+                }, { passive: true });
 
                 // Touch end
                 document.addEventListener('touchend', (e) => {
@@ -2952,55 +2937,76 @@
                     this.handleSwipe();
                 }, { passive: true });
 
-                // 🔥 MOUSE WHEEL OPTIMISÉ
+                // 🔥 MOUSE WHEEL TRÈS STRICT - SYSTÈME DE COMPTEUR
                 let wheelTimeout;
+                let wheelCounter = 0;
+                const WHEEL_THRESHOLD = 4; // Nombre de scrolls nécessaires
+
                 document.addEventListener('wheel', (e) => {
                     if (this.isTransitioning) return;
 
                     clearTimeout(wheelTimeout);
-                    wheelTimeout = setTimeout(() => {
-                        const activeSection = document.querySelector('.section.active');
-                        const sectionContent = activeSection?.querySelector('.section-content');
 
-                        if (!sectionContent) return;
+                    const activeSection = document.querySelector('.section.active');
+                    const sectionContent = activeSection?.querySelector('.section-content');
 
-                        const isInSafetyZone = this.checkSafetyZone(sectionContent);
+                    if (!sectionContent) return;
 
-                        if (isInSafetyZone) {
+                    const isInSafetyZone = this.checkSafetyZone(sectionContent);
+
+                    if (isInSafetyZone) {
+                        // 🔥 SYSTÈME DE COMPTEUR - Il faut insister
+                        wheelCounter++;
+
+                        if (wheelCounter >= WHEEL_THRESHOLD) {
                             const direction = e.deltaY > 0 ? 'down' : 'up';
                             this.handleDirectionalNavigation(direction);
+                            wheelCounter = 0; // Reset counter
                             e.preventDefault();
                         }
-                    }, 50); // Debounce wheel events
+
+                        // Reset counter après un délai
+                        wheelTimeout = setTimeout(() => {
+                            wheelCounter = 0;
+                        }, 1000);
+                    } else {
+                        // Reset counter si pas en zone de sécurité
+                        wheelCounter = 0;
+                    }
                 }, { passive: false });
             }
 
-            // 🔥 VÉRIFICATION ZONE DE SÉCURITÉ OPTIMISÉE
+            // 🔥 NOUVELLE FONCTION - ZONE DE SÉCURITÉ TRÈS STRICTE
             checkSafetyZone(sectionContent) {
                 const scrollTop = sectionContent.scrollTop;
                 const scrollHeight = sectionContent.scrollHeight;
                 const clientHeight = sectionContent.clientHeight;
 
-                // Zones de sécurité élargies
-                const safetyMargin = 120; // Augmenté de 80 à 120px
+                // Vérifier qu'on peut vraiment scroller
+                const canScroll = scrollHeight > clientHeight;
 
-                const isAtTop = scrollTop <= safetyMargin;
-                const isAtBottom = scrollTop >= (scrollHeight - clientHeight - safetyMargin);
+                // Si pas de scroll possible, autoriser navigation
+                if (!canScroll) return true;
 
-                // Vérifier qu'on est vraiment au bout
-                const isReallyAtTop = scrollTop <= 10;
-                const isReallyAtBottom = scrollTop >= (scrollHeight - clientHeight - 10);
+                // 🔥 ZONES TRÈS STRICTES - Seulement 3px du bord exact
+                const strictMargin = 3;
 
-                return (isAtTop && isReallyAtTop) || (isAtBottom && isReallyAtBottom);
+                const isAtTop = scrollTop <= strictMargin;
+                const isAtBottom = scrollTop >= (scrollHeight - clientHeight - strictMargin);
+
+                // ✅ CONDITION ULTRA STRICTE : exactement au bout
+                return isAtTop || isAtBottom;
             }
 
+            // 🔥 NOUVELLE FONCTION SWIPE - TRÈS STRICTE
             handleSwipe() {
                 const deltaX = this.touchEnd.x - this.touchStart.x;
                 const deltaY = this.touchEnd.y - this.touchStart.y;
                 const deltaTime = this.touchEnd.time - this.touchStart.time;
 
-                // Ignorer swipes trop longs (probablement accidentels)
-                if (deltaTime > this.maxSwipeTime) return;
+                // 🔥 CONDITIONS TRÈS STRICTES
+                // Ignorer swipes trop longs ou trop courts
+                if (deltaTime > this.maxSwipeTime || deltaTime < 400) return;
 
                 const distance = Math.abs(deltaY);
                 const velocity = distance / (deltaTime || 1);
@@ -3015,19 +3021,17 @@
 
                 const isInSafetyZone = this.checkSafetyZone(sectionContent);
 
+                // 🔥 CONDITIONS ULTRA STRICTES POUR NAVIGATION
                 let shouldNavigate = false;
 
                 if (isInSafetyZone) {
-                    // 🔥 CONDITIONS RENFORCÉES EN ZONE DE SÉCURITÉ
-                    shouldNavigate = distance > this.minSwipeDistance &&
-                                   velocity > this.minVelocity &&
-                                   deltaTime > 200; // Temps minimum
-                } else {
-                    // 🔥 CONDITIONS TRÈS STRICTES EN MILIEU DE CONTENU
-                    shouldNavigate = distance > this.minSwipeDistanceStrict &&
-                                   velocity > this.minVelocityStrict &&
-                                   deltaTime > 400; // Temps minimum plus long
+                    // 🔥 MÊME EN ZONE DE SÉCURITÉ, CONDITIONS ÉLEVÉES
+                    shouldNavigate = distance > this.minSwipeDistance && // 200px minimum
+                                   velocity > this.minVelocity && // Vitesse 1.5 minimum
+                                   deltaTime < 600; // Pas trop lent
                 }
+
+                // 🔥 AUCUNE NAVIGATION en milieu de contenu - JAMAIS
 
                 if (shouldNavigate) {
                     const direction = deltaY > 0 ? 'up' : 'down';
