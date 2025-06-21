@@ -440,7 +440,7 @@
             transform: translateX(0);
         }
 
-        /* Content sections styling */
+        /* 🔥 SUPPRESSION TOTALE DE LA GROSSE ZONE GRISE - TOUTES RÉSOLUTIONS */
         .section-container {
             position: relative;
             width: 90%;
@@ -449,20 +449,31 @@
             max-height: 800px;
             display: flex;
             flex-direction: column;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(5px);
+            /* 🔥 SUPPRESSION COMPLÈTE DE L'OVERLAY GRIS */
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
             border-radius: 15px;
             overflow: hidden;
+            /* 🔥 GARDER SEULEMENT L'OMBRE POUR LE STYLE */
             box-shadow: 0 15px 40px rgba(0,0,0,0.3), 0 0 30px rgba(212,175,55,0.3);
             z-index: 2;
             border: 3px solid var(--gold);
         }
 
+        /* 🔥 SUPPRESSION DE TOUS LES PSEUDO-ÉLÉMENTS QUI CRÉENT DES OVERLAYS */
+        .section-container::before,
+        .section-container::after {
+            display: none !important;
+        }
+
         .section-header {
             position: relative;
             padding: 30px 40px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
+            /* 🔥 SUPPRESSION FOND GRIS HEADER */
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
             border-bottom: 2px solid var(--gold);
             overflow: hidden;
             touch-action: manipulation;
@@ -518,19 +529,25 @@
             border: 1px solid var(--black);
         }
 
-        /* 🔥 SECTION SCROLLABLE AVEC ZONE DE SCROLL PROTÉGÉE */
+        /* 🔥 SECTION CONTENT SANS OVERLAY GRIS */
         .section-content {
             flex: 1;
             position: relative;
             color: var(--dark);
-            background: rgba(255, 255, 255, 0.1);
+            /* 🔥 SUPPRESSION COMPLÈTE FOND GRIS */
+            background: transparent !important;
             padding: 0;
             padding-bottom: 100px;
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            /* 🔥 IMPORTANT: Marquer cette zone comme zone de scroll */
             touch-action: pan-y;
+        }
+
+        /* 🔥 SUPPRESSION DE TOUS LES PSEUDO-ÉLÉMENTS DU CONTENT */
+        .section-content::before,
+        .section-content::after {
+            display: none !important;
         }
 
         .intro-content-magazine {
@@ -538,12 +555,12 @@
             width: 100%;
             height: 100%;
             padding: 0;
-            background: transparent;
+            /* 🔥 SUPPRESSION FOND GRIS */
+            background: transparent !important;
             padding-bottom: 150px;
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            /* 🔥 IMPORTANT: Zone de scroll protégée */
             touch-action: pan-y;
         }
 
@@ -560,7 +577,6 @@
             );
             box-shadow: inset 0 0 150px rgba(212,175,55,0.2);
             padding-bottom: 150px;
-            /* 🔥 IMPORTANT: Zone de scroll protégée */
             touch-action: pan-y;
         }
 
@@ -789,7 +805,6 @@
             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
         }
 
-        /* 🔥 CORRECTION: Réintégration de la vidéo de fond pour boheme-artistic-collage.png */
         .video-content-block {
             position: relative;
             margin: 40px 0;
@@ -875,7 +890,6 @@
         .magazine-content-wrapper {
             padding: 40px;
             position: relative;
-            /* 🔥 IMPORTANT: Zone de scroll protégée */
             touch-action: pan-y;
         }
 
@@ -1738,9 +1752,13 @@
 
         /* RESPONSIVE MOBILE */
         @media (max-width: 1200px) {
+            /* 🔥 SUPPRESSION OVERLAY GRIS - TOUTES TAILLES */
             .section-container {
                 width: 95%;
                 height: 90%;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
             }
             .contact-content {
                 grid-template-columns: 1fr;
@@ -1773,6 +1791,21 @@
         }
 
         @media (max-width: 992px) {
+            /* 🔥 SUPPRESSION OVERLAY GRIS - TABLETTES */
+            .section-container {
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+            .section-content {
+                background: transparent !important;
+            }
+            .section-header {
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
             .cover-title {
                 font-size: 3rem;
             }
@@ -1818,20 +1851,26 @@
             }
         }
 
-        /* 🔥 MOBILE/TABLETTE - NAVIGATION CLEAN SANS ARRIÈRE-PLAN */
+        /* 🔥 MOBILE/TABLETTE - SUPPRESSION TOTALE OVERLAY GRIS */
         @media (max-width: 768px) {
+            /* 🔥 SUPPRESSION COMPLÈTE DE LA GROSSE ZONE GRISE */
             .section-container {
                 width: 100%;
                 height: 100%;
                 border-radius: 0;
-                background: rgba(255, 255, 255, 0.7);
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
             }
             .section-content {
                 padding-bottom: 150px;
-                background: rgba(255, 255, 255, 0.1);
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
             }
             .intro-content-magazine {
                 padding-bottom: 200px;
+                background: transparent !important;
             }
             .scrollable-content {
                 padding-bottom: 200px;
@@ -1839,8 +1878,21 @@
             .section-header {
                 padding: 20px;
                 text-align: center;
-                background: rgba(255, 255, 255, 0.8);
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
             }
+
+            /* 🔥 SUPPRESSION DE TOUS LES OVERLAYS ET PSEUDO-ÉLÉMENTS GRIS */
+            .section-container::before,
+            .section-container::after,
+            .section-content::before,
+            .section-content::after,
+            .section-header::before,
+            .section-header::after {
+                display: none !important;
+            }
+
             .section-title {
                 text-align: center;
                 font-size: 2rem;
@@ -1854,7 +1906,7 @@
             .cover-interactive-text {
                 font-size: 1.2rem;
             }
-            
+
             /* 🔥 NAVIGATION MOBILE ULTRA-CLEAN */
             .navigation {
                 bottom: 30px;
@@ -1862,7 +1914,6 @@
                 right: 50%;
                 transform: translateX(50%);
                 flex-direction: row;
-                /* 🔥 SUPPRESSION COMPLÈTE ARRIÈRE-PLAN MOBILE */
                 background: none !important;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
@@ -1871,7 +1922,7 @@
                 box-shadow: none !important;
                 border-radius: 0 !important;
             }
-            
+
             .cover-scroll-indicator {
                 bottom: 120px;
             }
@@ -1975,6 +2026,23 @@
         }
 
         @media (max-width: 576px) {
+            /* 🔥 SUPPRESSION OVERLAY GRIS - TRÈS PETITS ÉCRANS */
+            .section-container {
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+            .section-content {
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+            .section-header {
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
             .cover-title {
                 font-size: 2rem;
             }
@@ -2110,7 +2178,7 @@
             </div>
         </div>
 
-        <!-- 🔥 NAVIGATION NETTOYÉE -->
+        <!-- 🔥 NAVIGATION ULTRA-CLEAN -->
         <div class="navigation">
             <div class="nav-dot active" data-section="cover">
                 <div class="nav-tooltip">Couverture</div>
@@ -2713,13 +2781,13 @@
                 this.currentSection = 0;
                 this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
                 this.isTransitioning = false;
-                
+
                 // Variables pour le swipe SIMPLIFIÉES
                 this.touchStart = { x: 0, y: 0, time: 0 };
                 this.touchEnd = { x: 0, y: 0, time: 0 };
-                this.minSwipeDistance = 50; // 🔥 AUGMENTÉ pour éviter navigation accidentelle
-                this.minVelocity = 0.3; // 🔥 AUGMENTÉ pour éviter navigation accidentelle
-                
+                this.minSwipeDistance = 50;
+                this.minVelocity = 0.3;
+
                 this.init();
             }
 
@@ -2731,25 +2799,25 @@
                 this.setupKeyboardNavigation();
                 this.startAnimations();
 
-                // 🔥 CORRECTION: Auto-start exploration + LECTURE AUTOMATIQUE MUSIQUE
+                // Auto-start exploration + LECTURE AUTOMATIQUE MUSIQUE
                 document.getElementById('start-exploration')?.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     console.log('🎵 Démarrage exploration + musique');
-                    
+
                     // Démarrer la musique automatiquement
                     this.startMusicOnExploration();
-                    
+
                     // Aller à la page suivante
                     this.goToSection(1);
                 });
             }
 
-            // 🔥 NOUVELLE FONCTION: Démarrage automatique de la musique
+            // Démarrage automatique de la musique
             startMusicOnExploration() {
                 const audio = document.getElementById('background-music');
                 const playPauseBtn = document.getElementById('play-pause-btn');
-                
+
                 if (audio && playPauseBtn) {
                     audio.play().then(() => {
                         console.log('🎵 Musique démarrée automatiquement');
@@ -2766,75 +2834,67 @@
                     dot.addEventListener('click', (e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        console.log(`Navigation vers section ${index}`); // DEBUG
+                        console.log(`Navigation vers section ${index}`);
                         this.goToSection(index);
                     });
                 });
             }
 
-            // 🔥 TOUCH NAVIGATION ULTRA-SÉLECTIVE POUR ÉVITER L'AUTO-SCROLL
             setupTouchNavigation() {
-                // Variables pour détecter les zones de scroll
                 let isInScrollableArea = false;
-                
+
                 document.addEventListener('touchstart', (e) => {
                     if (this.isTransitioning) return;
-                    
+
                     const touch = e.touches[0];
                     this.touchStart = {
                         x: touch.clientX,
                         y: touch.clientY,
                         time: Date.now()
                     };
-                    
-                    // 🔥 DÉTECTER SI ON EST DANS UNE ZONE SCROLLABLE
+
                     const target = e.target;
                     const scrollableElements = [
                         '.section-content',
-                        '.intro-content-magazine', 
+                        '.intro-content-magazine',
                         '.scrollable-content',
                         '.magazine-content-wrapper'
                     ];
-                    
-                    isInScrollableArea = scrollableElements.some(selector => 
+
+                    isInScrollableArea = scrollableElements.some(selector =>
                         target.closest(selector)
                     );
-                    
+
                 }, { passive: true });
 
                 document.addEventListener('touchend', (e) => {
                     if (this.isTransitioning) return;
-                    
+
                     const touch = e.changedTouches[0];
                     this.touchEnd = {
                         x: touch.clientX,
                         y: touch.clientY,
                         time: Date.now()
                     };
-                    
-                    // 🔥 NAVIGATION SEULEMENT SI PAS DANS ZONE SCROLLABLE
+
                     if (!isInScrollableArea) {
                         this.handleSwipeSimple();
                     }
-                    
+
                 }, { passive: true });
 
-                // 🔥 WHEEL ULTRA-SÉLECTIF POUR ÉVITER AUTO-SCROLL
                 document.addEventListener('wheel', (e) => {
                     if (this.isTransitioning) return;
-                    
-                    // Vérifier si on fait du wheel sur le contenu principal
+
                     const target = e.target;
                     const sectionContent = target.closest('.section-content');
-                    
+
                     if (sectionContent) {
                         const isAtTop = sectionContent.scrollTop <= 5;
                         const isAtBottom = sectionContent.scrollTop >= (sectionContent.scrollHeight - sectionContent.clientHeight - 5);
-                        
-                        // 🔥 NAVIGATION SEULEMENT si on est VRAIMENT en haut/bas ET scroll dans cette direction
-                        // ET que le scroll est assez fort (éviter micro-scrolls accidentels)
+
                         const strongScroll = Math.abs(e.deltaY) > 50;
-                        
+
                         if (strongScroll && ((e.deltaY < -50 && isAtTop) || (e.deltaY > 50 && isAtBottom))) {
                             const direction = e.deltaY > 0 ? 'down' : 'up';
                             this.handleDirectionalNavigation(direction);
@@ -2844,23 +2904,18 @@
                 }, { passive: false });
             }
 
-            // 🔥 SWIPE TRÈS SÉLECTIF
             handleSwipeSimple() {
                 const deltaX = this.touchEnd.x - this.touchStart.x;
                 const deltaY = this.touchEnd.y - this.touchStart.y;
                 const deltaTime = this.touchEnd.time - this.touchStart.time;
 
-                // Ignorer les swipes horizontaux
                 if (Math.abs(deltaX) > Math.abs(deltaY)) return;
-                
-                // 🔥 CONDITIONS PLUS STRICTES pour éviter navigation accidentelle
+
                 const distance = Math.abs(deltaY);
                 if (distance < this.minSwipeDistance || deltaTime < 200) return;
 
-                // Calculer vélocité
                 const velocity = distance / (deltaTime || 1);
-                
-                // 🔥 CONDITIONS STRICTES
+
                 if (velocity > this.minVelocity && distance > 80) {
                     const direction = deltaY > 0 ? 'up' : 'down';
                     console.log(`🔥 Swipe détecté: ${direction}, distance: ${distance}, velocity: ${velocity}`);
@@ -2869,8 +2924,8 @@
             }
 
             handleDirectionalNavigation(direction) {
-                console.log(`Navigation ${direction}`); // DEBUG
-                
+                console.log(`Navigation ${direction}`);
+
                 if (direction === 'down' && this.currentSection < this.sections.length - 1) {
                     this.goToSection(this.currentSection + 1);
                 } else if (direction === 'up' && this.currentSection > 0) {
@@ -2892,7 +2947,7 @@
                             break;
                         case 'ArrowDown':
                         case 'PageDown':
-                        case ' ': // Spacebar
+                        case ' ':
                             e.preventDefault();
                             if (this.currentSection < this.sections.length - 1) {
                                 this.goToSection(this.currentSection + 1);
@@ -2918,15 +2973,13 @@
                     tab.addEventListener('click', (e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        
-                        const category = tab.dataset.category;
-                        console.log(`Onglet cliqué: ${category}`); // DEBUG
 
-                        // Remove active class from all tabs and categories
+                        const category = tab.dataset.category;
+                        console.log(`Onglet cliqué: ${category}`);
+
                         tabs.forEach(t => t.classList.remove('active'));
                         categories.forEach(c => c.classList.remove('active'));
 
-                        // Add active class to clicked tab and corresponding category
                         tab.classList.add('active');
                         document.getElementById(category)?.classList.add('active');
                     });
@@ -2941,17 +2994,14 @@
 
                 if (!audio) return;
 
-                // Set initial volume
                 audio.volume = 0.3;
 
-                // 🔥 CORRECTION: Icône play par défaut (musique en pause au début)
                 playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
 
-                // Play/Pause
                 playPauseBtn?.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    
+
                     if (audio.paused) {
                         audio.play().then(() => {
                             console.log('🎵 Musique démarrée manuellement');
@@ -2964,18 +3014,16 @@
                     }
                 });
 
-                // Mute/Unmute
                 muteBtn?.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    
+
                     audio.muted = !audio.muted;
                     muteBtn.innerHTML = audio.muted ?
                         '<span class="material-icons">volume_off</span>' :
                         '<span class="material-icons">volume_up</span>';
                 });
 
-                // Volume control
                 volumeSlider?.addEventListener('input', (e) => {
                     audio.volume = e.target.value / 100;
                 });
@@ -2985,34 +3033,28 @@
                 if (index === this.currentSection || this.isTransitioning) return;
                 if (index < 0 || index >= this.sections.length) return;
 
-                console.log(`Transition vers section ${index}: ${this.sections[index]}`); // DEBUG
+                console.log(`Transition vers section ${index}: ${this.sections[index]}`);
 
                 this.isTransitioning = true;
 
-                // Show transition overlay
                 const transition = document.getElementById('page-transition');
                 transition?.classList.add('active');
 
                 setTimeout(() => {
-                    // Hide current section
                     const currentSectionEl = document.getElementById(this.sections[this.currentSection]);
                     currentSectionEl?.classList.remove('active');
 
-                    // Show new section
                     const newSectionEl = document.getElementById(this.sections[index]);
                     newSectionEl?.classList.add('active');
 
-                    // Reset scroll position
                     const sectionContent = newSectionEl?.querySelector('.section-content');
                     if (sectionContent) {
                         sectionContent.scrollTop = 0;
                     }
 
-                    // Update navigation
                     this.updateNavigation(index);
                     this.currentSection = index;
 
-                    // Hide transition overlay
                     setTimeout(() => {
                         transition?.classList.remove('active');
                         this.isTransitioning = false;
@@ -3028,7 +3070,6 @@
             }
 
             startAnimations() {
-                // Add staggered animations to cover elements
                 const coverElements = document.querySelectorAll('.cover-content > *');
                 coverElements.forEach((el, index) => {
                     el.style.animationDelay = `${index * 0.3}s`;
@@ -3039,11 +3080,11 @@
         // INITIALISATION ROBUSTE
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
-                console.log('🔥 Initialisation Bohème Plaquette'); // DEBUG
+                console.log('🔥 Initialisation Bohème Plaquette');
                 new BohemePlaquette();
             });
         } else {
-            console.log('🔥 Initialisation immédiate Bohème Plaquette'); // DEBUG
+            console.log('🔥 Initialisation immédiate Bohème Plaquette');
             new BohemePlaquette();
         }
 
