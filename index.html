@@ -371,7 +371,7 @@
             }
         }
 
-        /* 🔥 NAVIGATION OPTIMISÉE PC AVEC CERCLES SUBTILS */
+        /* 🔥 NAVIGATION NETTOYÉE - SUPPRESSION ARRIÈRE-PLAN GÊNANT */
         .navigation {
             position: fixed;
             top: 50%;
@@ -381,58 +381,34 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-
-            /* 🎨 JOLIE ZONE DISCRÈTE POUR PC */
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 15px 8px;
-            border-radius: 25px;
-            border: 2px solid var(--gold);
-            box-shadow:
-                0 5px 20px rgba(0,0,0,0.4),
-                0 0 15px rgba(212,175,55,0.3);
+            gap: 15px;
+            /* 🔥 SUPPRESSION COMPLÈTE DE L'ARRIÈRE-PLAN */
+            background: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            border: none;
+            box-shadow: none;
         }
 
         .nav-dot {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background: url('image-en-or.png') center/cover;
-            border: 2px solid var(--gold);
+            border: 2px solid var(--black);
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3), 0 0 10px rgba(212,175,55,0.5);
             position: relative;
             user-select: none;
             -webkit-user-select: none;
             touch-action: manipulation;
         }
 
-        /* 🎨 CERCLE SUBTIL PC */
-        .nav-dot::before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: -6px;
-            width: calc(100% + 12px);
-            height: calc(100% + 12px);
-            border-radius: 50%;
-            border: 1px solid rgba(212,175,55,0.2);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-dot:hover::before,
-        .nav-dot.active::before {
-            opacity: 1;
-            border-color: rgba(212,175,55,0.6);
-        }
-
         .nav-dot.active {
             transform: scale(1.3);
-            box-shadow: 0 0 20px rgba(212,175,55,0.8);
+            box-shadow: 0 0 20px rgba(212,175,55,0.8), 0 4px 8px rgba(0,0,0,0.4);
         }
 
         .nav-dot:hover {
@@ -464,24 +440,25 @@
             transform: translateX(0);
         }
 
-        /* 🔥 CONTAINER OPTIMISÉ - PLUS DE VIDE */
+        /* 🔥 SUPPRESSION TOTALE DE LA GROSSE ZONE GRISE - TOUTES RÉSOLUTIONS */
         .section-container {
             position: relative;
             width: 90%;
             max-width: 1200px;
-            height: 85%; /* ✅ Hauteur optimisée */
-            max-height: 750px;
+            height: 85%;
+            max-height: 800px;
             display: flex;
             flex-direction: column;
+            /* 🔥 SUPPRESSION COMPLÈTE DE L'OVERLAY GRIS */
             background: transparent !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
             border-radius: 15px;
             overflow: hidden;
+            /* 🔥 GARDER SEULEMENT L'OMBRE POUR LE STYLE */
             box-shadow: 0 15px 40px rgba(0,0,0,0.3), 0 0 30px rgba(212,175,55,0.3);
             z-index: 2;
             border: 3px solid var(--gold);
-            margin-top: 3vh; /* ✅ Position ajustée pour remonter le contenu */
         }
 
         /* 🔥 SUPPRESSION DE TOUS LES PSEUDO-ÉLÉMENTS QUI CRÉENT DES OVERLAYS */
@@ -493,6 +470,7 @@
         .section-header {
             position: relative;
             padding: 30px 40px;
+            /* 🔥 SUPPRESSION FOND GRIS HEADER */
             background: transparent !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
@@ -556,6 +534,7 @@
             flex: 1;
             position: relative;
             color: var(--dark);
+            /* 🔥 SUPPRESSION COMPLÈTE FOND GRIS */
             background: transparent !important;
             padding: 0;
             padding-bottom: 100px;
@@ -576,6 +555,7 @@
             width: 100%;
             height: 100%;
             padding: 0;
+            /* 🔥 SUPPRESSION FOND GRIS */
             background: transparent !important;
             padding-bottom: 150px;
             overflow-y: auto;
@@ -1772,6 +1752,7 @@
 
         /* RESPONSIVE MOBILE */
         @media (max-width: 1200px) {
+            /* 🔥 SUPPRESSION OVERLAY GRIS - TOUTES TAILLES */
             .section-container {
                 width: 95%;
                 height: 90%;
@@ -1810,6 +1791,7 @@
         }
 
         @media (max-width: 992px) {
+            /* 🔥 SUPPRESSION OVERLAY GRIS - TABLETTES */
             .section-container {
                 background: transparent !important;
                 backdrop-filter: none !important;
@@ -1869,118 +1851,30 @@
             }
         }
 
-        /* 🔥 MOBILE/TABLETTE - NAVIGATION AVEC BEAUX CERCLES + SUPPRESSION VIDE */
+        /* 🔥 MOBILE/TABLETTE - SUPPRESSION TOTALE OVERLAY GRIS */
         @media (max-width: 768px) {
-            /* ✅ CONTAINER MOBILE OPTIMISÉ */
+            /* 🔥 SUPPRESSION COMPLÈTE DE LA GROSSE ZONE GRISE */
             .section-container {
-                width: 95%;
-                height: 80%; /* ✅ Hauteur réduite pour laisser place à la navigation */
-                margin-top: 3vh;
+                width: 100%;
+                height: 100%;
                 border-radius: 0;
                 background: transparent !important;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
             }
-
-            /* ✅ NAVIGATION MOBILE AVEC JOLI CERCLE MAGIQUE */
-            .navigation {
-                position: fixed;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                gap: 15px;
-                z-index: 200;
-
-                /* 🎨 JOLIE PETITE BANDE DISCRÈTE AVEC CERCLE */
-                background: rgba(0,0,0,0.8);
-                backdrop-filter: blur(15px);
-                -webkit-backdrop-filter: blur(15px);
-                padding: 12px 25px;
-                border-radius: 30px;
-                border: 2px solid var(--gold);
-                box-shadow:
-                    0 8px 25px rgba(0,0,0,0.5),
-                    0 0 20px rgba(212,175,55,0.6),
-                    inset 0 0 20px rgba(212,175,55,0.1);
-            }
-
-            /* ✅ BEAUX POINTS AVEC EFFET CERCLE MAGIQUE */
-            .nav-dot {
-                width: 14px;
-                height: 14px;
-                border-radius: 50%;
-                background: url('image-en-or.png') center/cover;
-                border: 2px solid var(--gold);
-                cursor: pointer;
-                transition: all 0.3s ease;
-                box-shadow:
-                    0 3px 8px rgba(0,0,0,0.4),
-                    0 0 15px rgba(212,175,55,0.5);
-                position: relative;
-            }
-
-            /* 🎨 CERCLE MAGIQUE AUTOUR DES POINTS */
-            .nav-dot::before {
-                content: '';
-                position: absolute;
-                top: -8px;
-                left: -8px;
-                width: calc(100% + 16px);
-                height: calc(100% + 16px);
-                border-radius: 50%;
-                border: 1px solid rgba(212,175,55,0.3);
-                opacity: 0;
-                transition: all 0.3s ease;
-                transform: scale(0.8);
-            }
-
-            /* Effet cercle au hover et actif */
-            .nav-dot:hover::before,
-            .nav-dot.active::before {
-                opacity: 1;
-                transform: scale(1);
-                border-color: rgba(212,175,55,0.8);
-                box-shadow: 0 0 20px rgba(212,175,55,0.4);
-            }
-
-            .nav-dot.active {
-                transform: scale(1.4);
-                box-shadow:
-                    0 0 25px rgba(212,175,55,0.9),
-                    0 5px 15px rgba(0,0,0,0.5);
-                border-color: var(--gold-light);
-            }
-
-            .nav-dot:hover {
-                transform: scale(1.2);
-                box-shadow: 0 0 20px rgba(212,175,55,0.8);
-            }
-
-            /* ✅ CONTENU QUI REMONTE - PLUS DE VIDE */
             .section-content {
-                flex: 1;
+                padding-bottom: 150px;
                 background: transparent !important;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
-                padding: 0;
-                padding-bottom: 80px; /* ✅ Espace pour la navigation */
-                overflow-y: auto;
-                scroll-behavior: smooth;
-                -webkit-overflow-scrolling: touch;
             }
-
             .intro-content-magazine {
+                padding-bottom: 200px;
                 background: transparent !important;
-                padding-bottom: 100px; /* ✅ Espace optimisé */
             }
-
             .scrollable-content {
-                padding-bottom: 120px;
+                padding-bottom: 200px;
             }
-
             .section-header {
                 padding: 20px;
                 text-align: center;
@@ -1999,16 +1893,6 @@
                 display: none !important;
             }
 
-            /* ✅ SCROLL INDICATOR REPOSITIONNÉ */
-            .cover-scroll-indicator {
-                bottom: 100px; /* ✅ Au-dessus de la navigation */
-            }
-
-            /* Suppression tooltip mobile */
-            .nav-tooltip {
-                display: none;
-            }
-
             .section-title {
                 text-align: center;
                 font-size: 2rem;
@@ -2021,6 +1905,29 @@
             }
             .cover-interactive-text {
                 font-size: 1.2rem;
+            }
+
+            /* 🔥 NAVIGATION MOBILE ULTRA-CLEAN */
+            .navigation {
+                bottom: 30px;
+                top: auto;
+                right: 50%;
+                transform: translateX(50%);
+                flex-direction: row;
+                background: none !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                padding: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+
+            .cover-scroll-indicator {
+                bottom: 120px;
+            }
+            .nav-tooltip {
+                display: none;
             }
             .bureau-grid, .artiste-grid, .production-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -2049,7 +1956,7 @@
                 padding: 0 6px;
             }
             .bureau-footer-text {
-                margin-bottom: 100px; /* ✅ Espace pour navigation */
+                margin-bottom: 180px;
                 font-size: 0.9rem;
             }
             .magazine-content-wrapper {
@@ -2119,6 +2026,7 @@
         }
 
         @media (max-width: 576px) {
+            /* 🔥 SUPPRESSION OVERLAY GRIS - TRÈS PETITS ÉCRANS */
             .section-container {
                 background: transparent !important;
                 backdrop-filter: none !important;
@@ -2235,10 +2143,10 @@
                 margin: 30px 0;
             }
             .section-content {
-                padding-bottom: 100px;
+                padding-bottom: 180px;
             }
             .intro-content-magazine {
-                padding-bottom: 120px;
+                padding-bottom: 220px;
             }
         }
     </style>
@@ -2270,7 +2178,7 @@
             </div>
         </div>
 
-        <!-- 🔥 NAVIGATION ULTRA-STYLÉE AVEC CERCLES MAGIQUES -->
+        <!-- 🔥 NAVIGATION ULTRA-CLEAN -->
         <div class="navigation">
             <div class="nav-dot active" data-section="cover">
                 <div class="nav-tooltip">Couverture</div>
