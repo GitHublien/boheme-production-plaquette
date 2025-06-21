@@ -371,31 +371,48 @@
             }
         }
 
-        /* 🔥 NAVIGATION NETTOYÉE - SUPPRESSION ARRIÈRE-PLAN GÊNANT */
+        /* 🔥 NAVIGATION VERSION 6 - EFFET NÉON AVEC CADRE */
         .navigation {
             position: fixed;
             top: 50%;
             right: 20px;
             transform: translateY(-50%);
             z-index: 100;
+            display: inline-block;
+        }
+
+        .navigation-container {
+            background: rgba(0,0,0,0.9);
+            border: 2px solid var(--gold);
+            border-radius: 25px;
+            padding: 16px 25px;
+            box-shadow:
+                0 0 20px rgba(212,175,55,0.4),
+                0 0 40px rgba(212,175,55,0.2),
+                inset 0 0 20px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .navigation-container:hover {
+            box-shadow:
+                0 0 30px rgba(212,175,55,0.6),
+                0 0 50px rgba(212,175,55,0.4),
+                0 0 70px rgba(212,175,55,0.2),
+                inset 0 0 25px rgba(0,0,0,0.7);
+        }
+
+        .navigation-demo {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            /* 🔥 SUPPRESSION COMPLÈTE DE L'ARRIÈRE-PLAN */
-            background: none;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            padding: 0;
-            border: none;
-            box-shadow: none;
+            gap: 12px;
         }
 
         .nav-dot {
-            width: 12px;
-            height: 12px;
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
+            background: url('images-en-or-2.png') center/cover;
             border: 2px solid var(--black);
             cursor: pointer;
             transition: all 0.3s ease;
@@ -404,26 +421,57 @@
             user-select: none;
             -webkit-user-select: none;
             touch-action: manipulation;
+            z-index: 5;
         }
 
-        .nav-dot.active {
-            transform: scale(1.3);
-            box-shadow: 0 0 20px rgba(212,175,55,0.8), 0 4px 8px rgba(0,0,0,0.4);
+        /* EFFET NÉON AUTOUR DU CERCLE */
+        .nav-dot::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: conic-gradient(from 0deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: all 0.3s ease;
+            mask: radial-gradient(circle, transparent 70%, black 72%, black 78%, transparent 80%);
+            -webkit-mask: radial-gradient(circle, transparent 70%, black 72%, black 78%, transparent 80%);
+            z-index: 6;
+        }
+
+        .nav-dot:hover::before,
+        .nav-dot.active::before {
+            opacity: 1;
+            animation: spin 1.5s linear infinite;
+            box-shadow: 0 0 30px rgba(212,175,55,0.9);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         .nav-dot:hover {
-            transform: scale(1.2);
+            transform: scale(1.1);
             box-shadow: 0 0 15px rgba(212,175,55,0.7);
         }
 
+        .nav-dot.active {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(212,175,55,0.8);
+        }
+
+        /* TOOLTIPS - TEXTE PLUS GROS AU HOVER */
         .nav-tooltip {
             position: absolute;
             right: 25px;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.9);
             padding: 8px 12px;
             border-radius: 15px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
+            font-size: 11px;
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
@@ -432,15 +480,18 @@
             color: var(--gold);
             border: 1px solid var(--gold);
             box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+            z-index: 10;
         }
 
         .nav-dot:hover .nav-tooltip {
             opacity: 1;
             visibility: visible;
             transform: translateX(0);
+            font-size: 13px;
+            padding: 9px 14px;
         }
 
-        /* 🔥 SUPPRESSION TOTALE DE LA GROSSE ZONE GRISE - TOUTES RÉSOLUTIONS */
+        /* 🔥 SECTION CONTAINER - SUPPRESSION TOTALE BACKGROUND GRIS */
         .section-container {
             position: relative;
             width: 90%;
@@ -449,31 +500,18 @@
             max-height: 800px;
             display: flex;
             flex-direction: column;
-            /* 🔥 SUPPRESSION COMPLÈTE DE L'OVERLAY GRIS */
-            background: transparent !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
+            background: transparent;
             border-radius: 15px;
             overflow: hidden;
-            /* 🔥 GARDER SEULEMENT L'OMBRE POUR LE STYLE */
             box-shadow: 0 15px 40px rgba(0,0,0,0.3), 0 0 30px rgba(212,175,55,0.3);
             z-index: 2;
             border: 3px solid var(--gold);
         }
 
-        /* 🔥 SUPPRESSION DE TOUS LES PSEUDO-ÉLÉMENTS QUI CRÉENT DES OVERLAYS */
-        .section-container::before,
-        .section-container::after {
-            display: none !important;
-        }
-
         .section-header {
             position: relative;
             padding: 30px 40px;
-            /* 🔥 SUPPRESSION FOND GRIS HEADER */
-            background: transparent !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
+            background: transparent;
             border-bottom: 2px solid var(--gold);
             overflow: hidden;
             touch-action: manipulation;
@@ -529,13 +567,12 @@
             border: 1px solid var(--black);
         }
 
-        /* 🔥 SECTION CONTENT SANS OVERLAY GRIS */
+        /* 🔥 SECTION CONTENT - SUPPRESSION BACKGROUND GRIS */
         .section-content {
             flex: 1;
             position: relative;
             color: var(--dark);
-            /* 🔥 SUPPRESSION COMPLÈTE FOND GRIS */
-            background: transparent !important;
+            background: transparent;
             padding: 0;
             padding-bottom: 100px;
             overflow-y: auto;
@@ -544,19 +581,12 @@
             touch-action: pan-y;
         }
 
-        /* 🔥 SUPPRESSION DE TOUS LES PSEUDO-ÉLÉMENTS DU CONTENT */
-        .section-content::before,
-        .section-content::after {
-            display: none !important;
-        }
-
         .intro-content-magazine {
             position: relative;
             width: 100%;
             height: 100%;
             padding: 0;
-            /* 🔥 SUPPRESSION FOND GRIS */
-            background: transparent !important;
+            background: transparent;
             padding-bottom: 150px;
             overflow-y: auto;
             scroll-behavior: smooth;
@@ -1752,13 +1782,9 @@
 
         /* RESPONSIVE MOBILE */
         @media (max-width: 1200px) {
-            /* 🔥 SUPPRESSION OVERLAY GRIS - TOUTES TAILLES */
             .section-container {
                 width: 95%;
                 height: 90%;
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
             }
             .contact-content {
                 grid-template-columns: 1fr;
@@ -1771,41 +1797,9 @@
                 width: 450px;
                 height: 450px;
             }
-            .boheme-signature-image {
-                max-width: 700px;
-            }
-            .boheme-signature-placeholder {
-                font-size: 5rem;
-            }
-            .decorative-logo {
-                max-width: 400px;
-            }
-            .decorative-logo-placeholder {
-                width: 400px;
-                height: 400px;
-            }
-            .decorative-logo-section {
-                max-width: 800px;
-                padding: 70px;
-            }
         }
 
         @media (max-width: 992px) {
-            /* 🔥 SUPPRESSION OVERLAY GRIS - TABLETTES */
-            .section-container {
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-            }
-            .section-content {
-                background: transparent !important;
-            }
-            .section-header {
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-            }
-
             .cover-title {
                 font-size: 3rem;
             }
@@ -1826,51 +1820,20 @@
                 width: 380px;
                 height: 380px;
             }
-            .magazine-title-main {
-                font-size: 2.8rem;
-            }
-            .polyvalent-artists-container {
-                margin: 10px 0 20px 0;
-            }
-            .boheme-signature-image {
-                max-width: 600px;
-            }
-            .boheme-signature-placeholder {
-                font-size: 4rem;
-            }
-            .decorative-logo-section {
-                max-width: 700px;
-                padding: 60px;
-            }
-            .decorative-logo {
-                max-width: 350px;
-            }
-            .decorative-logo-placeholder {
-                width: 350px;
-                height: 350px;
-            }
         }
 
-        /* 🔥 MOBILE/TABLETTE - SUPPRESSION TOTALE OVERLAY GRIS */
+        /* 🔥 MOBILE - NAVIGATION AVEC CADRE NÉON EN BAS */
         @media (max-width: 768px) {
-            /* 🔥 SUPPRESSION COMPLÈTE DE LA GROSSE ZONE GRISE */
             .section-container {
                 width: 100%;
                 height: 100%;
                 border-radius: 0;
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
             }
             .section-content {
                 padding-bottom: 150px;
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
             }
             .intro-content-magazine {
                 padding-bottom: 200px;
-                background: transparent !important;
             }
             .scrollable-content {
                 padding-bottom: 200px;
@@ -1878,19 +1841,43 @@
             .section-header {
                 padding: 20px;
                 text-align: center;
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
             }
 
-            /* 🔥 SUPPRESSION DE TOUS LES OVERLAYS ET PSEUDO-ÉLÉMENTS GRIS */
-            .section-container::before,
-            .section-container::after,
-            .section-content::before,
-            .section-content::after,
-            .section-header::before,
-            .section-header::after {
-                display: none !important;
+            /* 🔥 NAVIGATION MOBILE AVEC CADRE NÉON */
+            .navigation {
+                bottom: 30px;
+                top: auto;
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            .navigation-container {
+                background: rgba(0,0,0,0.9);
+                border: 2px solid var(--gold);
+                border-radius: 30px;
+                padding: 12px 25px;
+                box-shadow:
+                    0 8px 25px rgba(0,0,0,0.5),
+                    0 0 20px rgba(212,175,55,0.6),
+                    0 0 40px rgba(212,175,55,0.2);
+            }
+
+            .navigation-container:hover {
+                box-shadow:
+                    0 10px 30px rgba(0,0,0,0.6),
+                    0 0 30px rgba(212,175,55,0.8),
+                    0 0 50px rgba(212,175,55,0.4),
+                    0 0 70px rgba(212,175,55,0.2);
+            }
+
+            .navigation-demo {
+                flex-direction: row;
+                gap: 15px;
+            }
+
+            .nav-dot.active {
+                transform: scale(1.4);
+                box-shadow: 0 0 25px rgba(212,175,55,0.9);
             }
 
             .section-title {
@@ -1906,23 +1893,6 @@
             .cover-interactive-text {
                 font-size: 1.2rem;
             }
-
-            /* 🔥 NAVIGATION MOBILE ULTRA-CLEAN */
-            .navigation {
-                bottom: 30px;
-                top: auto;
-                right: 50%;
-                transform: translateX(50%);
-                flex-direction: row;
-                background: none !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                padding: 0 !important;
-                border: none !important;
-                box-shadow: none !important;
-                border-radius: 0 !important;
-            }
-
             .cover-scroll-indicator {
                 bottom: 120px;
             }
@@ -1937,112 +1907,9 @@
                 width: 320px;
                 height: 320px;
             }
-            .audio-controls {
-                top: 10px;
-                right: 10px;
-                padding: 6px;
-                gap: 6px;
-            }
-            .audio-control-btn {
-                width: 30px;
-                height: 30px;
-            }
-            .audio-control-btn .material-icons {
-                font-size: 16px;
-            }
-            .volume-slider {
-                width: 50px;
-                height: 30px;
-                padding: 0 6px;
-            }
-            .bureau-footer-text {
-                margin-bottom: 180px;
-                font-size: 0.9rem;
-            }
-            .magazine-content-wrapper {
-                padding: 20px;
-            }
-            .magazine-title-main {
-                font-size: 2.5rem;
-            }
-            .hero-image-container {
-                height: 300px;
-            }
-            .hero-image-title {
-                font-size: 1.5rem;
-            }
-            .artists-highlight-grid {
-                grid-template-columns: 1fr;
-            }
-            .patrick-quote {
-                font-size: 1.3rem;
-            }
-            .patrick-quote-title {
-                font-size: 1.7rem;
-            }
-            .magazine-paragraph {
-                font-size: 1.3rem;
-            }
-            .boheme-signature-image {
-                max-width: 500px;
-            }
-            .boheme-signature-placeholder {
-                font-size: 3.5rem;
-                padding: 15px;
-            }
-            .decorative-logo-section {
-                max-width: 90%;
-                padding: 30px 20px;
-                margin: 30px auto;
-            }
-            .decorative-logo {
-                max-width: 300px;
-            }
-            .decorative-logo-placeholder {
-                width: 300px;
-                height: 300px;
-                font-size: 2.5rem;
-            }
-            .artists-highlight-container,
-            .polyvalent-artists-container,
-            .content-section-container,
-            .collaboration-container,
-            .excellence-container,
-            .content-text-block {
-                padding: 20px;
-                margin: 15px 0;
-            }
-            .highlight-quote {
-                padding: 25px;
-                margin: 25px 0;
-            }
-            .patrick-quote-highlight {
-                padding: 30px 20px 20px 20px;
-                margin: 40px 0;
-            }
-            .video-content-block {
-                margin: 20px 0;
-            }
         }
 
         @media (max-width: 576px) {
-            /* 🔥 SUPPRESSION OVERLAY GRIS - TRÈS PETITS ÉCRANS */
-            .section-container {
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-            }
-            .section-content {
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-            }
-            .section-header {
-                background: transparent !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-            }
-
             .cover-title {
                 font-size: 2rem;
             }
@@ -2059,94 +1926,6 @@
             .section-title {
                 font-size: 1.8rem;
                 text-align: center;
-            }
-            .artistes-tabs {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-            }
-            .golden-line {
-                width: 80%;
-            }
-            .cover-interactive-text {
-                font-size: 1rem;
-            }
-            .audio-controls {
-                top: 5px;
-                right: 5px;
-                padding: 5px;
-                gap: 5px;
-            }
-            .audio-control-btn {
-                width: 28px;
-                height: 28px;
-            }
-            .audio-control-btn .material-icons {
-                font-size: 14px;
-            }
-            .volume-slider {
-                width: 45px;
-                height: 28px;
-                padding: 0 5px;
-            }
-            .magazine-title-main {
-                font-size: 2rem;
-            }
-            .magazine-section-title, .magazine-section-title-center {
-                font-size: 1.6rem;
-                padding: 15px 20px;
-            }
-            .patrick-quote-title {
-                font-size: 1.5rem;
-            }
-            .magazine-paragraph, .content-text {
-                font-size: 1.2rem;
-                text-align: left;
-            }
-            .boheme-signature-image {
-                max-width: 400px;
-            }
-            .boheme-signature-placeholder {
-                font-size: 3rem;
-                padding: 10px;
-            }
-            .decorative-logo-section {
-                max-width: 95%;
-                padding: 25px 15px;
-                margin: 20px auto;
-            }
-            .decorative-logo {
-                max-width: 250px;
-            }
-            .decorative-logo-placeholder {
-                width: 250px;
-                height: 250px;
-                font-size: 2rem;
-            }
-            .magazine-content-wrapper {
-                padding: 15px;
-            }
-            .artists-highlight-container,
-            .polyvalent-artists-container,
-            .content-section-container,
-            .collaboration-container,
-            .excellence-container,
-            .content-text-block {
-                padding: 15px;
-                margin: 10px 0;
-            }
-            .highlight-quote {
-                padding: 20px;
-                margin: 20px 0;
-            }
-            .patrick-quote-highlight {
-                padding: 25px 15px 15px 15px;
-                margin: 30px 0;
-            }
-            .section-content {
-                padding-bottom: 180px;
-            }
-            .intro-content-magazine {
-                padding-bottom: 220px;
             }
         }
     </style>
@@ -2178,25 +1957,29 @@
             </div>
         </div>
 
-        <!-- 🔥 NAVIGATION ULTRA-CLEAN -->
+        <!-- 🔥 NAVIGATION VERSION 6 - EFFET NÉON AVEC CADRE -->
         <div class="navigation">
-            <div class="nav-dot active" data-section="cover">
-                <div class="nav-tooltip">Couverture</div>
-            </div>
-            <div class="nav-dot" data-section="intro">
-                <div class="nav-tooltip">Présentation</div>
-            </div>
-            <div class="nav-dot" data-section="bureau">
-                <div class="nav-tooltip">Notre Bureau</div>
-            </div>
-            <div class="nav-dot" data-section="artistes">
-                <div class="nav-tooltip">Nos Artistes</div>
-            </div>
-            <div class="nav-dot" data-section="productions">
-                <div class="nav-tooltip">Productions</div>
-            </div>
-            <div class="nav-dot" data-section="contact">
-                <div class="nav-tooltip">Contact</div>
+            <div class="navigation-container">
+                <div class="navigation-demo">
+                    <div class="nav-dot active" data-section="cover">
+                        <div class="nav-tooltip">Couverture</div>
+                    </div>
+                    <div class="nav-dot" data-section="intro">
+                        <div class="nav-tooltip">Présentation</div>
+                    </div>
+                    <div class="nav-dot" data-section="bureau">
+                        <div class="nav-tooltip">Notre Bureau</div>
+                    </div>
+                    <div class="nav-dot" data-section="artistes">
+                        <div class="nav-tooltip">Nos Artistes</div>
+                    </div>
+                    <div class="nav-dot" data-section="productions">
+                        <div class="nav-tooltip">Productions</div>
+                    </div>
+                    <div class="nav-dot" data-section="contact">
+                        <div class="nav-tooltip">Contact</div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -2268,7 +2051,6 @@
                                         <!-- Nouvelle section 1: Une Constellation Artistique Complète -->
                                         <h4 class="magazine-section-title-center">Une Constellation Artistique Complète</h4>
 
-                                        <!-- 🔥 CORRECTION: Réintégration de la vidéo magique-fumee.mp4 pour boheme-artistic-collage.png -->
                                         <div class="video-content-block">
                                             <div class="video-background-container">
                                                 <video autoplay muted loop playsinline>
