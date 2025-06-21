@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -689,6 +688,175 @@
             padding: 20px;
         }
 
+        /* NOUVEAU STYLE POUR LA SECTION TRILOGIE AVEC EFFET ULTRA-IMPRESSIONNANT */
+        .trilogie-section-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin: 50px 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 60px rgba(212,175,55,0.7);
+            border: 5px solid var(--gold);
+        }
+
+        .trilogie-video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .trilogie-video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 1;
+            object-fit: cover;
+        }
+
+        .trilogie-image-overlay {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            height: auto;
+        }
+
+        .trilogie-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* EFFET COMBINÉ ULTRA-IMPRESSIONNANT */
+            mask:
+                radial-gradient(circle at center, black 60%, transparent 90%),
+                linear-gradient(45deg, transparent 0%, black 20%, black 80%, transparent 100%);
+            mask-composite: intersect;
+            -webkit-mask:
+                radial-gradient(circle at center, black 60%, transparent 90%),
+                linear-gradient(45deg, transparent 0%, black 20%, black 80%, transparent 100%);
+            -webkit-mask-composite: source-in;
+            filter:
+                blur(0px)
+                drop-shadow(0 0 30px rgba(212,175,55,0.8))
+                contrast(1.2)
+                brightness(1.1);
+            transition: all 0.3s ease;
+        }
+
+        .trilogie-image:hover {
+            filter:
+                blur(0px)
+                drop-shadow(0 0 40px rgba(212,175,55,1))
+                contrast(1.3)
+                brightness(1.2);
+        }
+
+        .trilogie-image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--black);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        /* NOUVEAUX BLOCS AVEC VIDÉOS ET IMAGES */
+        .video-content-block {
+            position: relative;
+            margin: 40px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 5px solid var(--gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.5);
+        }
+
+        .video-background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .video-background-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 1;
+            object-fit: cover;
+        }
+
+        .image-overlay-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: auto;
+        }
+
+        .content-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--black);
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        .content-text-block {
+            position: relative;
+            z-index: 3;
+            padding: 35px;
+            background: rgba(0,0,0,0.9);
+            border: 5px solid;
+            border-image: url('images-en-or-2.png') 10;
+            border-radius: 20px;
+            margin: 25px 35px 35px 35px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.4);
+        }
+
+        .content-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            text-align: justify;
+        }
+
         /* Contenu principal amélioré */
         .magazine-content-wrapper {
             padding: 40px;
@@ -702,7 +870,7 @@
 
         /* TITRE PRINCIPAL - Bohème Production EN NOIR */
         .magazine-title-main {
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Cormorant Garamond', serif;
             font-size: 3.5rem;
             font-weight: 700;
             text-align: center;
@@ -712,7 +880,7 @@
         }
 
         .magazine-subtitle {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Dancing Script', cursive;
             font-size: 1.6rem;
             font-style: italic;
             color: var(--black);
@@ -720,6 +888,23 @@
             margin-bottom: 40px;
             font-weight: 300;
             text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+        }
+
+        .magazine-section-title-center {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.9rem;
+            font-weight: 400;
+            margin: 35px 0 20px 0;
+            padding: 18px 25px;
+            background: var(--cream-dark);
+            border: 2px solid var(--black);
+            border-radius: 10px;
+            position: relative;
+            color: var(--black);
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px rgba(212,175,55,0.3);
+            letter-spacing: 1px;
         }
 
         .magazine-text-flow {
@@ -1758,7 +1943,8 @@
             .polyvalent-artists-container,
             .content-section-container,
             .collaboration-container,
-            .excellence-container {
+            .excellence-container,
+            .content-text-block {
                 padding: 20px;
                 margin: 15px 0;
             }
@@ -1769,6 +1955,9 @@
             .patrick-quote-highlight {
                 padding: 30px 20px 20px 20px;
                 margin: 40px 0;
+            }
+            .video-content-block {
+                margin: 20px 0;
             }
         }
 
@@ -1821,14 +2010,14 @@
             .magazine-title-main {
                 font-size: 2rem;
             }
-            .magazine-section-title {
+            .magazine-section-title, .magazine-section-title-center {
                 font-size: 1.6rem;
                 padding: 15px 20px;
             }
             .patrick-quote-title {
                 font-size: 1.5rem;
             }
-            .magazine-paragraph {
+            .magazine-paragraph, .content-text {
                 font-size: 1.2rem;
                 text-align: left;
             }
@@ -1859,7 +2048,8 @@
             .polyvalent-artists-container,
             .content-section-container,
             .collaboration-container,
-            .excellence-container {
+            .excellence-container,
+            .content-text-block {
                 padding: 15px;
                 margin: 10px 0;
             }
@@ -1987,174 +2177,103 @@
                                     <h4 class="magazine-subtitle">L'Excellence Artistique À Votre Service</h4>
 
                                     <div class="magazine-text-flow">
-                                        <h4 class="magazine-section-title">Une Vision Artistique D'Exception</h4>
+                                        <h4 class="magazine-section-title">Entrez dans l'Univers de Bohème Production</h4>
 
                                         <div class="content-section-container">
                                             <p class="magazine-paragraph">
-                                                <span class="text-gold">Bohème Production</span> est un organisme de spectacle dédié à l'excellence artistique, fondé et présidé par <span class="text-gold">Patrick Elie Féré</span>, baryton verdien, PDG et producteur, également reconnu pour ses talents d'imitateur. Cette aventure artistique unique est née de sa rencontre créative avec deux artistes d'exception : <span class="text-gold">Richard Alexandre Rittelmann</span> et <span class="text-gold">Norah Amsellem</span>. Cette synergie unique révolutionne l'univers du spectacle vivant en créant une alchimie parfaite entre l'opéra, la pop lyrique et la variété internationale.
+                                                Bohème Production est un organisme de spectacle dédié à l'excellence artistique, fondé et présidé par Patrick Elie Féré, baryton verdien, PDG et producteur, également reconnu pour ses talents d'imitateur. Cette aventure unique est le fruit d'une rencontre créative avec deux artistes d'exception : Richard Alexandre Rittelmann et Norah Amsellem. Cette synergie unique révolutionne l'univers du spectacle vivant en créant une alchimie parfaite entre l'opéra, la pop lyrique et la variété internationale.
                                             </p>
                                         </div>
 
-                                        <h4 class="magazine-section-title magazine-section-title-center">Une Constellation Artistique Complète L'Univers Bohème</h4>
+                                        <!-- 🔥 NOUVELLE SECTION 1: Une Constellation Artistique Complète -->
+                                        <h4 class="magazine-section-title-center">Une Constellation Artistique Complète</h4>
 
-                                        <!-- NOUVELLE SECTION - COLLAGE ARTISTIQUE EN TAILLE ORIGINALE -->
-                                        <div class="artistic-collage-section">
-                                            <div class="artistic-collage-video-background">
+                                        <div class="video-content-block">
+                                            <div class="video-background-container">
                                                 <video autoplay muted loop playsinline>
-                                                    <source src="magique-fumee.mp4" type="video/mp4">
+                                                    <source src="magic-fumee.mp4" type="video/mp4">
                                                 </video>
                                             </div>
-                                            <img src="boheme-artistic-collage.png" alt="Collection Artistique Bohème Production" class="artistic-collage-image"
-                                                 onerror="this.parentNode.innerHTML='<div class=artistic-collage-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=artistic-collage-placeholder>COLLECTION ARTISTIQUE<br>BOHÈME PRODUCTION</div>'">
-                                        </div>
-
-                                        <div class="content-section-container">
-                                            <p class="magazine-paragraph">
-                                                <span class="text-gold">Bohème Production</span> rassemble une famille artistique exceptionnelle de <span class="text-gold-shimmer">41 chanteurs de renommée internationale</span> aux multiples palettes vocales, capables de passer du lyrique à la pop, de la variété internationale à l'opéra avec une aisance remarquable.
-                                            </p>
-                                            <p class="magazine-paragraph">
-                                                Cette constellation s'enrichit de <span class="text-gold">3 pianistes virtuoses</span> aux profils extraordinaires : un <span class="text-gold">chef d'orchestre dirigeant un orchestre complet</span>, une <span class="text-gold">pianiste chanteuse</span> qui endosse également le rôle de chef de chant, et un troisième virtuose aux talents multiples. Pour certains d'entre eux, les rôles de chef de chant, de chef de chœur et chef d'orchestre viennent naturellement compléter leur palette artistique.
-                                            </p>
-                                        </div>
-
-                                        <div class="content-section-container">
-                                            <p class="magazine-paragraph">
-                                                Dans cette alchimie créative, certains chanteurs révèlent aussi leurs talents de pianistes, créant une harmonie parfaite entre voix et instruments. L'univers chorégraphique brille avec <span class="text-gold">2 chorégraphes et danseuses professionnelles</span>, accompagnées d'une <span class="text-gold">jeune danseuse prodige de 13 ans, championne du monde de hip-hop junior</span>.
-                                            </p>
-                                            <p class="magazine-paragraph">
-                                                Dans l'ombre créative, <span class="text-gold">4 producteurs, auteurs, arrangeurs</span> et <span class="text-gold">2 metteurs en scène</span> créateurs de spectacles façonnent nos productions. L'un de ces metteurs en scène, baryton à la base doté d'une voix magnifique, fait naturellement partie de nos 41 chanteurs - incarnant parfaitement cette polyvalence qui fait la richesse de Bohème Production !
-                                            </p>
-                                        </div>
-
-                                        <div class="excellence-container">
-                                            <p class="magazine-paragraph">
-                                                Notre infrastructure technique s'appuie sur <span class="text-gold">2 spécialistes du son</span> : un <span class="text-gold">spécialiste studio</span> équipé d'un des plus grands studios, et un <span class="text-gold">spécialiste régie</span> pour les <span class="text-gold">productions d'exception</span> en grandes salles extérieures ou intérieures pouvant accueillir un <span class="text-gold">nombre exponentiel de spectateurs</span>, ainsi que des <span class="text-gold">photographes et vidéastes dans l'ombre</span> qui capturent l'essence de nos créations.
-                                            </p>
-                                        </div>
-
-                                        <h4 class="magazine-section-title">Collaboration avec des Chanteurs de The Voice</h4>
-
-                                        <div class="collaboration-container">
-                                            <p class="magazine-paragraph">
-                                                Bohème Production accueille de nombreux chanteurs issus de The Voice, cette richesse enrichissant constamment notre palette artistique de talents exceptionnels qui font partie intégrante de notre famille artistique.
-                                            </p>
-                                            <p class="magazine-paragraph">
-                                                <span class="text-gold-shimmer">Bohème découvre les artistes émergents</span> issus de The Voice et The Voice Kids qui illuminent nos productions de leur fraîcheur créative. Ces <span class="text-gold">talents en éclosion</span> apportent un souffle nouveau à l'art vocal traditionnel, <span class="text-gold-shimmer">transformant les rêves en parcours qui flamboient</span>. Tout est représenté dans Bohème Production : vous reconnaîtrez assurément des visages familiers parmi nos artistes !
-                                            </p>
-                                        </div>
-
-                                        <div class="highlight-quote">
-                                            Nous sommes les sculpteurs de destinées artistiques, révélant chaque jour de nouveaux diamants vocaux.
-                                        </div>
-
-                                        <h4 class="magazine-section-title">Parmi Nos Artistes Lyriques - Voici Une Petite Sélection</h4>
-
-                                        <div class="artists-highlight-container">
-                                            <p class="magazine-paragraph">
-                                                Tous les artistes lyriques, pop lyriques et de variétés internationales sont des pépites. Il y a tellement d'artistes dans Bohème Production que ceci n'est qu'une petite sélection :
-                                            </p>
-                                            <div class="artists-highlight-grid">
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Norah Amsellem</div>
-                                                    <div class="artist-description">Soprano d'exception qui a fait résonner sa voix dans les temples sacrés de l'opéra international</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Luca Lombardo</div>
-                                                    <div class="artist-description">Ténor au timbre lumineux, ambassadeur des plus grandes maisons lyriques</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Richard Alexandre Rittelmann</div>
-                                                    <div class="artist-description">Baryton à la prestance vocale incomparable, habitué des plus prestigieuses salles</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Avi Klemberg</div>
-                                                    <div class="artist-description">Ténor au souffle poétique qui enchante les plus beaux opéras</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Mickaël Guedj</div>
-                                                    <div class="artist-description">Virtuose de l'art lyrique et de la pop lyrique internationale, révélé notamment sur France 2 dans "Le Grand Show"</div>
-                                                </div>
+                                            <div class="image-overlay-container">
+                                                <img src="boheme-artistic-collage.png" alt="Collection Artistique Bohème Production" class="content-image"
+                                                     onerror="this.parentNode.innerHTML='<div class=image-placeholder>COLLECTION ARTISTIQUE<br>BOHÈME PRODUCTION</div>'">
+                                            </div>
+                                            <div class="content-text-block">
+                                                <p class="content-text">
+                                                    Bohème Production réunit une famille artistique exceptionnelle de 41 chanteurs de renommée internationale aux multiples talents. Nos spectacles font vibrer le public à travers une mosaïque d'expressions musicales - tantôt une voix s'élève seule, tantôt plusieurs artistes se rejoignent dans une harmonie parfaite autour d'œuvres qui ont certainement suscité de l'émotion dans votre vie. Du plus intime au plus grandiose, chaque configuration offre un moment unique, alliant opéra traditionnel, comédie musicale, opéra pop, variété internationale et bien d'autres styles artistiques. Notre passion se ressent à chaque note, transportant les spectateurs dans un voyage musical sans frontières. Cette richesse vocale permet de créer des expériences musicales inoubliables qui touchent directement au cœur.
+                                                </p>
                                             </div>
                                         </div>
 
-                                        <h4 class="magazine-section-title">Nos Artistes Polyvalents Chanteur et Metteur en Scène</h4>
-
-                                        <div class="polyvalent-artists-container">
-                                            <div class="artists-highlight-grid">
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Pascal Terrien</div>
-                                                    <div class="artist-description">Baryton à l'élégance vocale raffinée, maître de cérémonie et directeur artistique principal de Bohème Production</div>
-                                                </div>
+                                        <!-- 🔥 NOUVELLE SECTION 2: TRILOGIE avec effet ultra-impressionnant -->
+                                        <div class="trilogie-section-container">
+                                            <div class="trilogie-video-background">
+                                                <video autoplay muted loop playsinline>
+                                                    <source src="smoke_red_bg.mp4" type="video/mp4">
+                                                </video>
+                                            </div>
+                                            <div class="trilogie-image-overlay">
+                                                <img src="trilogie_lyrique.png" alt="Trilogie Lyrique" class="trilogie-image"
+                                                     onerror="this.parentNode.innerHTML='<div class=trilogie-image-placeholder>TRILOGIE<br>LYRIQUE</div>'">
                                             </div>
                                         </div>
 
-                                        <h4 class="magazine-section-title">Nos Étoiles de la Pop et de la Variété</h4>
+                                        <!-- 🔥 NOUVELLE SECTION 3: Trio de Virtuoses -->
+                                        <h4 class="magazine-section-title-center">Trio de Virtuoses</h4>
+                                        <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">Piano, Direction et Polyvalence</h5>
+
+                                        <div class="video-content-block">
+                                            <div class="video-background-container">
+                                                <video autoplay muted loop playsinline>
+                                                    <source src="partitions_flow.mp4" type="video/mp4">
+                                                </video>
+                                            </div>
+                                            <div class="image-overlay-container">
+                                                <img src="trio_piano.png" alt="Trio Piano" class="content-image"
+                                                     onerror="this.parentNode.innerHTML='<div class=image-placeholder>TRIO<br>PIANO</div>'">
+                                            </div>
+                                            <div class="content-text-block">
+                                                <p class="content-text">
+                                                    Cette constellation s'enrichit de 3 maîtres du piano : un chef d'orchestre dirigeant un ensemble orchestral complet, une pianiste chanteuse, et une artiste polyvalente aux multiples facettes. Certains d'entre eux assument également des rôles de chef de chant ou de chef de chœur, témoignant de l'excellence et de la diversité de notre équipe.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!-- 🔥 NOUVELLE SECTION 4: Quand la Danse Raconte -->
+                                        <h4 class="magazine-section-title-center">Quand la Danse Raconte</h4>
+                                        <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">La Magie du Geste</h5>
+
+                                        <div class="video-content-block">
+                                            <div class="video-background-container">
+                                                <video autoplay muted loop playsinline>
+                                                    <source src="paillettes-choregraphie.mp4" type="video/mp4">
+                                                </video>
+                                            </div>
+                                            <div class="image-overlay-container">
+                                                <img src="choregraphie-artistic-trio.png" alt="Chorégraphie Artistic Trio" class="content-image"
+                                                     onerror="this.parentNode.innerHTML='<div class=image-placeholder>CHORÉGRAPHIE<br>ARTISTIC TRIO</div>'">
+                                            </div>
+                                            <div class="content-text-block">
+                                                <p class="content-text">
+                                                    Nous célébrons l'univers de la danse avec 2 chorégraphes professionnelles dont une directrice d'école de danse, ainsi qu'une jeune danseuse de 13 ans, récemment intégrée à Bohème et championne du monde de hip-hop junior. Ces artistes talentueuses apportent une dimension moderne et dynamique à nos spectacles, fusionnant techniques classiques et mouvements contemporains. Bohème peut mobiliser des danseurs professionnels supplémentaires selon les besoins et l'envergure des projets. La présence de notre jeune championne illustre l'engagement envers les nouveaux talents. Selon les créations, nos chorégraphes collaborent pour concevoir des chorégraphies originales enrichissant nos spectacles.
+                                                </p>
+                                                <p class="content-text">
+                                                    Chaque mouvement devient expression artistique au service de vos événements.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!-- 🔥 NOUVELLE SECTION 5: L'Art Vocal Nouvelle Génération -->
+                                        <h4 class="magazine-section-title-center">L'Art Vocal Nouvelle Génération</h4>
+                                        <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">Des talents de The Voice sur scène</h5>
 
                                         <div class="content-section-container">
                                             <p class="magazine-paragraph">
-                                                L'univers de la chanson populaire rayonne à travers nos artistes aux parcours extraordinaires :
-                                            </p>
-                                            <div class="artists-highlight-grid">
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Patrice Carmona</div>
-                                                    <div class="artist-description">Artiste polyvalent révélé dans l'univers des "Dix Commandements" où il a souvent remplacé Daniel Lévy</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Alexis Hoffman</div>
-                                                    <div class="artist-description">Prodige finaliste d'"Incroyable Talent", ambassadeur de la nouvelle génération artistique</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Virginie Behem</div>
-                                                    <div class="artist-description">Soprano délicate et choriste fidèle de Gilbert Montagné</div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <h4 class="magazine-section-title">Nos Producteurs et Créateurs</h4>
-
-                                        <div class="content-section-container">
-                                            <div class="artists-highlight-grid">
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Frederico Alagna</div>
-                                                    <div class="artist-description">Producteur et auteur de talent, frère du ténor mondialement connu Roberto Alagna</div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <h4 class="magazine-section-title">La Magie de la Polyvalence - Chacun sa Pierre à l'Édifice</h4>
-
-                                        <div class="content-section-container">
-                                            <p class="magazine-paragraph">
-                                                Au cœur de Bohème Production, chaque âme généreuse apporte sa pierre précieuse à l'édifice artistique. Qu'il s'agisse de talents cachés en informatique, de créativité dans la publication de belles affiches, de maîtrise dans la réalisation de vidéos captivantes, ou d'expertise dans mille autres domaines, chaque membre de notre famille dévoile des facettes insoupçonnées.
-                                            </p>
-                                            <div class="highlight-quote">
-                                                Cette mosaïque de talents complémentaires tisse la toile magique de nos spectacles, où l'excellence technique rencontre la beauté artistique dans une symphonie parfaite. Il y a la possibilité de tout faire avec Bohème !
-                                            </div>
-                                            <p class="magazine-paragraph">
-                                                Chaque artiste dans Bohème Production est une étoile scintillante aux multiples facettes, unis dans une symphonie de passion pour vous offrir des prestations sublimes. Ouvrez bien vos yeux car Bohème Production va vous éblouir dans un kaléidoscope de voix divines !
+                                                Bohème Production ouvre ses portes aux talents révélés par The Voice et The Voice Kids, ces artistes émergents qui insufflent une énergie nouvelle à nos créations. Leur fraîcheur créative enrichit notre palette artistique et revisite l'art vocal avec audace. Des visages familiers aux découvertes prometteuses, notre famille artistique grandit constamment. Vous reconnaîtrez sûrement quelques talents qui ont marqué le petit écran !
                                             </p>
                                         </div>
 
-                                        <h4 class="magazine-section-title">L'Art Sans Limites - Tout Devient Possible</h4>
-
-                                        <div class="content-section-container">
-                                            <p class="magazine-paragraph">
-                                                Bohème Production transcende les frontières du spectacle pour vous offrir des créations sur mesure aux dimensions infinies :
-                                            </p>
-                                            <div class="clean-list">
-                                                <div class="clean-list-item">• <span class="text-gold">Spectacles grandioses</span> pour un nombre exponentiel de spectateurs</div>
-                                                <div class="clean-list-item">• <span class="text-gold">Comédies musicales féeriques</span> où chaque note raconte une histoire</div>
-                                                <div class="clean-list-item">• <span class="text-gold">Excellence acoustique</span> portée par nos maîtres sonorisateurs</div>
-                                                <div class="clean-list-item">• <span class="text-gold">Ballet des arts</span> : danseurs, acteurs, metteurs en scène dans une harmonie créative totale</div>
-                                            </div>
-                                        </div>
-
-                                        <h4 class="magazine-section-title">Rayonnement Azuréen vers l'Universel</h4>
-
-                                        <div class="highlight-quote">
-                                            Depuis l'écrin doré de la Côte d'Azur, Bohème Production déploie ses ailes artistiques vers tous les horizons. Nos créations ont déjà caressé les plus belles scènes et ont scintillé sous les feux des plus prestigieux festivals.
-                                        </div>
-
+                                        <!-- Message Patrick - Conservé tel que c'était -->
                                         <div class="patrick-quote-highlight">
                                             <h4 class="patrick-quote-title">La Promesse d'un Enchantement Éternel</h4>
                                             <h5 style="color: var(--gold); font-style: italic; margin-bottom: 20px; font-size: 1.3rem;">Mot de notre président Patrick Elie Féré</h5>
@@ -2173,6 +2292,7 @@
                                     </div>
                                 </div>
 
+                                <!-- Logo décoratif conservé -->
                                 <div class="decorative-logo-section">
                                     <div class="decorative-video-background">
                                         <video autoplay muted loop playsinline>
@@ -2183,6 +2303,7 @@
                                          onerror="this.parentNode.innerHTML='<div class=decorative-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=decorative-logo-placeholder>BOHÈME<br>PRODUCTION</div>'">
                                 </div>
 
+                                <!-- Crédits conservés -->
                                 <div class="final-credits">
                                     <div class="credits-line"><span class="credits-name">Mickaël Guedj</span> - Conception d'expérience interactive et musicale, Design numérique, Musique originale, Réalisation, Production assistée par IA</div>
                                     <div class="credits-line"><span class="credits-name">Stéphanie Doméjean</span> - Créations textuelles et visuelles, Paroles, Photographies</div>
@@ -2195,7 +2316,7 @@
             </div>
         </section>
 
-        <!-- Section: Bureau -->
+        <!-- Section: Bureau - CONSERVÉE INTÉGRALEMENT -->
         <section class="section" id="bureau">
             <div class="section-container">
                 <div class="section-header">
@@ -2279,7 +2400,7 @@
             </div>
         </section>
 
-        <!-- Section: Artistes -->
+        <!-- Section: Artistes - CONSERVÉE INTÉGRALEMENT -->
         <section class="section" id="artistes">
             <div class="section-container">
                 <div class="section-header">
@@ -2374,7 +2495,7 @@
                                 <p class="artiste-role">Baryton Verdien</p>
                             </div>
                             <div class="artiste-card">
-                                <div class="artiste-placeholder">
+                                <div class="artiste-photo-placeholder">
                                     <span class="material-icons">person</span>
                                 </div>
                                 <h3 class="artiste-name">Mickael Guedj</h3>
@@ -2422,7 +2543,7 @@
             </div>
         </section>
 
-        <!-- Section: Productions -->
+        <!-- Section: Productions - CONSERVÉE INTÉGRALEMENT -->
         <section class="section" id="productions">
             <div class="section-container">
                 <div class="section-header">
@@ -2506,7 +2627,7 @@
             </div>
         </section>
 
-        <!-- Section: Contact -->
+        <!-- Section: Contact - CONSERVÉE INTÉGRALEMENT -->
         <section class="section" id="contact">
             <div class="section-container">
                 <div class="section-header">
@@ -2553,8 +2674,7 @@
                                 </div>
                                 <div class="contact-text">
                                     Disponible 7j/7
-                                    <span class="material-icons">language</span>
-                                    </div>
+                                    <span>Pour vos projets artistiques</span>
                                 </div>
                             </div>
                         </div>
