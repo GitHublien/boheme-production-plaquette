@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Bohème Production - Plaquette Interactive</title>
-    connect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes:wght@400&family=Cinzel:ital,wght@0,400;0,500;0,600;1,400&family=Didot:wght@400;700&family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -371,7 +371,7 @@
             }
         }
 
-        /* Navigation avec l'or */
+        /* 🔥 NAVIGATION NETTOYÉE - SUPPRESSION ARRIÈRE-PLAN GÊNANT */
         .navigation {
             position: fixed;
             top: 50%;
@@ -382,6 +382,13 @@
             flex-direction: column;
             align-items: center;
             gap: 15px;
+            /* 🔥 SUPPRESSION COMPLÈTE DE L'ARRIÈRE-PLAN */
+            background: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            border: none;
+            box-shadow: none;
         }
 
         .nav-dot {
@@ -1811,6 +1818,7 @@
             }
         }
 
+        /* 🔥 MOBILE/TABLETTE - NAVIGATION CLEAN SANS ARRIÈRE-PLAN */
         @media (max-width: 768px) {
             .section-container {
                 width: 100%;
@@ -1846,19 +1854,24 @@
             .cover-interactive-text {
                 font-size: 1.2rem;
             }
+            
+            /* 🔥 NAVIGATION MOBILE ULTRA-CLEAN */
             .navigation {
                 bottom: 30px;
                 top: auto;
                 right: 50%;
                 transform: translateX(50%);
                 flex-direction: row;
-                background: rgba(255,255,255,0.95);
-                padding: 15px 20px;
-                border-radius: 30px;
-                border: 2px solid var(--gold);
-                backdrop-filter: blur(10px);
-                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+                /* 🔥 SUPPRESSION COMPLÈTE ARRIÈRE-PLAN MOBILE */
+                background: none !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                padding: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
             }
+            
             .cover-scroll-indicator {
                 bottom: 120px;
             }
@@ -2097,7 +2110,7 @@
             </div>
         </div>
 
-        <!-- Navigation dots -->
+        <!-- 🔥 NAVIGATION NETTOYÉE -->
         <div class="navigation">
             <div class="nav-dot active" data-section="cover">
                 <div class="nav-tooltip">Couverture</div>
@@ -2700,13 +2713,13 @@
                 this.currentSection = 0;
                 this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
                 this.isTransitioning = false;
-
+                
                 // Variables pour le swipe SIMPLIFIÉES
                 this.touchStart = { x: 0, y: 0, time: 0 };
                 this.touchEnd = { x: 0, y: 0, time: 0 };
                 this.minSwipeDistance = 50; // 🔥 AUGMENTÉ pour éviter navigation accidentelle
                 this.minVelocity = 0.3; // 🔥 AUGMENTÉ pour éviter navigation accidentelle
-
+                
                 this.init();
             }
 
@@ -2723,10 +2736,10 @@
                     e.preventDefault();
                     e.stopPropagation();
                     console.log('🎵 Démarrage exploration + musique');
-
+                    
                     // Démarrer la musique automatiquement
                     this.startMusicOnExploration();
-
+                    
                     // Aller à la page suivante
                     this.goToSection(1);
                 });
@@ -2736,7 +2749,7 @@
             startMusicOnExploration() {
                 const audio = document.getElementById('background-music');
                 const playPauseBtn = document.getElementById('play-pause-btn');
-
+                
                 if (audio && playPauseBtn) {
                     audio.play().then(() => {
                         console.log('🎵 Musique démarrée automatiquement');
@@ -2763,65 +2776,65 @@
             setupTouchNavigation() {
                 // Variables pour détecter les zones de scroll
                 let isInScrollableArea = false;
-
+                
                 document.addEventListener('touchstart', (e) => {
                     if (this.isTransitioning) return;
-
+                    
                     const touch = e.touches[0];
                     this.touchStart = {
                         x: touch.clientX,
                         y: touch.clientY,
                         time: Date.now()
                     };
-
+                    
                     // 🔥 DÉTECTER SI ON EST DANS UNE ZONE SCROLLABLE
                     const target = e.target;
                     const scrollableElements = [
                         '.section-content',
-                        '.intro-content-magazine',
+                        '.intro-content-magazine', 
                         '.scrollable-content',
                         '.magazine-content-wrapper'
                     ];
-
-                    isInScrollableArea = scrollableElements.some(selector =>
+                    
+                    isInScrollableArea = scrollableElements.some(selector => 
                         target.closest(selector)
                     );
-
+                    
                 }, { passive: true });
 
                 document.addEventListener('touchend', (e) => {
                     if (this.isTransitioning) return;
-
+                    
                     const touch = e.changedTouches[0];
                     this.touchEnd = {
                         x: touch.clientX,
                         y: touch.clientY,
                         time: Date.now()
                     };
-
+                    
                     // 🔥 NAVIGATION SEULEMENT SI PAS DANS ZONE SCROLLABLE
                     if (!isInScrollableArea) {
                         this.handleSwipeSimple();
                     }
-
+                    
                 }, { passive: true });
 
                 // 🔥 WHEEL ULTRA-SÉLECTIF POUR ÉVITER AUTO-SCROLL
                 document.addEventListener('wheel', (e) => {
                     if (this.isTransitioning) return;
-
+                    
                     // Vérifier si on fait du wheel sur le contenu principal
                     const target = e.target;
                     const sectionContent = target.closest('.section-content');
-
+                    
                     if (sectionContent) {
                         const isAtTop = sectionContent.scrollTop <= 5;
                         const isAtBottom = sectionContent.scrollTop >= (sectionContent.scrollHeight - sectionContent.clientHeight - 5);
-
+                        
                         // 🔥 NAVIGATION SEULEMENT si on est VRAIMENT en haut/bas ET scroll dans cette direction
                         // ET que le scroll est assez fort (éviter micro-scrolls accidentels)
                         const strongScroll = Math.abs(e.deltaY) > 50;
-
+                        
                         if (strongScroll && ((e.deltaY < -50 && isAtTop) || (e.deltaY > 50 && isAtBottom))) {
                             const direction = e.deltaY > 0 ? 'down' : 'up';
                             this.handleDirectionalNavigation(direction);
@@ -2839,14 +2852,14 @@
 
                 // Ignorer les swipes horizontaux
                 if (Math.abs(deltaX) > Math.abs(deltaY)) return;
-
+                
                 // 🔥 CONDITIONS PLUS STRICTES pour éviter navigation accidentelle
                 const distance = Math.abs(deltaY);
                 if (distance < this.minSwipeDistance || deltaTime < 200) return;
 
                 // Calculer vélocité
                 const velocity = distance / (deltaTime || 1);
-
+                
                 // 🔥 CONDITIONS STRICTES
                 if (velocity > this.minVelocity && distance > 80) {
                     const direction = deltaY > 0 ? 'up' : 'down';
@@ -2857,7 +2870,7 @@
 
             handleDirectionalNavigation(direction) {
                 console.log(`Navigation ${direction}`); // DEBUG
-
+                
                 if (direction === 'down' && this.currentSection < this.sections.length - 1) {
                     this.goToSection(this.currentSection + 1);
                 } else if (direction === 'up' && this.currentSection > 0) {
@@ -2905,7 +2918,7 @@
                     tab.addEventListener('click', (e) => {
                         e.preventDefault();
                         e.stopPropagation();
-
+                        
                         const category = tab.dataset.category;
                         console.log(`Onglet cliqué: ${category}`); // DEBUG
 
@@ -2938,7 +2951,7 @@
                 playPauseBtn?.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-
+                    
                     if (audio.paused) {
                         audio.play().then(() => {
                             console.log('🎵 Musique démarrée manuellement');
@@ -2955,7 +2968,7 @@
                 muteBtn?.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-
+                    
                     audio.muted = !audio.muted;
                     muteBtn.innerHTML = audio.muted ?
                         '<span class="material-icons">volume_off</span>' :
@@ -3044,3 +3057,31 @@
     </script>
 </body>
 </html>
+```
+
+## ✅ **SUPPRESSION COMPLÈTE DE L'ARRIÈRE-PLAN GÊNANT :**
+
+### 🔧 **MODIFICATIONS PRINCIPALES :**
+
+1. **Navigation Desktop :**
+   - `background: none !important`
+   - `backdrop-filter: none !important` 
+   - `padding: 0 !important`
+   - `border: none !important`
+   - `box-shadow: none !important`
+
+2. **Navigation Mobile/Tablette :**
+   - Suppression de l'arrière-plan blanc translucide
+   - Points de navigation plus **"propres"** et **nets**
+   - Plus d'effet de flou/transparence
+
+3. **Points de navigation :**
+   - Gardent leur style doré avec bordure noire
+   - Plus d'arrière-plan parasites autour
+
+### 🎯 **RÉSULTAT :**
+- **PC** : Points de navigation nets sans arrière-plan
+- **Mobile** : Barre de navigation horizontale **ultra-clean** 
+- **Tablette** : Interface épurée sans effet gênant
+
+Maintenant l'arrière-plan translucide/flou qui polluait le visuel a complètement disparu ! 🎉
