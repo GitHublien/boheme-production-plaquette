@@ -2,28 +2,12 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-
     <title>Bohème Production - Plaquette Interactive</title>
-
-    <!-- SEO Métadonnées optimisées -->
-    <meta name="description" content="Bohème Production - Excellence artistique en Côte d'Azur. Découvrez nos 41 artistes lyriques, nos productions et spectacles d'exception.">
-    <meta name="keywords" content="Bohème Production, opéra, lyrique, spectacle, Côte d'Azur, Patrick Elie Féré, concerts, productions artistiques">
-    <meta name="author" content="Bohème Production">
-    <meta property="og:title" content="Bohème Production - L'excellence lyrique en Côte d'Azur">
-    <meta property="og:description" content="Découvrez l'univers artistique de Bohème Production avec nos 41 artistes d'exception et nos productions lyriques de prestige.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="logo-boheme-en-or.png">
-
-    <!-- Préchargement des polices critiques -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    connect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes:wght@400&family=Cinzel:ital,wght@0,400;0,500;0,600;1,400&family=Didot:wght@400;700&family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Préchargement des ressources critiques -->
-    <link rel="preload" href="logo-boheme-en-or.png" as="image">
-    <link rel="preload" href="AIR_SING_BOHEME.mp3" as="audio">
-
     <style>
         :root {
             --gold: #D4AF37;
@@ -58,7 +42,7 @@
             color: var(--dark);
         }
 
-        /* Optimisation des barres de défilement */
+        /* Barre de défilement stylisée */
         ::-webkit-scrollbar {
             width: 12px;
         }
@@ -78,54 +62,13 @@
             background: linear-gradient(180deg, var(--gold-dark), var(--gold));
         }
 
+        /* Pour Firefox */
         html {
             scrollbar-width: thin;
             scrollbar-color: var(--gold) var(--light-gray);
         }
 
-        /* OPTIMISATION VIDÉOS - Chargement amélioré */
-        .video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .video-container video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%);
-            object-fit: cover;
-            /* OPTIMISATIONS PERFORMANCES */
-            will-change: transform;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
-
-        /* Fallback pour vidéos non chargées */
-        .video-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(212,175,55,0.3), rgba(0,0,0,0.1));
-            display: none;
-        }
-
-        .video-container.error .video-fallback {
-            display: block;
-        }
-
-        /* Global background video optimisé */
+        /* Global background video */
         .global-background-video {
             position: fixed;
             top: 0;
@@ -147,11 +90,9 @@
             transform: translateX(-50%) translateY(-50%);
             opacity: 1;
             object-fit: cover;
-            will-change: transform;
-            backface-visibility: hidden;
         }
 
-        /* Audio controls optimisés */
+        /* Audio controls avec l'or comme demandé */
         .audio-controls {
             position: fixed;
             top: 20px;
@@ -165,9 +106,6 @@
             box-shadow: 0 3px 15px rgba(0,0,0,0.4), 0 0 20px rgba(212,175,55,0.6);
             border: 2px solid var(--black);
             font-size: 12px;
-            /* ACCESSIBILITÉ */
-            role: toolbar;
-            aria-label: "Contrôles audio";
         }
 
         .audio-control-btn {
@@ -185,8 +123,9 @@
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             border: 2px solid var(--black);
-            /* ACCESSIBILITÉ */
-            aria-label: "Bouton de contrôle audio";
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
         }
 
         .audio-control-btn:hover {
@@ -213,8 +152,6 @@
             border-radius: 2px;
             outline: none;
             -webkit-appearance: none;
-            /* ACCESSIBILITÉ */
-            aria-label: "Contrôle du volume";
         }
 
         .volume-slider input::-webkit-slider-thumb {
@@ -235,7 +172,7 @@
             overflow: hidden;
         }
 
-        /* Sections optimisées */
+        /* Full page sections */
         .section {
             position: absolute;
             width: 100%;
@@ -248,8 +185,6 @@
             visibility: hidden;
             transition: opacity 1s ease, visibility 1s ease;
             overflow: hidden;
-            /* ACCESSIBILITÉ */
-            role: "main";
         }
 
         .section.active {
@@ -297,8 +232,6 @@
             height: 100%;
             object-fit: contain;
             filter: drop-shadow(2px 2px 4px var(--black));
-            /* ACCESSIBILITÉ */
-            alt: "Logo Bohème Production";
         }
 
         .cover-title {
@@ -377,17 +310,13 @@
             align-items: center;
             cursor: pointer;
             transition: transform 0.3s ease;
-            /* SUPPRESSION DU FOND BLANC */
-            background: none !important;
-            border: none !important;
-            /* ACCESSIBILITÉ */
-            role: "button";
-            aria-label: "Commencer l'exploration";
-            tabindex: "0";
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            z-index: 100;
         }
 
-        .cover-scroll-indicator:hover,
-        .cover-scroll-indicator:focus {
+        .cover-scroll-indicator:hover {
             transform: translateX(-50%) translateY(5px);
         }
 
@@ -442,7 +371,7 @@
             }
         }
 
-        /* Navigation optimisée avec ARIA */
+        /* Navigation avec l'or */
         .navigation {
             position: fixed;
             top: 50%;
@@ -453,9 +382,6 @@
             flex-direction: column;
             align-items: center;
             gap: 15px;
-            /* ACCESSIBILITÉ */
-            role: "navigation";
-            aria-label: "Navigation principale";
         }
 
         .nav-dot {
@@ -468,9 +394,9 @@
             transition: all 0.3s ease;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3), 0 0 10px rgba(212,175,55,0.5);
             position: relative;
-            /* ACCESSIBILITÉ */
-            role: "button";
-            tabindex: "0";
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
         }
 
         .nav-dot.active {
@@ -478,8 +404,7 @@
             box-shadow: 0 0 20px rgba(212,175,55,0.8), 0 4px 8px rgba(0,0,0,0.4);
         }
 
-        .nav-dot:hover,
-        .nav-dot:focus {
+        .nav-dot:hover {
             transform: scale(1.2);
             box-shadow: 0 0 15px rgba(212,175,55,0.7);
         }
@@ -500,18 +425,15 @@
             color: var(--gold);
             border: 1px solid var(--gold);
             box-shadow: 0 3px 10px rgba(0,0,0,0.5);
-            /* ACCESSIBILITÉ */
-            role: "tooltip";
         }
 
-        .nav-dot:hover .nav-tooltip,
-        .nav-dot:focus .nav-tooltip {
+        .nav-dot:hover .nav-tooltip {
             opacity: 1;
             visibility: visible;
             transform: translateX(0);
         }
 
-        /* Content sections */
+        /* Content sections styling */
         .section-container {
             position: relative;
             width: 90%;
@@ -537,6 +459,29 @@
             border-bottom: 2px solid var(--gold);
             overflow: hidden;
             touch-action: manipulation;
+        }
+
+        .section-header-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .section-header-video video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 1;
+            object-fit: cover;
         }
 
         .section-title {
@@ -566,7 +511,7 @@
             border: 1px solid var(--black);
         }
 
-        /* SECTION CONTENT OPTIMISÉE POUR MOBILE */
+        /* 🔥 SECTION SCROLLABLE AVEC ZONE DE SCROLL PROTÉGÉE */
         .section-content {
             flex: 1;
             position: relative;
@@ -577,12 +522,10 @@
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            /* OPTIMISATION SCROLL MOBILE */
-            overscroll-behavior: contain;
-            scroll-snap-type: none;
+            /* 🔥 IMPORTANT: Marquer cette zone comme zone de scroll */
+            touch-action: pan-y;
         }
 
-        /* AMÉLIORATION - Section contenu magazine */
         .intro-content-magazine {
             position: relative;
             width: 100%;
@@ -593,8 +536,8 @@
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            /* OPTIMISATION SCROLL MOBILE */
-            overscroll-behavior: contain;
+            /* 🔥 IMPORTANT: Zone de scroll protégée */
+            touch-action: pan-y;
         }
 
         .scrollable-content {
@@ -610,6 +553,8 @@
             );
             box-shadow: inset 0 0 150px rgba(212,175,55,0.2);
             padding-bottom: 150px;
+            /* 🔥 IMPORTANT: Zone de scroll protégée */
+            touch-action: pan-y;
         }
 
         .hero-image-container {
@@ -619,6 +564,28 @@
             overflow: hidden;
             margin-bottom: 0;
             background: transparent;
+        }
+
+        .hero-image-video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-image-video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 1;
+            object-fit: cover;
         }
 
         .hero-image {
@@ -681,6 +648,29 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.6);
         }
 
+        .artistic-collage-video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .artistic-collage-video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 1;
+            object-fit: cover;
+        }
+
         .artistic-collage-image {
             position: relative;
             z-index: 2;
@@ -717,6 +707,29 @@
             border-radius: 20px;
             box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 60px rgba(212,175,55,0.7);
             border: 5px solid var(--gold);
+        }
+
+        .trilogie-video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .trilogie-video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 1;
+            object-fit: cover;
         }
 
         .trilogie-image-overlay {
@@ -769,6 +782,7 @@
             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
         }
 
+        /* 🔥 CORRECTION: Réintégration de la vidéo de fond pour boheme-artistic-collage.png */
         .video-content-block {
             position: relative;
             margin: 40px 0;
@@ -776,6 +790,29 @@
             overflow: hidden;
             border: 5px solid var(--gold);
             box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.5);
+        }
+
+        .video-background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .video-background-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 1;
+            object-fit: cover;
         }
 
         .image-overlay-container {
@@ -831,6 +868,8 @@
         .magazine-content-wrapper {
             padding: 40px;
             position: relative;
+            /* 🔥 IMPORTANT: Zone de scroll protégée */
+            touch-action: pan-y;
         }
 
         .magazine-intro-block {
@@ -1124,6 +1163,28 @@
             align-items: center;
         }
 
+        .decorative-video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.8;
+        }
+
+        .decorative-video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+        }
+
         .decorative-logo {
             position: relative;
             z-index: 2;
@@ -1308,9 +1369,9 @@
             position: relative;
             color: var(--black);
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-            /* ACCESSIBILITÉ */
-            role: "tab";
-            tabindex: "0";
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
         }
 
         .artiste-tab.active {
@@ -1334,8 +1395,6 @@
         .artiste-category {
             display: none;
             padding: 40px;
-            /* ACCESSIBILITÉ */
-            role: "tabpanel";
         }
 
         .artiste-category.active {
@@ -1438,8 +1497,6 @@
             border: 2px solid var(--black);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
-            /* ACCESSIBILITÉ */
-            aria-label: "Voir tous nos artistes sur le site web";
         }
 
         .artistes-website-button:hover {
@@ -1629,7 +1686,7 @@
             text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
         }
 
-        /* Animations optimisées */
+        /* Animation classes */
         .fade-up {
             animation: fadeUp 1s ease forwards;
         }
@@ -1654,7 +1711,7 @@
             animation: fadeIn 1s ease forwards 0.9s;
         }
 
-        /* Page transition optimisée */
+        /* Page transition effect */
         .page-transition {
             position: fixed;
             top: 0;
@@ -1672,7 +1729,7 @@
             opacity: 1;
         }
 
-        /* RESPONSIVE MOBILE AMÉLIORÉ */
+        /* RESPONSIVE MOBILE */
         @media (max-width: 1200px) {
             .section-container {
                 width: 95%;
@@ -1761,25 +1818,16 @@
                 border-radius: 0;
                 background: rgba(255, 255, 255, 0.7);
             }
-
-            /* 🔥 OPTIMISATION SCROLL MOBILE RENFORCÉE */
             .section-content {
                 padding-bottom: 150px;
                 background: rgba(255, 255, 255, 0.1);
-                /* DÉSACTIVATION DU DÉFILEMENT ÉLASTIQUE */
-                overscroll-behavior-y: none;
             }
-
             .intro-content-magazine {
                 padding-bottom: 200px;
-                /* DÉSACTIVATION DU DÉFILEMENT ÉLASTIQUE */
-                overscroll-behavior-y: none;
             }
-
             .scrollable-content {
                 padding-bottom: 200px;
             }
-
             .section-header {
                 padding: 20px;
                 text-align: center;
@@ -1934,8 +1982,6 @@
             .artistes-tabs {
                 flex-wrap: nowrap;
                 overflow-x: auto;
-                /* SCROLL HORIZONTAL FLUIDE */
-                -webkit-overflow-scrolling: touch;
             }
             .golden-line {
                 width: 80%;
@@ -2022,135 +2068,62 @@
                 padding-bottom: 220px;
             }
         }
-
-        /* 🔥 OPTIMISATIONS PERFORMANCES SUPPLÉMENTAIRES */
-
-        /* Réduction des animations sur mobiles lents */
-        @media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
-            * {
-                animation-duration: 0.3s !important;
-                transition-duration: 0.3s !important;
-            }
-        }
-
-        /* Masquer les éléments non critiques sur très petits écrans */
-        @media (max-width: 320px) {
-            .golden-line {
-                display: none;
-            }
-            .nav-tooltip {
-                display: none !important;
-            }
-        }
-
-        /* Optimisation GPU pour les vidéos */
-        video {
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-        }
-
-        /* Skip to content pour l'accessibilité */
-        .skip-to-content {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--gold);
-            color: var(--black);
-            padding: 8px;
-            text-decoration: none;
-            z-index: 1001;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        .skip-to-content:focus {
-            top: 6px;
-        }
-
-        /* Focus visible pour l'accessibilité */
-        button:focus,
-        a:focus,
-        input:focus,
-        [tabindex]:focus {
-            outline: 2px solid var(--gold);
-            outline-offset: 2px;
-        }
     </style>
-
-    <!-- Analytics simple -->
-    <script>
-        // Simple analytics tracking
-        window.bohemeAnalytics = {
-            events: [],
-            track: function(event, data) {
-                this.events.push({
-                    event: event,
-                    timestamp: new Date().toISOString()
-                });
-                console.log('Analytics:', event, data);
-            }
-        };
-    </script>
 </head>
 <body>
-    <!-- Skip to content pour l'accessibilité -->
-    <a href="#main-content" class="skip-to-content">Aller au contenu principal</a>
-
-    <div class="boheme-plaquette" id="main-content" role="main">
-        <!-- Global background video optimisé -->
+    <div class="boheme-plaquette">
+        <!-- Global background video -->
         <div class="global-background-video">
-            <video id="global-bg-video" autoplay muted loop playsinline preload="none">
+            <video id="global-bg-video" autoplay muted loop playsinline>
                 <source src="magique-fumee.mp4" type="video/mp4">
-                <div class="video-fallback"></div>
             </video>
         </div>
 
-        <!-- Audio element optimisé -->
-        <audio id="background-music" loop preload="none" aria-label="Musique de fond">
+        <!-- Audio element -->
+        <audio id="background-music" loop preload="auto">
             <source src="AIR_SING_BOHEME.mp3" type="audio/mpeg">
         </audio>
 
         <!-- Audio controls -->
-        <div class="audio-controls" role="toolbar" aria-label="Contrôles audio">
-            <button class="audio-control-btn" id="play-pause-btn" title="Play/Pause" aria-label="Lecture/Pause de la musique">
-                <span class="material-icons">pause</span>
+        <div class="audio-controls">
+            <button class="audio-control-btn" id="play-pause-btn" title="Play/Pause">
+                <span class="material-icons">play_arrow</span>
             </button>
-            <button class="audio-control-btn" id="mute-btn" title="Mute/Unmute" aria-label="Activer/Désactiver le son">
+            <button class="audio-control-btn" id="mute-btn" title="Mute/Unmute">
                 <span class="material-icons">volume_up</span>
             </button>
             <div class="volume-slider">
-                <input type="range" id="volume-slider" min="0" max="100" value="30" aria-label="Contrôle du volume">
+                <input type="range" id="volume-slider" min="0" max="100" value="30">
             </div>
         </div>
 
-        <!-- Navigation dots avec ARIA -->
-        <nav class="navigation" role="navigation" aria-label="Navigation principale">
-            <button class="nav-dot active" data-section="cover" aria-label="Aller à la couverture">
-                <div class="nav-tooltip" role="tooltip">Couverture</div>
-            </button>
-            <button class="nav-dot" data-section="intro" aria-label="Aller à la présentation">
-                <div class="nav-tooltip" role="tooltip">Présentation</div>
-            </button>
-            <button class="nav-dot" data-section="bureau" aria-label="Aller à notre bureau">
-                <div class="nav-tooltip" role="tooltip">Notre Bureau</div>
-            </button>
-            <button class="nav-dot" data-section="artistes" aria-label="Aller à nos artistes">
-                <div class="nav-tooltip" role="tooltip">Nos Artistes</div>
-            </button>
-            <button class="nav-dot" data-section="productions" aria-label="Aller aux productions">
-                <div class="nav-tooltip" role="tooltip">Productions</div>
-            </button>
-            <button class="nav-dot" data-section="contact" aria-label="Aller au contact">
-                <div class="nav-tooltip" role="tooltip">Contact</div>
-            </button>
-        </nav>
+        <!-- Navigation dots -->
+        <div class="navigation">
+            <div class="nav-dot active" data-section="cover">
+                <div class="nav-tooltip">Couverture</div>
+            </div>
+            <div class="nav-dot" data-section="intro">
+                <div class="nav-tooltip">Présentation</div>
+            </div>
+            <div class="nav-dot" data-section="bureau">
+                <div class="nav-tooltip">Notre Bureau</div>
+            </div>
+            <div class="nav-dot" data-section="artistes">
+                <div class="nav-tooltip">Nos Artistes</div>
+            </div>
+            <div class="nav-dot" data-section="productions">
+                <div class="nav-tooltip">Productions</div>
+            </div>
+            <div class="nav-dot" data-section="contact">
+                <div class="nav-tooltip">Contact</div>
+            </div>
+        </div>
 
         <!-- Section: Cover -->
-        <section class="section cover-section active" id="cover" role="banner">
+        <section class="section cover-section active" id="cover">
             <div class="cover-content">
                 <div class="logo-container fade-up">
-                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="logo" loading="eager"
-                         onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'><circle cx=\'100\' cy=\'100\' r=\'90\' fill=\'%23000\' stroke=\'%23D4AF37\' stroke-width=\'5\'/><text x=\'100\' y=\'100\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\' text-anchor=\'middle\' dominant-baseline=\'middle\'>BP</text><text x=\'100\' y=\'130\' font-family=\'Arial\' font-size=\'12\' fill=\'%23D4AF37\' text-anchor=\'middle\'>Bohème Production</text></svg>'">
+                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'><circle cx=\'100\' cy=\'100\' r=\'90\' fill=\'%23000\' stroke=\'%23D4AF37\' stroke-width=\'5\'/><text x=\'100\' y=\'100\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\' text-anchor=\'middle\' dominant-baseline=\'middle\'>BP</text><text x=\'100\' y=\'130\' font-family=\'Arial\' font-size=\'12\' fill=\'%23D4AF37\' text-anchor=\'middle\'>Bohème Production</text></svg>'">
                 </div>
                 <h1 class="cover-title fade-in-delay-1">
                     <span class="cover-title-text">Bohème Production</span>
@@ -2159,41 +2132,38 @@
                 <div class="golden-line fade-in-delay-3"></div>
                 <p class="cover-interactive-text fade-in-delay-3">Plaquette Interactive</p>
 
-                <button class="cover-scroll-indicator" id="start-exploration" role="button" aria-label="Commencer l'exploration" tabindex="0">
+                <div class="cover-scroll-indicator" id="start-exploration">
                     <div class="scroll-text">Explorer</div>
                     <div class="scroll-arrow">
                         <span class="material-icons">keyboard_arrow_down</span>
                     </div>
-                </button>
+                </div>
             </div>
         </section>
 
         <!-- Section: PRÉSENTATION -->
-        <section class="section" id="intro" role="main">
+        <section class="section" id="intro">
             <div class="section-container">
-                <header class="section-header">
-                    <div class="video-container">
-                        <video autoplay muted loop playsinline preload="none">
+                <div class="section-header">
+                    <div class="section-header-video">
+                        <video autoplay muted loop playsinline preload="auto">
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                            <div class="video-fallback"></div>
                         </video>
                     </div>
                     <h2 class="section-title">Présentation</h2>
-                </header>
+                </div>
                 <div class="section-content">
                     <div class="intro-content-magazine">
                         <div class="scrollable-content">
-
                             <!-- Photo principale avec titre -->
                             <div class="hero-image-container">
-                                <div class="video-container">
-                                    <video autoplay muted loop playsinline preload="none">
+                                <div class="hero-image-video-background">
+                                    <video autoplay muted loop playsinline>
                                         <source src="magique-fumee.mp4" type="video/mp4">
-                                        <div class="video-fallback"></div>
                                     </video>
                                 </div>
-                                <img src="artistes-boheme.jpg" alt="Concert Bohème Production au Palais Clément Massier" class="hero-image" loading="lazy"
-                                     onerror="this.parentNode.innerHTML='<div class=video-container><video autoplay muted loop playsinline preload=none><source src=magique-fumee.mp4 type=video/mp4><div class=video-fallback></div></video></div><div class=hero-image-placeholder>CONCERT BOHÈME PRODUCTION<br>Palais Clément Massier</div>'">
+                                <img src="artistes-boheme.jpg" alt="Concert Bohème Production au Palais Clément Massier" class="hero-image"
+                                     onerror="this.parentNode.innerHTML='<div class=hero-image-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=hero-image-placeholder>CONCERT BOHÈME PRODUCTION<br>Palais Clément Massier</div>'">
                                 <div class="hero-image-overlay">
                                     <h3 class="hero-image-title">Concert Bohème Production<br>Palais Clément Massier</h3>
                                 </div>
@@ -2214,18 +2184,18 @@
                                             </p>
                                         </div>
 
-                                        <!-- NOUVELLE SECTION 1: Une Constellation Artistique Complète -->
+                                        <!-- Nouvelle section 1: Une Constellation Artistique Complète -->
                                         <h4 class="magazine-section-title-center">Une Constellation Artistique Complète</h4>
 
+                                        <!-- 🔥 CORRECTION: Réintégration de la vidéo magique-fumee.mp4 pour boheme-artistic-collage.png -->
                                         <div class="video-content-block">
-                                            <div class="video-container">
-                                                <video autoplay muted loop playsinline preload="none">
-                                                    <source src="magic-fumee.mp4" type="video/mp4">
-                                                    <div class="video-fallback"></div>
+                                            <div class="video-background-container">
+                                                <video autoplay muted loop playsinline>
+                                                    <source src="magique-fumee.mp4" type="video/mp4">
                                                 </video>
                                             </div>
                                             <div class="image-overlay-container">
-                                                <img src="boheme-artistic-collage.png" alt="Collection Artistique Bohème Production" class="content-image" loading="lazy"
+                                                <img src="boheme-artistic-collage.png" alt="Collection Artistique Bohème Production" class="content-image"
                                                      onerror="this.parentNode.innerHTML='<div class=image-placeholder>COLLECTION ARTISTIQUE<br>BOHÈME PRODUCTION</div>'">
                                             </div>
                                             <div class="content-text-block">
@@ -2235,33 +2205,31 @@
                                             </div>
                                         </div>
 
-                                        <!-- NOUVELLE SECTION 2: TRILOGIE avec effet ultra-impressionnant -->
+                                        <!-- TRILOGIE avec effet ultra-impressionnant -->
                                         <div class="trilogie-section-container">
-                                            <div class="video-container">
-                                                <video autoplay muted loop playsinline preload="none">
+                                            <div class="trilogie-video-background">
+                                                <video autoplay muted loop playsinline>
                                                     <source src="smoke_red_bg.mp4" type="video/mp4">
-                                                    <div class="video-fallback"></div>
                                                 </video>
                                             </div>
                                             <div class="trilogie-image-overlay">
-                                                <img src="trilogie_lyrique.png" alt="Trilogie Lyrique" class="trilogie-image" loading="lazy"
+                                                <img src="trilogie_lyrique.png" alt="Trilogie Lyrique" class="trilogie-image"
                                                      onerror="this.parentNode.innerHTML='<div class=trilogie-image-placeholder>TRILOGIE<br>LYRIQUE</div>'">
                                             </div>
                                         </div>
 
-                                        <!-- NOUVELLE SECTION 3: Trio de Virtuoses -->
+                                        <!-- Trio de Virtuoses -->
                                         <h4 class="magazine-section-title-center">Trio de Virtuoses</h4>
                                         <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">Piano, Direction et Polyvalence</h5>
 
                                         <div class="video-content-block">
-                                            <div class="video-container">
-                                                <video autoplay muted loop playsinline preload="none">
+                                            <div class="video-background-container">
+                                                <video autoplay muted loop playsinline>
                                                     <source src="partitions_flow.mp4" type="video/mp4">
-                                                    <div class="video-fallback"></div>
                                                 </video>
                                             </div>
                                             <div class="image-overlay-container">
-                                                <img src="trio_piano.png" alt="Trio Piano" class="content-image" loading="lazy"
+                                                <img src="trio_piano.png" alt="Trio Piano" class="content-image"
                                                      onerror="this.parentNode.innerHTML='<div class=image-placeholder>TRIO<br>PIANO</div>'">
                                             </div>
                                             <div class="content-text-block">
@@ -2271,19 +2239,18 @@
                                             </div>
                                         </div>
 
-                                        <!-- NOUVELLE SECTION 4: Quand la Danse Raconte -->
+                                        <!-- Quand la Danse Raconte -->
                                         <h4 class="magazine-section-title-center">Quand la Danse Raconte</h4>
                                         <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">La Magie du Geste</h5>
 
                                         <div class="video-content-block">
-                                            <div class="video-container">
-                                                <video autoplay muted loop playsinline preload="none">
+                                            <div class="video-background-container">
+                                                <video autoplay muted loop playsinline>
                                                     <source src="paillettes-choregraphie.mp4" type="video/mp4">
-                                                    <div class="video-fallback"></div>
                                                 </video>
                                             </div>
                                             <div class="image-overlay-container">
-                                                <img src="choregraphie-artistic-trio.png" alt="Chorégraphie Artistic Trio" class="content-image" loading="lazy"
+                                                <img src="choregraphie-artistic-trio.png" alt="Chorégraphie Artistic Trio" class="content-image"
                                                      onerror="this.parentNode.innerHTML='<div class=image-placeholder>CHORÉGRAPHIE<br>ARTISTIC TRIO</div>'">
                                             </div>
                                             <div class="content-text-block">
@@ -2296,7 +2263,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- NOUVELLE SECTION 5: L'Art Vocal Nouvelle Génération -->
+                                        <!-- L'Art Vocal Nouvelle Génération -->
                                         <h4 class="magazine-section-title-center">L'Art Vocal Nouvelle Génération</h4>
                                         <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">Des talents de The Voice sur scène</h5>
 
@@ -2318,7 +2285,7 @@
                                                 <span class="text-gold-shimmer">La musique nous transporte</span>, et <span class="text-gold-shimmer">Bohème ouvre les portes</span> de vos plus beaux rêves artistiques, créant une alchimie magique où chaque note devient une promesse d'éternité, chaque voix une caresse pour l'âme, chaque spectacle un voyage inoubliable vers l'excellence artistique universelle.
                                             </div>
                                             <div class="patrick-signature-integrated">
-                                                <img src="Boheme Production en blanc.png" alt="Bohème Production" class="boheme-signature-image" loading="lazy"
+                                                <img src="Boheme Production en blanc.png" alt="Bohème Production" class="boheme-signature-image"
                                                      onerror="this.parentNode.innerHTML='<div class=boheme-signature-placeholder>BOHÈME PRODUCTION</div>'">
                                             </div>
                                         </div>
@@ -2327,14 +2294,13 @@
 
                                 <!-- Logo décoratif -->
                                 <div class="decorative-logo-section">
-                                    <div class="video-container">
-                                        <video autoplay muted loop playsinline preload="none">
+                                    <div class="decorative-video-background">
+                                        <video autoplay muted loop playsinline>
                                             <source src="magique-fumee.mp4" type="video/mp4">
-                                            <div class="video-fallback"></div>
                                         </video>
                                     </div>
-                                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="decorative-logo" loading="lazy"
-                                         onerror="this.parentNode.innerHTML='<div class=video-container><video autoplay muted loop playsinline preload=none><source src=magique-fumee.mp4 type=video/mp4><div class=video-fallback></div></video></div><div class=decorative-logo-placeholder>BOHÈME<br>PRODUCTION</div>'">
+                                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="decorative-logo"
+                                         onerror="this.parentNode.innerHTML='<div class=decorative-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=decorative-logo-placeholder>BOHÈME<br>PRODUCTION</div>'">
                                 </div>
 
                                 <!-- Crédits -->
@@ -2353,20 +2319,19 @@
         <!-- Section: Bureau -->
         <section class="section" id="bureau">
             <div class="section-container">
-                <header class="section-header">
-                    <div class="video-container">
-                        <video autoplay muted loop playsinline preload="none">
+                <div class="section-header">
+                    <div class="section-header-video">
+                        <video autoplay muted loop playsinline preload="auto">
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                            <div class="video-fallback"></div>
                         </video>
                     </div>
                     <h2 class="section-title">Notre Bureau</h2>
-                </header>
+                </div>
                 <div class="section-content">
                     <div class="bureau-grid">
                         <div class="bureau-card">
-                            <div class="bureau-photo-real" role="img" aria-label="Photo de Patrick Elie Féré">
-                                <img src="Elie Féré HD.jpg" alt="Patrick Elie Féré" loading="lazy" onerror="this.parentNode.innerHTML='<div class=bureau-photo-placeholder><span class=material-icons>person</span></div>'">
+                            <div class="bureau-photo-real">
+                                <img src="Elie Féré HD.jpg" alt="Patrick Elie Féré" onerror="this.parentNode.innerHTML='<div class=bureau-photo-placeholder><span class=material-icons>person</span></div>'">
                             </div>
                             <h3 class="bureau-name">Patrick Elie Féré</h3>
                             <p class="bureau-title">Fondateur - Président</p>
@@ -2438,24 +2403,23 @@
         <!-- Section: Artistes -->
         <section class="section" id="artistes">
             <div class="section-container">
-                <header class="section-header">
-                    <div class="video-container">
-                        <video autoplay muted loop playsinline preload="none">
+                <div class="section-header">
+                    <div class="section-header-video">
+                        <video autoplay muted loop playsinline preload="auto">
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                            <div class="video-fallback"></div>
                         </video>
                     </div>
                     <h2 class="section-title">Nos Artistes</h2>
-                </header>
+                </div>
                 <div class="section-content">
-                    <div class="artistes-tabs" role="tablist">
-                        <button class="artiste-tab active" data-category="sopranos" role="tab" aria-selected="true" aria-controls="sopranos" tabindex="0">Sopranos</button>
-                        <button class="artiste-tab" data-category="tenors" role="tab" aria-selected="false" aria-controls="tenors" tabindex="-1">Ténors</button>
-                        <button class="artiste-tab" data-category="barytons" role="tab" aria-selected="false" aria-controls="barytons" tabindex="-1">Barytons</button>
-                        <button class="artiste-tab" data-category="pianistes" role="tab" aria-selected="false" aria-controls="pianistes" tabindex="-1">Pianistes</button>
+                    <div class="artistes-tabs">
+                        <div class="artiste-tab active" data-category="sopranos">Sopranos</div>
+                        <div class="artiste-tab" data-category="tenors">Ténors</div>
+                        <div class="artiste-tab" data-category="barytons">Barytons</div>
+                        <div class="artiste-tab" data-category="pianistes">Pianistes</div>
                     </div>
 
-                    <div class="artiste-category active" id="sopranos" role="tabpanel" aria-labelledby="sopranos-tab">
+                    <div class="artiste-category active" id="sopranos">
                         <div class="artiste-grid">
                             <div class="artiste-card">
                                 <div class="artiste-photo-placeholder">
@@ -2488,7 +2452,7 @@
                         </div>
                     </div>
 
-                    <div class="artiste-category" id="tenors" role="tabpanel" aria-labelledby="tenors-tab">
+                    <div class="artiste-category" id="tenors">
                         <div class="artiste-grid">
                             <div class="artiste-card">
                                 <div class="artiste-photo-placeholder">
@@ -2514,7 +2478,7 @@
                         </div>
                     </div>
 
-                    <div class="artiste-category" id="barytons" role="tabpanel" aria-labelledby="barytons-tab">
+                    <div class="artiste-category" id="barytons">
                         <div class="artiste-grid">
                             <div class="artiste-card">
                                 <div class="artiste-photo-placeholder">
@@ -2540,7 +2504,7 @@
                         </div>
                     </div>
 
-                    <div class="artiste-category" id="pianistes" role="tabpanel" aria-labelledby="pianistes-tab">
+                    <div class="artiste-category" id="pianistes">
                         <div class="artiste-grid">
                             <div class="artiste-card">
                                 <div class="artiste-photo-placeholder">
@@ -2570,7 +2534,7 @@
                         <p class="artistes-website-text">
                             Découvrez l'ensemble de nos 41 artistes d'exception sur notre site officiel
                         </p>
-                        <a href="https://www.bohemeproduction.com" target="_blank" class="artistes-website-button" aria-label="Voir tous nos artistes sur le site web">
+                        <a href="https://www.bohemeproduction.com" target="_blank" class="artistes-website-button">
                             <span class="material-icons">language</span>
                             Voir tous nos artistes
                         </a>
@@ -2582,15 +2546,14 @@
         <!-- Section: Productions -->
         <section class="section" id="productions">
             <div class="section-container">
-                <header class="section-header">
-                    <div class="video-container">
-                        <video autoplay muted loop playsinline preload="none">
+                <div class="section-header">
+                    <div class="section-header-video">
+                        <video autoplay muted loop playsinline preload="auto">
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                            <div class="video-fallback"></div>
                         </video>
                     </div>
                     <h2 class="section-title">Nos Productions</h2>
-                </header>
+                </div>
                 <div class="section-content">
                     <div class="production-grid">
                         <div class="production-card">
@@ -2667,15 +2630,14 @@
         <!-- Section: Contact -->
         <section class="section" id="contact">
             <div class="section-container">
-                <header class="section-header">
-                    <div class="video-container">
-                        <video autoplay muted loop playsinline preload="none">
+                <div class="section-header">
+                    <div class="section-header-video">
+                        <video autoplay muted loop playsinline preload="auto">
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                            <div class="video-fallback"></div>
                         </video>
                     </div>
                     <h2 class="section-title">Contact</h2>
-                </header>
+                </div>
                 <div class="section-content">
                     <div class="contact-content">
                         <div class="contact-info">
@@ -2730,7 +2692,7 @@
     </div>
 
     <!-- Page transition overlay -->
-    <div class="page-transition" id="page-transition" aria-hidden="true"></div>
+    <div class="page-transition" id="page-transition"></div>
 
     <script>
         class BohemePlaquette {
@@ -2739,19 +2701,11 @@
                 this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
                 this.isTransitioning = false;
 
-                // 🔥 FIXES SCROLL - VARIABLES SWIPE TRÈS STRICTES
+                // Variables pour le swipe SIMPLIFIÉES
                 this.touchStart = { x: 0, y: 0, time: 0 };
                 this.touchEnd = { x: 0, y: 0, time: 0 };
-
-                // 🔥 SEUILS BEAUCOUP PLUS STRICTS
-                this.minSwipeDistance = 200; // Augmenté à 200px
-                this.minSwipeDistanceStrict = 500; // Augmenté à 500px
-                this.minVelocity = 1.5; // Augmenté à 1.5
-                this.minVelocityStrict = 3.0; // Augmenté à 3.0
-                this.maxSwipeTime = 800; // Temps maximum pour swipe valide
-
-                // Variables pour optimisation vidéos
-                this.videoManager = new VideoManager();
+                this.minSwipeDistance = 50; // 🔥 AUGMENTÉ pour éviter navigation accidentelle
+                this.minVelocity = 0.3; // 🔥 AUGMENTÉ pour éviter navigation accidentelle
 
                 this.init();
             }
@@ -2763,170 +2717,81 @@
                 this.setupTouchNavigation();
                 this.setupKeyboardNavigation();
                 this.startAnimations();
-                this.setupAccessibility();
-                this.setupAnalytics();
 
-                // Auto-start exploration
-                document.getElementById('start-exploration')?.addEventListener('click', () => {
+                // 🔥 CORRECTION: Auto-start exploration + LECTURE AUTOMATIQUE MUSIQUE
+                document.getElementById('start-exploration')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('🎵 Démarrage exploration + musique');
+
+                    // Démarrer la musique automatiquement
+                    this.startMusicOnExploration();
+
+                    // Aller à la page suivante
                     this.goToSection(1);
-                    this.trackEvent('user_interaction', { action: 'start_exploration' });
-                });
-
-                // Support clavier pour le bouton exploration
-                document.getElementById('start-exploration')?.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        this.goToSection(1);
-                        this.trackEvent('user_interaction', { action: 'start_exploration_keyboard' });
-                    }
                 });
             }
 
-            setupAudio() {
+            // 🔥 NOUVELLE FONCTION: Démarrage automatique de la musique
+            startMusicOnExploration() {
                 const audio = document.getElementById('background-music');
                 const playPauseBtn = document.getElementById('play-pause-btn');
-                const muteBtn = document.getElementById('mute-btn');
-                const volumeSlider = document.getElementById('volume-slider');
 
-                // Set initial volume
-                audio.volume = 0.3;
-
-                // Play/Pause avec analytics
-                playPauseBtn?.addEventListener('click', () => {
-                    if (audio.paused) {
-                        audio.play().catch(e => {
-                            console.log('Audio play failed:', e);
-                            this.trackEvent('audio_error', { error: 'play_failed', message: e.message });
-                        });
+                if (audio && playPauseBtn) {
+                    audio.play().then(() => {
+                        console.log('🎵 Musique démarrée automatiquement');
                         playPauseBtn.innerHTML = '<span class="material-icons">pause</span>';
-                        this.trackEvent('audio_interaction', { action: 'play' });
-                    } else {
-                        audio.pause();
-                        playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
-                        this.trackEvent('audio_interaction', { action: 'pause' });
-                    }
-                });
-
-                // Mute/Unmute
-                muteBtn?.addEventListener('click', () => {
-                    audio.muted = !audio.muted;
-                    muteBtn.innerHTML = audio.muted ?
-                        '<span class="material-icons">volume_off</span>' :
-                        '<span class="material-icons">volume_up</span>';
-                    this.trackEvent('audio_interaction', { action: audio.muted ? 'mute' : 'unmute' });
-                });
-
-                // Volume control
-                volumeSlider?.addEventListener('input', (e) => {
-                    audio.volume = e.target.value / 100;
-                    this.trackEvent('audio_interaction', { action: 'volume_change', volume: audio.volume });
-                });
-
-                // Auto-play avec analytics
-                const tryAutoplay = () => {
-                    audio.play().catch(() => {
-                        playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
-                        this.trackEvent('audio_error', { error: 'autoplay_failed' });
-                    }).then(() => {
-                        this.trackEvent('audio_event', { action: 'autoplay_success' });
+                    }).catch(e => {
+                        console.log('🎵 Échec démarrage automatique musique:', e);
                     });
-                };
-
-                document.addEventListener('click', tryAutoplay, { once: true });
-                document.addEventListener('touchstart', tryAutoplay, { once: true });
+                }
             }
 
             setupNavigation() {
                 const navDots = document.querySelectorAll('.nav-dot');
                 navDots.forEach((dot, index) => {
-                    // Click
-                    dot.addEventListener('click', () => {
+                    dot.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log(`Navigation vers section ${index}`); // DEBUG
                         this.goToSection(index);
-                        this.trackEvent('navigation', { method: 'dot_click', section: this.sections[index] });
-                    });
-
-                    // Support clavier
-                    dot.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            this.goToSection(index);
-                            this.trackEvent('navigation', { method: 'dot_keyboard', section: this.sections[index] });
-                        }
                     });
                 });
             }
 
-            setupArtisteTabs() {
-                const tabs = document.querySelectorAll('.artiste-tab');
-                const categories = document.querySelectorAll('.artiste-category');
-
-                tabs.forEach((tab, index) => {
-                    // Click
-                    tab.addEventListener('click', () => {
-                        this.switchArtistTab(tab, categories, tabs);
-                    });
-
-                    // Support clavier
-                    tab.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            this.switchArtistTab(tab, categories, tabs);
-                        } else if (e.key === 'ArrowRight' && index < tabs.length - 1) {
-                            tabs[index + 1].focus();
-                        } else if (e.key === 'ArrowLeft' && index > 0) {
-                            tabs[index - 1].focus();
-                        }
-                    });
-                });
-            }
-
-            switchArtistTab(activeTab, categories, tabs) {
-                const category = activeTab.dataset.category;
-
-                // Remove active class from all tabs and categories
-                tabs.forEach(t => {
-                    t.classList.remove('active');
-                    t.setAttribute('aria-selected', 'false');
-                    t.tabIndex = -1;
-                });
-                categories.forEach(c => c.classList.remove('active'));
-
-                // Add active class to clicked tab and corresponding category
-                activeTab.classList.add('active');
-                activeTab.setAttribute('aria-selected', 'true');
-                activeTab.tabIndex = 0;
-                document.getElementById(category)?.classList.add('active');
-
-                this.trackEvent('tab_interaction', { category: category });
-            }
-
+            // 🔥 TOUCH NAVIGATION ULTRA-SÉLECTIVE POUR ÉVITER L'AUTO-SCROLL
             setupTouchNavigation() {
-                let isTouching = false;
+                // Variables pour détecter les zones de scroll
+                let isInScrollableArea = false;
 
-                // Touch start
                 document.addEventListener('touchstart', (e) => {
                     if (this.isTransitioning) return;
 
-                    isTouching = true;
                     const touch = e.touches[0];
                     this.touchStart = {
                         x: touch.clientX,
                         y: touch.clientY,
                         time: Date.now()
                     };
+
+                    // 🔥 DÉTECTER SI ON EST DANS UNE ZONE SCROLLABLE
+                    const target = e.target;
+                    const scrollableElements = [
+                        '.section-content',
+                        '.intro-content-magazine',
+                        '.scrollable-content',
+                        '.magazine-content-wrapper'
+                    ];
+
+                    isInScrollableArea = scrollableElements.some(selector =>
+                        target.closest(selector)
+                    );
+
                 }, { passive: true });
 
-                // Touch move - 🔥 PERMISSIF - NE JAMAIS BLOQUER LE SCROLL
-                document.addEventListener('touchmove', (e) => {
-                    // 🔥 TOUJOURS LAISSER LE SCROLL NATUREL FONCTIONNER
-                    // Ne rien faire ici
-                }, { passive: true });
-
-                // Touch end
                 document.addEventListener('touchend', (e) => {
-                    if (!isTouching || this.isTransitioning) return;
+                    if (this.isTransitioning) return;
 
-                    isTouching = false;
                     const touch = e.changedTouches[0];
                     this.touchEnd = {
                         x: touch.clientX,
@@ -2934,120 +2799,65 @@
                         time: Date.now()
                     };
 
-                    this.handleSwipe();
+                    // 🔥 NAVIGATION SEULEMENT SI PAS DANS ZONE SCROLLABLE
+                    if (!isInScrollableArea) {
+                        this.handleSwipeSimple();
+                    }
+
                 }, { passive: true });
 
-                // 🔥 MOUSE WHEEL TRÈS STRICT - SYSTÈME DE COMPTEUR
-                let wheelTimeout;
-                let wheelCounter = 0;
-                const WHEEL_THRESHOLD = 4; // Nombre de scrolls nécessaires
-
+                // 🔥 WHEEL ULTRA-SÉLECTIF POUR ÉVITER AUTO-SCROLL
                 document.addEventListener('wheel', (e) => {
                     if (this.isTransitioning) return;
 
-                    clearTimeout(wheelTimeout);
+                    // Vérifier si on fait du wheel sur le contenu principal
+                    const target = e.target;
+                    const sectionContent = target.closest('.section-content');
 
-                    const activeSection = document.querySelector('.section.active');
-                    const sectionContent = activeSection?.querySelector('.section-content');
+                    if (sectionContent) {
+                        const isAtTop = sectionContent.scrollTop <= 5;
+                        const isAtBottom = sectionContent.scrollTop >= (sectionContent.scrollHeight - sectionContent.clientHeight - 5);
 
-                    if (!sectionContent) return;
+                        // 🔥 NAVIGATION SEULEMENT si on est VRAIMENT en haut/bas ET scroll dans cette direction
+                        // ET que le scroll est assez fort (éviter micro-scrolls accidentels)
+                        const strongScroll = Math.abs(e.deltaY) > 50;
 
-                    const isInSafetyZone = this.checkSafetyZone(sectionContent);
-
-                    if (isInSafetyZone) {
-                        // 🔥 SYSTÈME DE COMPTEUR - Il faut insister
-                        wheelCounter++;
-
-                        if (wheelCounter >= WHEEL_THRESHOLD) {
+                        if (strongScroll && ((e.deltaY < -50 && isAtTop) || (e.deltaY > 50 && isAtBottom))) {
                             const direction = e.deltaY > 0 ? 'down' : 'up';
                             this.handleDirectionalNavigation(direction);
-                            wheelCounter = 0; // Reset counter
                             e.preventDefault();
                         }
-
-                        // Reset counter après un délai
-                        wheelTimeout = setTimeout(() => {
-                            wheelCounter = 0;
-                        }, 1000);
-                    } else {
-                        // Reset counter si pas en zone de sécurité
-                        wheelCounter = 0;
                     }
                 }, { passive: false });
             }
 
-            // 🔥 NOUVELLE FONCTION - ZONE DE SÉCURITÉ TRÈS STRICTE
-            checkSafetyZone(sectionContent) {
-                const scrollTop = sectionContent.scrollTop;
-                const scrollHeight = sectionContent.scrollHeight;
-                const clientHeight = sectionContent.clientHeight;
-
-                // Vérifier qu'on peut vraiment scroller
-                const canScroll = scrollHeight > clientHeight;
-
-                // Si pas de scroll possible, autoriser navigation
-                if (!canScroll) return true;
-
-                // 🔥 ZONES TRÈS STRICTES - Seulement 3px du bord exact
-                const strictMargin = 3;
-
-                const isAtTop = scrollTop <= strictMargin;
-                const isAtBottom = scrollTop >= (scrollHeight - clientHeight - strictMargin);
-
-                // ✅ CONDITION ULTRA STRICTE : exactement au bout
-                return isAtTop || isAtBottom;
-            }
-
-            // 🔥 NOUVELLE FONCTION SWIPE - TRÈS STRICTE
-            handleSwipe() {
+            // 🔥 SWIPE TRÈS SÉLECTIF
+            handleSwipeSimple() {
                 const deltaX = this.touchEnd.x - this.touchStart.x;
                 const deltaY = this.touchEnd.y - this.touchStart.y;
                 const deltaTime = this.touchEnd.time - this.touchStart.time;
 
-                // 🔥 CONDITIONS TRÈS STRICTES
-                // Ignorer swipes trop longs ou trop courts
-                if (deltaTime > this.maxSwipeTime || deltaTime < 400) return;
-
-                const distance = Math.abs(deltaY);
-                const velocity = distance / (deltaTime || 1);
-
                 // Ignorer les swipes horizontaux
                 if (Math.abs(deltaX) > Math.abs(deltaY)) return;
 
-                const activeSection = document.querySelector('.section.active');
-                const sectionContent = activeSection?.querySelector('.section-content');
+                // 🔥 CONDITIONS PLUS STRICTES pour éviter navigation accidentelle
+                const distance = Math.abs(deltaY);
+                if (distance < this.minSwipeDistance || deltaTime < 200) return;
 
-                if (!sectionContent) return;
+                // Calculer vélocité
+                const velocity = distance / (deltaTime || 1);
 
-                const isInSafetyZone = this.checkSafetyZone(sectionContent);
-
-                // 🔥 CONDITIONS ULTRA STRICTES POUR NAVIGATION
-                let shouldNavigate = false;
-
-                if (isInSafetyZone) {
-                    // 🔥 MÊME EN ZONE DE SÉCURITÉ, CONDITIONS ÉLEVÉES
-                    shouldNavigate = distance > this.minSwipeDistance && // 200px minimum
-                                   velocity > this.minVelocity && // Vitesse 1.5 minimum
-                                   deltaTime < 600; // Pas trop lent
-                }
-
-                // 🔥 AUCUNE NAVIGATION en milieu de contenu - JAMAIS
-
-                if (shouldNavigate) {
+                // 🔥 CONDITIONS STRICTES
+                if (velocity > this.minVelocity && distance > 80) {
                     const direction = deltaY > 0 ? 'up' : 'down';
+                    console.log(`🔥 Swipe détecté: ${direction}, distance: ${distance}, velocity: ${velocity}`);
                     this.handleDirectionalNavigation(direction);
-                    this.trackEvent('navigation', {
-                        method: 'swipe',
-                        direction: direction,
-                        distance: distance,
-                        velocity: velocity,
-                        time: deltaTime,
-                        inSafetyZone: isInSafetyZone
-                    });
                 }
             }
 
             handleDirectionalNavigation(direction) {
+                console.log(`Navigation ${direction}`); // DEBUG
+
                 if (direction === 'down' && this.currentSection < this.sections.length - 1) {
                     this.goToSection(this.currentSection + 1);
                 } else if (direction === 'up' && this.currentSection > 0) {
@@ -3059,37 +2869,102 @@
                 document.addEventListener('keydown', (e) => {
                     if (this.isTransitioning) return;
 
-                    let handled = false;
                     switch(e.key) {
                         case 'ArrowUp':
                         case 'PageUp':
+                            e.preventDefault();
                             if (this.currentSection > 0) {
                                 this.goToSection(this.currentSection - 1);
-                                handled = true;
                             }
                             break;
                         case 'ArrowDown':
                         case 'PageDown':
-                        case ' ':
+                        case ' ': // Spacebar
+                            e.preventDefault();
                             if (this.currentSection < this.sections.length - 1) {
                                 this.goToSection(this.currentSection + 1);
-                                handled = true;
                             }
                             break;
                         case 'Home':
+                            e.preventDefault();
                             this.goToSection(0);
-                            handled = true;
                             break;
                         case 'End':
+                            e.preventDefault();
                             this.goToSection(this.sections.length - 1);
-                            handled = true;
                             break;
                     }
+                });
+            }
 
-                    if (handled) {
+            setupArtisteTabs() {
+                const tabs = document.querySelectorAll('.artiste-tab');
+                const categories = document.querySelectorAll('.artiste-category');
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', (e) => {
                         e.preventDefault();
-                        this.trackEvent('navigation', { method: 'keyboard', key: e.key });
+                        e.stopPropagation();
+
+                        const category = tab.dataset.category;
+                        console.log(`Onglet cliqué: ${category}`); // DEBUG
+
+                        // Remove active class from all tabs and categories
+                        tabs.forEach(t => t.classList.remove('active'));
+                        categories.forEach(c => c.classList.remove('active'));
+
+                        // Add active class to clicked tab and corresponding category
+                        tab.classList.add('active');
+                        document.getElementById(category)?.classList.add('active');
+                    });
+                });
+            }
+
+            setupAudio() {
+                const audio = document.getElementById('background-music');
+                const playPauseBtn = document.getElementById('play-pause-btn');
+                const muteBtn = document.getElementById('mute-btn');
+                const volumeSlider = document.getElementById('volume-slider');
+
+                if (!audio) return;
+
+                // Set initial volume
+                audio.volume = 0.3;
+
+                // 🔥 CORRECTION: Icône play par défaut (musique en pause au début)
+                playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
+
+                // Play/Pause
+                playPauseBtn?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            console.log('🎵 Musique démarrée manuellement');
+                            playPauseBtn.innerHTML = '<span class="material-icons">pause</span>';
+                        }).catch(e => console.log('🎵 Erreur lecture audio:', e));
+                    } else {
+                        audio.pause();
+                        playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
+                        console.log('🎵 Musique mise en pause');
                     }
+                });
+
+                // Mute/Unmute
+                muteBtn?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    audio.muted = !audio.muted;
+                    muteBtn.innerHTML = audio.muted ?
+                        '<span class="material-icons">volume_off</span>' :
+                        '<span class="material-icons">volume_up</span>';
+                });
+
+                // Volume control
+                volumeSlider?.addEventListener('input', (e) => {
+                    audio.volume = e.target.value / 100;
                 });
             }
 
@@ -3097,10 +2972,9 @@
                 if (index === this.currentSection || this.isTransitioning) return;
                 if (index < 0 || index >= this.sections.length) return;
 
-                this.isTransitioning = true;
+                console.log(`Transition vers section ${index}: ${this.sections[index]}`); // DEBUG
 
-                // Charger les vidéos de la nouvelle section en avance
-                this.videoManager.preloadSectionVideos(this.sections[index]);
+                this.isTransitioning = true;
 
                 // Show transition overlay
                 const transition = document.getElementById('page-transition');
@@ -3123,340 +2997,50 @@
 
                     // Update navigation
                     this.updateNavigation(index);
-
-                    const previousSection = this.currentSection;
                     this.currentSection = index;
-
-                    // Gérer les vidéos
-                    this.videoManager.handleSectionChange(this.sections[previousSection], this.sections[index]);
 
                     // Hide transition overlay
                     setTimeout(() => {
                         transition?.classList.remove('active');
                         this.isTransitioning = false;
-                    }, 500);
-
-                    // Analytics
-                    this.trackEvent('section_change', {
-                        from: this.sections[previousSection],
-                        to: this.sections[index],
-                        index: index
-                    });
+                    }, 300);
                 }, 250);
             }
 
             updateNavigation(index) {
                 const navDots = document.querySelectorAll('.nav-dot');
                 navDots.forEach((dot, i) => {
-                    const isActive = i === index;
-                    dot.classList.toggle('active', isActive);
-                    dot.setAttribute('aria-current', isActive ? 'page' : 'false');
+                    dot.classList.toggle('active', i === index);
                 });
-            }
-
-            setupAccessibility() {
-                // Annoncer les changements de section
-                const announcer = document.createElement('div');
-                announcer.setAttribute('aria-live', 'polite');
-                announcer.setAttribute('aria-atomic', 'true');
-                announcer.className = 'sr-only';
-                announcer.style.position = 'absolute';
-                announcer.style.left = '-10000px';
-                announcer.style.width = '1px';
-                announcer.style.height = '1px';
-                announcer.style.overflow = 'hidden';
-                document.body.appendChild(announcer);
-
-                this.announcer = announcer;
-
-                // Focus management
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Tab') {
-                        const activeSection = document.querySelector('.section.active');
-                        const focusableElements = activeSection?.querySelectorAll(
-                            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-                        );
-
-                        if (focusableElements && focusableElements.length > 0) {
-                            const firstElement = focusableElements[0];
-                            const lastElement = focusableElements[focusableElements.length - 1];
-
-                            if (e.shiftKey) {
-                                if (document.activeElement === firstElement) {
-                                    e.preventDefault();
-                                    lastElement.focus();
-                                }
-                            } else {
-                                if (document.activeElement === lastElement) {
-                                    e.preventDefault();
-                                    firstElement.focus();
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            setupAnalytics() {
-                // Track page view
-                this.trackEvent('page_view', {
-                    url: window.location.href,
-                    userAgent: navigator.userAgent,
-                    screen: {
-                        width: screen.width,
-                        height: screen.height
-                    },
-                    viewport: {
-                        width: window.innerWidth,
-                        height: window.innerHeight
-                    }
-                });
-
-                // Track performance
-                window.addEventListener('load', () => {
-                    this.trackEvent('performance', {
-                        loadTime: Date.now() - performance.timing.navigationStart,
-                        resources: performance.getEntriesByType('resource').length
-                    });
-                });
-
-                // Track errors
-                window.addEventListener('error', (e) => {
-                    this.trackEvent('error', {
-                        message: e.message,
-                        filename: e.filename,
-                        lineno: e.lineno,
-                        colno: e.colno
-                    });
-                });
-            }
-
-            trackEvent(event, data) {
-                if (window.bohemeAnalytics) {
-                    window.bohemeAnalytics.track(event, data);
-                }
             }
 
             startAnimations() {
-                // Add staggered animations
+                // Add staggered animations to cover elements
                 const coverElements = document.querySelectorAll('.cover-content > *');
                 coverElements.forEach((el, index) => {
                     el.style.animationDelay = `${index * 0.3}s`;
                 });
-
-                // Intersection Observer pour les animations
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const animatedElements = entry.target.querySelectorAll('[class*="fade"]');
-                            animatedElements.forEach((el, index) => {
-                                setTimeout(() => {
-                                    el.style.opacity = '1';
-                                    el.style.transform = 'translateY(0)';
-                                }, index * 100);
-                            });
-                        }
-                    });
-                });
-
-                document.querySelectorAll('.section').forEach(section => {
-                    observer.observe(section);
-                });
             }
         }
 
-        // 🔥 GESTIONNAIRE VIDÉOS OPTIMISÉ
-        class VideoManager {
-            constructor() {
-                this.loadedVideos = new Set();
-                this.loadingVideos = new Map();
-            }
-
-            preloadSectionVideos(sectionId) {
-                const section = document.getElementById(sectionId);
-                const videos = section?.querySelectorAll('video');
-
-                videos?.forEach(video => {
-                    this.loadVideo(video);
-                });
-            }
-
-            loadVideo(video) {
-                const src = video.querySelector('source')?.src;
-                if (!src || this.loadedVideos.has(src)) return;
-
-                if (this.loadingVideos.has(src)) return;
-
-                this.loadingVideos.set(src, true);
-
-                const preloadVideo = document.createElement('video');
-                preloadVideo.preload = 'auto';
-                preloadVideo.muted = true;
-                preloadVideo.style.display = 'none';
-
-                preloadVideo.addEventListener('loadeddata', () => {
-                    this.loadedVideos.add(src);
-                    this.loadingVideos.delete(src);
-                    video.load(); // Recharger la vraie vidéo
-                    document.body.removeChild(preloadVideo);
-                }, { once: true });
-
-                preloadVideo.addEventListener('error', () => {
-                    this.loadingVideos.delete(src);
-                    document.body.removeChild(preloadVideo);
-                    // Montrer fallback
-                    const container = video.closest('.video-container');
-                    container?.classList.add('error');
-                }, { once: true });
-
-                preloadVideo.src = src;
-                document.body.appendChild(preloadVideo);
-            }
-
-            handleSectionChange(fromSection, toSection) {
-                // Pause videos in previous section
-                const prevSection = document.getElementById(fromSection);
-                const prevVideos = prevSection?.querySelectorAll('video');
-                prevVideos?.forEach(video => {
-                    video.pause();
-                });
-
-                // Play videos in new section
-                setTimeout(() => {
-                    const newSection = document.getElementById(toSection);
-                    const newVideos = newSection?.querySelectorAll('video');
-                    newVideos?.forEach(video => {
-                        if (video.readyState >= 3) { // HAVE_FUTURE_DATA
-                            video.play().catch(e => {
-                                console.log('Video play failed:', e);
-                            });
-                        }
-                    });
-                }, 300);
-            }
-        }
-
-        // 🔥 INITIALISATION OPTIMISÉE
-        document.addEventListener('DOMContentLoaded', () => {
-            // Préchargement intelligent
-            setTimeout(() => {
+        // INITIALISATION ROBUSTE
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('🔥 Initialisation Bohème Plaquette'); // DEBUG
                 new BohemePlaquette();
-            }, 100);
-        });
+            });
+        } else {
+            console.log('🔥 Initialisation immédiate Bohème Plaquette'); // DEBUG
+            new BohemePlaquette();
+        }
 
-        // 🔥 GESTION D'ERREURS VIDÉOS AMÉLIORÉE
-        document.querySelectorAll('video').forEach((video, index) => {
-            // Lazy loading intelligent
-            video.preload = index === 0 ? 'auto' : 'none';
-
+        // Handle video loading errors gracefully
+        document.querySelectorAll('video').forEach(video => {
             video.addEventListener('error', function() {
                 console.log('Video failed to load:', this.src);
-                const container = this.closest('.video-container');
-                container?.classList.add('error');
-
-                // Analytics
-                if (window.bohemeAnalytics) {
-                    window.bohemeAnalytics.track('video_error', {
-                        src: this.src,
-                        error: this.error?.message || 'Unknown error'
-                    });
-                }
-            });
-
-            video.addEventListener('ended', function() {
-                this.currentTime = 0;
-                this.play().catch(e => {
-                    console.log('Video replay failed:', e);
-                });
-            });
-
-            // Intersection Observer pour chargement intelligent
-            const videoObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && entry.target.preload === 'none') {
-                        entry.target.preload = 'auto';
-                        entry.target.load();
-                        videoObserver.unobserve(entry.target);
-                    }
-                });
-            });
-
-            videoObserver.observe(video);
-        });
-
-        // 🔥 OPTIMISATIONS PERFORMANCES
-        window.addEventListener('load', () => {
-            // Préchargement différé des ressources non critiques
-            requestIdleCallback(() => {
-                document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-                    img.loading = 'eager';
-                });
+                this.parentElement.style.opacity = '0.5';
             });
         });
-
-        // 🔥 GESTION RESIZE OPTIMISÉE
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                const activeSection = document.querySelector('.section.active');
-                if (activeSection) {
-                    const sectionContent = activeSection.querySelector('.section-content');
-                    if (sectionContent) {
-                        sectionContent.scrollTop = 0;
-                    }
-                }
-
-                // Analytics resize
-                if (window.bohemeAnalytics) {
-                    window.bohemeAnalytics.track('viewport_change', {
-                        width: window.innerWidth,
-                        height: window.innerHeight
-                    });
-                }
-            }, 250);
-        });
-
-        // 🔥 SERVICE WORKER POUR MISE EN CACHE (optionnel)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                const sw = `
-                    const CACHE_NAME = 'boheme-v1';
-                    const urlsToCache = [
-                        '/',
-                        '/logo-boheme-en-or.png',
-                        '/AIR_SING_BOHEME.mp3'
-                    ];
-
-                    self.addEventListener('install', event => {
-                        event.waitUntil(
-                            caches.open(CACHE_NAME)
-                                .then(cache => cache.addAll(urlsToCache))
-                        );
-                    });
-
-                    self.addEventListener('fetch', event => {
-                        event.respondWith(
-                            caches.match(event.request)
-                                .then(response => {
-                                    return response || fetch(event.request);
-                                })
-                        );
-                    });
-                `;
-
-                const blob = new Blob([sw], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
-
-                navigator.serviceWorker.register(swUrl)
-                    .then(registration => {
-                        console.log('SW registered:', registration);
-                    })
-                    .catch(error => {
-                        console.log('SW registration failed:', error);
-                    });
-            });
-        }
     </script>
 </body>
 </html>
