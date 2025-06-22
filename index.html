@@ -67,7 +67,7 @@
             object-fit: cover;
         }
 
-        /* 🔧 AUDIO CONTROLS RESTAURÉS de l'ancien code */
+        /* 🔧 AUDIO CONTROLS - Décalé plus à droite */
         .audio-controls {
             position: fixed;
             top: 20px;
@@ -85,11 +85,11 @@
             backface-visibility: hidden;
         }
 
-        /* 🔧 RESPONSIVE MOBILE CORRIGÉ - Position droite conservée */
+        /* 🔧 MOBILE - Décalé encore plus à droite */
         @media (max-width: 768px) {
             .audio-controls {
                 top: 10px;
-                right: 10px; /* 🔥 GARDE LA POSITION DROITE */
+                right: 5px; /* 🔥 PLUS À DROITE : 10px → 5px */
                 padding: 6px;
                 gap: 6px;
             }
@@ -124,12 +124,10 @@
             font-size: 18px;
         }
 
-        /* 🔧 MOBILE - Taille normale (PAS de min-width/min-height) */
         @media (max-width: 768px) {
             .audio-control-btn {
                 width: 30px;
                 height: 30px;
-                /* 🔥 SUPPRESSION des min-width/min-height */
             }
             .audio-control-btn .material-icons {
                 font-size: 16px;
@@ -179,7 +177,7 @@
             overflow: hidden;
         }
 
-        /* 🔧 NAVIGATION RESTAURÉE de l'ancien code */
+        /* 🔧 NAVIGATION DOTS - Descendus de 10px */
         .navigation {
             position: fixed;
             top: 50%;
@@ -193,13 +191,12 @@
             backface-visibility: hidden;
         }
 
-        /* 🔧 MOBILE - Centrage parfait restauré */
         @media (max-width: 768px) {
             .navigation {
-                bottom: 30px !important;
-                right: 50% !important; /* 🔥 CENTRAGE PARFAIT */
+                bottom: 20px !important; /* 🔥 DESCENDU : 30px → 20px */
+                right: 50% !important;
                 top: auto !important;
-                transform: translateX(50%) translateZ(0) !important; /* 🔥 CENTRAGE CORRECT */
+                transform: translateX(50%) translateZ(0) !important;
                 flex-direction: row !important;
                 background: rgba(255,255,255,0.95);
                 padding: 15px 20px;
@@ -224,15 +221,6 @@
             touch-action: manipulation;
             transform: translateZ(0);
             backface-visibility: hidden;
-        }
-
-        /* 🔧 MOBILE - Taille normale conservée (PAS de min-width/min-height) */
-        @media (max-width: 768px) {
-            .nav-dot {
-                /* 🔥 GARDE la taille normale - PAS de min-width/min-height */
-                width: 12px;
-                height: 12px;
-            }
         }
 
         .nav-dot.active {
@@ -391,7 +379,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
             font-weight: 400;
-            margin-top: 20px;
+            margin-top: 5px; /* 🔥 RÉDUIT : 20px → 5px pour remonter */
             font-style: italic;
             color: var(--gold);
             text-shadow: 2px 2px 4px var(--black), 0 0 20px rgba(212,175,55,0.9);
@@ -409,19 +397,21 @@
             }
         }
 
+        /* 🔧 BARRE DORÉE - Hauteur réduite */
         .golden-line {
             width: 60%;
-            height: 4px;
+            height: 2px; /* 🔥 RÉDUIT : 4px → 2px */
             background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
-            margin: 30px 0;
+            margin: 20px 0; /* 🔥 RÉDUIT : 30px → 20px */
             position: relative;
             box-shadow: 0 0 15px rgba(212,175,55,0.8);
             border: 1px solid var(--black);
         }
 
+        /* 🔧 INDICATEUR SCROLL - Remonté */
         .cover-scroll-indicator {
             position: absolute;
-            bottom: 100px;
+            bottom: 125px; /* 🔥 REMONTÉ : 100px → 125px */
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -440,7 +430,7 @@
 
         @media (max-width: 768px) {
             .cover-scroll-indicator {
-                bottom: 140px;
+                bottom: 80px; /* 🔥 REMONTÉ : 140px → 80px pour éviter navigation dots */
             }
         }
 
@@ -527,9 +517,10 @@
             touch-action: manipulation;
         }
 
+        /* 🔧 MOBILE - Padding réduit à gauche pour éviter audio controls */
         @media (max-width: 768px) {
             .section-header {
-                padding: 20px;
+                padding: 20px 15px 20px 15px; /* 🔥 PADDING GAUCHE RÉDUIT : 20px → 15px */
                 background: rgba(255, 255, 255, 0.8);
             }
         }
@@ -572,14 +563,18 @@
             z-index: 2;
         }
 
-        /* 🔧 TITRES À GAUCHE sur mobile pour éviter chevauchement */
+        /* 🔧 MOBILE - Titres à gauche et taille réduite pour "Productions" */
         @media (max-width: 768px) {
             .section-title {
-                text-align: left; /* 🔥 À GAUCHE pour éviter le chevauchement */
+                text-align: left;
                 font-size: 2rem;
             }
             .section-header {
-                text-align: left; /* 🔥 Header aligné à gauche aussi */
+                text-align: left;
+            }
+            /* 🔥 TITRE SPÉCIFIQUE "Productions" plus petit */
+            #productions .section-title {
+                font-size: 1.7rem;
             }
         }
 
@@ -1012,19 +1007,22 @@
             }
         }
 
+        /* 🔧 BORDURES DORÉES RESTAURÉES - Système de l'ancien code */
         .content-section-container {
             margin: 25px 0;
             padding: 35px;
             background: rgba(0,0,0,0.9);
-            border: 3px solid var(--gold);
+            border: 5px solid;
+            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.6);
         }
 
+        /* 🔧 ESPACEMENTS MOBILE pour éviter bordures collées */
         @media (max-width: 768px) {
             .content-section-container {
                 padding: 20px;
-                margin: 15px 0;
+                margin: 20px 0; /* 🔥 AUGMENTÉ : 15px → 20px */
             }
         }
 
@@ -1033,13 +1031,14 @@
             margin: 40px 0;
             border-radius: 20px;
             overflow: hidden;
-            border: 3px solid var(--gold);
+            border: 5px solid;
+            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
             box-shadow: 0 20px 40px rgba(0,0,0,0.7);
         }
 
         @media (max-width: 768px) {
             .video-content-block {
-                margin: 20px 0;
+                margin: 25px 0; /* 🔥 AUGMENTÉ : 20px → 25px */
             }
         }
 
@@ -1098,7 +1097,8 @@
             z-index: 3;
             padding: 35px;
             background: rgba(0,0,0,0.9);
-            border: 3px solid var(--gold);
+            border: 5px solid;
+            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
             border-radius: 20px;
             margin: 25px 35px 35px 35px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.6);
@@ -1107,7 +1107,7 @@
         @media (max-width: 768px) {
             .content-text-block {
                 padding: 20px;
-                margin: 15px 0;
+                margin: 20px 0; /* 🔥 AUGMENTÉ pour espacement */
             }
         }
 
@@ -1545,7 +1545,7 @@
             font-style: italic;
         }
 
-        /* Éléments spéciaux - styles consolidés */
+        /* 🔧 ÉLÉMENTS SPÉCIAUX - Bordures restaurées */
         .trilogie-section-container, .artistic-collage-section {
             position: relative;
             width: 100%;
@@ -1554,12 +1554,13 @@
             overflow: hidden;
             border-radius: 20px;
             box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-            border: 5px solid var(--gold);
+            border: 5px solid;
+            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
         }
 
         @media (max-width: 768px) {
             .trilogie-section-container, .artistic-collage-section {
-                margin: 30px 0;
+                margin: 35px 0; /* 🔥 AUGMENTÉ : 30px → 35px */
             }
         }
 
@@ -1618,7 +1619,8 @@
             margin: 60px 0;
             padding: 60px 40px 30px 40px;
             background: rgba(0,0,0,0.95);
-            border: 5px solid var(--gold);
+            border: 5px solid;
+            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
             border-radius: 25px;
             text-align: center;
             position: relative;
@@ -1628,7 +1630,7 @@
         @media (max-width: 768px) {
             .patrick-quote-highlight {
                 padding: 30px 20px 20px 20px;
-                margin: 40px 0;
+                margin: 45px 0; /* 🔥 AUGMENTÉ : 40px → 45px */
             }
         }
 
@@ -1736,7 +1738,8 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 5px solid var(--gold);
+            border: 5px solid;
+            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
             box-shadow: 0 20px 50px rgba(0,0,0,0.7);
             max-width: 900px;
             margin-left: auto;
@@ -1750,7 +1753,7 @@
             .decorative-logo-section {
                 max-width: 95%;
                 padding: 25px 15px;
-                margin: 20px auto;
+                margin: 25px auto; /* 🔥 AUGMENTÉ : 20px → 25px */
             }
         }
 
@@ -1918,7 +1921,6 @@
             </div>
         </div>
 
-        <!-- Toutes les sections existantes... IDENTIQUES -->
         <!-- Section: Cover -->
         <section class="section cover-section active" id="cover">
             <div class="cover-content">
@@ -2351,7 +2353,7 @@
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <h2 class="section-title">Nos Productions</h2>
+                    <h2 class="section-title">Productions</h2> <!-- 🔥 RACCOURCI : "Nos Productions" → "Productions" -->
                 </div>
                 <div class="section-content">
                     <div class="production-grid">
@@ -2516,7 +2518,7 @@
                 this.isTransitioning = false;
                 this.isPresentationMode = false;
 
-                // 🔥 NOUVELLES VARIABLES POUR LE SCROLL OPTIMISÉ (CONSERVÉES)
+                // Variables pour le scroll optimisé (CONSERVÉES)
                 this.scrollAccumulator = 0;
                 this.lastWheelTime = 0;
 
@@ -2605,7 +2607,7 @@
                 });
             }
 
-            // 🔥 GESTION TACTILE ET SCROLL OPTIMISÉE CONSERVÉE
+            // GESTION TACTILE ET SCROLL OPTIMISÉE (CONSERVÉE INTÉGRALEMENT)
             setupTouchNavigation() {
                 let startTime = 0;
                 let startY = 0;
@@ -2640,7 +2642,7 @@
                     }
                 }, { passive: true });
 
-                // 🔥 GESTION WHEEL OPTIMISÉE CONSERVÉE
+                // GESTION WHEEL OPTIMISÉE (CONSERVÉE)
                 document.addEventListener('wheel', (e) => {
                     if (this.isTransitioning) return;
 
@@ -2658,20 +2660,20 @@
 
                     const { scrollTop, scrollHeight, clientHeight } = sectionContent;
 
-                    // AMÉLIORATION : Marges plus importantes et vérifications multiples
-                    const scrollMargin = Math.max(15, clientHeight * 0.03); // 3% de la hauteur ou 15px min
+                    // Marges importantes et vérifications multiples
+                    const scrollMargin = Math.max(15, clientHeight * 0.03);
                     const isAtTop = scrollTop <= scrollMargin;
                     const isAtBottom = scrollTop >= (scrollHeight - clientHeight - scrollMargin);
 
-                    // AMÉLIORATION : Détection du type d'input
-                    const isTrackpad = Math.abs(e.deltaY) < 50; // Trackpad = mouvements plus fins
-                    const isMouse = Math.abs(e.deltaY) >= 50;   // Molette = mouvements plus brusques
+                    // Détection du type d'input
+                    const isTrackpad = Math.abs(e.deltaY) < 50;
+                    const isMouse = Math.abs(e.deltaY) >= 50;
 
                     // Gestion différenciée selon le type d'input
                     if (isTrackpad) {
                         // Pour trackpad : accumulation nécessaire
                         this.scrollAccumulator += e.deltaY;
-                        const accumulationThreshold = 300; // Seuil d'accumulation
+                        const accumulationThreshold = 300;
 
                         if (Math.abs(this.scrollAccumulator) > accumulationThreshold) {
                             if ((this.scrollAccumulator > 0 && isAtBottom) || (this.scrollAccumulator < 0 && isAtTop)) {
@@ -2682,7 +2684,7 @@
                         }
                     } else if (isMouse) {
                         // Pour molette : seuil plus élevé et délai
-                        const mouseThreshold = 120; // Seuil plus élevé pour molette
+                        const mouseThreshold = 120;
 
                         if (Math.abs(e.deltaY) > mouseThreshold) {
                             if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
@@ -2699,7 +2701,7 @@
 
                     // Scroll normal dans les autres cas
                     if (!((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0))) {
-                        this.scrollAccumulator = 0; // Reset si scroll normal possible
+                        this.scrollAccumulator = 0;
                     }
                 }, { passive: false });
             }
