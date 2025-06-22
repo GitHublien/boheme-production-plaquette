@@ -67,7 +67,7 @@
             object-fit: cover;
         }
 
-        /* Audio controls - Correction mobile */
+        /* Audio controls - Optimisation GPU */
         .audio-controls {
             position: fixed;
             top: 20px;
@@ -88,12 +88,12 @@
         @media (max-width: 768px) {
             .audio-controls {
                 top: 20px;
-                right: 20px !important;
-                left: auto !important;
-                flex-direction: row !important;
+                left: 20px !important;
+                right: auto !important;
+                flex-direction: column;
                 gap: 6px;
-                padding: 8px 12px;
-                border-radius: 20px;
+                padding: 10px 8px;
+                border-radius: 25px;
             }
         }
 
@@ -130,6 +130,8 @@
             .audio-control-btn {
                 width: 30px;
                 height: 30px;
+                min-height: 44px;
+                min-width: 44px;
             }
             .audio-control-btn .material-icons {
                 font-size: 16px;
@@ -179,7 +181,7 @@
             overflow: hidden;
         }
 
-        /* Navigation - Retour à la taille normale sur mobile */
+        /* Navigation - Optimisation */
         .navigation {
             position: fixed;
             top: 50%;
@@ -200,12 +202,12 @@
                 top: auto !important;
                 transform: translateZ(0) !important;
                 flex-direction: row !important;
-                background: rgba(255,255,255,0.85);
-                padding: 8px 12px;
-                border-radius: 20px;
-                border: 1px solid var(--gold);
-                backdrop-filter: blur(5px);
-                box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+                background: rgba(255,255,255,0.95);
+                padding: 15px 20px;
+                border-radius: 30px;
+                border: 2px solid var(--gold);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             }
         }
 
@@ -227,8 +229,8 @@
 
         @media (max-width: 768px) {
             .nav-dot {
-                width: 14px;
-                height: 14px;
+                min-height: 44px;
+                min-width: 44px;
             }
         }
 
@@ -514,7 +516,6 @@
             }
         }
 
-        /* Section header - Correction positionnement mobile */
         .section-header {
             position: relative;
             padding: 30px 40px;
@@ -528,7 +529,7 @@
         @media (max-width: 768px) {
             .section-header {
                 padding: 20px;
-                text-align: left !important;
+                text-align: center;
                 background: rgba(255, 255, 255, 0.8);
             }
         }
@@ -573,11 +574,8 @@
 
         @media (max-width: 768px) {
             .section-title {
-                text-align: left !important;
+                text-align: center;
                 font-size: 2rem;
-                margin: 0;
-                display: block;
-                width: fit-content;
             }
         }
 
@@ -612,58 +610,6 @@
                 padding-bottom: 150px;
                 background: rgba(255, 255, 255, 0.1);
             }
-        }
-
-        /* Bouton de navigation fin de section - NOUVEAU */
-        .end-section-nav {
-            position: sticky;
-            bottom: 10px;
-            right: 10px;
-            z-index: 150;
-            margin-left: auto;
-            margin-top: 20px;
-            width: fit-content;
-            display: none;
-        }
-
-        .end-nav-button {
-            background: rgba(212,175,55,0.9);
-            color: var(--black);
-            border: 2px solid var(--black);
-            border-radius: 25px;
-            padding: 8px 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            backdrop-filter: blur(5px);
-        }
-
-        .end-nav-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-            background: rgba(212,175,55,1);
-        }
-
-        .end-nav-button .material-icons {
-            font-size: 16px;
-        }
-
-        @media (max-width: 768px) {
-            .end-nav-button {
-                padding: 10px 18px;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Suppression de l'indicateur de fin pour la section Présentation */
-        #intro .section-content::after {
-            display: none !important;
         }
 
         /* MODE PRÉSENTATION */
@@ -1976,6 +1922,7 @@
             </div>
         </div>
 
+        <!-- Toutes les sections existantes... IDENTIQUES -->
         <!-- Section: Cover -->
         <section class="section cover-section active" id="cover">
             <div class="cover-content">
@@ -2573,6 +2520,10 @@
                 this.isTransitioning = false;
                 this.isPresentationMode = false;
 
+                // Nouvelles variables pour le scroll optimisé
+                this.scrollAccumulator = 0;
+                this.lastWheelTime = 0;
+
                 // Cache des éléments DOM fréquemment utilisés
                 this.cache = {
                     audio: null,
@@ -2602,7 +2553,6 @@
                 this.setupNavigation();
                 this.setupArtisteTabs();
                 this.setupTouchNavigation();
-                this.setupEndSectionButton();
                 this.setupKeyboardNavigation();
                 this.setupPresentationMode();
                 this.startAnimations();
@@ -2659,7 +2609,7 @@
                 });
             }
 
-            // Gestion tactile simplifiée avec correction PC/Mobile
+            // ========== NOUVELLE GESTION TACTILE ET SCROLL OPTIMISÉE ==========
             setupTouchNavigation() {
                 let startTime = 0;
                 let startY = 0;
@@ -2694,27 +2644,66 @@
                     }
                 }, { passive: true });
 
-                // Gestion wheel adaptative PC/Mobile - CORRECTION APPLIQUÉE
+                // ========== NOUVELLE GESTION WHEEL OPTIMISÉE ==========
                 document.addEventListener('wheel', (e) => {
                     if (this.isTransitioning) return;
 
                     const sectionContent = e.target.closest('.section-content');
                     if (!sectionContent) return;
 
-                    // Seuil adaptatif selon le device
-                    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
-                    const scrollThreshold = isMobile ? 50 : 120; // Plus tolérant sur PC
+                    const now = Date.now();
+                    const timeDiff = now - this.lastWheelTime;
+                    this.lastWheelTime = now;
+
+                    // Reset accumulator si trop de temps écoulé
+                    if (timeDiff > 150) {
+                        this.scrollAccumulator = 0;
+                    }
 
                     const { scrollTop, scrollHeight, clientHeight } = sectionContent;
-                    const isAtTop = scrollTop <= 5;
-                    const isAtBottom = scrollTop >= (scrollHeight - clientHeight - 5);
 
-                    const strongScroll = Math.abs(e.deltaY) > scrollThreshold;
+                    // AMÉLIORATION : Marges plus importantes et vérifications multiples
+                    const scrollMargin = Math.max(15, clientHeight * 0.03); // 3% de la hauteur ou 15px min
+                    const isAtTop = scrollTop <= scrollMargin;
+                    const isAtBottom = scrollTop >= (scrollHeight - clientHeight - scrollMargin);
 
-                    // Navigation seulement aux extrémités avec scroll fort
-                    if (strongScroll && ((e.deltaY < -scrollThreshold && isAtTop) || (e.deltaY > scrollThreshold && isAtBottom))) {
-                        this.handleDirectionalNavigation(e.deltaY > 0 ? 'down' : 'up');
-                        e.preventDefault();
+                    // AMÉLIORATION : Détection du type d'input
+                    const isTrackpad = Math.abs(e.deltaY) < 50; // Trackpad = mouvements plus fins
+                    const isMouse = Math.abs(e.deltaY) >= 50;   // Molette = mouvements plus brusques
+
+                    // Gestion différenciée selon le type d'input
+                    if (isTrackpad) {
+                        // Pour trackpad : accumulation nécessaire
+                        this.scrollAccumulator += e.deltaY;
+                        const accumulationThreshold = 300; // Seuil d'accumulation
+
+                        if (Math.abs(this.scrollAccumulator) > accumulationThreshold) {
+                            if ((this.scrollAccumulator > 0 && isAtBottom) || (this.scrollAccumulator < 0 && isAtTop)) {
+                                this.handleDirectionalNavigation(this.scrollAccumulator > 0 ? 'down' : 'up');
+                                this.scrollAccumulator = 0;
+                                e.preventDefault();
+                            }
+                        }
+                    } else if (isMouse) {
+                        // Pour molette : seuil plus élevé et délai
+                        const mouseThreshold = 120; // Seuil plus élevé pour molette
+
+                        if (Math.abs(e.deltaY) > mouseThreshold) {
+                            if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
+                                // Délai supplémentaire pour éviter déclenchements accidentels
+                                setTimeout(() => {
+                                    if (!this.isTransitioning) {
+                                        this.handleDirectionalNavigation(e.deltaY > 0 ? 'down' : 'up');
+                                    }
+                                }, 100);
+                                e.preventDefault();
+                            }
+                        }
+                    }
+
+                    // Scroll normal dans les autres cas
+                    if (!((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0))) {
+                        this.scrollAccumulator = 0; // Reset si scroll normal possible
                     }
                 }, { passive: false });
             }
@@ -2726,69 +2715,6 @@
 
                 if (nextSection !== this.currentSection) {
                     this.goToSection(nextSection);
-                }
-            }
-
-            // Ajout du bouton de fin de section - NOUVEAU
-            setupEndSectionButton() {
-                // Ajouter le bouton à chaque section-content (sauf contact)
-                this.sections.slice(0, -1).forEach((sectionId, index) => {
-                    const sectionContent = document.querySelector(`#${sectionId} .section-content`);
-                    if (!sectionContent) return;
-
-                    // Créer le bouton de fin de section
-                    const endNavDiv = document.createElement('div');
-                    endNavDiv.className = 'end-section-nav';
-                    endNavDiv.innerHTML = `
-                        <button class="end-nav-button" data-next-section="${index + 1}">
-                            Section suivante
-                            <span class="material-icons">arrow_forward</span>
-                        </button>
-                    `;
-
-                    sectionContent.appendChild(endNavDiv);
-                });
-
-                // Délégation d'événements pour les boutons
-                document.addEventListener('click', (e) => {
-                    const endButton = e.target.closest('.end-nav-button');
-                    if (!endButton) return;
-
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    const nextSection = parseInt(endButton.dataset.nextSection);
-                    this.goToSection(nextSection);
-                });
-
-                // Event listener pour le scroll avec détection de fin
-                document.addEventListener('scroll', this.throttle(() => {
-                    this.sections.forEach(sectionId => {
-                        const section = document.getElementById(sectionId);
-                        const sectionContent = section?.querySelector('.section-content');
-                        const endButton = sectionContent?.querySelector('.end-section-nav');
-
-                        if (!sectionContent || !endButton || !section.classList.contains('active')) return;
-
-                        const isAtBottom = sectionContent.scrollTop >=
-                            (sectionContent.scrollHeight - sectionContent.clientHeight - 30);
-
-                        endButton.style.display = isAtBottom ? 'block' : 'none';
-                    });
-                }, 150), true);
-            }
-
-            // Méthode throttle pour optimiser les performances
-            throttle(func, limit) {
-                let inThrottle;
-                return function() {
-                    const args = arguments;
-                    const context = this;
-                    if (!inThrottle) {
-                        func.apply(context, args);
-                        inThrottle = true;
-                        setTimeout(() => inThrottle = false, limit);
-                    }
                 }
             }
 
@@ -3021,6 +2947,9 @@
                 if (index === this.currentSection || this.isTransitioning || index < 0 || index >= this.sections.length) return;
 
                 this.isTransitioning = true;
+
+                // Reset des accumulateurs lors des transitions
+                this.scrollAccumulator = 0;
 
                 // Transition visuelle réduite
                 this.cache.transition?.classList.add('active');
