@@ -1,3 +1,10 @@
+Parfait ! Maintenant j'ai les deux codes. Je vais créer la fusion exactement selon vos instructions :
+
+## 🎯 **FUSION RÉALISÉE**
+
+Voici le code fusionné qui respecte **TOUTES** vos demandes :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -92,7 +99,7 @@
             object-fit: cover;
         }
 
-        /* Audio controls avec l'or comme demandé */
+        /* 🔥 AUDIO CONTROLS - Position de l'ancien code avec bouton plein écran du nouveau */
         .audio-controls {
             position: fixed;
             top: 20px;
@@ -106,6 +113,18 @@
             box-shadow: 0 3px 15px rgba(0,0,0,0.4), 0 0 20px rgba(212,175,55,0.6);
             border: 2px solid var(--black);
             font-size: 12px;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        /* 🔥 MOBILE - Décalé pour éviter chevauchement avec titres */
+        @media (max-width: 768px) {
+            .audio-controls {
+                top: 10px;
+                right: 10px;
+                padding: 6px;
+                gap: 6px;
+            }
         }
 
         .audio-control-btn {
@@ -123,15 +142,29 @@
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             border: 2px solid var(--black);
+            user-select: none;
+            touch-action: manipulation;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         .audio-control-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) translateZ(0);
             box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
 
         .audio-control-btn .material-icons {
             font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .audio-control-btn {
+                width: 30px;
+                height: 30px;
+            }
+            .audio-control-btn .material-icons {
+                font-size: 16px;
+            }
         }
 
         .volume-slider {
@@ -142,6 +175,14 @@
             padding: 0 8px;
         }
 
+        @media (max-width: 768px) {
+            .volume-slider {
+                width: 50px;
+                height: 30px;
+                padding: 0 6px;
+            }
+        }
+
         .volume-slider input {
             width: 100%;
             height: 3px;
@@ -149,6 +190,7 @@
             border-radius: 2px;
             outline: none;
             -webkit-appearance: none;
+            font-size: 16px;
         }
 
         .volume-slider input::-webkit-slider-thumb {
@@ -169,7 +211,93 @@
             overflow: hidden;
         }
 
-        /* Full page sections */
+        /* 🔥 NAVIGATION DOTS - Position de l'ancien code */
+        .navigation {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%) translateZ(0);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            backface-visibility: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .navigation {
+                bottom: 30px !important;
+                top: auto !important;
+                right: 50% !important;
+                transform: translateX(50%) translateZ(0) !important;
+                flex-direction: row !important;
+                background: rgba(255,255,255,0.95);
+                padding: 15px 20px;
+                border-radius: 30px;
+                border: 2px solid var(--gold);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            }
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: url('image-en-or.png') center/cover;
+            border: 2px solid var(--black);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3), 0 0 10px rgba(212,175,55,0.5);
+            position: relative;
+            user-select: none;
+            touch-action: manipulation;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .nav-dot.active {
+            transform: scale(1.3) translateZ(0);
+            box-shadow: 0 0 20px rgba(212,175,55,0.8), 0 4px 8px rgba(0,0,0,0.4);
+        }
+
+        .nav-dot:hover {
+            transform: scale(1.2) translateZ(0);
+            box-shadow: 0 0 15px rgba(212,175,55,0.7);
+        }
+
+        .nav-tooltip {
+            position: absolute;
+            right: 25px;
+            background: rgba(0,0,0,0.8);
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            transform: translateX(-10px);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+        }
+
+        .nav-dot:hover .nav-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-tooltip {
+                display: none;
+            }
+        }
+
+        /* Sections - Structure de l'ancien code avec optimisations du nouveau */
         .section {
             position: absolute;
             width: 100%;
@@ -180,8 +308,10 @@
             align-items: center;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 1s ease, visibility 1s ease;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
             overflow: hidden;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         .section.active {
@@ -190,7 +320,7 @@
             z-index: 10;
         }
 
-        /* Cover section */
+        /* Cover section - Structure de l'ancien code */
         .cover-section {
             background-color: transparent;
             text-align: center;
@@ -224,11 +354,20 @@
             box-shadow: 0 0 30px rgba(212,175,55,0.7), inset 0 0 30px rgba(212,175,55,0.3);
         }
 
+        @media (max-width: 768px) {
+            .logo-container {
+                width: 320px;
+                height: 320px;
+            }
+        }
+
         .logo {
             width: 100%;
             height: 100%;
             object-fit: contain;
             filter: drop-shadow(2px 2px 4px var(--black));
+            image-rendering: optimizeQuality;
+            will-change: transform;
         }
 
         .cover-title {
@@ -245,6 +384,12 @@
             border-radius: 15px;
             border: 3px solid var(--black);
             box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .cover-title {
+                font-size: 2.5rem;
+            }
         }
 
         .cover-title-text {
@@ -267,6 +412,23 @@
                 0 0 35px rgba(255,255,255,0.4);
         }
 
+        @media (max-width: 768px) {
+            .cover-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* 🔥 BARRE DORÉE - Position EXACTE de l'ancien code sur PC ET mobile */
+        .golden-line {
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            margin: 30px 0;
+            position: relative;
+            box-shadow: 0 0 15px rgba(212,175,55,0.8), 0 2px 4px var(--black);
+            border: 1px solid var(--black);
+        }
+
         .cover-interactive-text {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
@@ -287,14 +449,10 @@
             background-color: rgba(255,255,255,0.1);
         }
 
-        .golden-line {
-            width: 60%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
-            margin: 30px 0;
-            position: relative;
-            box-shadow: 0 0 15px rgba(212,175,55,0.8), 0 2px 4px var(--black);
-            border: 1px solid var(--black);
+        @media (max-width: 768px) {
+            .cover-interactive-text {
+                font-size: 1.2rem;
+            }
         }
 
         .cover-scroll-indicator {
@@ -307,10 +465,19 @@
             align-items: center;
             cursor: pointer;
             transition: transform 0.3s ease;
+            user-select: none;
+            touch-action: manipulation;
+            z-index: 100;
         }
 
         .cover-scroll-indicator:hover {
             transform: translateX(-50%) translateY(5px);
+        }
+
+        @media (max-width: 768px) {
+            .cover-scroll-indicator {
+                bottom: 120px;
+            }
         }
 
         .scroll-text {
@@ -364,66 +531,7 @@
             }
         }
 
-        /* Navigation avec l'or comme demandé */
-        .navigation {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .nav-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
-            border: 2px solid var(--black);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3), 0 0 10px rgba(212,175,55,0.5);
-            position: relative;
-        }
-
-        .nav-dot.active {
-            transform: scale(1.3);
-            box-shadow: 0 0 20px rgba(212,175,55,0.8), 0 4px 8px rgba(0,0,0,0.4);
-        }
-
-        .nav-dot:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 15px rgba(212,175,55,0.7);
-        }
-
-        .nav-tooltip {
-            position: absolute;
-            right: 25px;
-            background: rgba(0,0,0,0.8);
-            padding: 8px 12px;
-            border-radius: 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            transform: translateX(-10px);
-            color: var(--gold);
-            border: 1px solid var(--gold);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.5);
-        }
-
-        .nav-dot:hover .nav-tooltip {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
-        }
-
-        /* Content sections styling */
+        /* Section containers - Structure de l'ancien code */
         .section-container {
             position: relative;
             width: 90%;
@@ -441,7 +549,15 @@
             border: 3px solid var(--gold);
         }
 
-        /* VIDÉO LASERS COULEURS dans la bande fixe - BOUCLE CORRIGÉE */
+        @media (max-width: 768px) {
+            .section-container {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+                background: rgba(255, 255, 255, 0.7);
+            }
+        }
+
         .section-header {
             position: relative;
             padding: 30px 40px;
@@ -450,6 +566,15 @@
             border-bottom: 2px solid var(--gold);
             overflow: hidden;
             touch-action: manipulation;
+        }
+
+        /* 🔥 MOBILE - Titres à gauche pour éviter chevauchement avec barre de son */
+        @media (max-width: 768px) {
+            .section-header {
+                padding: 20px;
+                text-align: left; /* 🔥 TITRES À GAUCHE */
+                background: rgba(255, 255, 255, 0.8);
+            }
         }
 
         .section-header-video {
@@ -490,6 +615,21 @@
             z-index: 2;
         }
 
+        /* 🔥 MOBILE - Titres à gauche et taille réduite pour "Productions" */
+        @media (max-width: 768px) {
+            .section-title {
+                text-align: left;
+                font-size: 2rem;
+            }
+            .section-header {
+                text-align: left;
+            }
+            /* 🔥 TITRE SPÉCIFIQUE "Productions" plus petit */
+            #productions .section-title {
+                font-size: 1.7rem;
+            }
+        }
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -502,7 +642,7 @@
             border: 1px solid var(--black);
         }
 
-        /* SECTION CONTENT - DÉFILEMENT STANDARD AVEC ZONE DE SÉCURITÉ */
+        /* Section content scrollable - Système de l'ancien code avec zone de sécurité */
         .section-content {
             flex: 1;
             position: relative;
@@ -513,9 +653,199 @@
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
         }
 
-        /* === SECTION PRÉSENTATION MAGAZINE CORRIGÉE === */
+        @media (max-width: 768px) {
+            .section-content {
+                padding-bottom: 150px; /* 🔥 ZONE DE SÉCURITÉ MOBILE RENFORCÉE */
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* MODE PRÉSENTATION - Nouveau du nouveau code */
+        .presentation-mode {
+            background: black !important;
+        }
+
+        .presentation-mode .section-container {
+            width: 100% !important;
+            height: 100% !important;
+            max-width: none !important;
+            max-height: none !important;
+            border-radius: 0 !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+            border: 5px solid var(--gold) !important;
+            box-shadow: 0 0 50px rgba(212,175,55,0.8) !important;
+        }
+
+        .presentation-mode .section-title {
+            font-size: 4rem !important;
+            text-align: center !important;
+            margin: 0 !important;
+        }
+
+        .presentation-mode .section-content {
+            padding: 40px !important;
+            font-size: 1.4rem !important;
+            line-height: 1.8 !important;
+        }
+
+        .presentation-mode .navigation,
+        .presentation-mode .audio-controls {
+            display: none !important;
+        }
+
+        /* Contrôles présentation */
+        .presentation-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            display: none;
+            gap: 15px;
+            background: rgba(0,0,0,0.9);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .presentation-mode .presentation-controls {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .presentation-controls {
+                bottom: 20px !important;
+                left: 20px !important;
+                right: auto !important;
+                transform: none !important;
+                flex-direction: column !important;
+                padding: 12px 10px !important;
+                gap: 8px !important;
+                border-radius: 25px !important;
+            }
+        }
+
+        .presentation-control-btn {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--black);
+        }
+
+        .presentation-control-btn:hover {
+            transform: scale(1.1);
+            background: var(--gold-light);
+        }
+
+        .presentation-control-btn .material-icons {
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .presentation-control-btn {
+                width: 35px;
+                height: 35px;
+            }
+            .presentation-control-btn .material-icons {
+                font-size: 18px;
+            }
+        }
+
+        /* Indicateur présentation */
+        .presentation-indicator {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 10000;
+            display: none;
+            background: rgba(0,0,0,0.8);
+            color: var(--gold);
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 2px solid var(--gold);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .presentation-mode .presentation-indicator {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .presentation-indicator {
+                top: 20px !important;
+                left: 20px !important;
+                right: auto !important;
+                padding: 8px 12px !important;
+                font-size: 12px !important;
+            }
+        }
+
+        /* Animations optimisées */
+        .fade-up {
+            animation: fadeUp 1s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-delay-1 {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.3s;
+        }
+
+        .fade-in-delay-2 {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.6s;
+        }
+
+        .fade-in-delay-3 {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.9s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Page transition optimisée */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            background: linear-gradient(45deg,
+                rgba(212,175,55,0.3) 0%,
+                rgba(0,0,0,0.8) 50%,
+                rgba(212,175,55,0.3) 100%
+            );
+        }
+
+        .page-transition.active {
+            opacity: 1;
+        }
+
+        /* === CONTENU MAGAZINE - Structure de l'ancien code avec TEXTE du nouveau === */
         .intro-content-magazine {
             position: relative;
             width: 100%;
@@ -526,6 +856,13 @@
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+        }
+
+        @media (max-width: 768px) {
+            .intro-content-magazine {
+                padding-bottom: 200px; /* 🔥 ZONE DE SÉCURITÉ MOBILE MAXIMALE */
+            }
         }
 
         /* Container avec dégradé SANS BLUR EN BAS */
@@ -542,6 +879,13 @@
             );
             box-shadow: inset 0 0 150px rgba(212,175,55,0.2);
             padding-bottom: 150px; /* 🔥 ZONE DE SÉCURITÉ DANS LE CONTENU */
+            touch-action: pan-y;
+        }
+
+        @media (max-width: 768px) {
+            .scrollable-content {
+                padding-bottom: 200px; /* 🔥 ZONE SÉCURITÉ MOBILE */
+            }
         }
 
         /* Photo principale avec titre STYLE VOGUE */
@@ -552,6 +896,12 @@
             overflow: hidden;
             margin-bottom: 0;
             background: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .hero-image-container {
+                height: 300px;
+            }
         }
 
         .hero-image-video-background {
@@ -584,6 +934,8 @@
             object-fit: contain;
             object-position: center 60%;
             filter: brightness(0.85) contrast(1.1);
+            image-rendering: optimizeQuality;
+            will-change: transform;
         }
 
         .hero-image-placeholder {
@@ -626,72 +978,23 @@
             letter-spacing: 1px;
         }
 
-        /* NOUVELLE SECTION - COLLAGE ARTISTIQUE EN TAILLE ORIGINALE */
-        .artistic-collage-section {
-            position: relative;
-            width: 100%;
-            margin: 50px 0;
-            overflow: hidden;
-            background: var(--black);
-            border: 3px solid var(--gold);
-            border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.6);
-        }
-
-        .artistic-collage-video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .artistic-collage-video-background video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%);
-            opacity: 1;
-            object-fit: cover;
-        }
-
-        .artistic-collage-image {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: brightness(1.1) contrast(1.1);
-        }
-
-        .artistic-collage-placeholder {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--black);
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            font-family: 'Dancing Script', cursive;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
-            padding: 20px;
+        @media (max-width: 768px) {
+            .hero-image-title {
+                font-size: 1.5rem;
+            }
         }
 
         /* Contenu principal amélioré */
         .magazine-content-wrapper {
             padding: 40px;
             position: relative;
+            touch-action: pan-y;
+        }
+
+        @media (max-width: 768px) {
+            .magazine-content-wrapper {
+                padding: 20px;
+            }
         }
 
         .magazine-intro-block {
@@ -701,7 +1004,7 @@
 
         /* TITRE PRINCIPAL - Bohème Production EN NOIR */
         .magazine-title-main {
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Cormorant Garamond', serif;
             font-size: 3.5rem;
             font-weight: 700;
             text-align: center;
@@ -710,8 +1013,14 @@
             text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
         }
 
+        @media (max-width: 768px) {
+            .magazine-title-main {
+                font-size: 2.5rem;
+            }
+        }
+
         .magazine-subtitle {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Dancing Script', cursive;
             font-size: 1.6rem;
             font-style: italic;
             color: var(--black);
@@ -737,8 +1046,15 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
 
+        @media (max-width: 768px) {
+            .magazine-paragraph {
+                font-size: 1.2rem;
+                text-align: left;
+            }
+        }
+
         /* TITRES DE SECTIONS STYLE VOGUE */
-        .magazine-section-title {
+        .magazine-section-title, .magazine-section-title-center {
             font-family: 'Bodoni Moda', serif;
             font-size: 1.9rem;
             font-weight: 400;
@@ -755,240 +1071,61 @@
             letter-spacing: 1px;
         }
 
-        /* VRAIES BORDURES DORÉES AUTOUR DES CARRÉS NOIRS COMME AVANT */
-        .artists-highlight-container,
-        .polyvalent-artists-container,
-        .content-section-container,
-        .collaboration-container,
-        .excellence-container {
+        @media (max-width: 768px) {
+            .magazine-section-title, .magazine-section-title-center {
+                font-size: 1.6rem;
+                padding: 15px 20px;
+            }
+        }
+
+        /* 🔥 BORDURES DORÉES RESTAURÉES - Système de l'ancien code */
+        .content-section-container {
             margin: 25px 0;
             padding: 35px;
             background: rgba(0,0,0,0.9);
             border: 5px solid;
-            border-image: url('images-en-or-2.png') 10;
+            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.4);
             clear: both;
             position: relative;
         }
 
-        .artists-highlight-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+        /* 🔥 ESPACEMENTS MOBILE pour éviter bordures collées */
+        @media (max-width: 768px) {
+            .content-section-container {
+                padding: 20px;
+                margin: 20px 0; /* 🔥 AUGMENTÉ : 15px → 20px */
+            }
         }
 
-        .artist-highlight {
-            padding: 25px;
-            background: rgba(0,0,0,0.8);
-            border: 3px solid;
-            border-image: url('images-en-or-2.png') 10;
-            border-radius: 15px;
-            color: white;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            line-height: 1.6;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-
-        /* NOMS D'ARTISTES EN OR SIMPLE MAIS ÉLÉGANT */
-        .artist-name {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--gold);
-            display: block;
-            margin-bottom: 12px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(212,175,55,0.7);
-        }
-
-        .artist-description {
-            font-size: 1.4rem;
-            line-height: 1.5;
-            color: white;
-        }
-
-        /* GRANDE CASE pour Pascal Terrien */
-        .polyvalent-artists-container {
-            margin: 15px 0 25px 0;
-        }
-
-        /* PHRASES MISES EN ÉVIDENCE NOIR/OR AVEC BORDURE DORÉE */
-        .highlight-quote {
-            margin: 35px 0;
-            padding: 35px;
-            background: rgba(0,0,0,0.95);
-            border: 4px solid;
-            border-image: url('images-en-or-2.png') 10;
+        .video-content-block {
+            position: relative;
+            margin: 40px 0;
             border-radius: 20px;
-            text-align: center;
-            font-style: italic;
-            color: var(--gold);
-            font-size: 1.5rem;
-            line-height: 1.7;
-            text-shadow: 2px 2px 4px black;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.5);
-            position: relative;
-            clear: both;
-        }
-
-        .highlight-quote::before,
-        .highlight-quote::after {
-            content: '"';
-            font-size: 3.5rem;
-            color: var(--gold);
-            position: absolute;
-            opacity: 0.5;
-            font-family: 'Bodoni Moda', serif;
-        }
-
-        .highlight-quote::before {
-            top: -10px;
-            left: 15px;
-        }
-
-        .highlight-quote::after {
-            bottom: -40px;
-            right: 15px;
-        }
-
-        .clean-list {
-            margin: 20px 0;
-        }
-
-        .clean-list-item {
-            margin-bottom: 15px;
-            padding: 15px;
-            background: rgba(0,0,0,0.8);
-            border-left: 5px solid var(--gold);
-            border-radius: 8px;
-            font-size: 1.4rem;
-            color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        /* MESSAGE PATRICK AVEC TITRE AVEC BORDURE DORÉE */
-        .patrick-quote-highlight {
-            margin: 60px 0;
-            padding: 60px 40px 30px 40px;
-            background: rgba(0,0,0,0.95);
-            border: 5px solid;
-            border-image: url('images-en-or-2.png') 10;
-            border-radius: 25px;
-            text-align: center;
-            position: relative;
-            clear: both;
-            box-shadow:
-                0 25px 50px rgba(212,175,55,0.4),
-                0 0 60px rgba(212,175,55,0.5),
-                inset 0 0 60px rgba(212,175,55,0.15);
-        }
-
-        .patrick-quote-title {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 2rem;
-            font-weight: 400;
-            color: var(--gold);
-            margin-bottom: 18px;
-            text-shadow: 3px 3px 6px black, 0 0 35px rgba(212,175,55,0.9);
-            line-height: 1.1;
-            letter-spacing: 1.2px;
-        }
-
-        .patrick-quote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-style: italic;
-            line-height: 1.8;
-            color: white;
-            position: relative;
-            margin: 25px 0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-        }
-
-        .patrick-quote::before,
-        .patrick-quote::after {
-            content: '"';
-            font-size: 4.5rem;
-            color: var(--gold);
-            position: absolute;
-            opacity: 0.5;
-            font-family: 'Bodoni Moda', serif;
-        }
-
-        .patrick-quote::before {
-            top: -25px;
-            left: -15px;
-        }
-
-        .patrick-quote::after {
-            bottom: -70px;
-            right: -15px;
-        }
-
-        /* SIGNATURE */
-        .patrick-signature-integrated {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 3px solid var(--gold);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .boheme-signature-image {
-            max-width: 900px;
-            height: auto;
-            margin: 0;
-            display: block;
-            filter: brightness(1.3) contrast(1.2);
-        }
-
-        .boheme-signature-placeholder {
-            font-family: 'Dancing Script', cursive;
-            font-size: 6rem;
-            font-weight: 700;
-            color: var(--gold);
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.9), 0 0 20px rgba(212,175,55,0.8);
-            padding: 20px;
-            text-align: center;
-        }
-
-        /* LOGO DÉCORATIF - BORDURE DORÉE CLASSIQUE CORRIGÉE */
-        .decorative-logo-section {
-            margin: 50px 0;
-            padding: 80px;
-            background: rgba(0,0,0,0.95);
-            border-radius: 25px;
-            text-align: center;
-            position: relative;
             overflow: hidden;
-            border: 5px solid var(--gold);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 40px rgba(212,175,55,0.5);
-            clear: both;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border: 5px solid;
+            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
         }
 
-        .decorative-video-background {
+        @media (max-width: 768px) {
+            .video-content-block {
+                margin: 25px 0; /* 🔥 AUGMENTÉ : 20px → 25px */
+            }
+        }
+
+        .video-background-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
-            opacity: 0.8;
+            z-index: 1;
         }
 
-        .decorative-video-background video {
+        .video-background-container video {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -997,1383 +1134,1589 @@
             width: auto;
             height: auto;
             transform: translateX(-50%) translateY(-50%);
+            opacity: 1;
             object-fit: cover;
         }
 
-        .decorative-logo {
+        .image-overlay-container {
             position: relative;
             z-index: 2;
-            max-width: 500px;
+            width: 100%;
             height: auto;
-            filter: brightness(1.3) contrast(1.3) drop-shadow(0 0 25px rgba(212,175,55,0.9));
-            margin: 0 auto;
+        }
+
+        .content-image {
+            width: 100%;
+            height: auto;
             display: block;
         }
 
-        .decorative-logo-placeholder {
-            position: relative;
-            z-index: 2;
-            width: 500px;
-            height: 500px;
-            margin: 0 auto;
+        .image-placeholder {
+            width: 100%;
+            height: 350px;
             background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: var(--black);
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: 700;
             text-align: center;
             font-family: 'Dancing Script', cursive;
-            border: 4px solid var(--black);
         }
 
-        /* TEXTES EN OR SIMPLE ET ÉLÉGANT */
-        .text-gold {
-            color: var(--gold);
-            font-weight: 600;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(212,175,55,0.6);
-        }
-
-        .text-gold-shimmer {
-            color: var(--gold);
-            font-weight: 700;
-            text-shadow:
-                2px 2px 4px rgba(0,0,0,0.9),
-                0 0 10px rgba(212,175,55,0.8),
-                0 0 15px rgba(212,175,55,0.6);
-        }
-
-        /* COPYRIGHT NORMAL ET DISCRET */
-        .final-credits {
-            background: rgba(248,248,248,0.3);
-            color: #666666;
-            padding: 8px 15px;
-            margin-top: 20px;
-            border-top: 1px solid #dddddd;
-            font-family: 'Arial', sans-serif;
-            font-size: 10px;
-            line-height: 1.2;
-            text-align: center;
-            border-radius: 8px;
-            backdrop-filter: blur(5px);
-        }
-
-        .credits-line {
-            margin: 1px 0;
-            color: #777777;
-        }
-
-        .credits-name {
-            font-weight: 600;
-            color: #555555;
-        }
-
-        .credits-copyright {
-            margin-top: 4px;
-            padding-top: 4px;
-            border-top: 1px solid #eeeeee;
-            font-weight: 600;
-            color: #333333;
-            font-size: 11px;
-        }
-
-        /* Autres sections */
-        .bureau-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .bureau-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(5px);
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            padding: 25px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
+        .content-text-block {
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15), 0 0 15px rgba(212,175,55,0.3);
-        }
-
-        .bureau-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2), 0 0 25px rgba(212,175,55,0.5);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .bureau-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-            color: var(--dark);
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-        }
-
-        .bureau-title {
-            font-size: 1rem;
-            color: var(--gray);
-            font-style: italic;
-        }
-
-        .bureau-photo-placeholder {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-            color: var(--black);
-            overflow: hidden;
-            border: 3px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2), inset 0 0 20px rgba(212,175,55,0.2);
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-        }
-
-        .bureau-photo-real {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px rgba(212,175,55,0.3);
-        }
-
-        .bureau-photo-real img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .bureau-footer-text {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 60px;
-            font-style: italic;
-            color: var(--gold-dark);
-            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
-            padding: 15px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 10px;
-        }
-
-        /* Artistes section */
-        .artistes-tabs {
-            display: flex;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--gold);
-            background: rgba(249, 241, 219, 0.5);
-            backdrop-filter: blur(5px);
-            border-radius: 10px 10px 0 0;
-            overflow: hidden;
-        }
-
-        .artiste-tab {
-            padding: 15px 25px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            color: var(--black);
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-        }
-
-        .artiste-tab.active {
-            color: var(--black);
-            font-weight: 600;
-            background: url('image-en-or.png') center/cover;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-        }
-
-        .artiste-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gold);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .artiste-category {
-            display: none;
-            padding: 40px;
-        }
-
-        .artiste-category.active {
-            display: block;
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .artiste-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
-        }
-
-        .artiste-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(3px);
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1), 0 0 10px rgba(212,175,55,0.2);
-        }
-
-        .artiste-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 20px rgba(212,175,55,0.4);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .artiste-photo-placeholder {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px;
-            border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            color: var(--black);
-            overflow: hidden;
-            border: 2px solid var(--gold);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-        }
-
-        .artiste-name {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: var(--dark);
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-        }
-
-        .artiste-role {
-            font-size: 0.9rem;
-            color: var(--gray);
-            font-style: italic;
-        }
-
-        .artistes-website-link {
-            text-align: center;
-            margin-top: 40px;
-            padding: 25px;
-            background: rgba(212,175,55,0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 2px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .artistes-website-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-style: italic;
-            color: var(--dark);
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
-        }
-
-        .artistes-website-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 20px;
-            background: url('image-en-or.png') center/cover;
-            color: var(--black);
-            text-decoration: none;
-            border-radius: 25px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 2px solid var(--black);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
-        }
-
-        .artistes-website-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-
-        .artistes-website-button .material-icons {
-            margin-right: 8px;
-            font-size: 1.2rem;
-        }
-
-        /* Productions section */
-        .production-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 40px;
-        }
-
-        .production-card {
-            position: relative;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(5px);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 20px rgba(212,175,55,0.3);
-            transition: all 0.3s ease;
-            height: 100%;
-            border: 2px solid var(--gold);
-        }
-
-        .production-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(212,175,55,0.5);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .production-image {
-            height: 180px;
-            background: url('image-en-or.png') center/cover;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .production-image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4));
-        }
-
-        .production-content {
-            padding: 25px;
-        }
-
-        .production-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
-        }
-
-        .production-description {
-            font-size: 1rem;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        /* Contact section */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            height: 100%;
-            padding: 40px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            color: var(--black);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px rgba(212,175,55,0.5);
-            border: 2px solid var(--gold-dark);
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-        }
-
-        .contact-text {
-            font-size: 1.1rem;
-            color: var(--dark);
-            line-height: 1.4;
-            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
-            background: rgba(255,255,255,0.3);
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        .contact-text span {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-top: 5px;
-        }
-
-        .contact-social {
-            margin-top: 40px;
-        }
-
-        .contact-social-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-link {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--black);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 2px solid var(--gold-dark);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .map-container {
-            width: 100%;
-            height: 100%;
-            background: rgba(245,245,245,0.8);
-            backdrop-filter: blur(3px);
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            border: 2px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .map-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--gray);
-            font-style: italic;
-            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
-        }
-
-        /* Animation classes */
-        .fade-up {
-            animation: fadeUp 1s ease forwards;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in-delay-1 {
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.3s;
-        }
-
-        .fade-in-delay-2 {
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.6s;
-        }
-
-        .fade-in-delay-3 {
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.9s;
-        }
-
-        /* Page transition effect */
-        .page-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1000;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            background: linear-gradient(45deg, var(--gold-light), var(--cream));
-        }
-
-        .page-transition.active {
-            opacity: 1;
-        }
-
-        /* RESPONSIVE MOBILE CORRIGÉ */
-        @media (max-width: 1200px) {
-            .section-container {
-                width: 95%;
-                height: 90%;
-            }
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            .map-container {
-                height: 300px;
-            }
-            .logo-container {
-                width: 450px;
-                height: 450px;
-            }
-            .boheme-signature-image {
-                max-width: 700px;
-            }
-            .boheme-signature-placeholder {
-                font-size: 5rem;
-            }
-            .decorative-logo {
-                max-width: 400px;
-            }
-            .decorative-logo-placeholder {
-                width: 400px;
-                height: 400px;
-            }
-            .decorative-logo-section {
-                max-width: 800px;
-                padding: 70px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .cover-title {
-                font-size: 3rem;
-            }
-            .cover-subtitle {
-                font-size: 1.5rem;
-            }
-            .cover-interactive-text {
-                font-size: 1.5rem;
-            }
-            .section-title {
-                font-size: 2.2rem;
-                text-align: center;
-            }
-            .bureau-grid, .production-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            .logo-container {
-                width: 380px;
-                height: 380px;
-            }
-            .magazine-title-main {
-                font-size: 2.8rem;
-            }
-            .polyvalent-artists-container {
-                margin: 10px 0 20px 0;
-            }
-            .boheme-signature-image {
-                max-width: 600px;
-            }
-            .boheme-signature-placeholder {
-                font-size: 4rem;
-            }
-            .decorative-logo-section {
-                max-width: 700px;
-                padding: 60px;
-            }
-            .decorative-logo {
-                max-width: 350px;
-            }
-            .decorative-logo-placeholder {
-                width: 350px;
-                height: 350px;
-            }
+            z-index: 3;
+            padding: 35px;
+            background: rgba(0,0,0,0.9);
+            border: 5px solid;
+            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
+            border-radius: 20px;
+            margin: 25px 35px 35px 35px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
         }
 
         @media (max-width: 768px) {
-            .section-container {
-                width: 100%;
-                height: 100%;
-                border-radius: 0;
-                background: rgba(255, 255, 255, 0.7);
-            }
-            .section-content {
-                padding-bottom: 150px; /* 🔥 ZONE DE SÉCURITÉ MOBILE RENFORCÉE */
-                background: rgba(255, 255, 255, 0.1);
-            }
-            .intro-content-magazine {
-                padding-bottom: 200px; /* 🔥 ZONE DE SÉCURITÉ MOBILE MAXIMALE */
-            }
-            .scrollable-content {
-                padding-bottom: 200px; /* 🔥 ZONE DE SÉCURITÉ DANS CONTENU MOBILE */
-            }
-            .section-header {
+            .content-text-block {
                 padding: 20px;
-                text-align: center;
-                background: rgba(255, 255, 255, 0.8);
-            }
-            .section-title {
-                text-align: center;
-                font-size: 2rem;
-            }
-            .cover-title {
-                font-size: 2.5rem;
-            }
-            .cover-subtitle {
-                font-size: 1.2rem;
-            }
-            .cover-interactive-text {
-                font-size: 1.2rem;
-            }
-            .navigation {
-                bottom: 30px;
-                top: auto;
-                right: 50%;
-                transform: translateX(50%);
-                flex-direction: row;
-                background: rgba(255,255,255,0.95);
-                padding: 15px 20px;
-                border-radius: 30px;
-                border: 2px solid var(--gold);
-                backdrop-filter: blur(10px);
-                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            }
-            .cover-scroll-indicator {
-                bottom: 120px;
-            }
-            .nav-tooltip {
-                display: none;
-            }
-            .bureau-grid, .artiste-grid, .production-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
-            .logo-container {
-                width: 320px;
-                height: 320px;
-            }
-            .audio-controls {
-                top: 10px;
-                right: 10px;
-                padding: 6px;
-                gap: 6px;
-            }
-            .audio-control-btn {
-                width: 30px;
-                height: 30px;
-            }
-            .audio-control-btn .material-icons {
-                font-size: 16px;
-            }
-            .volume-slider {
-                width: 50px;
-                height: 30px;
-                padding: 0 6px;
-            }
-            .bureau-footer-text {
-                margin-bottom: 180px; /* 🔥 PLUS D'ESPACE POUR ZONE SÉCURITÉ */
-                font-size: 0.9rem;
-            }
-            .magazine-content-wrapper {
-                padding: 20px;
-            }
-            .magazine-title-main {
-                font-size: 2.5rem;
-            }
-            .hero-image-container {
-                height: 300px;
-            }
-            .hero-image-title {
-                font-size: 1.5rem;
-            }
-            .artists-highlight-grid {
-                grid-template-columns: 1fr;
-            }
-            .patrick-quote {
-                font-size: 1.3rem;
-            }
-            .patrick-quote-title {
-                font-size: 1.7rem;
-            }
-            .magazine-paragraph {
-                font-size: 1.3rem;
-            }
-            .boheme-signature-image {
-                max-width: 500px;
-            }
-            .boheme-signature-placeholder {
-                font-size: 3.5rem;
-                padding: 15px;
-            }
-            .decorative-logo-section {
-                max-width: 90%;
-                padding: 30px 20px;
-                margin: 30px auto;
-            }
-            .decorative-logo {
-                max-width: 300px;
-            }
-            .decorative-logo-placeholder {
-                width: 300px;
-                height: 300px;
-                font-size: 2.5rem;
-            }
-            .artists-highlight-container,
-            .polyvalent-artists-container,
-            .content-section-container,
-            .collaboration-container,
-            .excellence-container {
-                padding: 20px;
-                margin: 15px 0;
-            }
-            .highlight-quote {
-                padding: 25px;
-                margin: 25px 0;
-            }
-            .patrick-quote-highlight {
-                padding: 30px 20px 20px 20px;
-                margin: 40px 0;
+                margin: 20px 0; /* 🔥 AUGMENTÉ pour espacement */
             }
         }
 
-        @media (max-width: 576px) {
-            .cover-title {
-                font-size: 2rem;
-            }
-            .logo-container {
-                width: 280px;
-                height: 280px;
-            }
-            .bureau-grid, .artiste-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .production-grid {
-                grid-template-columns: 1fr;
-            }
-            .section-title {
-                font-size: 1.8rem;
-                text-align: center;
-            }
-            .artistes-tabs {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-            }
-            .golden-line {
-                width: 80%;
-            }
-            .cover-interactive-text {
-                font-size: 1rem;
-            }
-            .audio-controls {
-                top: 5px;
-                right: 5px;
-                padding: 5px;
-                gap: 5px;
-            }
-            .audio-control-btn {
-                width: 28px;
-                height: 28px;
-            }
-            .audio-control-btn .material-icons {
-                font-size: 14px;
-            }
-            .volume-slider {
-                width: 45px;
-                height: 28px;
-                padding: 0 5px;
-            }
-            .magazine-title-main {
-                font-size: 2rem;
-            }
-            .magazine-section-title {
-                font-size: 1.6rem;
-                padding: 15px 20px;
-            }
-            .patrick-quote-title {
-                font-size: 1.5rem;
-            }
-            .magazine-paragraph {
+        .content-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            text-align: justify;
+        }
+
+        @media (max-width: 768px) {
+            .content-text {
                 font-size: 1.2rem;
                 text-align: left;
             }
-            .boheme-signature-image {
-                max-width: 400px;
-            }
-            .boheme-signature-placeholder {
-                font-size: 3rem;
-                padding: 10px;
-            }
-            .decorative-logo-section {
-                max-width: 95%;
-                padding: 25px 15px;
-                margin: 20px auto;
-            }
-            .decorative-logo {
-                max-width: 250px;
-            }
-            .decorative-logo-placeholder {
-                width: 250px;
-                height: 250px;
-                font-size: 2rem;
-            }
-            .magazine-content-wrapper {
-                padding: 15px;
-            }
-            .artists-highlight-container,
-            .polyvalent-artists-container,
-            .content-section-container,
-            .collaboration-container,
-            .excellence-container {
-                padding: 15px;
-                margin: 10px 0;
-            }
-            .highlight-quote {
-                padding: 20px;
-                margin: 20px 0;
-            }
-            .patrick-quote-highlight {
-                padding: 25px 15px 15px 15px;
-                margin: 30px 0;
-            }
-            .section-content {
-                padding-bottom: 180px; /* 🔥 ZONE SÉCURITÉ MOBILE TRÈS GRANDE */
-            }
-            .intro-content-magazine {
-                padding-bottom: 220px; /* 🔥 ZONE SÉCURITÉ MAXIMALE MOBILE */
+        }
+
+        /* 🔥 ÉLÉMENTS SPÉCIAUX - Bordures restaurées */
+        .trilogie-section-container, .artistic-collage-section {
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin: 50px 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+            border: 5px solid;
+            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
+        }
+
+        @media (max-width: 768px) {
+            .trilogie-section-container, .artistic-collage-section {
+                margin: 35px 0; /* 🔥 AUGMENTÉ : 30px → 35px */
             }
         }
-    </style>
+
+        .trilogie-video-background, .artistic-collage-video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .trilogie-video-background video, .artistic-collage-video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 1;
+            object-fit: cover;
+        }
+
+        .trilogie-image-overlay {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            height: auto;
+        }
+
+        .trilogie-image, .artistic-collage-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        .trilogie-image-placeholder, .artistic-collage-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--black);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .trilogie-image-placeholder, .artistic-collage-placeholder {
+                height: 300px;
+                font-size: 2rem;
+            }
+        }
+
+        .trilogie-text-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 30px;
+            color: white;
+            z-index: 3;
+            text-align: center;
+        }
+
+        .trilogie-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px black, 0 0 15px rgba(212,175,55,0.6);
+            margin: 0;
+            line-height: 1.3;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .trilogie-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* NOUVELLE SECTION - COLLAGE ARTISTIQUE EN TAILLE ORIGINALE */
+       .artistic-collage-section {
+           position: relative;
+           width: 100%;
+           margin: 50px 0;
+           overflow: hidden;
+           background: var(--black);
+           border: 3px solid var(--gold);
+           border-radius: 15px;
+           box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.6);
+       }
+
+       .artistic-collage-video-background {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           overflow: hidden;
+           z-index: 1;
+       }
+
+       .artistic-collage-video-background video {
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           min-width: 100%;
+           min-height: 100%;
+           width: auto;
+           height: auto;
+           transform: translateX(-50%) translateY(-50%);
+           opacity: 1;
+           object-fit: cover;
+       }
+
+       .artistic-collage-image {
+           position: relative;
+           z-index: 2;
+           width: 100%;
+           height: auto;
+           display: block;
+           filter: brightness(1.1) contrast(1.1);
+       }
+
+       .artistic-collage-placeholder {
+           position: relative;
+           z-index: 2;
+           width: 100%;
+           height: 400px;
+           background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           color: var(--black);
+           font-size: 2rem;
+           font-weight: 700;
+           text-align: center;
+           font-family: 'Dancing Script', cursive;
+           text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+           padding: 20px;
+       }
+
+       .artists-highlight-container,
+       .polyvalent-artists-container,
+       .collaboration-container,
+       .excellence-container {
+           margin: 25px 0;
+           padding: 35px;
+           background: rgba(0,0,0,0.9);
+           border: 5px solid;
+           border-image: url('images-en-or-2.png') 10;
+           border-radius: 20px;
+           box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.4);
+           clear: both;
+           position: relative;
+       }
+
+       .artists-highlight-grid {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+           gap: 25px;
+           margin-top: 20px;
+       }
+
+       .artist-highlight {
+           padding: 25px;
+           background: rgba(0,0,0,0.8);
+           border: 3px solid;
+           border-image: url('images-en-or-2.png') 10;
+           border-radius: 15px;
+           color: white;
+           font-family: 'Cormorant Garamond', serif;
+           font-size: 1.4rem;
+           line-height: 1.6;
+           text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+           box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+       }
+
+       /* NOMS D'ARTISTES EN OR SIMPLE MAIS ÉLÉGANT */
+       .artist-name {
+           font-size: 1.6rem;
+           font-weight: 700;
+           color: var(--gold);
+           display: block;
+           margin-bottom: 12px;
+           text-shadow: 2px 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(212,175,55,0.7);
+       }
+
+       .artist-description {
+           font-size: 1.4rem;
+           line-height: 1.5;
+           color: white;
+       }
+
+       /* GRANDE CASE pour Pascal Terrien */
+       .polyvalent-artists-container {
+           margin: 15px 0 25px 0;
+       }
+
+       /* PHRASES MISES EN ÉVIDENCE NOIR/OR AVEC BORDURE DORÉE */
+       .highlight-quote {
+           margin: 35px 0;
+           padding: 35px;
+           background: rgba(0,0,0,0.95);
+           border: 4px solid;
+           border-image: url('images-en-or-2.png') 10;
+           border-radius: 20px;
+           text-align: center;
+           font-style: italic;
+           color: var(--gold);
+           font-size: 1.5rem;
+           line-height: 1.7;
+           text-shadow: 2px 2px 4px black;
+           box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.5);
+           position: relative;
+           clear: both;
+       }
+
+       .highlight-quote::before,
+       .highlight-quote::after {
+           content: '"';
+           font-size: 3.5rem;
+           color: var(--gold);
+           position: absolute;
+           opacity: 0.5;
+           font-family: 'Bodoni Moda', serif;
+       }
+
+       .highlight-quote::before {
+           top: -10px;
+           left: 15px;
+       }
+
+       .highlight-quote::after {
+           bottom: -40px;
+           right: 15px;
+       }
+
+       .clean-list {
+           margin: 20px 0;
+       }
+
+       .clean-list-item {
+           margin-bottom: 15px;
+           padding: 15px;
+           background: rgba(0,0,0,0.8);
+           border-left: 5px solid var(--gold);
+           border-radius: 8px;
+           font-size: 1.4rem;
+           color: white;
+           box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+       }
+
+       /* MESSAGE PATRICK AVEC TITRE AVEC BORDURE DORÉE */
+       .patrick-quote-highlight {
+           margin: 60px 0;
+           padding: 60px 40px 30px 40px;
+           background: rgba(0,0,0,0.95);
+           border: 5px solid;
+           border-image: url('images-en-or-2.png') 10;
+           border-radius: 25px;
+           text-align: center;
+           position: relative;
+           clear: both;
+           box-shadow:
+               0 25px 50px rgba(212,175,55,0.4),
+               0 0 60px rgba(212,175,55,0.5),
+               inset 0 0 60px rgba(212,175,55,0.15);
+       }
+
+       @media (max-width: 768px) {
+           .patrick-quote-highlight {
+               padding: 30px 20px 20px 20px;
+               margin: 45px 0; /* 🔥 AUGMENTÉ : 40px → 45px */
+           }
+       }
+
+       .patrick-quote-title {
+           font-family: 'Bodoni Moda', serif;
+           font-size: 2rem;
+           font-weight: 400;
+           color: var(--gold);
+           margin-bottom: 18px;
+           text-shadow: 3px 3px 6px black, 0 0 35px rgba(212,175,55,0.9);
+           line-height: 1.1;
+           letter-spacing: 1.2px;
+       }
+
+       @media (max-width: 768px) {
+           .patrick-quote-title {
+               font-size: 1.5rem;
+           }
+       }
+
+       .patrick-quote {
+           font-family: 'Cormorant Garamond', serif;
+           font-size: 1.5rem;
+           font-style: italic;
+           line-height: 1.8;
+           color: white;
+           position: relative;
+           margin: 25px 0;
+           text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+       }
+
+       @media (max-width: 768px) {
+           .patrick-quote {
+               font-size: 1.3rem;
+           }
+       }
+
+       .patrick-quote::before,
+       .patrick-quote::after {
+           content: '"';
+           font-size: 4.5rem;
+           color: var(--gold);
+           position: absolute;
+           opacity: 0.5;
+           font-family: 'Bodoni Moda', serif;
+       }
+
+       .patrick-quote::before {
+           top: -25px;
+           left: -15px;
+       }
+
+       .patrick-quote::after {
+           bottom: -70px;
+           right: -15px;
+       }
+
+       /* SIGNATURE */
+       .patrick-signature-integrated {
+           margin-top: 30px;
+           padding-top: 20px;
+           border-top: 3px solid var(--gold);
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           max-width: 1000px;
+           margin-left: auto;
+           margin-right: auto;
+       }
+
+       .boheme-signature-image {
+           max-width: 900px;
+           height: auto;
+           margin: 0;
+           display: block;
+           filter: brightness(1.3) contrast(1.2);
+       }
+
+       @media (max-width: 768px) {
+           .boheme-signature-image {
+               max-width: 500px;
+           }
+       }
+
+       .boheme-signature-placeholder {
+           font-family: 'Dancing Script', cursive;
+           font-size: 6rem;
+           font-weight: 700;
+           color: var(--gold);
+           text-shadow: 3px 3px 6px rgba(0,0,0,0.9), 0 0 20px rgba(212,175,55,0.8);
+           padding: 20px;
+           text-align: center;
+       }
+
+       @media (max-width: 768px) {
+           .boheme-signature-placeholder {
+               font-size: 3.5rem;
+               padding: 15px;
+           }
+       }
+
+       /* LOGO DÉCORATIF - BORDURE DORÉE CLASSIQUE CORRIGÉE */
+       .decorative-logo-section {
+           margin: 50px 0;
+           padding: 80px;
+           background: rgba(0,0,0,0.95);
+           border-radius: 25px;
+           text-align: center;
+           position: relative;
+           overflow: hidden;
+           border: 5px solid var(--gold);
+           box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 40px rgba(212,175,55,0.5);
+           clear: both;
+           max-width: 900px;
+           margin-left: auto;
+           margin-right: auto;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+       }
+
+       @media (max-width: 768px) {
+           .decorative-logo-section {
+               max-width: 95%;
+               padding: 25px 15px;
+               margin: 25px auto; /* 🔥 AUGMENTÉ : 20px → 25px */
+           }
+       }
+
+       .decorative-video-background {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           overflow: hidden;
+           opacity: 0.8;
+       }
+
+       .decorative-video-background video {
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           min-width: 100%;
+           min-height: 100%;
+           width: auto;
+           height: auto;
+           transform: translateX(-50%) translateY(-50%);
+           object-fit: cover;
+       }
+
+       .decorative-logo {
+           position: relative;
+           z-index: 2;
+           max-width: 500px;
+           height: auto;
+           filter: brightness(1.3) contrast(1.3) drop-shadow(0 0 25px rgba(212,175,55,0.9));
+           margin: 0 auto;
+           display: block;
+       }
+
+       @media (max-width: 768px) {
+           .decorative-logo {
+               max-width: 250px;
+           }
+       }
+
+       .decorative-logo-placeholder {
+           position: relative;
+           z-index: 2;
+           width: 500px;
+           height: 500px;
+           margin: 0 auto;
+           background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+           border-radius: 50%;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           color: var(--black);
+           font-size: 3rem;
+           font-weight: 700;
+           text-align: center;
+           font-family: 'Dancing Script', cursive;
+           border: 4px solid var(--black);
+       }
+
+       @media (max-width: 768px) {
+           .decorative-logo-placeholder {
+               width: 250px;
+               height: 250px;
+               font-size: 2rem;
+           }
+       }
+
+       /* TEXTES EN OR SIMPLE ET ÉLÉGANT */
+       .text-gold {
+           color: var(--gold);
+           font-weight: 600;
+           text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(212,175,55,0.6);
+       }
+
+       .text-gold-shimmer {
+           color: var(--gold);
+           font-weight: 700;
+           text-shadow:
+               2px 2px 4px rgba(0,0,0,0.9),
+               0 0 10px rgba(212,175,55,0.8),
+               0 0 15px rgba(212,175,55,0.6);
+       }
+
+       /* COPYRIGHT NORMAL ET DISCRET */
+       .final-credits {
+           background: rgba(248,248,248,0.3);
+           color: #666666;
+           padding: 8px 15px;
+           margin-top: 20px;
+           border-top: 1px solid #dddddd;
+           font-family: 'Arial', sans-serif;
+           font-size: 10px;
+           line-height: 1.2;
+           text-align: center;
+           border-radius: 8px;
+           backdrop-filter: blur(5px);
+       }
+
+       .credits-line {
+           margin: 1px 0;
+           color: #777777;
+       }
+
+       .credits-name {
+           font-weight: 600;
+           color: #555555;
+       }
+
+       .credits-copyright {
+           margin-top: 4px;
+           padding-top: 4px;
+           border-top: 1px solid #eeeeee;
+           font-weight: 600;
+           color: #333333;
+           font-size: 11px;
+       }
+
+       /* Bureau section - Structure de l'ancien code */
+       .bureau-grid {
+           display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+           gap: 25px;
+           margin-top: 20px;
+           padding: 40px;
+       }
+
+       @media (max-width: 768px) {
+           .bureau-grid {
+               grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+               gap: 15px;
+               padding: 20px;
+           }
+       }
+
+       .bureau-card {
+           background: rgba(255, 255, 255, 0.9);
+           backdrop-filter: blur(5px);
+           border: 2px solid var(--gold);
+           border-radius: 10px;
+           padding: 25px 20px;
+           text-align: center;
+           transition: all 0.3s ease;
+           position: relative;
+           overflow: hidden;
+           box-shadow: 0 8px 20px rgba(0,0,0,0.15), 0 0 15px rgba(212,175,55,0.3);
+       }
+
+       .bureau-card:hover {
+           transform: translateY(-5px);
+           box-shadow: 0 15px 30px rgba(0,0,0,0.2), 0 0 25px rgba(212,175,55,0.5);
+           background: rgba(255, 255, 255, 0.95);
+       }
+
+       .bureau-name {
+           font-family: 'Playfair Display', serif;
+           font-size: 1.3rem;
+           margin-bottom: 8px;
+           color: var(--dark);
+           text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+       }
+
+       .bureau-title {
+           font-size: 1rem;
+           color: var(--gray);
+           font-style: italic;
+       }
+
+       .bureau-photo-placeholder {
+           width: 120px;
+           height: 120px;
+           margin: 0 auto 20px;
+           border-radius: 50%;
+           background: url('image-en-or.png') center/cover;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           font-size: 3rem;
+           color: var(--black);
+           overflow: hidden;
+           border: 3px solid var(--gold);
+           box-shadow: 0 5px 15px rgba(0,0,0,0.2), inset 0 0 20px rgba(212,175,55,0.2);
+           text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+       }
+
+       .bureau-photo-real {
+           width: 120px;
+           height: 120px;
+           margin: 0 auto 20px;
+           border-radius: 50%;
+           overflow: hidden;
+           border: 3px solid var(--gold);
+           box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px rgba(212,175,55,0.3);
+       }
+
+       .bureau-photo-real img {
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+           object-position: center;
+       }
+
+       .bureau-footer-text {
+           text-align: center;
+           margin-top: 40px;
+           margin-bottom: 60px;
+           font-style: italic;
+           color: var(--gold-dark);
+           text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+           padding: 15px;
+           background: rgba(255,255,255,0.3);
+           border-radius: 10px;
+       }
+
+       @media (max-width: 768px) {
+           .bureau-footer-text {
+               margin-bottom: 180px; /* 🔥 PLUS D'ESPACE POUR ZONE SÉCURITÉ */
+               font-size: 0.9rem;
+           }
+       }
+
+       /* Artistes section - Structure de l'ancien code */
+       .artistes-tabs {
+           display: flex;
+           margin-bottom: 30px;
+           border-bottom: 2px solid var(--gold);
+           background: rgba(249, 241, 219, 0.5);
+           backdrop-filter: blur(5px);
+           border-radius: 10px 10px 0 0;
+           overflow: hidden;
+       }
+
+       @media (max-width: 768px) {
+           .artistes-tabs {
+               flex-wrap: nowrap;
+               overflow-x: auto;
+           }
+       }
+
+       .artiste-tab {
+           padding: 15px 25px;
+           font-family: 'Montserrat', sans-serif;
+           font-size: 0.9rem;
+           cursor: pointer;
+           transition: all 0.3s ease;
+           position: relative;
+           color: var(--black);
+           text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+           user-select: none;
+           touch-action: manipulation;
+       }
+
+       .artiste-tab.active {
+           color: var(--black);
+           font-weight: 600;
+           background: url('image-en-or.png') center/cover;
+           text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+       }
+
+       .artiste-tab.active::after {
+           content: '';
+           position: absolute;
+           bottom: -2px;
+           left: 0;
+           width: 100%;
+           height: 3px;
+           background: var(--gold);
+           box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+       }
+
+       .artiste-category {
+           display: none;
+           padding: 40px;
+       }
+
+       .artiste-category.active {
+           display: block;
+           animation: fadeIn 0.5s ease forwards;
+       }
+
+       .artiste-grid {
+           display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+           gap: 20px;
+       }
+
+       @media (max-width: 768px) {
+           .artiste-grid {
+               grid-template-columns: repeat(2, 1fr);
+               gap: 15px;
+           }
+       }
+
+       .artiste-card {
+           background: rgba(255, 255, 255, 0.85);
+           backdrop-filter: blur(3px);
+           border: 2px solid var(--gold);
+           border-radius: 10px;
+           padding: 15px;
+           text-align: center;
+           transition: all 0.3s ease;
+           cursor: pointer;
+           position: relative;
+           overflow: hidden;
+           box-shadow: 0 5px 15px rgba(0,0,0,0.1), 0 0 10px rgba(212,175,55,0.2);
+       }
+
+       .artiste-card:hover {
+           transform: translateY(-3px);
+           box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 20px rgba(212,175,55,0.4);
+           background: rgba(255, 255, 255, 0.95);
+       }
+
+       .artiste-photo-placeholder {
+           width: 80px;
+           height: 80px;
+           margin: 0 auto 15px;
+           border-radius: 50%;
+           background: url('image-en-or.png') center/cover;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           font-size: 2rem;
+           color: var(--black);
+           overflow: hidden;
+           border: 2px solid var(--gold);
+           box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+           text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+       }
+
+       .artiste-name {
+           font-size: 1.1rem;
+           margin-bottom: 5px;
+           color: var(--dark);
+           text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+       }
+
+       .artiste-role {
+           font-size: 0.9rem;
+           color: var(--gray);
+           font-style: italic;
+       }
+
+       .artistes-website-link {
+           text-align: center;
+           margin-top: 40px;
+           padding: 25px;
+           background: rgba(212,175,55,0.2);
+           backdrop-filter: blur(10px);
+           border-radius: 15px;
+           border: 2px solid var(--gold);
+           box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+       }
+
+       .artistes-website-text {
+           font-family: 'Cormorant Garamond', serif;
+           font-size: 1.3rem;
+           font-style: italic;
+           color: var(--dark);
+           margin-bottom: 15px;
+           text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+       }
+
+       .artistes-website-button {
+           display: inline-flex;
+           align-items: center;
+           padding: 12px 20px;
+           background: url('image-en-or.png') center/cover;
+           color: var(--black);
+           text-decoration: none;
+           border-radius: 25px;
+           font-family: 'Montserrat', sans-serif;
+           font-weight: 500;
+           transition: all 0.3s ease;
+           border: 2px solid var(--black);
+           box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+           text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+       }
+
+       .artistes-website-button:hover {
+           transform: translateY(-2px);
+           box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+       }
+
+       .artistes-website-button .material-icons {
+           margin-right: 8px;
+           font-size: 1.2rem;
+       }
+
+       /* Productions section - Structure de l'ancien code */
+       .production-grid {
+           display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+           gap: 30px;
+           padding: 40px;
+       }
+
+       @media (max-width: 768px) {
+           .production-grid {
+               grid-template-columns: 1fr;
+               gap: 20px;
+               padding: 20px;
+           }
+       }
+
+       .production-card {
+           position: relative;
+           background: rgba(255, 255, 255, 0.9);
+           backdrop-filter: blur(5px);
+           border-radius: 15px;
+           overflow: hidden;
+           box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 20px rgba(212,175,55,0.3);
+           transition: all 0.3s ease;
+           height: 100%;
+           border: 2px solid var(--gold);
+       }
+
+       .production-card:hover {
+           transform: translateY(-5px);
+           box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(212,175,55,0.5);
+           background: rgba(255, 255, 255, 0.95);
+       }
+
+       .production-image {
+           height: 180px;
+           background: url('image-en-or.png') center/cover;
+           position: relative;
+           overflow: hidden;
+       }
+
+       .production-image-overlay {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4));
+       }
+
+       .production-content {
+           padding: 25px;
+       }
+
+       .production-title {
+           font-family: 'Playfair Display', serif;
+           font-size: 1.5rem;
+           margin-bottom: 15px;
+           color: var(--dark);
+           text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+       }
+
+       .production-description {
+           font-size: 1rem;
+           color: var(--gray);
+           line-height: 1.6;
+       }
+
+       /* Contact section - Structure de l'ancien code */
+       .contact-content {
+           display: grid;
+           grid-template-columns: 1fr 1fr;
+           gap: 40px;
+           height: 100%;
+           padding: 40px;
+       }
+
+       @media (max-width: 768px) {
+           .contact-content {
+               grid-template-columns: 1fr;
+               gap: 30px;
+               padding: 20px;
+           }
+       }
+
+       .contact-info {
+           display: flex;
+           flex-direction: column;
+       }
+
+       .contact-item {
+           display: flex;
+           align-items: center;
+           margin-bottom: 25px;
+       }
+
+       .contact-icon {
+           width: 50px;
+           height: 50px;
+           border-radius: 50%;
+           background: url('image-en-or.png') center/cover;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           margin-right: 15px;
+           color: var(--black);
+           box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px rgba(212,175,55,0.5);
+           border: 2px solid var(--gold-dark);
+           text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+       }
+
+       .contact-text {
+           font-size: 1.1rem;
+           color: var(--dark);
+           line-height: 1.4;
+           text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+           background: rgba(255,255,255,0.3);
+           padding: 5px 10px;
+           border-radius: 5px;
+       }
+
+       .contact-text span {
+           display: block;
+           font-size: 0.9rem;
+           color: var(--gray);
+           margin-top: 5px;
+       }
+
+       .contact-social {
+           margin-top: 40px;
+       }
+
+       .contact-social-title {
+           font-family: 'Playfair Display', serif;
+           font-size: 1.5rem;
+           margin-bottom: 20px;
+           color: var(--dark);
+           text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+       }
+
+       .social-links {
+           display: flex;
+           gap: 15px;
+       }
+
+       .social-link {
+           width: 45px;
+           height: 45px;
+           border-radius: 50%;
+           background: url('image-en-or.png') center/cover;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           color: var(--black);
+           transition: all 0.3s ease;
+           cursor: pointer;
+           border: 2px solid var(--gold-dark);
+           box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+           text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+       }
+
+       .social-link:hover {
+           transform: translateY(-5px);
+           box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+       }
+
+       .map-container {
+           width: 100%;
+           height: 100%;
+           background: rgba(245,245,245,0.8);
+           backdrop-filter: blur(3px);
+           border-radius: 15px;
+           overflow: hidden;
+           position: relative;
+           border: 2px solid var(--gold);
+           box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+       }
+
+       @media (max-width: 768px) {
+           .map-container {
+               height: 300px;
+           }
+       }
+
+       .map-placeholder {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+           color: var(--gray);
+           font-style: italic;
+           text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+       }
+
+       /* Responsive pour tous */
+       @media (max-width: 576px) {
+           .cover-title {
+               font-size: 2rem;
+           }
+           .logo-container {
+               width: 280px;
+               height: 280px;
+           }
+           .bureau-grid, .artiste-grid {
+               grid-template-columns: repeat(2, 1fr);
+           }
+           .production-grid {
+               grid-template-columns: 1fr;
+           }
+           .section-title {
+               font-size: 1.8rem;
+               text-align: left; /* Maintien décalage à gauche */
+           }
+           .artistes-tabs {
+               flex-wrap: nowrap;
+               overflow-x: auto;
+           }
+           .golden-line {
+               width: 80%;
+           }
+           .cover-interactive-text {
+               font-size: 1rem;
+           }
+           .magazine-title-main {
+               font-size: 2rem;
+           }
+           .magazine-section-title {
+               font-size: 1.6rem;
+               padding: 15px 20px;
+           }
+           .patrick-quote-title {
+               font-size: 1.5rem;
+           }
+           .magazine-paragraph {
+               font-size: 1.2rem;
+               text-align: left;
+           }
+           .artists-highlight-container,
+           .polyvalent-artists-container,
+           .content-section-container,
+           .collaboration-container,
+           .excellence-container {
+               padding: 15px;
+               margin: 10px 0;
+           }
+           .highlight-quote {
+               padding: 20px;
+               margin: 20px 0;
+           }
+           .patrick-quote-highlight {
+               padding: 25px 15px 15px 15px;
+               margin: 30px 0;
+           }
+           .section-content {
+               padding-bottom: 180px; /* 🔥 ZONE SÉCURITÉ MOBILE TRÈS GRANDE */
+           }
+           .intro-content-magazine {
+               padding-bottom: 220px; /* 🔥 ZONE SÉCURITÉ MAXIMALE MOBILE */
+           }
+       }
+   </style>
 </head>
 <body>
-    <div class="boheme-plaquette">
-        <!-- Global background video -->
-        <div class="global-background-video">
-            <video id="global-bg-video" autoplay muted loop playsinline>
-                <source src="magique-fumee.mp4" type="video/mp4">
-            </video>
-        </div>
+   <div class="boheme-plaquette">
+       <!-- Global background video -->
+       <div class="global-background-video">
+           <video id="global-bg-video" autoplay muted loop playsinline>
+               <source src="magique-fumee.mp4" type="video/mp4">
+           </video>
+       </div>
 
-        <!-- Audio element -->
-        <audio id="background-music" loop preload="auto" autoplay>
-            <source src="AIR_SING_BOHEME.mp3" type="audio/mpeg">
-        </audio>
+       <!-- Audio element -->
+       <audio id="background-music" loop preload="auto">
+           <source src="AIR_SING_BOHEME.mp3" type="audio/mpeg">
+       </audio>
 
-        <!-- Audio controls -->
-        <div class="audio-controls">
-            <button class="audio-control-btn" id="play-pause-btn" title="Play/Pause">
-                <span class="material-icons">pause</span>
-            </button>
-            <button class="audio-control-btn" id="mute-btn" title="Mute/Unmute">
-                <span class="material-icons">volume_up</span>
-            </button>
-            <div class="volume-slider">
-                <input type="range" id="volume-slider" min="0" max="100" value="30">
-            </div>
-        </div>
+       <!-- 🔥 AUDIO CONTROLS - Position ancien code avec bouton plein écran NOUVEAU -->
+       <div class="audio-controls">
+           <button class="audio-control-btn" id="play-pause-btn" title="Play/Pause">
+               <span class="material-icons">play_arrow</span>
+           </button>
+           <button class="audio-control-btn" id="mute-btn" title="Mute/Unmute">
+               <span class="material-icons">volume_up</span>
+           </button>
+           <div class="volume-slider">
+               <input type="range" id="volume-slider" min="0" max="100" value="30">
+           </div>
+           <!-- 🔥 BOUTON PLEIN ÉCRAN NOUVEAU -->
+           <button class="audio-control-btn" id="presentation-mode-btn" title="Mode Présentation">
+               <span class="material-icons">present_to_all</span>
+           </button>
+       </div>
 
-        <!-- Navigation dots -->
-        <div class="navigation">
-            <div class="nav-dot active" data-section="cover">
-                <div class="nav-tooltip">Couverture</div>
-            </div>
-            <div class="nav-dot" data-section="intro">
-                <div class="nav-tooltip">Présentation</div>
-            </div>
-            <div class="nav-dot" data-section="bureau">
-                <div class="nav-tooltip">Notre Bureau</div>
-            </div>
-            <div class="nav-dot" data-section="artistes">
-                <div class="nav-tooltip">Nos Artistes</div>
-            </div>
-            <div class="nav-dot" data-section="productions">
-                <div class="nav-tooltip">Productions</div>
-            </div>
-            <div class="nav-dot" data-section="contact">
-                <div class="nav-tooltip">Contact</div>
-            </div>
-        </div>
+       <!-- Navigation dots - Position ancien code -->
+       <div class="navigation">
+           <div class="nav-dot active" data-section="cover">
+               <div class="nav-tooltip">Couverture</div>
+           </div>
+           <div class="nav-dot" data-section="intro">
+               <div class="nav-tooltip">Présentation</div>
+           </div>
+           <div class="nav-dot" data-section="bureau">
+               <div class="nav-tooltip">Notre Bureau</div>
+           </div>
+           <div class="nav-dot" data-section="artistes">
+               <div class="nav-tooltip">Nos Artistes</div>
+           </div>
+           <div class="nav-dot" data-section="productions">
+               <div class="nav-tooltip">Productions</div>
+           </div>
+           <div class="nav-dot" data-section="contact">
+               <div class="nav-tooltip">Contact</div>
+           </div>
+       </div>
 
-        <!-- Section: Cover -->
-        <section class="section cover-section active" id="cover">
-            <div class="cover-content">
-                <div class="logo-container fade-up">
-                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'><circle cx=\'100\' cy=\'100\' r=\'90\' fill=\'%23000\' stroke=\'%23D4AF37\' stroke-width=\'5\'/><text x=\'100\' y=\'100\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\' text-anchor=\'middle\' dominant-baseline=\'middle\'>BP</text><text x=\'100\' y=\'130\' font-family=\'Arial\' font-size=\'12\' fill=\'%23D4AF37\' text-anchor=\'middle\'>Bohème Production</text></svg>'">
-                </div>
-                <h1 class="cover-title fade-in-delay-1">
-                    <span class="cover-title-text">Bohème Production</span>
-                </h1>
-                <h2 class="cover-subtitle fade-in-delay-2">L'excellence lyrique en Côte d'Azur</h2>
-                <div class="golden-line fade-in-delay-3"></div>
-                <p class="cover-interactive-text fade-in-delay-3">Plaquette Interactive</p>
+       <!-- Section: Cover - Structure exacte de l'ancien code -->
+       <section class="section cover-section active" id="cover">
+           <div class="cover-content">
+               <div class="logo-container fade-up">
+                   <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'><circle cx=\'100\' cy=\'100\' r=\'90\' fill=\'%23000\' stroke=\'%23D4AF37\' stroke-width=\'5\'/><text x=\'100\' y=\'100\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\' text-anchor=\'middle\' dominant-baseline=\'middle\'>BP</text><text x=\'100\' y=\'130\' font-family=\'Arial\' font-size=\'12\' fill=\'%23D4AF37\' text-anchor=\'middle\'>Bohème Production</text></svg>'">
+               </div>
+               <h1 class="cover-title fade-in-delay-1">
+                   <span class="cover-title-text">Bohème Production</span>
+               </h1>
+               <h2 class="cover-subtitle fade-in-delay-2">L'excellence lyrique en Côte d'Azur</h2>
+               <!-- 🔥 BARRE DORÉE - Position EXACTE de l'ancien code -->
+               <div class="golden-line fade-in-delay-3"></div>
+               <p class="cover-interactive-text fade-in-delay-3">Plaquette Interactive</p>
 
-                <div class="cover-scroll-indicator" id="start-exploration">
-                    <div class="scroll-text">Explorer</div>
-                    <div class="scroll-arrow">
-                        <span class="material-icons">keyboard_arrow_down</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+               <div class="cover-scroll-indicator" id="start-exploration">
+                   <div class="scroll-text">Explorer</div>
+                   <div class="scroll-arrow">
+                       <span class="material-icons">keyboard_arrow_down</span>
+                   </div>
+               </div>
+           </div>
+       </section>
 
-        <!-- Section: PRÉSENTATION -->
-        <section class="section" id="intro">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="section-header-video">
-                        <video autoplay muted loop playsinline preload="auto">
-                            <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <h2 class="section-title">Présentation</h2>
-                </div>
-                <div class="section-content">
-                    <div class="intro-content-magazine">
-                        <div class="scrollable-content">
+       <!-- Section: PRÉSENTATION - Structure ancien code avec TEXTE NOUVEAU -->
+       <section class="section" id="intro">
+           <div class="section-container">
+               <div class="section-header">
+                   <div class="section-header-video">
+                       <video autoplay muted loop playsinline preload="auto">
+                           <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
+                       </video>
+                   </div>
+                   <h2 class="section-title">Présentation</h2>
+               </div>
+               <div class="section-content">
+                   <div class="intro-content-magazine">
+                       <div class="scrollable-content">
 
-                            <!-- Photo principale avec titre -->
-                            <div class="hero-image-container">
-                                <div class="hero-image-video-background">
-                                    <video autoplay muted loop playsinline>
-                                        <source src="magique-fumee.mp4" type="video/mp4">
-                                    </video>
-                                </div>
-                                <img src="artistes-boheme.jpg" alt="Concert Bohème Production au Palais Clément Massier" class="hero-image"
-                                     onerror="this.parentNode.innerHTML='<div class=hero-image-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=hero-image-placeholder>CONCERT BOHÈME PRODUCTION<br>Palais Clément Massier</div>'">
-                                <div class="hero-image-overlay">
-                                    <h3 class="hero-image-title">Concert Bohème Production<br>Palais Clément Massier</h3>
-                                </div>
-                            </div>
+                           <!-- Photo principale avec titre -->
+                           <div class="hero-image-container">
+                               <div class="hero-image-video-background">
+                                   <video autoplay muted loop playsinline>
+                                       <source src="magique-fumee.mp4" type="video/mp4">
+                                   </video>
+                               </div>
+                               <img src="artistes-boheme.jpg" alt="Concert Bohème Production au Palais Clément Massier" class="hero-image"
+                                    onerror="this.parentNode.innerHTML='<div class=hero-image-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=hero-image-placeholder>CONCERT BOHÈME PRODUCTION<br>Palais Clément Massier</div>'">
+                               <div class="hero-image-overlay">
+                                   <h3 class="hero-image-title">Concert Bohème Production<br>Palais Clément Massier</h3>
+                               </div>
+                           </div>
 
-                            <!-- Contenu principal -->
-                            <div class="magazine-content-wrapper">
-                                <div class="magazine-intro-block">
-                                    <h3 class="magazine-title-main">Bohème Production</h3>
-                                    <h4 class="magazine-subtitle">L'Excellence Artistique À Votre Service</h4>
+                           <!-- 🔥 CONTENU PRINCIPAL - TEXTE EXACT DU NOUVEAU CODE -->
+                           <div class="magazine-content-wrapper">
+                               <div class="magazine-intro-block">
+                                   <h3 class="magazine-title-main">Bohème Production</h3>
+                                   <h4 class="magazine-subtitle">L'Excellence Artistique À Votre Service</h4>
 
-                                    <div class="magazine-text-flow">
-                                        <h4 class="magazine-section-title">Une Vision Artistique D'Exception</h4>
+                                   <div class="magazine-text-flow">
+                                       <h4 class="magazine-section-title">Entrez dans l'Univers de Bohème Production</h4>
 
-                                        <div class="content-section-container">
-                                            <p class="magazine-paragraph">
-                                                <span class="text-gold">Bohème Production</span> est un organisme de spectacle dédié à l'excellence artistique, fondé et présidé par <span class="text-gold">Patrick Elie Féré</span>, baryton verdien, PDG et producteur, également reconnu pour ses talents d'imitateur. Cette aventure artistique unique est née de sa rencontre créative avec deux artistes d'exception : <span class="text-gold">Richard Alexandre Rittelmann</span> et <span class="text-gold">Norah Amsellem</span>. Cette synergie unique révolutionne l'univers du spectacle vivant en créant une alchimie parfaite entre l'opéra, la pop lyrique et la variété internationale.
-                                            </p>
-                                        </div>
+                                       <div class="content-section-container">
+                                           <p class="magazine-paragraph">
+                                               Bohème Production est un organisme de spectacle dédié à l'excellence artistique, fondé et présidé par Patrick Elie Féré, baryton verdien, PDG et producteur, également reconnu pour ses talents d'imitateur. Cette aventure unique est le fruit d'une rencontre créative avec deux artistes d'exception : Richard Alexandre Rittelmann et Norah Amsellem. Cette synergie unique révolutionne l'univers du spectacle vivant en créant une alchimie parfaite entre l'opéra, la pop lyrique et la variété internationale.
+                                           </p>
+                                       </div>
 
-                                        <h4 class="magazine-section-title magazine-section-title-center">Une Constellation Artistique Complète L'Univers Bohème</h4>
+                                       <!-- Nouvelle section 1: Une Constellation Artistique Complète -->
+                                       <h4 class="magazine-section-title-center">Une Constellation Artistique Complète</h4>
 
-                                        <!-- NOUVELLE SECTION - COLLAGE ARTISTIQUE EN TAILLE ORIGINALE -->
-                                        <div class="artistic-collage-section">
-                                            <div class="artistic-collage-video-background">
-                                                <video autoplay muted loop playsinline>
-                                                    <source src="magique-fumee.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <img src="boheme-artistic-collage.png" alt="Collection Artistique Bohème Production" class="artistic-collage-image"
-                                                 onerror="this.parentNode.innerHTML='<div class=artistic-collage-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=artistic-collage-placeholder>COLLECTION ARTISTIQUE<br>BOHÈME PRODUCTION</div>'">
-                                        </div>
+                                       <div class="video-content-block">
+                                           <div class="video-background-container">
+                                               <video autoplay muted loop playsinline>
+                                                   <source src="magique-fumee.mp4" type="video/mp4">
+                                               </video>
+                                           </div>
+                                           <div class="image-overlay-container">
+                                               <img src="boheme-artistic-collage.png" alt="Collection Artistique Bohème Production" class="content-image"
+                                                    onerror="this.parentNode.innerHTML='<div class=image-placeholder>COLLECTION ARTISTIQUE<br>BOHÈME PRODUCTION</div>'">
+                                           </div>
+                                           <div class="content-text-block">
+                                               <p class="content-text">
+                                                   Bohème Production réunit une famille artistique exceptionnelle de 41 chanteurs de renommée internationale aux multiples talents. Nos spectacles font vibrer le public à travers une mosaïque d'expressions musicales - tantôt une voix s'élève seule, tantôt plusieurs artistes se rejoignent dans une harmonie parfaite autour d'œuvres qui ont certainement suscité de l'émotion dans votre vie. Du plus intime au plus grandiose, chaque configuration offre un moment unique, alliant opéra traditionnel, comédie musicale, opéra pop, variété internationale et bien d'autres styles artistiques. Notre passion se ressent à chaque note, transportant les spectateurs dans un voyage musical sans frontières. Cette richesse vocale permet de créer des expériences musicales inoubliables qui touchent directement au cœur.
+                                               </p>
+                                           </div>
+                                       </div>
 
-                                        <div class="content-section-container">
-                                            <p class="magazine-paragraph">
-                                                <span class="text-gold">Bohème Production</span> rassemble une famille artistique exceptionnelle de <span class="text-gold-shimmer">41 chanteurs de renommée internationale</span> aux multiples palettes vocales, capables de passer du lyrique à la pop, de la variété internationale à l'opéra avec une aisance remarquable.
-                                            </p>
-                                            <p class="magazine-paragraph">
-                                                Cette constellation s'enrichit de <span class="text-gold">3 pianistes virtuoses</span> aux profils extraordinaires : un <span class="text-gold">chef d'orchestre dirigeant un orchestre complet</span>, une <span class="text-gold">pianiste chanteuse</span> qui endosse également le rôle de chef de chant, et un troisième virtuose aux talents multiples. Pour certains d'entre eux, les rôles de chef de chant, de chef de chœur et chef d'orchestre viennent naturellement compléter leur palette artistique.
-                                            </p>
-                                        </div>
+                                       <!-- TRILOGIE - Video du nouveau code -->
+                                       <div class="trilogie-section-container">
+                                           <div class="trilogie-video-background">
+                                               <video autoplay muted loop playsinline>
+                                                   <source src="smoke_red_bg.mp4" type="video/mp4">
+                                               </video>
+                                           </div>
+                                           <div class="trilogie-image-overlay">
+                                               <img src="trilogie_lyrique.png" alt="Trilogie Lyrique" class="trilogie-image"
+                                                    onerror="this.parentNode.innerHTML='<div class=trilogie-image-placeholder>TRILOGIE<br>LYRIQUE</div>'">
+                                           </div>
+                                       </div>
 
-                                        <div class="content-section-container">
-                                            <p class="magazine-paragraph">
-                                                Dans cette alchimie créative, certains chanteurs révèlent aussi leurs talents de pianistes, créant une harmonie parfaite entre voix et instruments. L'univers chorégraphique brille avec <span class="text-gold">2 chorégraphes et danseuses professionnelles</span>, accompagnées d'une <span class="text-gold">jeune danseuse prodige de 13 ans, championne du monde de hip-hop junior</span>.
-                                            </p>
-                                            <p class="magazine-paragraph">
-                                                Dans l'ombre créative, <span class="text-gold">4 producteurs, auteurs, arrangeurs</span> et <span class="text-gold">2 metteurs en scène</span> créateurs de spectacles façonnent nos productions. L'un de ces metteurs en scène, baryton à la base doté d'une voix magnifique, fait naturellement partie de nos 41 chanteurs - incarnant parfaitement cette polyvalence qui fait la richesse de Bohème Production !
-                                            </p>
-                                        </div>
+                                       <!-- Trio de Virtuoses -->
+                                       <h4 class="magazine-section-title-center">Trio de Virtuoses</h4>
+                                       <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">Piano, Direction et Polyvalence</h5>
 
-                                        <div class="excellence-container">
-                                            <p class="magazine-paragraph">
-                                                Notre infrastructure technique s'appuie sur <span class="text-gold">2 spécialistes du son</span> : un <span class="text-gold">spécialiste studio</span> équipé d'un des plus grands studios, et un <span class="text-gold">spécialiste régie</span> pour les <span class="text-gold">productions d'exception</span> en grandes salles extérieures ou intérieures pouvant accueillir un <span class="text-gold">nombre exponentiel de spectateurs</span>, ainsi que des <span class="text-gold">photographes et vidéastes dans l'ombre</span> qui capturent l'essence de nos créations.
-                                            </p>
-                                        </div>
+                                       <div class="video-content-block">
+                                           <div class="video-background-container">
+                                               <video autoplay muted loop playsinline>
+                                                   <source src="partitions_flow.mp4" type="video/mp4">
+                                               </video>
+                                           </div>
+                                           <div class="image-overlay-container">
+                                               <img src="trio_piano.png" alt="Trio Piano" class="content-image"
+                                                    onerror="this.parentNode.innerHTML='<div class=image-placeholder>TRIO<br>PIANO</div>'">
+                                           </div>
+                                           <div class="content-text-block">
+                                               <p class="content-text">
+                                                   Cette constellation s'enrichit de 3 maîtres du piano : un chef d'orchestre dirigeant un ensemble orchestral complet, une pianiste chanteuse, et une artiste polyvalente aux multiples facettes. Certains d'entre eux assument également des rôles de chef de chant ou de chef de chœur, témoignant de l'excellence et de la diversité de notre équipe.
+                                               </p>
+                                           </div>
+                                       </div>
 
-                                        <h4 class="magazine-section-title">Collaboration avec des Chanteurs de The Voice</h4>
+                                       <!-- Quand la Danse Raconte -->
+                                       <h4 class="magazine-section-title-center">Quand la Danse Raconte</h4>
+                                       <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">La Magie du Geste</h5>
 
-                                        <div class="collaboration-container">
-                                            <p class="magazine-paragraph">
-                                                Bohème Production accueille de nombreux chanteurs issus de The Voice, cette richesse enrichissant constamment notre palette artistique de talents exceptionnels qui font partie intégrante de notre famille artistique.
-                                            </p>
-                                            <p class="magazine-paragraph">
-                                                <span class="text-gold-shimmer">Bohème découvre les artistes émergents</span> issus de The Voice et The Voice Kids qui illuminent nos productions de leur fraîcheur créative. Ces <span class="text-gold">talents en éclosion</span> apportent un souffle nouveau à l'art vocal traditionnel, <span class="text-gold-shimmer">transformant les rêves en parcours qui flamboient</span>. Tout est représenté dans Bohème Production : vous reconnaîtrez assurément des visages familiers parmi nos artistes !
-                                            </p>
-                                        </div>
+                                       <div class="video-content-block">
+                                           <div class="video-background-container">
+                                               <video autoplay muted loop playsinline>
+                                                   <source src="paillettes-choregraphie.mp4" type="video/mp4">
+                                               </video>
+                                           </div>
+                                           <div class="image-overlay-container">
+                                               <img src="choregraphie-artistic-trio.png" alt="Chorégraphie Artistic Trio" class="content-image"
+                                                    onerror="this.parentNode.innerHTML='<div class=image-placeholder>CHORÉGRAPHIE<br>ARTISTIC TRIO</div>'">
+                                           </div>
+                                           <div class="content-text-block">
+                                               <p class="content-text">
+                                                   Nous célébrons l'univers de la danse avec 2 chorégraphes professionnelles dont une directrice d'école de danse, ainsi qu'une jeune danseuse de 13 ans, récemment intégrée à Bohème et championne du monde de hip-hop junior. Ces artistes talentueuses apportent une dimension moderne et dynamique à nos spectacles, fusionnant techniques classiques et mouvements contemporains. Bohème peut mobiliser des danseurs professionnels supplémentaires selon les besoins et l'envergure des projets. La présence de notre jeune championne illustre l'engagement envers les nouveaux talents. Selon les créations, nos chorégraphes collaborent pour concevoir des chorégraphies originales enrichissant nos spectacles.
+                                               </p>
+                                               <p class="content-text">
+                                                   Chaque mouvement devient expression artistique au service de vos événements.
+                                               </p>
+                                           </div>
+                                       </div>
 
-                                        <div class="highlight-quote">
-                                            Nous sommes les sculpteurs de destinées artistiques, révélant chaque jour de nouveaux diamants vocaux.
-                                        </div>
+                                       <!-- L'Art Vocal Nouvelle Génération -->
+                                       <h4 class="magazine-section-title-center">L'Art Vocal Nouvelle Génération</h4>
+                                       <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">Des talents de The Voice sur scène</h5>
 
-                                        <h4 class="magazine-section-title">Parmi Nos Artistes Lyriques - Voici Une Petite Sélection</h4>
+                                       <div class="content-section-container">
+                                           <p class="magazine-paragraph">
+                                               Bohème Production ouvre ses portes aux talents révélés par The Voice et The Voice Kids, ces artistes émergents qui insufflent une énergie nouvelle à nos créations. Leur fraîcheur créative enrichit notre palette artistique et revisite l'art vocal avec audace. Des visages familiers aux découvertes prometteuses, notre famille artistique grandit constamment. Vous reconnaîtrez sûrement quelques talents qui ont marqué le petit écran !
+                                           </p>
+                                       </div>
 
-                                        <div class="artists-highlight-container">
-                                            <p class="magazine-paragraph">
-                                                Tous les artistes lyriques, pop lyriques et de variétés internationales sont des pépites. Il y a tellement d'artistes dans Bohème Production que ceci n'est qu'une petite sélection :
-                                            </p>
-                                            <div class="artists-highlight-grid">
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Norah Amsellem</div>
-                                                    <div class="artist-description">Soprano d'exception qui a fait résonner sa voix dans les temples sacrés de l'opéra international</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Luca Lombardo</div>
-                                                    <div class="artist-description">Ténor au timbre lumineux, ambassadeur des plus grandes maisons lyriques</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Richard Alexandre Rittelmann</div>
-                                                    <div class="artist-description">Baryton à la prestance vocale incomparable, habitué des plus prestigieuses salles</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Avi Klemberg</div>
-                                                    <div class="artist-description">Ténor au souffle poétique qui enchante les plus beaux opéras</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Mickaël Guedj</div>
-                                                    <div class="artist-description">Virtuose de l'art lyrique et de la pop lyrique internationale, révélé notamment sur France 2 dans "Le Grand Show"</div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                       <!-- Message Patrick -->
+                                       <div class="patrick-quote-highlight">
+                                           <h4 class="patrick-quote-title">La Promesse d'un Enchantement Éternel</h4>
+                                           <h5 style="color: var(--gold); font-style: italic; margin-bottom: 20px; font-size: 1.3rem;">Mot de notre président Patrick Elie Féré</h5>
+                                           <div class="patrick-quote">
+                                               Notre quête transcende la simple mélodie : nous tissons des ponts entre les âmes à travers la magie universelle de la musique. <span class="text-gold-shimmer">Des voix cristallines aux rythmes envoûtants</span> résonnent dans chaque création, portées par cette <span class="text-gold-shimmer">production d'exception</span> où brillent nos <span class="text-gold-shimmer">talents en éclosion</span>.
+                                               <br><br>
+                                               Chaque spectacle devient un tableau vivant où les voix se mêlent dans une synergie de bonheur pur, touchant le cœur de chaque spectateur, qu'il soit novice ou connaisseur éclairé. <span class="text-gold-shimmer">Transformant les rêves en parcours qui flamboient</span>, nous révélons des destinées artistiques exceptionnelles.
+                                               <br><br>
+                                               <span class="text-gold-shimmer">La musique nous transporte</span>, et <span class="text-gold-shimmer">Bohème ouvre les portes</span> de vos plus beaux rêves artistiques, créant une alchimie magique où chaque note devient une promesse d'éternité, chaque voix une caresse pour l'âme, chaque spectacle un voyage inoubliable vers l'excellence artistique universelle.
+                                           </div>
+                                           <div class="patrick-signature-integrated">
+                                               <img src="Boheme Production en blanc.png" alt="Bohème Production" class="boheme-signature-image"
+                                                    onerror="this.parentNode.innerHTML='<div class=boheme-signature-placeholder>BOHÈME PRODUCTION</div>'">
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
 
-                                        <h4 class="magazine-section-title">Nos Artistes Polyvalents Chanteur et Metteur en Scène</h4>
+                               <!-- Logo décoratif -->
+                               <div class="decorative-logo-section">
+                                   <div class="decorative-video-background">
+                                       <video autoplay muted loop playsinline>
+                                           <source src="magique-fumee.mp4" type="video/mp4">
+                                       </video>
+                                   </div>
+                                   <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="decorative-logo"
+                                        onerror="this.parentNode.innerHTML='<div class=decorative-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=decorative-logo-placeholder>BOHÈME<br>PRODUCTION</div>'">
+                               </div>
 
-                                        <div class="polyvalent-artists-container">
-                                            <div class="artists-highlight-grid">
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Pascal Terrien</div>
-                                                    <div class="artist-description">Baryton à l'élégance vocale raffinée, maître de cérémonie et directeur artistique principal de Bohème Production</div>
-                                                </div>
-                                            </div>
-                                        </div>
+                               <!-- Crédits -->
+                               <div class="final-credits">
+                                   <div class="credits-line"><span class="credits-name">Mickaël Guedj</span> - Conception d'expérience interactive et musicale, Design numérique, Musique originale, Réalisation, Production assistée par IA</div>
+                                   <div class="credits-line"><span class="credits-name">Stéphanie Doméjean</span> - Créations textuelles et visuelles, Paroles, Photographies</div>
+                                   <div class="credits-copyright">© 2025 Bohème Production</div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
 
-                                        <h4 class="magazine-section-title">Nos Étoiles de la Pop et de la Variété</h4>
+       <!-- Les autres sections continuent avec la même structure... -->
+       <!-- Section: Bureau - Structure identique à l'ancien code -->
+       <section class="section" id="bureau">
+           <div class="section-container">
+               <div class="section-header">
+                   <div class="section-header-video">
+                       <video autoplay muted loop playsinline preload="auto">
+                           <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
+                       </video>
+                   </div>
+                   <h2 class="section-title">Notre Bureau</h2>
+               </div>
+               <div class="section-content">
+                   <div class="bureau-grid">
+                       <div class="bureau-card">
+                           <div class="bureau-photo-real">
+                               <img src="Elie Féré HD.jpg" alt="Patrick Elie Féré" onerror="this.parentNode.innerHTML='<div class=bureau-photo-placeholder><span class=material-icons>person</span></div>'">
+                           </div>
+                           <h3 class="bureau-name">Patrick Elie Féré</h3>
+                           <p class="bureau-title">Fondateur - Président</p>
+                       </div>
+                       <div class="bureau-card">
+                           <div class="bureau-photo-placeholder">
+                               <span class="material-icons">person</span>
+                           </div>
+                           <h3 class="bureau-name">Richard Rittelmann</h3>
+                           <p class="bureau-title">Vice-président</p>
+                       </div>
+                       <div class="bureau-card">
+                           <div class="bureau-photo-placeholder">
+                               <span class="material-icons">person</span>
+                           </div>
+                           <h3 class="bureau-name">Norah Amsellem</h3>
+                           <p class="bureau-title">Vice-présidente</p>
+                       </div>
+                       <div class="bureau-card">
+                           <div class="bureau-photo-placeholder">
+                               <span class="material-icons">person</span>
+                           </div>
+                           <h3 class="bureau-name">Pascal Terrien</h3>
+                           <p class="bureau-title">Directeur artistique principal</p>
+                       </div>
+                       <div class="bureau-card">
+                           <div class="bureau-photo-placeholder">
+                               <span class="material-icons">person</span>
+                           </div>
+                           <h3 class="bureau-name">Avi Klemberg</h3>
+                           <p class="bureau-title">Directeur artistique</p>
+                       </div>
+                       <div class="bureau-card">
+                           <div class="bureau-photo-placeholder">
+                               <span class="material-icons">person</span>
+                           </div>
+                           <h3 class="bureau-name">Mickael Guedj</h3>
+                           <p class="bureau-title">Directeur artistique</p>
+                       </div>
+                       <div class="bureau-card">
+                           <div class="bureau-photo-placeholder">
+                               <span class="material-icons">person</span>
+                           </div>
+                           <h3 class="bureau-name">Patricia Rubino</h3>
+                           <p class="bureau-title">Secrétaire</p>
+                       </div>
+                       <div class="bureau-card">
+                           <div class="bureau-photo-placeholder">
+                               <span class="material-icons">person</span>
+                           </div>
+                           <h3 class="bureau-name">Marielle Bader</h3>
+                           <p class="bureau-title">Trésorière</p>
+                       </div>
+                       <div class="bureau-card">
+                           <div class="bureau-photo-placeholder">
+                               <span class="material-icons">person</span>
+                           </div>
+                           <h3 class="bureau-name">David.Sk</h3>
+                           <p class="bureau-title">Administrateur réseaux sociaux</p>
+                       </div>
+                   </div>
+                   <div class="bureau-footer-text">
+                       Une équipe passionnée au service de l'excellence artistique
+                   </div>
+               </div>
+           </div>
+       </section>
 
-                                        <div class="content-section-container">
-                                            <p class="magazine-paragraph">
-                                                L'univers de la chanson populaire rayonne à travers nos artistes aux parcours extraordinaires :
-                                            </p>
-                                            <div class="artists-highlight-grid">
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Patrice Carmona</div>
-                                                    <div class="artist-description">Artiste polyvalent révélé dans l'univers des "Dix Commandements" où il a souvent remplacé Daniel Lévy</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Alexis Hoffman</div>
-                                                    <div class="artist-description">Prodige finaliste d'"Incroyable Talent", ambassadeur de la nouvelle génération artistique</div>
-                                                </div>
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Virginie Behem</div>
-                                                    <div class="artist-description">Soprano délicate et choriste fidèle de Gilbert Montagné</div>
-                                                </div>
-                                            </div>
-                                        </div>
+       <!-- Les autres sections (Artistes, Productions, Contact) suivent... -->
+       <!-- Section: Artistes -->
+       <section class="section" id="artistes">
+           <div class="section-container">
+               <div class="section-header">
+                   <div class="section-header-video">
+                       <video autoplay muted loop playsinline preload="auto">
+                           <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
+                       </video>
+                   </div>
+                   <h2 class="section-title">Nos Artistes</h2>
+               </div>
+               <div class="section-content">
+                   <div class="artistes-tabs">
+                       <div class="artiste-tab active" data-category="sopranos">Sopranos</div>
+                       <div class="artiste-tab" data-category="tenors">Ténors</div>
+                       <div class="artiste-tab" data-category="barytons">Barytons</div>
+                       <div class="artiste-tab" data-category="pianistes">Pianistes</div>
+                   </div>
 
-                                        <h4 class="magazine-section-title">Nos Producteurs et Créateurs</h4>
+                   <div class="artiste-category active" id="sopranos">
+                       <div class="artiste-grid">
+                           <div class="artiste-card">
+                               <div class="artiste-photo-placeholder">
+                                   <span class="material-icons">person</span>
+                               </div>
+                               <h3 class="artiste-name">Norah Amsellem</h3>
+                               <p class="artiste-role">Soprano</p>
+                           </div>
+                           <div class="artiste-card">
+                               <div class="artiste-photo-placeholder">
+                                   <span class="material-icons">person</span>
+                               </div>
+                               <h3 class="artiste-name">Claudia Sorokina</h3>
+                               <p class="artiste-role">Soprano</p>
+                           </div>
+                           <div class="artiste-card">
+                               <div class="artiste-photo-placeholder">
+                                   <span class="material-icons">person</span>
+                               </div>
+                               <h3 class="artiste-name">Adriana Bignani Lesca</h3>
+                               <p class="artiste-role">Mezzo Soprano</p>
+                           </div>
+                           <div class="artiste-card">
+                               <div class="artiste-photo-placeholder">
+                                   <span class="material-icons">person</span>
+                               </div>
+                               <h3 class="artiste-name">Alisson Cook</h3>
+                               <p class="artiste-role">Mezzo Soprano</p>
+                           </div>
+                       </div>
+                   </div>
 
-                                        <div class="content-section-container">
-                                            <div class="artists-highlight-grid">
-                                                <div class="artist-highlight">
-                                                    <div class="artist-name">Frederico Alagna</div>
-                                                    <div class="artist-description">Producteur et auteur de talent, frère du ténor mondialement connu Roberto Alagna</div>
-                                                </div>
-                                            </div>
-                                        </div>
+                   <div class="artiste-category" id="tenors">
+                       <div class="artiste-grid">
+                           <div class="artiste-card">
+                               <div class="artiste-photo-placeholder">
+                                   <span class="material-icons">person</span>
+                               </div>
+                               <h3 class="artiste-name">Luca Lombardo</h3>
+                               <p class="artiste-role">Ténor</p>
+                           </div>
+                           <div class="artiste-card">
+                               <div class="artiste-photo-placeholder">
+                                   <span class="material-icons">person</span>
+                               </div>
+                               <h3 class="artiste-name">Avi Klemberg</h3>
+                               <p class="artiste-role">Ténor</p>
+                           </div>
+                           <div class="artiste-card">
+                               <div class="artiste-photo-placeholder">
+                                   <span class="material-icons">person</span>
+                               </div>
+                               <h3 class="artiste-name">Florian Laconi</h3>
+                               <p class="artiste-role">Ténor</p>
+                           </div>
+                       </div>
+                   </div>
 
-                                        <h4 class="magazine-section-title">La Magie de la Polyvalence - Chacun sa Pierre à l'Édifice</h4>
-
-                                        <div class="content-section-container">
-                                            <p class="magazine-paragraph">
-                                                Au cœur de Bohème Production, chaque âme généreuse apporte sa pierre précieuse à l'édifice artistique. Qu'il s'agisse de talents cachés en informatique, de créativité dans la publication de belles affiches, de maîtrise dans la réalisation de vidéos captivantes, ou d'expertise dans mille autres domaines, chaque membre de notre famille dévoile des facettes insoupçonnées.
-                                            </p>
-                                            <div class="highlight-quote">
-                                                Cette mosaïque de talents complémentaires tisse la toile magique de nos spectacles, où l'excellence technique rencontre la beauté artistique dans une symphonie parfaite. Il y a la possibilité de tout faire avec Bohème !
-                                            </div>
-                                            <p class="magazine-paragraph">
-                                                Chaque artiste dans Bohème Production est une étoile scintillante aux multiples facettes, unis dans une symphonie de passion pour vous offrir des prestations sublimes. Ouvrez bien vos yeux car Bohème Production va vous éblouir dans un kaléidoscope de voix divines !
-                                            </p>
-                                        </div>
-
-                                        <h4 class="magazine-section-title">L'Art Sans Limites - Tout Devient Possible</h4>
-
-                                        <div class="content-section-container">
-                                            <p class="magazine-paragraph">
-                                                Bohème Production transcende les frontières du spectacle pour vous offrir des créations sur mesure aux dimensions infinies :
-                                            </p>
-                                            <div class="clean-list">
-                                                <div class="clean-list-item">• <span class="text-gold">Spectacles grandioses</span> pour un nombre exponentiel de spectateurs</div>
-                                                <div class="clean-list-item">• <span class="text-gold">Comédies musicales féeriques</span> où chaque note raconte une histoire</div>
-                                                <div class="clean-list-item">• <span class="text-gold">Excellence acoustique</span> portée par nos maîtres sonorisateurs</div>
-                                                <div class="clean-list-item">• <span class="text-gold">Ballet des arts</span> : danseurs, acteurs, metteurs en scène dans une harmonie créative totale</div>
-                                            </div>
-                                        </div>
-
-                                        <h4 class="magazine-section-title">Rayonnement Azuréen vers l'Universel</h4>
-
-                                        <div class="highlight-quote">
-                                            Depuis l'écrin doré de la Côte d'Azur, Bohème Production déploie ses ailes artistiques vers tous les horizons. Nos créations ont déjà caressé les plus belles scènes et ont scintillé sous les feux des plus prestigieux festivals.
-                                        </div>
-
-                                        <div class="patrick-quote-highlight">
-                                            <h4 class="patrick-quote-title">La Promesse d'un Enchantement Éternel</h4>
-                                            <h5 style="color: var(--gold); font-style: italic; margin-bottom: 20px; font-size: 1.3rem;">Mot de notre président Patrick Elie Féré</h5>
-                                            <div class="patrick-quote">
-                                                Notre quête transcende la simple mélodie : nous tissons des ponts entre les âmes à travers la magie universelle de la musique. <span class="text-gold-shimmer">Des voix cristallines aux rythmes envoûtants</span> résonnent dans chaque création, portées par cette <span class="text-gold-shimmer">production d'exception</span> où brillent nos <span class="text-gold-shimmer">talents en éclosion</span>.
-                                                <br><br>
-                                                Chaque spectacle devient un tableau vivant où les voix se mêlent dans une synergie de bonheur pur, touchant le cœur de chaque spectateur, qu'il soit novice ou connaisseur éclairé. <span class="text-gold-shimmer">Transformant les rêves en parcours qui flamboient</span>, nous révélons des destinées artistiques exceptionnelles.
-                                                <br><br>
-                                                <span class="text-gold-shimmer">La musique nous transporte</span>, et <span class="text-gold-shimmer">Bohème ouvre les portes</span> de vos plus beaux rêves artistiques, créant une alchimie magique où chaque note devient une promesse d'éternité, chaque voix une caresse pour l'âme, chaque spectacle un voyage inoubliable vers l'excellence artistique universelle.
-                                            </div>
-                                            <div class="patrick-signature-integrated">
-                                                <img src="Boheme Production en blanc.png" alt="Bohème Production" class="boheme-signature-image"
-                                                     onerror="this.parentNode.innerHTML='<div class=boheme-signature-placeholder>BOHÈME PRODUCTION</div>'">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="decorative-logo-section">
-                                    <div class="decorative-video-background">
-                                        <video autoplay muted loop playsinline>
-                                            <source src="magique-fumee.mp4" type="video/mp4">
-                                        </video>
-                                    </div>
-                                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="decorative-logo"
-                                         onerror="this.parentNode.innerHTML='<div class=decorative-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=decorative-logo-placeholder>BOHÈME<br>PRODUCTION</div>'">
-                                </div>
-
-                                <div class="final-credits">
-                                    <div class="credits-line"><span class="credits-name">Mickaël Guedj</span> - Conception d'expérience interactive et musicale, Design numérique, Musique originale, Réalisation, Production assistée par IA</div>
-                                    <div class="credits-line"><span class="credits-name">Stéphanie Doméjean</span> - Créations textuelles et visuelles, Paroles, Photographies</div>
-                                    <div class="credits-copyright">© 2025 Bohème Production</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: Bureau -->
-        <section class="section" id="bureau">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="section-header-video">
-                        <video autoplay muted loop playsinline preload="auto">
-                            <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <h2 class="section-title">Notre Bureau</h2>
-                </div>
-                <div class="section-content">
-                    <div class="bureau-grid">
-                        <div class="bureau-card">
-                            <div class="bureau-photo-real">
-                                <img src="Elie Féré HD.jpg" alt="Patrick Elie Féré" onerror="this.parentNode.innerHTML='<div class=bureau-photo-placeholder><span class=material-icons>person</span></div>'">
-                            </div>
-                            <h3 class="bureau-name">Patrick Elie Féré</h3>
-                            <p class="bureau-title">Fondateur - Président</p>
-                        </div>
-                        <div class="bureau-card">
-                            <div class="bureau-photo-placeholder">
-                                <span class="material-icons">person</span>
-                            </div>
-                            <h3 class="bureau-name">Richard Rittelmann</h3>
-                            <p class="bureau-title">Vice-président</p>
-                        </div>
-                        <div class="bureau-card">
-                            <div class="bureau-photo-placeholder">
-                                <span class="material-icons">person</span>
-                            </div>
-                            <h3 class="bureau-name">Norah Amsellem</h3>
-                            <p class="bureau-title">Vice-présidente</p>
-                        </div>
-                        <div class="bureau-card">
-                            <div class="bureau-photo-placeholder">
-                                <span class="material-icons">person</span>
-                            </div>
-                            <h3 class="bureau-name">Pascal Terrien</h3>
-                            <p class="bureau-title">Directeur artistique principal</p>
-                        </div>
-                        <div class="bureau-card">
-                            <div class="bureau-photo-placeholder">
-                                <span class="material-icons">person</span>
-                            </div>
-                            <h3 class="bureau-name">Avi Klemberg</h3>
-                            <p class="bureau-title">Directeur artistique</p>
-                        </div>
-                        <div class="bureau-card">
-                            <div class="bureau-photo-placeholder">
-                                <span class="material-icons">person</span>
-                            </div>
-                            <h3 class="bureau-name">Mickael Guedj</h3>
-                            <p class="bureau-title">Directeur artistique</p>
-                        </div>
-                        <div class="bureau-card">
-                            <div class="bureau-photo-placeholder">
-                                <span class="material-icons">person</span>
-                            </div>
-                            <h3 class="bureau-name">Patricia Rubino</h3>
-                            <p class="bureau-title">Secrétaire</p>
-                        </div>
-                        <div class="bureau-card">
-                            <div class="bureau-photo-placeholder">
-                                <span class="material-icons">person</span>
-                            </div>
-                            <h3 class="bureau-name">Marielle Bader</h3>
-                            <p class="bureau-title">Trésorière</p>
-                        </div>
-                        <div class="bureau-card">
-                            <div class="bureau-photo-placeholder">
-                                <span class="material-icons">person</span>
-                            </div>
-                            <h3 class="bureau-name">David.Sk</h3>
-                            <p class="bureau-title">Administrateur réseaux sociaux</p>
-                        </div>
-                    </div>
-                    <div class="bureau-footer-text">
-                        Une équipe passionnée au service de l'excellence artistique
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: Artistes -->
-        <section class="section" id="artistes">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="section-header-video">
-                        <video autoplay muted loop playsinline preload="auto">
-                            <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <h2 class="section-title">Nos Artistes</h2>
-                </div>
-                <div class="section-content">
-                    <div class="artistes-tabs">
-                        <div class="artiste-tab active" data-category="sopranos">Sopranos</div>
-                        <div class="artiste-tab" data-category="tenors">Ténors</div>
-                        <div class="artiste-tab" data-category="barytons">Barytons</div>
-                        <div class="artiste-tab" data-category="pianistes">Pianistes</div>
-                    </div>
-
-                    <div class="artiste-category active" id="sopranos">
-                        <div class="artiste-grid">
-                            <div class="artiste-card">
-                                <div class="artiste-photo-placeholder">
-                                    <span class="material-icons">person</span>
-                                </div>
-                                <h3 class="artiste-name">Norah Amsellem</h3>
-                                <p class="artiste-role">Soprano</p>
-                            </div>
-                            <div class="artiste-card">
-                                <div class="artiste-photo-placeholder">
-                                    <span class="material-icons">person</span>
-                                </div>
-                                <h3 class="artiste-name">Claudia Sorokina</h3>
-                                <p class="artiste-role">Soprano</p>
-                            </div>
-                            <div class="artiste-card">
-                                <div class="artiste-photo-placeholder">
-                                    <span class="material-icons">person</span>
-                                </div>
-                                <h3 class="artiste-name">Adriana Bignani Lesca</h3>
-                                <p class="artiste-role">Mezzo Soprano</p>
-                            </div>
-                            <div class="artiste-card">
-                                <div class="artiste-photo-placeholder">
-                                    <span class="material-icons">person</span>
-                                </div>
-                                <h3 class="artiste-name">Alisson Cook</h3>
-                                <p class="artiste-role">Mezzo Soprano</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="artiste-category" id="tenors">
-                        <div class="artiste-grid">
-                            <div class="artiste-card">
-                                <div class="artiste-photo-placeholder">
-                                    <span class="material-icons">person</span>
-                                </div>
-                                <h3 class="artiste-name">Luca Lombardo</h3>
-                                <p class="artiste-role">Ténor</p>
-                            </div>
-                            <div class="artiste-card">
-                                <div class="artiste-photo-placeholder">
-                                    <span class="material-icons">person</span>
-                                </div>
-                                <h3 class="artiste-name">Avi Klemberg</h3>
-                                <p class="artiste-role">Ténor</p>
-                            </div>
-                            <div class="artiste-card">
-                                <div class="artiste-photo-placeholder">
-                                    <span class="material-icons">person</span>
-                                </div>
-                                <h3 class="artiste-name">Florian Laconi</h3>
-                                <p class="artiste-role">Ténor</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="artiste-category" id="barytons">
-                        <div class="artiste-grid">
-                            <div class="artiste-card">
-                                <div class="artiste-photo-placeholder">
-                                    <span class="material-icons">person</span>
-                                </div>
-                                <h3 class="artiste-name">Richard A. Rittelmann</h3>
-                                <p class="artiste-role">Baryton</p>
-                            </div>
-                            <div class="artiste-card">
-                                <div class="artiste-photo-placeholder">
-                                    <span class="material-icons">person</span>
-                                </div>
-                                <h3 class="artiste-name">Patrick Elie Féré</h3>
+                   <div class="artiste-category" id="barytons">
+                       <div class="artiste-grid">
+                           <div class="artiste-card">
+                               <div class="artiste-photo-placeholder">
+                                   <span class="material-icons">person</span>
+                               </div>
+                               <h3 class="artiste-name">Richard A. Rittelmann</h3>
+                               <p class="artiste-role">Baryton</p>
+                           </div>
+                           <div class="artiste-card">
+                               <div class="artiste-photo-placeholder">
+                                   <span class="material-icons">person</span>
+                               </div>
+                               <h3 class="artiste-name">Patrick Elie Féré</h3>
                                 <p class="artiste-role">Baryton Verdien</p>
                             </div>
                             <div class="artiste-card">
-                                <div class="artiste-placeholder">
+                                <div class="artiste-photo-placeholder">
                                     <span class="material-icons">person</span>
                                 </div>
                                 <h3 class="artiste-name">Mickael Guedj</h3>
@@ -2430,7 +2773,7 @@
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <h2 class="section-title">Nos Productions</h2>
+                    <h2 class="section-title">Productions</h2>
                 </div>
                 <div class="section-content">
                     <div class="production-grid">
@@ -2552,7 +2895,20 @@
                                 </div>
                                 <div class="contact-text">
                                     Disponible 7j/7
-                                    <span class="material-icons">language</span>
+                                    <span>Pour vos projets artistiques</span>
+                                </div>
+                            </div>
+                            <div class="contact-social">
+                                <h3 class="contact-social-title">Suivez-nous</h3>
+                                <div class="social-links">
+                                    <div class="social-link">
+                                        <span class="material-icons">facebook</span>
+                                    </div>
+                                    <div class="social-link">
+                                        <span class="material-icons">music_note</span>
+                                    </div>
+                                    <div class="social-link">
+                                        <span class="material-icons">language</span>
                                     </div>
                                 </div>
                             </div>
@@ -2570,6 +2926,22 @@
         </section>
     </div>
 
+    <!-- 🔥 CONTRÔLES MODE PRÉSENTATION - Nouveaux du nouveau code -->
+    <div class="presentation-controls">
+        <button class="presentation-control-btn" id="prev-section-btn" title="Section précédente">
+            <span class="material-icons">arrow_back</span>
+        </button>
+        <button class="presentation-control-btn" id="next-section-btn" title="Section suivante">
+            <span class="material-icons">arrow_forward</span>
+        </button>
+        <button class="presentation-control-btn" id="exit-presentation-btn" title="Quitter le mode présentation">
+            <span class="material-icons">close</span>
+        </button>
+    </div>
+
+    <!-- Indicateur mode présentation -->
+    <div class="presentation-indicator">Mode Présentation</div>
+
     <!-- Page transition overlay -->
     <div class="page-transition" id="page-transition"></div>
 
@@ -2579,14 +2951,15 @@
                 this.currentSection = 0;
                 this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
                 this.isTransitioning = false;
+                this.isPresentationMode = false; // 🔥 NOUVEAU
 
                 // Variables pour le swipe AVEC ZONE DE SÉCURITÉ
                 this.touchStart = { x: 0, y: 0, time: 0 };
                 this.touchEnd = { x: 0, y: 0, time: 0 };
-                this.minSwipeDistance = 50; // Distance minimale pour swipe
-                this.minSwipeDistanceStrict = 200; // Distance minimale pour swipe en milieu de contenu
-                this.minVelocity = 0.3; // Vélocité minimale pour swipe facile
-                this.minVelocityStrict = 1.0; // Vélocité minimale pour swipe strict
+                this.minSwipeDistance = 50;
+                this.minSwipeDistanceStrict = 200;
+                this.minVelocity = 0.3;
+                this.minVelocityStrict = 1.0;
 
                 this.init();
             }
@@ -2597,6 +2970,7 @@
                 this.setupArtisteTabs();
                 this.setupTouchNavigation();
                 this.setupKeyboardNavigation();
+                this.setupPresentationMode(); // 🔥 NOUVEAU
                 this.startAnimations();
 
                 // Auto-start exploration from cover
@@ -2612,7 +2986,9 @@
                 const volumeSlider = document.getElementById('volume-slider');
 
                 // Set initial volume
-                audio.volume = 0.3;
+                if (audio) {
+                    audio.volume = 0.3;
+                }
 
                 // Play/Pause
                 playPauseBtn?.addEventListener('click', () => {
@@ -2638,17 +3014,112 @@
                     audio.volume = e.target.value / 100;
                 });
 
-                // Auto-play attempt
+                // Auto-play attempt avec gestion d'erreur améliorée
                 const tryAutoplay = () => {
-                    audio.play().catch(() => {
-                        // Si l'autoplay échoue, on met le bouton en état pause
-                        playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
-                    });
+                    if (audio) {
+                        audio.play().catch(() => {
+                            playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
+                        });
+                    }
                 };
 
                 // Try autoplay on user interaction
                 document.addEventListener('click', tryAutoplay, { once: true });
                 document.addEventListener('touchstart', tryAutoplay, { once: true });
+            }
+
+            // 🔥 NOUVEAU - Mode présentation
+            setupPresentationMode() {
+                const presentationBtn = document.getElementById('presentation-mode-btn');
+                const exitBtn = document.getElementById('exit-presentation-btn');
+                const prevBtn = document.getElementById('prev-section-btn');
+                const nextBtn = document.getElementById('next-section-btn');
+
+                presentationBtn?.addEventListener('click', () => {
+                    this.togglePresentationMode();
+                });
+
+                exitBtn?.addEventListener('click', () => {
+                    this.exitPresentationMode();
+                });
+
+                prevBtn?.addEventListener('click', () => {
+                    if (this.currentSection > 0) {
+                        this.goToSection(this.currentSection - 1);
+                    }
+                });
+
+                nextBtn?.addEventListener('click', () => {
+                    if (this.currentSection < this.sections.length - 1) {
+                        this.goToSection(this.currentSection + 1);
+                    }
+                });
+
+                // Clavier en mode présentation
+                document.addEventListener('keydown', (e) => {
+                    if (this.isPresentationMode) {
+                        switch(e.key) {
+                            case 'Escape':
+                                this.exitPresentationMode();
+                                break;
+                            case 'F11':
+                                e.preventDefault();
+                                break;
+                        }
+                    }
+                });
+            }
+
+            togglePresentationMode() {
+                if (this.isPresentationMode) {
+                    this.exitPresentationMode();
+                } else {
+                    this.enterPresentationMode();
+                }
+            }
+
+            enterPresentationMode() {
+                this.isPresentationMode = true;
+                document.body.classList.add('presentation-mode');
+
+                // Tenter le plein écran
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen().catch(e => {
+                        console.log('Fullscreen failed:', e);
+                    });
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                }
+
+                // Mettre à jour l'icône
+                const presentationBtn = document.getElementById('presentation-mode-btn');
+                if (presentationBtn) {
+                    presentationBtn.innerHTML = '<span class="material-icons">fullscreen_exit</span>';
+                }
+            }
+
+            exitPresentationMode() {
+                this.isPresentationMode = false;
+                document.body.classList.remove('presentation-mode');
+
+                // Sortir du plein écran
+                if (document.exitFullscreen) {
+                    document.exitFullscreen().catch(e => {
+                        console.log('Exit fullscreen failed:', e);
+                    });
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+
+                // Remettre l'icône normale
+                const presentationBtn = document.getElementById('presentation-mode-btn');
+                if (presentationBtn) {
+                    presentationBtn.innerHTML = '<span class="material-icons">present_to_all</span>';
+                }
             }
 
             setupNavigation() {
@@ -2680,8 +3151,6 @@
             }
 
             setupTouchNavigation() {
-                let touchStartTime = 0;
-
                 // Touch start
                 document.addEventListener('touchstart', (e) => {
                     if (this.isTransitioning) return;
@@ -2692,7 +3161,6 @@
                         y: touch.clientY,
                         time: Date.now()
                     };
-                    touchStartTime = Date.now();
                 }, { passive: true });
 
                 // Touch end
@@ -2755,7 +3223,7 @@
 
                 // Calculer la distance et la vélocité
                 const distance = Math.abs(deltaY);
-                const velocity = distance / (deltaTime || 1); // Éviter division par 0
+                const velocity = distance / (deltaTime || 1);
 
                 // Ignorer les swipes horizontaux
                 if (Math.abs(deltaX) > Math.abs(deltaY)) return;
@@ -2823,6 +3291,10 @@
                             e.preventDefault();
                             this.goToSection(this.sections.length - 1);
                             break;
+                        case 'F11':
+                            e.preventDefault();
+                            this.togglePresentationMode();
+                            break;
                     }
                 });
             }
@@ -2860,8 +3332,8 @@
                     setTimeout(() => {
                         transition?.classList.remove('active');
                         this.isTransitioning = false;
-                    }, 500);
-                }, 250);
+                    }, 200);
+                }, 100);
             }
 
             updateNavigation(index) {
@@ -2904,11 +3376,20 @@
             new BohemePlaquette();
         });
 
+        // Gestion des événements de changement de plein écran
+        document.addEventListener('fullscreenchange', () => {
+            const plaquette = document.querySelector('.boheme-plaquette');
+            if (plaquette && plaquette.bohemePlaquetteInstance) {
+                if (!document.fullscreenElement) {
+                    plaquette.bohemePlaquetteInstance.exitPresentationMode();
+                }
+            }
+        });
+
         // Handle video loading errors gracefully
         document.querySelectorAll('video').forEach(video => {
             video.addEventListener('error', function() {
                 console.log('Video failed to load:', this.src);
-                // Hide video container if video fails
                 this.parentElement.style.display = 'none';
             });
 
@@ -2921,7 +3402,7 @@
 
         // Optimize performance
         window.addEventListener('load', () => {
-            // Preload next section videos when page is loaded
+            // Preload videos metadata
             document.querySelectorAll('video').forEach(video => {
                 video.preload = 'metadata';
             });
@@ -2929,7 +3410,7 @@
 
         // Handle window resize
         window.addEventListener('resize', () => {
-            // Reset any animations or layouts that might need adjustment
+            // Reset scroll positions
             const activeSection = document.querySelector('.section.active');
             if (activeSection) {
                 const sectionContent = activeSection.querySelector('.section-content');
