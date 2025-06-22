@@ -2,9 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Bohème Production - Plaquette Interactive</title>
-    <!-- Mêmes fonts et styles de base -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes:wght@400&family=Cinzel:ital,wght@0,400;0,500;0,600;1,400&family=Didot:wght@400;700&family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -43,6 +42,32 @@
             color: var(--dark);
         }
 
+        /* Barre de défilement stylisée */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+            border-radius: 6px;
+            border: 2px solid var(--light-gray);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--gold-dark), var(--gold));
+        }
+
+        /* Pour Firefox */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) var(--light-gray);
+        }
+
         /* Global background video */
         .global-background-video {
             position: fixed;
@@ -67,7 +92,7 @@
             object-fit: cover;
         }
 
-        /* 🔧 AUDIO CONTROLS - Décalé plus à droite */
+        /* Audio controls avec l'or comme demandé */
         .audio-controls {
             position: fixed;
             top: 20px;
@@ -78,21 +103,9 @@
             background: url('image-en-or.png') center/cover;
             padding: 8px;
             border-radius: 20px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.4), 0 0 20px rgba(212,175,55,0.6);
             border: 2px solid var(--black);
             font-size: 12px;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-
-        /* 🔧 MOBILE - Décalé encore plus à droite */
-        @media (max-width: 768px) {
-            .audio-controls {
-                top: 10px;
-                right: 5px; /* 🔥 PLUS À DROITE : 10px → 5px */
-                padding: 6px;
-                gap: 6px;
-            }
         }
 
         .audio-control-btn {
@@ -110,28 +123,15 @@
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             border: 2px solid var(--black);
-            user-select: none;
-            touch-action: manipulation;
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
 
         .audio-control-btn:hover {
-            transform: scale(1.1) translateZ(0);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
 
         .audio-control-btn .material-icons {
             font-size: 18px;
-        }
-
-        @media (max-width: 768px) {
-            .audio-control-btn {
-                width: 30px;
-                height: 30px;
-            }
-            .audio-control-btn .material-icons {
-                font-size: 16px;
-            }
         }
 
         .volume-slider {
@@ -142,14 +142,6 @@
             padding: 0 8px;
         }
 
-        @media (max-width: 768px) {
-            .volume-slider {
-                width: 50px;
-                height: 30px;
-                padding: 0 6px;
-            }
-        }
-
         .volume-slider input {
             width: 100%;
             height: 3px;
@@ -157,7 +149,6 @@
             border-radius: 2px;
             outline: none;
             -webkit-appearance: none;
-            font-size: 16px;
         }
 
         .volume-slider input::-webkit-slider-thumb {
@@ -167,6 +158,7 @@
             background: var(--gold);
             border-radius: 50%;
             cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         /* Main container */
@@ -177,89 +169,7 @@
             overflow: hidden;
         }
 
-        /* 🔧 NAVIGATION DOTS - Descendus de 10px */
-        .navigation {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%) translateZ(0);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            backface-visibility: hidden;
-        }
-
-        @media (max-width: 768px) {
-            .navigation {
-                bottom: 20px !important; /* 🔥 DESCENDU : 30px → 20px */
-                right: 50% !important;
-                top: auto !important;
-                transform: translateX(50%) translateZ(0) !important;
-                flex-direction: row !important;
-                background: rgba(255,255,255,0.95);
-                padding: 15px 20px;
-                border-radius: 30px;
-                border: 2px solid var(--gold);
-                backdrop-filter: blur(10px);
-                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            }
-        }
-
-        .nav-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
-            border: 2px solid var(--black);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            position: relative;
-            user-select: none;
-            touch-action: manipulation;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-
-        .nav-dot.active {
-            transform: scale(1.3) translateZ(0);
-            box-shadow: 0 0 15px rgba(212,175,55,0.8);
-        }
-
-        .nav-dot:hover {
-            transform: scale(1.2) translateZ(0);
-        }
-
-        .nav-tooltip {
-            position: absolute;
-            right: 25px;
-            background: rgba(0,0,0,0.8);
-            padding: 8px 12px;
-            border-radius: 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            color: var(--gold);
-            border: 1px solid var(--gold);
-        }
-
-        .nav-dot:hover .nav-tooltip {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        @media (max-width: 768px) {
-            .nav-tooltip {
-                display: none;
-            }
-        }
-
-        /* Sections - Optimisation transitions */
+        /* Full page sections */
         .section {
             position: absolute;
             width: 100%;
@@ -270,10 +180,8 @@
             align-items: center;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            transition: opacity 1s ease, visibility 1s ease;
             overflow: hidden;
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
 
         .section.active {
@@ -313,14 +221,7 @@
             overflow: hidden;
             border: 4px solid var(--black);
             border-radius: 50%;
-            box-shadow: 0 0 30px rgba(212,175,55,0.7);
-        }
-
-        @media (max-width: 768px) {
-            .logo-container {
-                width: 320px;
-                height: 320px;
-            }
+            box-shadow: 0 0 30px rgba(212,175,55,0.7), inset 0 0 30px rgba(212,175,55,0.3);
         }
 
         .logo {
@@ -328,8 +229,6 @@
             height: 100%;
             object-fit: contain;
             filter: drop-shadow(2px 2px 4px var(--black));
-            image-rendering: optimizeQuality;
-            will-change: transform;
         }
 
         .cover-title {
@@ -337,6 +236,7 @@
             font-size: 4rem;
             font-weight: 700;
             margin-bottom: 20px;
+            line-height: 1.2;
             color: var(--gold);
             position: relative;
             display: inline-block;
@@ -344,13 +244,7 @@
             background: url('image-en-or.png') center/cover;
             border-radius: 15px;
             border: 3px solid var(--black);
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        @media (max-width: 768px) {
-            .cover-title {
-                font-size: 2.5rem;
-            }
+            box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.2);
         }
 
         .cover-title-text {
@@ -366,23 +260,25 @@
             font-style: italic;
             margin-bottom: 30px;
             color: white;
-            text-shadow: 2px 2px 4px var(--black), 0 0 15px rgba(255,255,255,0.8);
-        }
-
-        @media (max-width: 768px) {
-            .cover-subtitle {
-                font-size: 1.2rem;
-            }
+            text-shadow:
+                2px 2px 4px var(--black),
+                0 0 15px rgba(255,255,255,0.8),
+                0 0 25px rgba(255,255,255,0.6),
+                0 0 35px rgba(255,255,255,0.4);
         }
 
         .cover-interactive-text {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
             font-weight: 400;
-            margin-top: 5px; /* 🔥 RÉDUIT : 20px → 5px pour remonter */
+            margin-top: 20px;
             font-style: italic;
             color: var(--gold);
-            text-shadow: 2px 2px 4px var(--black), 0 0 20px rgba(212,175,55,0.9);
+            text-shadow:
+                2px 2px 4px var(--black),
+                0 0 20px rgba(212,175,55,0.9),
+                0 0 40px rgba(212,175,55,0.7),
+                0 0 60px rgba(212,175,55,0.5);
             position: relative;
             padding: 10px 20px;
             border: 2px solid var(--gold);
@@ -391,27 +287,19 @@
             background-color: rgba(255,255,255,0.1);
         }
 
-        @media (max-width: 768px) {
-            .cover-interactive-text {
-                font-size: 1.2rem;
-            }
-        }
-
-        /* 🔧 BARRE DORÉE - Hauteur réduite */
         .golden-line {
             width: 60%;
-            height: 2px; /* 🔥 RÉDUIT : 4px → 2px */
+            height: 4px;
             background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
-            margin: 20px 0; /* 🔥 RÉDUIT : 30px → 20px */
+            margin: 30px 0;
             position: relative;
-            box-shadow: 0 0 15px rgba(212,175,55,0.8);
+            box-shadow: 0 0 15px rgba(212,175,55,0.8), 0 2px 4px var(--black);
             border: 1px solid var(--black);
         }
 
-        /* 🔧 INDICATEUR SCROLL - Remonté */
         .cover-scroll-indicator {
             position: absolute;
-            bottom: 125px; /* 🔥 REMONTÉ : 100px → 125px */
+            bottom: 100px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -419,19 +307,10 @@
             align-items: center;
             cursor: pointer;
             transition: transform 0.3s ease;
-            user-select: none;
-            touch-action: manipulation;
-            z-index: 100;
         }
 
         .cover-scroll-indicator:hover {
             transform: translateX(-50%) translateY(5px);
-        }
-
-        @media (max-width: 768px) {
-            .cover-scroll-indicator {
-                bottom: 80px; /* 🔥 REMONTÉ : 140px → 80px pour éviter navigation dots */
-            }
         }
 
         .scroll-text {
@@ -441,7 +320,9 @@
             letter-spacing: 3px;
             margin-bottom: 15px;
             color: var(--gold);
-            text-shadow: 2px 2px 4px var(--black), 0 0 15px rgba(212,175,55,0.8);
+            text-shadow:
+                2px 2px 4px var(--black),
+                0 0 15px rgba(212,175,55,0.8);
             font-weight: 600;
             background: rgba(0,0,0,0.3);
             padding: 8px 15px;
@@ -459,7 +340,10 @@
             align-items: center;
             animation: bounce 2s infinite;
             color: var(--gold);
-            box-shadow: 0 0 20px rgba(212,175,55,0.8);
+            box-shadow:
+                0 0 20px rgba(212,175,55,0.8),
+                0 4px 8px var(--black),
+                inset 0 0 20px rgba(212,175,55,0.2);
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(5px);
         }
@@ -480,7 +364,66 @@
             }
         }
 
-        /* Section containers */
+        /* Navigation avec l'or comme demandé */
+        .navigation {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: url('image-en-or.png') center/cover;
+            border: 2px solid var(--black);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3), 0 0 10px rgba(212,175,55,0.5);
+            position: relative;
+        }
+
+        .nav-dot.active {
+            transform: scale(1.3);
+            box-shadow: 0 0 20px rgba(212,175,55,0.8), 0 4px 8px rgba(0,0,0,0.4);
+        }
+
+        .nav-dot:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(212,175,55,0.7);
+        }
+
+        .nav-tooltip {
+            position: absolute;
+            right: 25px;
+            background: rgba(0,0,0,0.8);
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            transform: translateX(-10px);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+        }
+
+        .nav-dot:hover .nav-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        /* Content sections styling */
         .section-container {
             position: relative;
             width: 90%;
@@ -493,20 +436,12 @@
             backdrop-filter: blur(5px);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3), 0 0 30px rgba(212,175,55,0.3);
             z-index: 2;
             border: 3px solid var(--gold);
         }
 
-        @media (max-width: 768px) {
-            .section-container {
-                width: 100%;
-                height: 100%;
-                border-radius: 0;
-                background: rgba(255, 255, 255, 0.7);
-            }
-        }
-
+        /* VIDÉO LASERS COULEURS dans la bande fixe - BOUCLE CORRIGÉE */
         .section-header {
             position: relative;
             padding: 30px 40px;
@@ -515,14 +450,6 @@
             border-bottom: 2px solid var(--gold);
             overflow: hidden;
             touch-action: manipulation;
-        }
-
-        /* 🔧 MOBILE - Padding réduit à gauche pour éviter audio controls */
-        @media (max-width: 768px) {
-            .section-header {
-                padding: 20px 15px 20px 15px; /* 🔥 PADDING GAUCHE RÉDUIT : 20px → 15px */
-                background: rgba(255, 255, 255, 0.8);
-            }
         }
 
         .section-header-video {
@@ -559,23 +486,8 @@
             padding: 10px 20px;
             border-radius: 10px;
             border: 3px solid var(--black);
-            box-shadow: 0 0 15px rgba(0,0,0,0.4);
+            box-shadow: 0 0 15px rgba(0,0,0,0.4), inset 0 0 15px rgba(255,255,255,0.3);
             z-index: 2;
-        }
-
-        /* 🔧 MOBILE - Titres à gauche et taille réduite pour "Productions" */
-        @media (max-width: 768px) {
-            .section-title {
-                text-align: left;
-                font-size: 2rem;
-            }
-            .section-header {
-                text-align: left;
-            }
-            /* 🔥 TITRE SPÉCIFIQUE "Productions" plus petit */
-            #productions .section-title {
-                font-size: 1.7rem;
-            }
         }
 
         .section-title::after {
@@ -590,249 +502,49 @@
             border: 1px solid var(--black);
         }
 
-        /* Section content scrollable */
+        /* SECTION CONTENT - DÉFILEMENT STANDARD AVEC ZONE DE SÉCURITÉ */
         .section-content {
             flex: 1;
             position: relative;
             color: var(--dark);
             background: rgba(255, 255, 255, 0.1);
             padding: 0;
-            padding-bottom: 100px;
+            padding-bottom: 100px; /* 🔥 ZONE DE SÉCURITÉ - CRUCIAL ! */
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            touch-action: pan-y;
         }
 
-        @media (max-width: 768px) {
-            .section-content {
-                padding-bottom: 150px;
-                background: rgba(255, 255, 255, 0.1);
-            }
-        }
-
-        /* MODE PRÉSENTATION */
-        .presentation-mode {
-            background: black !important;
-        }
-
-        .presentation-mode .section-container {
-            width: 100% !important;
-            height: 100% !important;
-            max-width: none !important;
-            max-height: none !important;
-            border-radius: 0 !important;
-            background: rgba(255, 255, 255, 0.95) !important;
-            border: 5px solid var(--gold) !important;
-            box-shadow: 0 0 50px rgba(212,175,55,0.8) !important;
-        }
-
-        .presentation-mode .section-title {
-            font-size: 4rem !important;
-            text-align: center !important;
-            margin: 0 !important;
-        }
-
-        .presentation-mode .section-content {
-            padding: 40px !important;
-            font-size: 1.4rem !important;
-            line-height: 1.8 !important;
-        }
-
-        .presentation-mode .navigation,
-        .presentation-mode .audio-controls {
-            display: none !important;
-        }
-
-        /* Contrôles présentation */
-        .presentation-controls {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10000;
-            display: none;
-            gap: 15px;
-            background: rgba(0,0,0,0.9);
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 2px solid var(--gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-
-        .presentation-mode .presentation-controls {
-            display: flex;
-        }
-
-        @media (max-width: 768px) {
-            .presentation-controls {
-                bottom: 20px !important;
-                left: 20px !important;
-                right: auto !important;
-                transform: none !important;
-                flex-direction: column !important;
-                padding: 12px 10px !important;
-                gap: 8px !important;
-                border-radius: 25px !important;
-            }
-        }
-
-        .presentation-control-btn {
-            width: 45px;
-            height: 45px;
-            border: none;
-            border-radius: 50%;
-            background: var(--gold);
-            color: var(--black);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid var(--black);
-        }
-
-        .presentation-control-btn:hover {
-            transform: scale(1.1);
-            background: var(--gold-light);
-        }
-
-        .presentation-control-btn .material-icons {
-            font-size: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .presentation-control-btn {
-                width: 35px;
-                height: 35px;
-            }
-            .presentation-control-btn .material-icons {
-                font-size: 18px;
-            }
-        }
-
-        /* Indicateur présentation */
-        .presentation-indicator {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            z-index: 10000;
-            display: none;
-            background: rgba(0,0,0,0.8);
-            color: var(--gold);
-            padding: 12px 20px;
-            border-radius: 25px;
-            border: 2px solid var(--gold);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .presentation-mode .presentation-indicator {
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .presentation-indicator {
-                top: 20px !important;
-                left: 20px !important;
-                right: auto !important;
-                padding: 8px 12px !important;
-                font-size: 12px !important;
-            }
-        }
-
-        /* Animations optimisées */
-        .fade-up {
-            animation: fadeUp 1s ease forwards;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in-delay-1 {
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.3s;
-        }
-
-        .fade-in-delay-2 {
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.6s;
-        }
-
-        .fade-in-delay-3 {
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.9s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Page transition optimisée */
-        .page-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1000;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            background: linear-gradient(45deg,
-                rgba(212,175,55,0.3) 0%,
-                rgba(0,0,0,0.8) 50%,
-                rgba(212,175,55,0.3) 100%
-            );
-        }
-
-        .page-transition.active {
-            opacity: 1;
-        }
-
-        /* Contenu magazine et autres sections - styles consolidés */
+        /* === SECTION PRÉSENTATION MAGAZINE CORRIGÉE === */
         .intro-content-magazine {
             position: relative;
             width: 100%;
             height: 100%;
-            padding: 40px;
+            padding: 0;
             background: transparent;
-            padding-bottom: 150px;
+            padding-bottom: 150px; /* 🔥 ZONE DE SÉCURITÉ RENFORCÉE pour cette section */
             overflow-y: auto;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            touch-action: pan-y;
         }
 
-        @media (max-width: 768px) {
-            .intro-content-magazine {
-                padding: 20px;
-                padding-bottom: 200px;
-            }
-        }
-
+        /* Container avec dégradé SANS BLUR EN BAS */
         .scrollable-content {
             position: relative;
             background: linear-gradient(
                 180deg,
                 var(--cream-dark) 0%,
-                var(--beige) 25%,
-                rgba(140,70,35,0.9) 75%,
+                var(--beige) 15%,
+                rgba(190,120,70,0.85) 35%,
+                rgba(140,70,35,0.9) 60%,
+                rgba(80,50,25,0.95) 80%,
                 rgba(20,20,20,0.98) 100%
             );
-            padding-bottom: 150px;
-            touch-action: pan-y;
+            box-shadow: inset 0 0 150px rgba(212,175,55,0.2);
+            padding-bottom: 150px; /* 🔥 ZONE DE SÉCURITÉ DANS LE CONTENU */
         }
 
-        @media (max-width: 768px) {
-            .scrollable-content {
-                padding-bottom: 200px;
-            }
-        }
-
+        /* Photo principale avec titre STYLE VOGUE */
         .hero-image-container {
             position: relative;
             width: 100%;
@@ -840,12 +552,6 @@
             overflow: hidden;
             margin-bottom: 0;
             background: transparent;
-        }
-
-        @media (max-width: 768px) {
-            .hero-image-container {
-                height: 300px;
-            }
         }
 
         .hero-image-video-background {
@@ -877,8 +583,7 @@
             height: 100%;
             object-fit: contain;
             object-position: center 60%;
-            image-rendering: optimizeQuality;
-            will-change: transform;
+            filter: brightness(0.85) contrast(1.1);
         }
 
         .hero-image-placeholder {
@@ -897,6 +602,7 @@
             font-family: 'Bodoni Moda', serif;
         }
 
+        /* TITRE PHOTO AVEC POLICE STYLE VOGUE */
         .hero-image-overlay {
             position: absolute;
             bottom: 0;
@@ -914,33 +620,88 @@
             font-size: 1.8rem;
             font-weight: 400;
             color: var(--gold);
-            text-shadow: 2px 2px 4px black;
+            text-shadow: 2px 2px 4px black, 0 0 15px rgba(212,175,55,0.6);
             margin: 0;
             line-height: 1.3;
             letter-spacing: 1px;
         }
 
-        @media (max-width: 768px) {
-            .hero-image-title {
-                font-size: 1.5rem;
-            }
+        /* NOUVELLE SECTION - COLLAGE ARTISTIQUE EN TAILLE ORIGINALE */
+        .artistic-collage-section {
+            position: relative;
+            width: 100%;
+            margin: 50px 0;
+            overflow: hidden;
+            background: var(--black);
+            border: 3px solid var(--gold);
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.6);
         }
 
-        /* Styles consolidés pour tous les contenus */
+        .artistic-collage-video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .artistic-collage-video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 1;
+            object-fit: cover;
+        }
+
+        .artistic-collage-image {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        .artistic-collage-placeholder {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--black);
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            padding: 20px;
+        }
+
+        /* Contenu principal amélioré */
         .magazine-content-wrapper {
             padding: 40px;
             position: relative;
-            touch-action: pan-y;
         }
 
-        @media (max-width: 768px) {
-            .magazine-content-wrapper {
-                padding: 20px;
-            }
+        .magazine-intro-block {
+            max-width: none;
+            margin: 0 auto;
         }
 
+        /* TITRE PRINCIPAL - Bohème Production EN NOIR */
         .magazine-title-main {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Dancing Script', cursive;
             font-size: 3.5rem;
             font-weight: 700;
             text-align: center;
@@ -949,14 +710,8 @@
             text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
         }
 
-        @media (max-width: 768px) {
-            .magazine-title-main {
-                font-size: 2.5rem;
-            }
-        }
-
         .magazine-subtitle {
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Cormorant Garamond', serif;
             font-size: 1.6rem;
             font-style: italic;
             color: var(--black);
@@ -966,7 +721,24 @@
             text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
         }
 
-        .magazine-section-title, .magazine-section-title-center {
+        .magazine-text-flow {
+            line-height: 1.8;
+            font-size: 1.4rem;
+        }
+
+        /* TEXTE EN BLANC sur FOND NOIR */
+        .magazine-paragraph {
+            margin-bottom: 25px;
+            text-align: justify;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        /* TITRES DE SECTIONS STYLE VOGUE */
+        .magazine-section-title {
             font-family: 'Bodoni Moda', serif;
             font-size: 1.9rem;
             font-weight: 400;
@@ -979,659 +751,138 @@
             color: var(--black);
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px rgba(212,175,55,0.3);
             letter-spacing: 1px;
         }
 
-        @media (max-width: 768px) {
-            .magazine-section-title, .magazine-section-title-center {
-                font-size: 1.6rem;
-                padding: 15px 20px;
-            }
-        }
-
-        .magazine-paragraph {
-            margin-bottom: 25px;
-            text-align: justify;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            line-height: 1.8;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-        }
-
-        @media (max-width: 768px) {
-            .magazine-paragraph {
-                font-size: 1.2rem;
-                text-align: left;
-            }
-        }
-
-        /* 🔧 BORDURES DORÉES RESTAURÉES - Système de l'ancien code */
-        .content-section-container {
+        /* VRAIES BORDURES DORÉES AUTOUR DES CARRÉS NOIRS COMME AVANT */
+        .artists-highlight-container,
+        .polyvalent-artists-container,
+        .content-section-container,
+        .collaboration-container,
+        .excellence-container {
             margin: 25px 0;
             padding: 35px;
             background: rgba(0,0,0,0.9);
             border: 5px solid;
-            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
+            border-image: url('images-en-or-2.png') 10;
             border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-        }
-
-        /* 🔧 ESPACEMENTS MOBILE pour éviter bordures collées */
-        @media (max-width: 768px) {
-            .content-section-container {
-                padding: 20px;
-                margin: 20px 0; /* 🔥 AUGMENTÉ : 15px → 20px */
-            }
-        }
-
-        .video-content-block {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.4);
+            clear: both;
             position: relative;
-            margin: 40px 0;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 5px solid;
-            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
         }
 
-        @media (max-width: 768px) {
-            .video-content-block {
-                margin: 25px 0; /* 🔥 AUGMENTÉ : 20px → 25px */
-            }
-        }
-
-        .video-background-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .video-background-container video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%);
-            opacity: 1;
-            object-fit: cover;
-        }
-
-        .image-overlay-container {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            height: auto;
-        }
-
-        .content-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .image-placeholder {
-            width: 100%;
-            height: 350px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--black);
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            font-family: 'Dancing Script', cursive;
-        }
-
-        .content-text-block {
-            position: relative;
-            z-index: 3;
-            padding: 35px;
-            background: rgba(0,0,0,0.9);
-            border: 5px solid;
-            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
-            border-radius: 20px;
-            margin: 25px 35px 35px 35px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-        }
-
-        @media (max-width: 768px) {
-            .content-text-block {
-                padding: 20px;
-                margin: 20px 0; /* 🔥 AUGMENTÉ pour espacement */
-            }
-        }
-
-        .content-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            line-height: 1.8;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            text-align: justify;
-        }
-
-        @media (max-width: 768px) {
-            .content-text {
-                font-size: 1.2rem;
-                text-align: left;
-            }
-        }
-
-        /* Bureau section */
-        .bureau-grid {
+        .artists-highlight-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             margin-top: 20px;
-            padding: 40px;
         }
 
-        @media (max-width: 768px) {
-            .bureau-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-                padding: 20px;
-            }
-        }
-
-        .bureau-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(5px);
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            padding: 25px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .bureau-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        .bureau-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-            color: var(--dark);
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-        }
-
-        .bureau-title {
-            font-size: 1rem;
-            color: var(--gray);
-            font-style: italic;
-        }
-
-        .bureau-photo-placeholder, .bureau-photo-real {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-            color: var(--black);
-            overflow: hidden;
-            border: 3px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .bureau-photo-real img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .bureau-footer-text {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 60px;
-            font-style: italic;
-            color: var(--gold-dark);
-            padding: 15px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .bureau-footer-text {
-                margin-bottom: 180px;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Artistes section */
-        .artistes-tabs {
-            display: flex;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--gold);
-            background: rgba(249, 241, 219, 0.5);
-            border-radius: 10px 10px 0 0;
-            overflow: hidden;
-        }
-
-        @media (max-width: 768px) {
-            .artistes-tabs {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-            }
-        }
-
-        .artiste-tab {
-            padding: 15px 25px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            color: var(--black);
-            user-select: none;
-            touch-action: manipulation;
-        }
-
-        .artiste-tab.active {
-            color: var(--black);
-            font-weight: 600;
-            background: url('image-en-or.png') center/cover;
-        }
-
-        .artiste-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gold);
-        }
-
-        .artiste-category {
-            display: none;
-            padding: 40px;
-        }
-
-        .artiste-category.active {
-            display: block;
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        .artiste-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .artiste-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-        }
-
-        .artiste-card {
-            background: rgba(255, 255, 255, 0.85);
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .artiste-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .artiste-photo-placeholder {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px;
-            border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            color: var(--black);
-            border: 2px solid var(--gold);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-        }
-
-        .artiste-name {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
-
-        .artiste-role {
-            font-size: 0.9rem;
-            color: var(--gray);
-            font-style: italic;
-        }
-
-        .artistes-website-link {
-            text-align: center;
-            margin-top: 40px;
+        .artist-highlight {
             padding: 25px;
-            background: rgba(212,175,55,0.2);
+            background: rgba(0,0,0,0.8);
+            border: 3px solid;
+            border-image: url('images-en-or-2.png') 10;
             border-radius: 15px;
-            border: 2px solid var(--gold);
-        }
-
-        .artistes-website-text {
+            color: white;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-style: italic;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        .artistes-website-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 20px;
-            background: url('image-en-or.png') center/cover;
-            color: var(--black);
-            text-decoration: none;
-            border-radius: 25px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 2px solid var(--black);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .artistes-website-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-
-        .artistes-website-button .material-icons {
-            margin-right: 8px;
-            font-size: 1.2rem;
-        }
-
-        /* Productions section */
-        .production-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .production-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 20px;
-            }
-        }
-
-        .production-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            border: 2px solid var(--gold);
-        }
-
-        .production-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .production-image {
-            height: 180px;
-            background: url('image-en-or.png') center/cover;
-            position: relative;
-        }
-
-        .production-content {
-            padding: 25px;
-        }
-
-        .production-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        .production-description {
-            font-size: 1rem;
-            color: var(--gray);
+            font-size: 1.4rem;
             line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
-        /* Contact section */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            height: 100%;
-            padding: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 20px;
-            }
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            color: var(--black);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            border: 2px solid var(--gold-dark);
-        }
-
-        .contact-text {
-            font-size: 1.1rem;
-            color: var(--dark);
-            line-height: 1.4;
-            background: rgba(255,255,255,0.3);
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        .contact-text span {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-top: 5px;
-        }
-
-        .contact-social {
-            margin-top: 40px;
-        }
-
-        .contact-social-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-link {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: url('image-en-or.png') center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--black);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 2px solid var(--gold-dark);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .map-container {
-            width: 100%;
-            height: 100%;
-            background: rgba(245,245,245,0.8);
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            border: 2px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        @media (max-width: 768px) {
-            .map-container {
-                height: 300px;
-            }
-        }
-
-        .map-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--gray);
-            font-style: italic;
-        }
-
-        /* 🔧 ÉLÉMENTS SPÉCIAUX - Bordures restaurées */
-        .trilogie-section-container, .artistic-collage-section {
-            position: relative;
-            width: 100%;
-            height: auto;
-            margin: 50px 0;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-            border: 5px solid;
-            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
-        }
-
-        @media (max-width: 768px) {
-            .trilogie-section-container, .artistic-collage-section {
-                margin: 35px 0; /* 🔥 AUGMENTÉ : 30px → 35px */
-            }
-        }
-
-        .trilogie-video-background, .artistic-collage-video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .trilogie-video-background video, .artistic-collage-video-background video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%);
-            opacity: 1;
-            object-fit: cover;
-        }
-
-        .trilogie-image-overlay {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-            height: auto;
-        }
-
-        .trilogie-image, .artistic-collage-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: brightness(1.1) contrast(1.1);
-        }
-
-        .trilogie-image-placeholder, .artistic-collage-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--black);
-            font-size: 2.5rem;
+        /* NOMS D'ARTISTES EN OR SIMPLE MAIS ÉLÉGANT */
+        .artist-name {
+            font-size: 1.6rem;
             font-weight: 700;
-            text-align: center;
-            font-family: 'Dancing Script', cursive;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(212,175,55,0.7);
         }
 
+        .artist-description {
+            font-size: 1.4rem;
+            line-height: 1.5;
+            color: white;
+        }
+
+        /* GRANDE CASE pour Pascal Terrien */
+        .polyvalent-artists-container {
+            margin: 15px 0 25px 0;
+        }
+
+        /* PHRASES MISES EN ÉVIDENCE NOIR/OR AVEC BORDURE DORÉE */
+        .highlight-quote {
+            margin: 35px 0;
+            padding: 35px;
+            background: rgba(0,0,0,0.95);
+            border: 4px solid;
+            border-image: url('images-en-or-2.png') 10;
+            border-radius: 20px;
+            text-align: center;
+            font-style: italic;
+            color: var(--gold);
+            font-size: 1.5rem;
+            line-height: 1.7;
+            text-shadow: 2px 2px 4px black;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.5);
+            position: relative;
+            clear: both;
+        }
+
+        .highlight-quote::before,
+        .highlight-quote::after {
+            content: '"';
+            font-size: 3.5rem;
+            color: var(--gold);
+            position: absolute;
+            opacity: 0.5;
+            font-family: 'Bodoni Moda', serif;
+        }
+
+        .highlight-quote::before {
+            top: -10px;
+            left: 15px;
+        }
+
+        .highlight-quote::after {
+            bottom: -40px;
+            right: 15px;
+        }
+
+        .clean-list {
+            margin: 20px 0;
+        }
+
+        .clean-list-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(0,0,0,0.8);
+            border-left: 5px solid var(--gold);
+            border-radius: 8px;
+            font-size: 1.4rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* MESSAGE PATRICK AVEC TITRE AVEC BORDURE DORÉE */
         .patrick-quote-highlight {
             margin: 60px 0;
             padding: 60px 40px 30px 40px;
             background: rgba(0,0,0,0.95);
             border: 5px solid;
-            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
+            border-image: url('images-en-or-2.png') 10;
             border-radius: 25px;
             text-align: center;
             position: relative;
-            box-shadow: 0 25px 50px rgba(212,175,55,0.4);
-        }
-
-        @media (max-width: 768px) {
-            .patrick-quote-highlight {
-                padding: 30px 20px 20px 20px;
-                margin: 45px 0; /* 🔥 AUGMENTÉ : 40px → 45px */
-            }
+            clear: both;
+            box-shadow:
+                0 25px 50px rgba(212,175,55,0.4),
+                0 0 60px rgba(212,175,55,0.5),
+                inset 0 0 60px rgba(212,175,55,0.15);
         }
 
         .patrick-quote-title {
@@ -1640,15 +891,9 @@
             font-weight: 400;
             color: var(--gold);
             margin-bottom: 18px;
-            text-shadow: 3px 3px 6px black;
+            text-shadow: 3px 3px 6px black, 0 0 35px rgba(212,175,55,0.9);
             line-height: 1.1;
             letter-spacing: 1.2px;
-        }
-
-        @media (max-width: 768px) {
-            .patrick-quote-title {
-                font-size: 1.5rem;
-            }
         }
 
         .patrick-quote {
@@ -1662,13 +907,8 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
 
-        @media (max-width: 768px) {
-            .patrick-quote {
-                font-size: 1.3rem;
-            }
-        }
-
-        .patrick-quote::before, .patrick-quote::after {
+        .patrick-quote::before,
+        .patrick-quote::after {
             content: '"';
             font-size: 4.5rem;
             color: var(--gold);
@@ -1687,6 +927,7 @@
             right: -15px;
         }
 
+        /* SIGNATURE */
         .patrick-signature-integrated {
             margin-top: 30px;
             padding-top: 20px;
@@ -1707,29 +948,17 @@
             filter: brightness(1.3) contrast(1.2);
         }
 
-        @media (max-width: 768px) {
-            .boheme-signature-image {
-                max-width: 500px;
-            }
-        }
-
         .boheme-signature-placeholder {
             font-family: 'Dancing Script', cursive;
             font-size: 6rem;
             font-weight: 700;
             color: var(--gold);
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.9);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.9), 0 0 20px rgba(212,175,55,0.8);
             padding: 20px;
             text-align: center;
         }
 
-        @media (max-width: 768px) {
-            .boheme-signature-placeholder {
-                font-size: 3.5rem;
-                padding: 15px;
-            }
-        }
-
+        /* LOGO DÉCORATIF - BORDURE DORÉE CLASSIQUE CORRIGÉE */
         .decorative-logo-section {
             margin: 50px 0;
             padding: 80px;
@@ -1738,23 +967,15 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 5px solid;
-            border-image: url('images-en-or-2.png') 10; /* 🔥 RESTAURÉ */
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            border: 5px solid var(--gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 40px rgba(212,175,55,0.5);
+            clear: both;
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .decorative-logo-section {
-                max-width: 95%;
-                padding: 25px 15px;
-                margin: 25px auto; /* 🔥 AUGMENTÉ : 20px → 25px */
-            }
         }
 
         .decorative-video-background {
@@ -1784,15 +1005,9 @@
             z-index: 2;
             max-width: 500px;
             height: auto;
-            filter: brightness(1.3) contrast(1.3);
+            filter: brightness(1.3) contrast(1.3) drop-shadow(0 0 25px rgba(212,175,55,0.9));
             margin: 0 auto;
             display: block;
-        }
-
-        @media (max-width: 768px) {
-            .decorative-logo {
-                max-width: 250px;
-            }
         }
 
         .decorative-logo-placeholder {
@@ -1814,26 +1029,23 @@
             border: 4px solid var(--black);
         }
 
-        @media (max-width: 768px) {
-            .decorative-logo-placeholder {
-                width: 250px;
-                height: 250px;
-                font-size: 2rem;
-            }
-        }
-
+        /* TEXTES EN OR SIMPLE ET ÉLÉGANT */
         .text-gold {
             color: var(--gold);
             font-weight: 600;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(212,175,55,0.6);
         }
 
         .text-gold-shimmer {
             color: var(--gold);
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(212,175,55,0.8);
+            text-shadow:
+                2px 2px 4px rgba(0,0,0,0.9),
+                0 0 10px rgba(212,175,55,0.8),
+                0 0 15px rgba(212,175,55,0.6);
         }
 
+        /* COPYRIGHT NORMAL ET DISCRET */
         .final-credits {
             background: rgba(248,248,248,0.3);
             color: #666666;
@@ -1866,6 +1078,805 @@
             color: #333333;
             font-size: 11px;
         }
+
+        /* Autres sections */
+        .bureau-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .bureau-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15), 0 0 15px rgba(212,175,55,0.3);
+        }
+
+        .bureau-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2), 0 0 25px rgba(212,175,55,0.5);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .bureau-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .bureau-title {
+            font-size: 1rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .bureau-photo-placeholder {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: url('image-en-or.png') center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: var(--black);
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2), inset 0 0 20px rgba(212,175,55,0.2);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .bureau-photo-real {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px rgba(212,175,55,0.3);
+        }
+
+        .bureau-photo-real img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .bureau-footer-text {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 60px;
+            font-style: italic;
+            color: var(--gold-dark);
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+            padding: 15px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+        }
+
+        /* Artistes section */
+        .artistes-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--gold);
+            background: rgba(249, 241, 219, 0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+        }
+
+        .artiste-tab {
+            padding: 15px 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            color: var(--black);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .artiste-tab.active {
+            color: var(--black);
+            font-weight: 600;
+            background: url('image-en-or.png') center/cover;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .artiste-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gold);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .artiste-category {
+            display: none;
+            padding: 40px;
+        }
+
+        .artiste-category.active {
+            display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .artiste-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .artiste-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(3px);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1), 0 0 10px rgba(212,175,55,0.2);
+        }
+
+        .artiste-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 20px rgba(212,175,55,0.4);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .artiste-photo-placeholder {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: url('image-en-or.png') center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: var(--black);
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .artiste-name {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .artiste-role {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .artistes-website-link {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(212,175,55,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .artistes-website-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+        }
+
+        .artistes-website-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            background: url('image-en-or.png') center/cover;
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--black);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        .artistes-website-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .artistes-website-button .material-icons {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Productions section */
+        .production-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .production-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 20px rgba(212,175,55,0.3);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 2px solid var(--gold);
+        }
+
+        .production-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(212,175,55,0.5);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .production-image {
+            height: 180px;
+            background: url('image-en-or.png') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .production-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4));
+        }
+
+        .production-content {
+            padding: 25px;
+        }
+
+        .production-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+        }
+
+        .production-description {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Contact section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            height: 100%;
+            padding: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: url('image-en-or.png') center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: var(--black);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px rgba(212,175,55,0.5);
+            border: 2px solid var(--gold-dark);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            color: var(--dark);
+            line-height: 1.4;
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .contact-text span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        .contact-social {
+            margin-top: 40px;
+        }
+
+        .contact-social-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: url('image-en-or.png') center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--black);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid var(--gold-dark);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+            background: rgba(245,245,245,0.8);
+            backdrop-filter: blur(3px);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .map-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-style: italic;
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+        }
+
+        /* Animation classes */
+        .fade-up {
+            animation: fadeUp 1s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-delay-1 {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.3s;
+        }
+
+        .fade-in-delay-2 {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.6s;
+        }
+
+        .fade-in-delay-3 {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.9s;
+        }
+
+        /* Page transition effect */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            background: linear-gradient(45deg, var(--gold-light), var(--cream));
+        }
+
+        .page-transition.active {
+            opacity: 1;
+        }
+
+        /* RESPONSIVE MOBILE CORRIGÉ */
+        @media (max-width: 1200px) {
+            .section-container {
+                width: 95%;
+                height: 90%;
+            }
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .map-container {
+                height: 300px;
+            }
+            .logo-container {
+                width: 450px;
+                height: 450px;
+            }
+            .boheme-signature-image {
+                max-width: 700px;
+            }
+            .boheme-signature-placeholder {
+                font-size: 5rem;
+            }
+            .decorative-logo {
+                max-width: 400px;
+            }
+            .decorative-logo-placeholder {
+                width: 400px;
+                height: 400px;
+            }
+            .decorative-logo-section {
+                max-width: 800px;
+                padding: 70px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .cover-title {
+                font-size: 3rem;
+            }
+            .cover-subtitle {
+                font-size: 1.5rem;
+            }
+            .cover-interactive-text {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+                text-align: center;
+            }
+            .bureau-grid, .production-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            .logo-container {
+                width: 380px;
+                height: 380px;
+            }
+            .magazine-title-main {
+                font-size: 2.8rem;
+            }
+            .polyvalent-artists-container {
+                margin: 10px 0 20px 0;
+            }
+            .boheme-signature-image {
+                max-width: 600px;
+            }
+            .boheme-signature-placeholder {
+                font-size: 4rem;
+            }
+            .decorative-logo-section {
+                max-width: 700px;
+                padding: 60px;
+            }
+            .decorative-logo {
+                max-width: 350px;
+            }
+            .decorative-logo-placeholder {
+                width: 350px;
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-container {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+                background: rgba(255, 255, 255, 0.7);
+            }
+            .section-content {
+                padding-bottom: 150px; /* 🔥 ZONE DE SÉCURITÉ MOBILE RENFORCÉE */
+                background: rgba(255, 255, 255, 0.1);
+            }
+            .intro-content-magazine {
+                padding-bottom: 200px; /* 🔥 ZONE DE SÉCURITÉ MOBILE MAXIMALE */
+            }
+            .scrollable-content {
+                padding-bottom: 200px; /* 🔥 ZONE DE SÉCURITÉ DANS CONTENU MOBILE */
+            }
+            .section-header {
+                padding: 20px;
+                text-align: center;
+                background: rgba(255, 255, 255, 0.8);
+            }
+            .section-title {
+                text-align: center;
+                font-size: 2rem;
+            }
+            .cover-title {
+                font-size: 2.5rem;
+            }
+            .cover-subtitle {
+                font-size: 1.2rem;
+            }
+            .cover-interactive-text {
+                font-size: 1.2rem;
+            }
+            .navigation {
+                bottom: 30px;
+                top: auto;
+                right: 50%;
+                transform: translateX(50%);
+                flex-direction: row;
+                background: rgba(255,255,255,0.95);
+                padding: 15px 20px;
+                border-radius: 30px;
+                border: 2px solid var(--gold);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            }
+            .cover-scroll-indicator {
+                bottom: 120px;
+            }
+            .nav-tooltip {
+                display: none;
+            }
+            .bureau-grid, .artiste-grid, .production-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            .logo-container {
+                width: 320px;
+                height: 320px;
+            }
+            .audio-controls {
+                top: 10px;
+                right: 10px;
+                padding: 6px;
+                gap: 6px;
+            }
+            .audio-control-btn {
+                width: 30px;
+                height: 30px;
+            }
+            .audio-control-btn .material-icons {
+                font-size: 16px;
+            }
+            .volume-slider {
+                width: 50px;
+                height: 30px;
+                padding: 0 6px;
+            }
+            .bureau-footer-text {
+                margin-bottom: 180px; /* 🔥 PLUS D'ESPACE POUR ZONE SÉCURITÉ */
+                font-size: 0.9rem;
+            }
+            .magazine-content-wrapper {
+                padding: 20px;
+            }
+            .magazine-title-main {
+                font-size: 2.5rem;
+            }
+            .hero-image-container {
+                height: 300px;
+            }
+            .hero-image-title {
+                font-size: 1.5rem;
+            }
+            .artists-highlight-grid {
+                grid-template-columns: 1fr;
+            }
+            .patrick-quote {
+                font-size: 1.3rem;
+            }
+            .patrick-quote-title {
+                font-size: 1.7rem;
+            }
+            .magazine-paragraph {
+                font-size: 1.3rem;
+            }
+            .boheme-signature-image {
+                max-width: 500px;
+            }
+            .boheme-signature-placeholder {
+                font-size: 3.5rem;
+                padding: 15px;
+            }
+            .decorative-logo-section {
+                max-width: 90%;
+                padding: 30px 20px;
+                margin: 30px auto;
+            }
+            .decorative-logo {
+                max-width: 300px;
+            }
+            .decorative-logo-placeholder {
+                width: 300px;
+                height: 300px;
+                font-size: 2.5rem;
+            }
+            .artists-highlight-container,
+            .polyvalent-artists-container,
+            .content-section-container,
+            .collaboration-container,
+            .excellence-container {
+                padding: 20px;
+                margin: 15px 0;
+            }
+            .highlight-quote {
+                padding: 25px;
+                margin: 25px 0;
+            }
+            .patrick-quote-highlight {
+                padding: 30px 20px 20px 20px;
+                margin: 40px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .cover-title {
+                font-size: 2rem;
+            }
+            .logo-container {
+                width: 280px;
+                height: 280px;
+            }
+            .bureau-grid, .artiste-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .production-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+            .artistes-tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            .golden-line {
+                width: 80%;
+            }
+            .cover-interactive-text {
+                font-size: 1rem;
+            }
+            .audio-controls {
+                top: 5px;
+                right: 5px;
+                padding: 5px;
+                gap: 5px;
+            }
+            .audio-control-btn {
+                width: 28px;
+                height: 28px;
+            }
+            .audio-control-btn .material-icons {
+                font-size: 14px;
+            }
+            .volume-slider {
+                width: 45px;
+                height: 28px;
+                padding: 0 5px;
+            }
+            .magazine-title-main {
+                font-size: 2rem;
+            }
+            .magazine-section-title {
+                font-size: 1.6rem;
+                padding: 15px 20px;
+            }
+            .patrick-quote-title {
+                font-size: 1.5rem;
+            }
+            .magazine-paragraph {
+                font-size: 1.2rem;
+                text-align: left;
+            }
+            .boheme-signature-image {
+                max-width: 400px;
+            }
+            .boheme-signature-placeholder {
+                font-size: 3rem;
+                padding: 10px;
+            }
+            .decorative-logo-section {
+                max-width: 95%;
+                padding: 25px 15px;
+                margin: 20px auto;
+            }
+            .decorative-logo {
+                max-width: 250px;
+            }
+            .decorative-logo-placeholder {
+                width: 250px;
+                height: 250px;
+                font-size: 2rem;
+            }
+            .magazine-content-wrapper {
+                padding: 15px;
+            }
+            .artists-highlight-container,
+            .polyvalent-artists-container,
+            .content-section-container,
+            .collaboration-container,
+            .excellence-container {
+                padding: 15px;
+                margin: 10px 0;
+            }
+            .highlight-quote {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            .patrick-quote-highlight {
+                padding: 25px 15px 15px 15px;
+                margin: 30px 0;
+            }
+            .section-content {
+                padding-bottom: 180px; /* 🔥 ZONE SÉCURITÉ MOBILE TRÈS GRANDE */
+            }
+            .intro-content-magazine {
+                padding-bottom: 220px; /* 🔥 ZONE SÉCURITÉ MAXIMALE MOBILE */
+            }
+        }
     </style>
 </head>
 <body>
@@ -1878,14 +1889,14 @@
         </div>
 
         <!-- Audio element -->
-        <audio id="background-music" loop preload="auto">
+        <audio id="background-music" loop preload="auto" autoplay>
             <source src="AIR_SING_BOHEME.mp3" type="audio/mpeg">
         </audio>
 
         <!-- Audio controls -->
         <div class="audio-controls">
             <button class="audio-control-btn" id="play-pause-btn" title="Play/Pause">
-                <span class="material-icons">play_arrow</span>
+                <span class="material-icons">pause</span>
             </button>
             <button class="audio-control-btn" id="mute-btn" title="Mute/Unmute">
                 <span class="material-icons">volume_up</span>
@@ -1893,10 +1904,6 @@
             <div class="volume-slider">
                 <input type="range" id="volume-slider" min="0" max="100" value="30">
             </div>
-            <!-- Bouton mode présentation -->
-            <button class="audio-control-btn" id="presentation-mode-btn" title="Mode Présentation">
-                <span class="material-icons">present_to_all</span>
-            </button>
         </div>
 
         <!-- Navigation dots -->
@@ -1957,6 +1964,7 @@
                 <div class="section-content">
                     <div class="intro-content-magazine">
                         <div class="scrollable-content">
+
                             <!-- Photo principale avec titre -->
                             <div class="hero-image-container">
                                 <div class="hero-image-video-background">
@@ -1978,103 +1986,174 @@
                                     <h4 class="magazine-subtitle">L'Excellence Artistique À Votre Service</h4>
 
                                     <div class="magazine-text-flow">
-                                        <h4 class="magazine-section-title">Entrez dans l'Univers de Bohème Production</h4>
+                                        <h4 class="magazine-section-title">Une Vision Artistique D'Exception</h4>
 
                                         <div class="content-section-container">
                                             <p class="magazine-paragraph">
-                                                Bohème Production est un organisme de spectacle dédié à l'excellence artistique, fondé et présidé par Patrick Elie Féré, baryton verdien, PDG et producteur, également reconnu pour ses talents d'imitateur. Cette aventure unique est le fruit d'une rencontre créative avec deux artistes d'exception : Richard Alexandre Rittelmann et Norah Amsellem. Cette synergie unique révolutionne l'univers du spectacle vivant en créant une alchimie parfaite entre l'opéra, la pop lyrique et la variété internationale.
+                                                <span class="text-gold">Bohème Production</span> est un organisme de spectacle dédié à l'excellence artistique, fondé et présidé par <span class="text-gold">Patrick Elie Féré</span>, baryton verdien, PDG et producteur, également reconnu pour ses talents d'imitateur. Cette aventure artistique unique est née de sa rencontre créative avec deux artistes d'exception : <span class="text-gold">Richard Alexandre Rittelmann</span> et <span class="text-gold">Norah Amsellem</span>. Cette synergie unique révolutionne l'univers du spectacle vivant en créant une alchimie parfaite entre l'opéra, la pop lyrique et la variété internationale.
                                             </p>
                                         </div>
 
-                                        <!-- Nouvelle section 1: Une Constellation Artistique Complète -->
-                                        <h4 class="magazine-section-title-center">Une Constellation Artistique Complète</h4>
+                                        <h4 class="magazine-section-title magazine-section-title-center">Une Constellation Artistique Complète L'Univers Bohème</h4>
 
-                                        <div class="video-content-block">
-                                            <div class="video-background-container">
+                                        <!-- NOUVELLE SECTION - COLLAGE ARTISTIQUE EN TAILLE ORIGINALE -->
+                                        <div class="artistic-collage-section">
+                                            <div class="artistic-collage-video-background">
                                                 <video autoplay muted loop playsinline>
                                                     <source src="magique-fumee.mp4" type="video/mp4">
                                                 </video>
                                             </div>
-                                            <div class="image-overlay-container">
-                                                <img src="boheme-artistic-collage.png" alt="Collection Artistique Bohème Production" class="content-image"
-                                                     onerror="this.parentNode.innerHTML='<div class=image-placeholder>COLLECTION ARTISTIQUE<br>BOHÈME PRODUCTION</div>'">
-                                            </div>
-                                            <div class="content-text-block">
-                                                <p class="content-text">
-                                                    Bohème Production réunit une famille artistique exceptionnelle de 41 chanteurs de renommée internationale aux multiples talents. Nos spectacles font vibrer le public à travers une mosaïque d'expressions musicales - tantôt une voix s'élève seule, tantôt plusieurs artistes se rejoignent dans une harmonie parfaite autour d'œuvres qui ont certainement suscité de l'émotion dans votre vie. Du plus intime au plus grandiose, chaque configuration offre un moment unique, alliant opéra traditionnel, comédie musicale, opéra pop, variété internationale et bien d'autres styles artistiques. Notre passion se ressent à chaque note, transportant les spectateurs dans un voyage musical sans frontières. Cette richesse vocale permet de créer des expériences musicales inoubliables qui touchent directement au cœur.
-                                                </p>
-                                            </div>
+                                            <img src="boheme-artistic-collage.png" alt="Collection Artistique Bohème Production" class="artistic-collage-image"
+                                                 onerror="this.parentNode.innerHTML='<div class=artistic-collage-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=artistic-collage-placeholder>COLLECTION ARTISTIQUE<br>BOHÈME PRODUCTION</div>'">
                                         </div>
-
-                                        <!-- TRILOGIE -->
-                                        <div class="trilogie-section-container">
-                                            <div class="trilogie-video-background">
-                                                <video autoplay muted loop playsinline>
-                                                    <source src="smoke_red_bg.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <div class="trilogie-image-overlay">
-                                                <img src="trilogie_lyrique.png" alt="Trilogie Lyrique" class="trilogie-image"
-                                                     onerror="this.parentNode.innerHTML='<div class=trilogie-image-placeholder>TRILOGIE<br>LYRIQUE</div>'">
-                                            </div>
-                                        </div>
-
-                                        <!-- Trio de Virtuoses -->
-                                        <h4 class="magazine-section-title-center">Trio de Virtuoses</h4>
-                                        <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">Piano, Direction et Polyvalence</h5>
-
-                                        <div class="video-content-block">
-                                            <div class="video-background-container">
-                                                <video autoplay muted loop playsinline>
-                                                    <source src="partitions_flow.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <div class="image-overlay-container">
-                                                <img src="trio_piano.png" alt="Trio Piano" class="content-image"
-                                                     onerror="this.parentNode.innerHTML='<div class=image-placeholder>TRIO<br>PIANO</div>'">
-                                            </div>
-                                            <div class="content-text-block">
-                                                <p class="content-text">
-                                                    Cette constellation s'enrichit de 3 maîtres du piano : un chef d'orchestre dirigeant un ensemble orchestral complet, une pianiste chanteuse, et une artiste polyvalente aux multiples facettes. Certains d'entre eux assument également des rôles de chef de chant ou de chef de chœur, témoignant de l'excellence et de la diversité de notre équipe.
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- Quand la Danse Raconte -->
-                                        <h4 class="magazine-section-title-center">Quand la Danse Raconte</h4>
-                                        <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">La Magie du Geste</h5>
-
-                                        <div class="video-content-block">
-                                            <div class="video-background-container">
-                                                <video autoplay muted loop playsinline>
-                                                    <source src="paillettes-choregraphie.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <div class="image-overlay-container">
-                                                <img src="choregraphie-artistic-trio.png" alt="Chorégraphie Artistic Trio" class="content-image"
-                                                     onerror="this.parentNode.innerHTML='<div class=image-placeholder>CHORÉGRAPHIE<br>ARTISTIC TRIO</div>'">
-                                            </div>
-                                            <div class="content-text-block">
-                                                <p class="content-text">
-                                                    Nous célébrons l'univers de la danse avec 2 chorégraphes professionnelles dont une directrice d'école de danse, ainsi qu'une jeune danseuse de 13 ans, récemment intégrée à Bohème et championne du monde de hip-hop junior. Ces artistes talentueuses apportent une dimension moderne et dynamique à nos spectacles, fusionnant techniques classiques et mouvements contemporains. Bohème peut mobiliser des danseurs professionnels supplémentaires selon les besoins et l'envergure des projets. La présence de notre jeune championne illustre l'engagement envers les nouveaux talents. Selon les créations, nos chorégraphes collaborent pour concevoir des chorégraphies originales enrichissant nos spectacles.
-                                                </p>
-                                                <p class="content-text">
-                                                    Chaque mouvement devient expression artistique au service de vos événements.
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- L'Art Vocal Nouvelle Génération -->
-                                        <h4 class="magazine-section-title-center">L'Art Vocal Nouvelle Génération</h4>
-                                        <h5 style="font-family: 'Dancing Script', cursive; font-style: italic; text-align: center; color: var(--black); margin-bottom: 30px; font-size: 1.4rem;">Des talents de The Voice sur scène</h5>
 
                                         <div class="content-section-container">
                                             <p class="magazine-paragraph">
-                                                Bohème Production ouvre ses portes aux talents révélés par The Voice et The Voice Kids, ces artistes émergents qui insufflent une énergie nouvelle à nos créations. Leur fraîcheur créative enrichit notre palette artistique et revisite l'art vocal avec audace. Des visages familiers aux découvertes prometteuses, notre famille artistique grandit constamment. Vous reconnaîtrez sûrement quelques talents qui ont marqué le petit écran !
+                                                <span class="text-gold">Bohème Production</span> rassemble une famille artistique exceptionnelle de <span class="text-gold-shimmer">41 chanteurs de renommée internationale</span> aux multiples palettes vocales, capables de passer du lyrique à la pop, de la variété internationale à l'opéra avec une aisance remarquable.
+                                            </p>
+                                            <p class="magazine-paragraph">
+                                                Cette constellation s'enrichit de <span class="text-gold">3 pianistes virtuoses</span> aux profils extraordinaires : un <span class="text-gold">chef d'orchestre dirigeant un orchestre complet</span>, une <span class="text-gold">pianiste chanteuse</span> qui endosse également le rôle de chef de chant, et un troisième virtuose aux talents multiples. Pour certains d'entre eux, les rôles de chef de chant, de chef de chœur et chef d'orchestre viennent naturellement compléter leur palette artistique.
                                             </p>
                                         </div>
 
-                                        <!-- Message Patrick -->
+                                        <div class="content-section-container">
+                                            <p class="magazine-paragraph">
+                                                Dans cette alchimie créative, certains chanteurs révèlent aussi leurs talents de pianistes, créant une harmonie parfaite entre voix et instruments. L'univers chorégraphique brille avec <span class="text-gold">2 chorégraphes et danseuses professionnelles</span>, accompagnées d'une <span class="text-gold">jeune danseuse prodige de 13 ans, championne du monde de hip-hop junior</span>.
+                                            </p>
+                                            <p class="magazine-paragraph">
+                                                Dans l'ombre créative, <span class="text-gold">4 producteurs, auteurs, arrangeurs</span> et <span class="text-gold">2 metteurs en scène</span> créateurs de spectacles façonnent nos productions. L'un de ces metteurs en scène, baryton à la base doté d'une voix magnifique, fait naturellement partie de nos 41 chanteurs - incarnant parfaitement cette polyvalence qui fait la richesse de Bohème Production !
+                                            </p>
+                                        </div>
+
+                                        <div class="excellence-container">
+                                            <p class="magazine-paragraph">
+                                                Notre infrastructure technique s'appuie sur <span class="text-gold">2 spécialistes du son</span> : un <span class="text-gold">spécialiste studio</span> équipé d'un des plus grands studios, et un <span class="text-gold">spécialiste régie</span> pour les <span class="text-gold">productions d'exception</span> en grandes salles extérieures ou intérieures pouvant accueillir un <span class="text-gold">nombre exponentiel de spectateurs</span>, ainsi que des <span class="text-gold">photographes et vidéastes dans l'ombre</span> qui capturent l'essence de nos créations.
+                                            </p>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">Collaboration avec des Chanteurs de The Voice</h4>
+
+                                        <div class="collaboration-container">
+                                            <p class="magazine-paragraph">
+                                                Bohème Production accueille de nombreux chanteurs issus de The Voice, cette richesse enrichissant constamment notre palette artistique de talents exceptionnels qui font partie intégrante de notre famille artistique.
+                                            </p>
+                                            <p class="magazine-paragraph">
+                                                <span class="text-gold-shimmer">Bohème découvre les artistes émergents</span> issus de The Voice et The Voice Kids qui illuminent nos productions de leur fraîcheur créative. Ces <span class="text-gold">talents en éclosion</span> apportent un souffle nouveau à l'art vocal traditionnel, <span class="text-gold-shimmer">transformant les rêves en parcours qui flamboient</span>. Tout est représenté dans Bohème Production : vous reconnaîtrez assurément des visages familiers parmi nos artistes !
+                                            </p>
+                                        </div>
+
+                                        <div class="highlight-quote">
+                                            Nous sommes les sculpteurs de destinées artistiques, révélant chaque jour de nouveaux diamants vocaux.
+                                        </div>
+
+                                        <h4 class="magazine-section-title">Parmi Nos Artistes Lyriques - Voici Une Petite Sélection</h4>
+
+                                        <div class="artists-highlight-container">
+                                            <p class="magazine-paragraph">
+                                                Tous les artistes lyriques, pop lyriques et de variétés internationales sont des pépites. Il y a tellement d'artistes dans Bohème Production que ceci n'est qu'une petite sélection :
+                                            </p>
+                                            <div class="artists-highlight-grid">
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Norah Amsellem</div>
+                                                    <div class="artist-description">Soprano d'exception qui a fait résonner sa voix dans les temples sacrés de l'opéra international</div>
+                                                </div>
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Luca Lombardo</div>
+                                                    <div class="artist-description">Ténor au timbre lumineux, ambassadeur des plus grandes maisons lyriques</div>
+                                                </div>
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Richard Alexandre Rittelmann</div>
+                                                    <div class="artist-description">Baryton à la prestance vocale incomparable, habitué des plus prestigieuses salles</div>
+                                                </div>
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Avi Klemberg</div>
+                                                    <div class="artist-description">Ténor au souffle poétique qui enchante les plus beaux opéras</div>
+                                                </div>
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Mickaël Guedj</div>
+                                                    <div class="artist-description">Virtuose de l'art lyrique et de la pop lyrique internationale, révélé notamment sur France 2 dans "Le Grand Show"</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">Nos Artistes Polyvalents Chanteur et Metteur en Scène</h4>
+
+                                        <div class="polyvalent-artists-container">
+                                            <div class="artists-highlight-grid">
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Pascal Terrien</div>
+                                                    <div class="artist-description">Baryton à l'élégance vocale raffinée, maître de cérémonie et directeur artistique principal de Bohème Production</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">Nos Étoiles de la Pop et de la Variété</h4>
+
+                                        <div class="content-section-container">
+                                            <p class="magazine-paragraph">
+                                                L'univers de la chanson populaire rayonne à travers nos artistes aux parcours extraordinaires :
+                                            </p>
+                                            <div class="artists-highlight-grid">
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Patrice Carmona</div>
+                                                    <div class="artist-description">Artiste polyvalent révélé dans l'univers des "Dix Commandements" où il a souvent remplacé Daniel Lévy</div>
+                                                </div>
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Alexis Hoffman</div>
+                                                    <div class="artist-description">Prodige finaliste d'"Incroyable Talent", ambassadeur de la nouvelle génération artistique</div>
+                                                </div>
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Virginie Behem</div>
+                                                    <div class="artist-description">Soprano délicate et choriste fidèle de Gilbert Montagné</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">Nos Producteurs et Créateurs</h4>
+
+                                        <div class="content-section-container">
+                                            <div class="artists-highlight-grid">
+                                                <div class="artist-highlight">
+                                                    <div class="artist-name">Frederico Alagna</div>
+                                                    <div class="artist-description">Producteur et auteur de talent, frère du ténor mondialement connu Roberto Alagna</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">La Magie de la Polyvalence - Chacun sa Pierre à l'Édifice</h4>
+
+                                        <div class="content-section-container">
+                                            <p class="magazine-paragraph">
+                                                Au cœur de Bohème Production, chaque âme généreuse apporte sa pierre précieuse à l'édifice artistique. Qu'il s'agisse de talents cachés en informatique, de créativité dans la publication de belles affiches, de maîtrise dans la réalisation de vidéos captivantes, ou d'expertise dans mille autres domaines, chaque membre de notre famille dévoile des facettes insoupçonnées.
+                                            </p>
+                                            <div class="highlight-quote">
+                                                Cette mosaïque de talents complémentaires tisse la toile magique de nos spectacles, où l'excellence technique rencontre la beauté artistique dans une symphonie parfaite. Il y a la possibilité de tout faire avec Bohème !
+                                            </div>
+                                            <p class="magazine-paragraph">
+                                                Chaque artiste dans Bohème Production est une étoile scintillante aux multiples facettes, unis dans une symphonie de passion pour vous offrir des prestations sublimes. Ouvrez bien vos yeux car Bohème Production va vous éblouir dans un kaléidoscope de voix divines !
+                                            </p>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">L'Art Sans Limites - Tout Devient Possible</h4>
+
+                                        <div class="content-section-container">
+                                            <p class="magazine-paragraph">
+                                                Bohème Production transcende les frontières du spectacle pour vous offrir des créations sur mesure aux dimensions infinies :
+                                            </p>
+                                            <div class="clean-list">
+                                                <div class="clean-list-item">• <span class="text-gold">Spectacles grandioses</span> pour un nombre exponentiel de spectateurs</div>
+                                                <div class="clean-list-item">• <span class="text-gold">Comédies musicales féeriques</span> où chaque note raconte une histoire</div>
+                                                <div class="clean-list-item">• <span class="text-gold">Excellence acoustique</span> portée par nos maîtres sonorisateurs</div>
+                                                <div class="clean-list-item">• <span class="text-gold">Ballet des arts</span> : danseurs, acteurs, metteurs en scène dans une harmonie créative totale</div>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="magazine-section-title">Rayonnement Azuréen vers l'Universel</h4>
+
+                                        <div class="highlight-quote">
+                                            Depuis l'écrin doré de la Côte d'Azur, Bohème Production déploie ses ailes artistiques vers tous les horizons. Nos créations ont déjà caressé les plus belles scènes et ont scintillé sous les feux des plus prestigieux festivals.
+                                        </div>
+
                                         <div class="patrick-quote-highlight">
                                             <h4 class="patrick-quote-title">La Promesse d'un Enchantement Éternel</h4>
                                             <h5 style="color: var(--gold); font-style: italic; margin-bottom: 20px; font-size: 1.3rem;">Mot de notre président Patrick Elie Féré</h5>
@@ -2093,7 +2172,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Logo décoratif -->
                                 <div class="decorative-logo-section">
                                     <div class="decorative-video-background">
                                         <video autoplay muted loop playsinline>
@@ -2104,7 +2182,6 @@
                                          onerror="this.parentNode.innerHTML='<div class=decorative-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=decorative-logo-placeholder>BOHÈME<br>PRODUCTION</div>'">
                                 </div>
 
-                                <!-- Crédits -->
                                 <div class="final-credits">
                                     <div class="credits-line"><span class="credits-name">Mickaël Guedj</span> - Conception d'expérience interactive et musicale, Design numérique, Musique originale, Réalisation, Production assistée par IA</div>
                                     <div class="credits-line"><span class="credits-name">Stéphanie Doméjean</span> - Créations textuelles et visuelles, Paroles, Photographies</div>
@@ -2296,7 +2373,7 @@
                                 <p class="artiste-role">Baryton Verdien</p>
                             </div>
                             <div class="artiste-card">
-                                <div class="artiste-photo-placeholder">
+                                <div class="artiste-placeholder">
                                     <span class="material-icons">person</span>
                                 </div>
                                 <h3 class="artiste-name">Mickael Guedj</h3>
@@ -2353,7 +2430,7 @@
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <h2 class="section-title">Productions</h2> <!-- 🔥 RACCOURCI : "Nos Productions" → "Productions" -->
+                    <h2 class="section-title">Nos Productions</h2>
                 </div>
                 <div class="section-content">
                     <div class="production-grid">
@@ -2475,21 +2552,7 @@
                                 </div>
                                 <div class="contact-text">
                                     Disponible 7j/7
-                                    <span>Pour vos projets artistiques</span>
-                                </div>
-                            </div>
-
-                            <div class="contact-social">
-                                <h3 class="contact-social-title">Suivez-nous</h3>
-                                <div class="social-links">
-                                    <div class="social-link">
-                                        <span class="material-icons">language</span>
-                                    </div>
-                                    <div class="social-link">
-                                        <span class="material-icons">music_note</span>
-                                    </div>
-                                    <div class="social-link">
-                                        <span class="material-icons">video_library</span>
+                                    <span class="material-icons">language</span>
                                     </div>
                                 </div>
                             </div>
@@ -2516,203 +2579,219 @@
                 this.currentSection = 0;
                 this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
                 this.isTransitioning = false;
-                this.isPresentationMode = false;
 
-                // Variables pour le scroll optimisé (CONSERVÉES)
-                this.scrollAccumulator = 0;
-                this.lastWheelTime = 0;
-
-                // Cache des éléments DOM fréquemment utilisés
-                this.cache = {
-                    audio: null,
-                    playPauseBtn: null,
-                    muteBtn: null,
-                    volumeSlider: null,
-                    navDots: null,
-                    transition: null,
-                    startExploration: null
-                };
-
-                // Configuration tactile optimisée
-                this.touch = {
-                    start: { x: 0, y: 0, time: 0 },
-                    end: { x: 0, y: 0, time: 0 },
-                    minDistance: 50,
-                    minVelocity: 0.3,
-                    inScrollArea: false
-                };
+                // Variables pour le swipe AVEC ZONE DE SÉCURITÉ
+                this.touchStart = { x: 0, y: 0, time: 0 };
+                this.touchEnd = { x: 0, y: 0, time: 0 };
+                this.minSwipeDistance = 50; // Distance minimale pour swipe
+                this.minSwipeDistanceStrict = 200; // Distance minimale pour swipe en milieu de contenu
+                this.minVelocity = 0.3; // Vélocité minimale pour swipe facile
+                this.minVelocityStrict = 1.0; // Vélocité minimale pour swipe strict
 
                 this.init();
             }
 
             init() {
-                this.cacheElements();
                 this.setupAudio();
                 this.setupNavigation();
                 this.setupArtisteTabs();
                 this.setupTouchNavigation();
                 this.setupKeyboardNavigation();
-                this.setupPresentationMode();
                 this.startAnimations();
-                this.bindExplorationStart();
-            }
 
-            // Cache optimisé des éléments DOM
-            cacheElements() {
-                this.cache.audio = document.getElementById('background-music');
-                this.cache.playPauseBtn = document.getElementById('play-pause-btn');
-                this.cache.muteBtn = document.getElementById('mute-btn');
-                this.cache.volumeSlider = document.getElementById('volume-slider');
-                this.cache.transition = document.getElementById('page-transition');
-                this.cache.startExploration = document.getElementById('start-exploration');
-                this.cache.navDots = document.querySelectorAll('.nav-dot');
-            }
-
-            bindExplorationStart() {
-                this.cache.startExploration?.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.startMusicOnExploration();
+                // Auto-start exploration from cover
+                document.getElementById('start-exploration')?.addEventListener('click', () => {
                     this.goToSection(1);
                 });
             }
 
-            startMusicOnExploration() {
-                if (!this.cache.audio || !this.cache.playPauseBtn) return;
+            setupAudio() {
+                const audio = document.getElementById('background-music');
+                const playPauseBtn = document.getElementById('play-pause-btn');
+                const muteBtn = document.getElementById('mute-btn');
+                const volumeSlider = document.getElementById('volume-slider');
 
-                this.cache.audio.play().then(() => {
-                    this.cache.playPauseBtn.innerHTML = '<span class="material-icons">pause</span>';
-                }).catch(() => {
-                    console.log('🎵 Démarrage automatique non autorisé');
-                });
-            }
+                // Set initial volume
+                audio.volume = 0.3;
 
-            // Navigation optimisée avec délégation d'événements
-            setupNavigation() {
-                const navigation = document.querySelector('.navigation');
-                if (!navigation) return;
-
-                navigation.addEventListener('click', (e) => {
-                    const navDot = e.target.closest('.nav-dot');
-                    if (!navDot) return;
-
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    const sectionName = navDot.dataset.section;
-                    const index = this.sections.indexOf(sectionName);
-                    if (index !== -1) {
-                        this.goToSection(index);
+                // Play/Pause
+                playPauseBtn?.addEventListener('click', () => {
+                    if (audio.paused) {
+                        audio.play().catch(e => console.log('Audio play failed:', e));
+                        playPauseBtn.innerHTML = '<span class="material-icons">pause</span>';
+                    } else {
+                        audio.pause();
+                        playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
                     }
                 });
+
+                // Mute/Unmute
+                muteBtn?.addEventListener('click', () => {
+                    audio.muted = !audio.muted;
+                    muteBtn.innerHTML = audio.muted ?
+                        '<span class="material-icons">volume_off</span>' :
+                        '<span class="material-icons">volume_up</span>';
+                });
+
+                // Volume control
+                volumeSlider?.addEventListener('input', (e) => {
+                    audio.volume = e.target.value / 100;
+                });
+
+                // Auto-play attempt
+                const tryAutoplay = () => {
+                    audio.play().catch(() => {
+                        // Si l'autoplay échoue, on met le bouton en état pause
+                        playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
+                    });
+                };
+
+                // Try autoplay on user interaction
+                document.addEventListener('click', tryAutoplay, { once: true });
+                document.addEventListener('touchstart', tryAutoplay, { once: true });
             }
 
-            // GESTION TACTILE ET SCROLL OPTIMISÉE (CONSERVÉE INTÉGRALEMENT)
-            setupTouchNavigation() {
-                let startTime = 0;
-                let startY = 0;
+            setupNavigation() {
+                const navDots = document.querySelectorAll('.nav-dot');
+                navDots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        this.goToSection(index);
+                    });
+                });
+            }
 
+            setupArtisteTabs() {
+                const tabs = document.querySelectorAll('.artiste-tab');
+                const categories = document.querySelectorAll('.artiste-category');
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const category = tab.dataset.category;
+
+                        // Remove active class from all tabs and categories
+                        tabs.forEach(t => t.classList.remove('active'));
+                        categories.forEach(c => c.classList.remove('active'));
+
+                        // Add active class to clicked tab and corresponding category
+                        tab.classList.add('active');
+                        document.getElementById(category)?.classList.add('active');
+                    });
+                });
+            }
+
+            setupTouchNavigation() {
+                let touchStartTime = 0;
+
+                // Touch start
                 document.addEventListener('touchstart', (e) => {
                     if (this.isTransitioning) return;
 
                     const touch = e.touches[0];
-                    startY = touch.clientY;
-                    startTime = Date.now();
-
-                    // Détection zone de scroll
-                    this.touch.inScrollArea = e.target.closest('.section-content, .intro-content-magazine, .scrollable-content, .magazine-content-wrapper') !== null;
+                    this.touchStart = {
+                        x: touch.clientX,
+                        y: touch.clientY,
+                        time: Date.now()
+                    };
+                    touchStartTime = Date.now();
                 }, { passive: true });
 
+                // Touch end
                 document.addEventListener('touchend', (e) => {
-                    if (this.isTransitioning || this.touch.inScrollArea) return;
+                    if (this.isTransitioning) return;
 
                     const touch = e.changedTouches[0];
-                    const endY = touch.clientY;
-                    const endTime = Date.now();
+                    this.touchEnd = {
+                        x: touch.clientX,
+                        y: touch.clientY,
+                        time: Date.now()
+                    };
 
-                    const deltaY = endY - startY;
-                    const deltaTime = endTime - startTime;
-                    const distance = Math.abs(deltaY);
-
-                    if (distance < this.touch.minDistance || deltaTime < 200) return;
-
-                    const velocity = distance / (deltaTime || 1);
-                    if (velocity > this.touch.minVelocity && distance > 80) {
-                        this.handleDirectionalNavigation(deltaY > 0 ? 'up' : 'down');
-                    }
+                    this.handleSwipe();
                 }, { passive: true });
 
-                // GESTION WHEEL OPTIMISÉE (CONSERVÉE)
+                // 🔥 MOUSE WHEEL AVEC ZONE DE SÉCURITÉ
                 document.addEventListener('wheel', (e) => {
                     if (this.isTransitioning) return;
 
-                    const sectionContent = e.target.closest('.section-content');
+                    const activeSection = document.querySelector('.section.active');
+                    const sectionContent = activeSection?.querySelector('.section-content');
+
                     if (!sectionContent) return;
 
-                    const now = Date.now();
-                    const timeDiff = now - this.lastWheelTime;
-                    this.lastWheelTime = now;
+                    // Vérifier si on est dans une zone de sécurité
+                    const isInSafetyZone = this.checkSafetyZone(sectionContent);
 
-                    // Reset accumulator si trop de temps écoulé
-                    if (timeDiff > 150) {
-                        this.scrollAccumulator = 0;
-                    }
-
-                    const { scrollTop, scrollHeight, clientHeight } = sectionContent;
-
-                    // Marges importantes et vérifications multiples
-                    const scrollMargin = Math.max(15, clientHeight * 0.03);
-                    const isAtTop = scrollTop <= scrollMargin;
-                    const isAtBottom = scrollTop >= (scrollHeight - clientHeight - scrollMargin);
-
-                    // Détection du type d'input
-                    const isTrackpad = Math.abs(e.deltaY) < 50;
-                    const isMouse = Math.abs(e.deltaY) >= 50;
-
-                    // Gestion différenciée selon le type d'input
-                    if (isTrackpad) {
-                        // Pour trackpad : accumulation nécessaire
-                        this.scrollAccumulator += e.deltaY;
-                        const accumulationThreshold = 300;
-
-                        if (Math.abs(this.scrollAccumulator) > accumulationThreshold) {
-                            if ((this.scrollAccumulator > 0 && isAtBottom) || (this.scrollAccumulator < 0 && isAtTop)) {
-                                this.handleDirectionalNavigation(this.scrollAccumulator > 0 ? 'down' : 'up');
-                                this.scrollAccumulator = 0;
-                                e.preventDefault();
-                            }
-                        }
-                    } else if (isMouse) {
-                        // Pour molette : seuil plus élevé et délai
-                        const mouseThreshold = 120;
-
-                        if (Math.abs(e.deltaY) > mouseThreshold) {
-                            if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
-                                // Délai supplémentaire pour éviter déclenchements accidentels
-                                setTimeout(() => {
-                                    if (!this.isTransitioning) {
-                                        this.handleDirectionalNavigation(e.deltaY > 0 ? 'down' : 'up');
-                                    }
-                                }, 100);
-                                e.preventDefault();
-                            }
-                        }
-                    }
-
-                    // Scroll normal dans les autres cas
-                    if (!((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0))) {
-                        this.scrollAccumulator = 0;
+                    if (isInSafetyZone) {
+                        const direction = e.deltaY > 0 ? 'down' : 'up';
+                        this.handleDirectionalNavigation(direction);
+                        e.preventDefault();
                     }
                 }, { passive: false });
             }
 
-            handleDirectionalNavigation(direction) {
-                const nextSection = direction === 'down'
-                    ? Math.min(this.currentSection + 1, this.sections.length - 1)
-                    : Math.max(this.currentSection - 1, 0);
+            // 🔥 FONCTION CLEF : VÉRIFICATION DE LA ZONE DE SÉCURITÉ
+            checkSafetyZone(sectionContent) {
+                const scrollTop = sectionContent.scrollTop;
+                const scrollHeight = sectionContent.scrollHeight;
+                const clientHeight = sectionContent.clientHeight;
 
-                if (nextSection !== this.currentSection) {
-                    this.goToSection(nextSection);
+                // Zone de sécurité en haut (80px depuis le début)
+                const topSafetyZone = scrollTop <= 80;
+
+                // Zone de sécurité en bas (80px avant la fin)
+                const bottomSafetyZone = scrollTop >= (scrollHeight - clientHeight - 80);
+
+                // Vérifier qu'on est vraiment au bout du contenu
+                const isAtTop = scrollTop <= 5;
+                const isAtBottom = scrollTop >= (scrollHeight - clientHeight - 5);
+
+                return (isAtTop && topSafetyZone) || (isAtBottom && bottomSafetyZone);
+            }
+
+            handleSwipe() {
+                const deltaX = this.touchEnd.x - this.touchStart.x;
+                const deltaY = this.touchEnd.y - this.touchStart.y;
+                const deltaTime = this.touchEnd.time - this.touchStart.time;
+
+                // Calculer la distance et la vélocité
+                const distance = Math.abs(deltaY);
+                const velocity = distance / (deltaTime || 1); // Éviter division par 0
+
+                // Ignorer les swipes horizontaux
+                if (Math.abs(deltaX) > Math.abs(deltaY)) return;
+
+                // Vérifier la section active et son contenu
+                const activeSection = document.querySelector('.section.active');
+                const sectionContent = activeSection?.querySelector('.section-content');
+
+                if (!sectionContent) return;
+
+                // 🔥 LOGIQUE AVEC ZONE DE SÉCURITÉ
+                const isInSafetyZone = this.checkSafetyZone(sectionContent);
+
+                let shouldNavigate = false;
+
+                if (isInSafetyZone) {
+                    // 🔥 EN ZONE DE SÉCURITÉ : Conditions faciles
+                    shouldNavigate = distance > this.minSwipeDistance && velocity > this.minVelocity;
+                } else {
+                    // 🔥 EN MILIEU DE CONTENU : Conditions strictes
+                    shouldNavigate = distance > this.minSwipeDistanceStrict &&
+                                   velocity > this.minVelocityStrict &&
+                                   deltaTime > 300;
+                }
+
+                if (shouldNavigate) {
+                    const direction = deltaY > 0 ? 'up' : 'down';
+                    this.handleDirectionalNavigation(direction);
+                }
+            }
+
+            handleDirectionalNavigation(direction) {
+                if (direction === 'down' && this.currentSection < this.sections.length - 1) {
+                    this.goToSection(this.currentSection + 1);
+                } else if (direction === 'up' && this.currentSection > 0) {
+                    this.goToSection(this.currentSection - 1);
                 }
             }
 
@@ -2724,13 +2803,17 @@
                         case 'ArrowUp':
                         case 'PageUp':
                             e.preventDefault();
-                            this.handleDirectionalNavigation('up');
+                            if (this.currentSection > 0) {
+                                this.goToSection(this.currentSection - 1);
+                            }
                             break;
                         case 'ArrowDown':
                         case 'PageDown':
-                        case ' ':
+                        case ' ': // Spacebar
                             e.preventDefault();
-                            this.handleDirectionalNavigation('down');
+                            if (this.currentSection < this.sections.length - 1) {
+                                this.goToSection(this.currentSection + 1);
+                            }
                             break;
                         case 'Home':
                             e.preventDefault();
@@ -2744,272 +2827,117 @@
                 });
             }
 
-            // Onglets artistes avec délégation
-            setupArtisteTabs() {
-                const tabsContainer = document.querySelector('.artistes-tabs');
-                if (!tabsContainer) return;
-
-                tabsContainer.addEventListener('click', (e) => {
-                    const tab = e.target.closest('.artiste-tab');
-                    if (!tab) return;
-
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    // Mise à jour des onglets
-                    document.querySelectorAll('.artiste-tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.artiste-category').forEach(c => c.classList.remove('active'));
-
-                    tab.classList.add('active');
-                    const category = document.getElementById(tab.dataset.category);
-                    if (category) category.classList.add('active');
-                });
-            }
-
-            // Audio simplifié
-            setupAudio() {
-                if (!this.cache.audio) return;
-
-                this.cache.audio.volume = 0.3;
-
-                this.cache.playPauseBtn?.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.toggleAudio();
-                });
-
-                this.cache.muteBtn?.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.toggleMute();
-                });
-
-                this.cache.volumeSlider?.addEventListener('input', (e) => {
-                    this.cache.audio.volume = e.target.value / 100;
-                });
-            }
-
-            toggleAudio() {
-                if (!this.cache.audio || !this.cache.playPauseBtn) return;
-
-                if (this.cache.audio.paused) {
-                    this.cache.audio.play().then(() => {
-                        this.cache.playPauseBtn.innerHTML = '<span class="material-icons">pause</span>';
-                        this.updatePresentationAudioBtn('pause');
-                    }).catch(() => {});
-                } else {
-                    this.cache.audio.pause();
-                    this.cache.playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
-                    this.updatePresentationAudioBtn('play_arrow');
-                }
-            }
-
-            toggleMute() {
-                if (!this.cache.audio || !this.cache.muteBtn) return;
-
-                this.cache.audio.muted = !this.cache.audio.muted;
-                this.cache.muteBtn.innerHTML = this.cache.audio.muted
-                    ? '<span class="material-icons">volume_off</span>'
-                    : '<span class="material-icons">volume_up</span>';
-            }
-
-            updatePresentationAudioBtn(icon) {
-                const presPlayPause = document.getElementById('pres-play-pause');
-                if (presPlayPause) {
-                    presPlayPause.innerHTML = `<span class="material-icons">${icon}</span>`;
-                }
-            }
-
-            // Mode présentation optimisé
-            setupPresentationMode() {
-                const presentationBtn = document.getElementById('presentation-mode-btn');
-                presentationBtn?.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.togglePresentationMode();
-                });
-
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'F11' || (e.key === 'f' && e.ctrlKey)) {
-                        e.preventDefault();
-                        this.togglePresentationMode();
-                    }
-                    if (e.key === 'Escape' && this.isPresentationMode) {
-                        this.exitPresentationMode();
-                    }
-                });
-
-                this.createPresentationControls();
-            }
-
-            createPresentationControls() {
-                const controlsHTML = `
-                    <div class="presentation-controls" id="presentation-controls">
-                        <button class="presentation-control-btn" id="pres-prev" title="Section précédente">
-                            <span class="material-icons">keyboard_arrow_left</span>
-                        </button>
-                        <button class="presentation-control-btn" id="pres-play-pause" title="Play/Pause">
-                            <span class="material-icons">play_arrow</span>
-                        </button>
-                        <button class="presentation-control-btn" id="pres-next" title="Section suivante">
-                            <span class="material-icons">keyboard_arrow_right</span>
-                        </button>
-                        <button class="presentation-control-btn" id="pres-exit" title="Quitter présentation">
-                            <span class="material-icons">close</span>
-                        </button>
-                    </div>
-                    <div class="presentation-indicator" id="presentation-indicator">
-                        Section 1 / 6
-                    </div>
-                `;
-
-                document.body.insertAdjacentHTML('beforeend', controlsHTML);
-
-                // Délégation pour les contrôles présentation
-                const controls = document.getElementById('presentation-controls');
-                controls?.addEventListener('click', (e) => {
-                    const btn = e.target.closest('.presentation-control-btn');
-                    if (!btn) return;
-
-                    const action = btn.id.replace('pres-', '');
-                    this.handlePresentationAction(action);
-                });
-            }
-
-            handlePresentationAction(action) {
-                switch(action) {
-                    case 'prev':
-                        if (this.currentSection > 0) this.goToSection(this.currentSection - 1);
-                        break;
-                    case 'next':
-                        if (this.currentSection < this.sections.length - 1) this.goToSection(this.currentSection + 1);
-                        break;
-                    case 'play-pause':
-                        this.toggleAudio();
-                        break;
-                    case 'exit':
-                        this.exitPresentationMode();
-                        break;
-                }
-            }
-
-            togglePresentationMode() {
-                this.isPresentationMode ? this.exitPresentationMode() : this.enterPresentationMode();
-            }
-
-            async enterPresentationMode() {
-                const isMobile = window.innerWidth <= 768;
-
-                if (!isMobile) {
-                    try {
-                        await document.documentElement.requestFullscreen?.();
-                    } catch (e) {}
-                }
-
-                document.body.classList.add('presentation-mode');
-                this.isPresentationMode = true;
-                this.updatePresentationIndicator();
-
-                const presPlayPause = document.getElementById('pres-play-pause');
-                if (presPlayPause && this.cache.audio) {
-                    const icon = this.cache.audio.paused ? 'play_arrow' : 'pause';
-                    presPlayPause.innerHTML = `<span class="material-icons">${icon}</span>`;
-                }
-            }
-
-            exitPresentationMode() {
-                document.exitFullscreen?.().catch(() => {});
-                document.body.classList.remove('presentation-mode');
-                this.isPresentationMode = false;
-            }
-
-            updatePresentationIndicator() {
-                const indicator = document.getElementById('presentation-indicator');
-                if (!indicator) return;
-
-                const sectionNames = {
-                    'cover': 'Couverture',
-                    'intro': 'Présentation',
-                    'bureau': 'Notre Bureau',
-                    'artistes': 'Nos Artistes',
-                    'productions': 'Productions',
-                    'contact': 'Contact'
-                };
-
-                const currentName = sectionNames[this.sections[this.currentSection]];
-                indicator.textContent = `${currentName} (${this.currentSection + 1}/${this.sections.length})`;
-            }
-
-            // Transition optimisée
             goToSection(index) {
-                if (index === this.currentSection || this.isTransitioning || index < 0 || index >= this.sections.length) return;
+                if (index === this.currentSection || this.isTransitioning) return;
+                if (index < 0 || index >= this.sections.length) return;
 
                 this.isTransitioning = true;
 
-                // Reset des accumulateurs lors des transitions
-                this.scrollAccumulator = 0;
+                // Show transition overlay
+                const transition = document.getElementById('page-transition');
+                transition?.classList.add('active');
 
-                // Transition visuelle réduite
-                this.cache.transition?.classList.add('active');
+                setTimeout(() => {
+                    // Hide current section
+                    const currentSectionEl = document.getElementById(this.sections[this.currentSection]);
+                    currentSectionEl?.classList.remove('active');
 
-                // Changement de section immédiat
-                requestAnimationFrame(() => {
-                    const currentEl = document.getElementById(this.sections[this.currentSection]);
-                    const newEl = document.getElementById(this.sections[index]);
+                    // Show new section
+                    const newSectionEl = document.getElementById(this.sections[index]);
+                    newSectionEl?.classList.add('active');
 
-                    currentEl?.classList.remove('active');
-                    newEl?.classList.add('active');
+                    // Reset scroll position
+                    const sectionContent = newSectionEl?.querySelector('.section-content');
+                    if (sectionContent) {
+                        sectionContent.scrollTop = 0;
+                    }
 
-                    // Reset scroll
-                    const sectionContent = newEl?.querySelector('.section-content');
-                    if (sectionContent) sectionContent.scrollTop = 0;
-
+                    // Update navigation
                     this.updateNavigation(index);
                     this.currentSection = index;
 
-                    if (this.isPresentationMode) {
-                        this.updatePresentationIndicator();
-                    }
-
-                    // Fin de transition plus rapide
+                    // Hide transition overlay
                     setTimeout(() => {
-                        this.cache.transition?.classList.remove('active');
+                        transition?.classList.remove('active');
                         this.isTransitioning = false;
-                    }, 200);
-                });
+                    }, 500);
+                }, 250);
             }
 
             updateNavigation(index) {
-                this.cache.navDots.forEach((dot, i) => {
+                const navDots = document.querySelectorAll('.nav-dot');
+                navDots.forEach((dot, i) => {
                     dot.classList.toggle('active', i === index);
                 });
             }
 
             startAnimations() {
+                // Add staggered animations to cover elements
                 const coverElements = document.querySelectorAll('.cover-content > *');
                 coverElements.forEach((el, index) => {
                     el.style.animationDelay = `${index * 0.3}s`;
                 });
+
+                // Animate sections when they become visible
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const animatedElements = entry.target.querySelectorAll('[class*="fade"]');
+                            animatedElements.forEach((el, index) => {
+                                setTimeout(() => {
+                                    el.style.opacity = '1';
+                                    el.style.transform = 'translateY(0)';
+                                }, index * 100);
+                            });
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.section').forEach(section => {
+                    observer.observe(section);
+                });
             }
         }
 
-        // Initialisation optimisée
-        const initPlaquette = () => {
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
             new BohemePlaquette();
+        });
 
-            // Gestion d'erreurs vidéo optimisée
-            document.querySelectorAll('video').forEach(video => {
-                video.addEventListener('error', function() {
-                    this.style.opacity = '0.3';
-                }, { once: true });
+        // Handle video loading errors gracefully
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('error', function() {
+                console.log('Video failed to load:', this.src);
+                // Hide video container if video fails
+                this.parentElement.style.display = 'none';
             });
-        };
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initPlaquette);
-        } else {
-            initPlaquette();
-        }
+            // Ensure videos loop properly
+            video.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play().catch(e => console.log('Video replay failed:', e));
+            });
+        });
+
+        // Optimize performance
+        window.addEventListener('load', () => {
+            // Preload next section videos when page is loaded
+            document.querySelectorAll('video').forEach(video => {
+                video.preload = 'metadata';
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            // Reset any animations or layouts that might need adjustment
+            const activeSection = document.querySelector('.section.active');
+            if (activeSection) {
+                const sectionContent = activeSection.querySelector('.section-content');
+                if (sectionContent) {
+                    sectionContent.scrollTop = 0;
+                }
+            }
+        });
     </script>
 </body>
 </html>
