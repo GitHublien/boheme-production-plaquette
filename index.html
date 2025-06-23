@@ -108,6 +108,130 @@
             object-fit: cover;
         }
 
+        /* POINTS DE FIN DE SECTION */
+        .section-end-point {
+            position: relative;
+            margin: 60px auto;
+            padding: 30px 40px;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 3px solid var(--gold);
+            border-radius: 25px;
+            text-align: center;
+            box-shadow:
+                0 0 30px rgba(212,175,55,0.6),
+                0 10px 25px rgba(0,0,0,0.4),
+                inset 0 0 30px rgba(212,175,55,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .section-end-point {
+                margin: 40px auto;
+                padding: 20px 25px;
+                max-width: 90%;
+            }
+        }
+
+        .section-end-ornament {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: url('image-en-or.png') center/cover;
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow:
+                0 0 20px rgba(212,175,55,0.8),
+                inset 0 0 15px rgba(255,255,255,0.2);
+            animation: goldGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes goldGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(212,175,55,0.6), inset 0 0 15px rgba(255,255,255,0.1);
+            }
+            100% {
+                box-shadow: 0 0 35px rgba(212,175,55,1), inset 0 0 25px rgba(255,255,255,0.3);
+            }
+        }
+
+        .section-end-icon {
+            font-size: 2.5rem;
+            color: var(--black);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .section-end-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--gold);
+            margin-bottom: 15px;
+            text-shadow:
+                2px 2px 4px rgba(0,0,0,0.9),
+                0 0 20px rgba(212,175,55,0.8);
+        }
+
+        @media (max-width: 768px) {
+            .section-end-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        .section-end-message {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--gold-light);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .section-end-divider {
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg,
+                transparent,
+                var(--gold),
+                var(--gold-light),
+                var(--gold),
+                transparent);
+            margin: 25px auto;
+            border-radius: 2px;
+            box-shadow: 0 0 15px rgba(212,175,55,0.6);
+        }
+
+        .section-end-next {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: url('image-en-or.png') center/cover;
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 2px solid var(--gold-dark);
+            box-shadow: var(--shadow-medium);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .section-end-next:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy), 0 0 20px rgba(212,175,55,0.7);
+        }
+
+        .section-end-next .material-icons {
+            margin-left: 8px;
+            font-size: 1.1rem;
+        }
+
         /* Optimisation: Propriétés communes pour éléments interactifs */
         .interactive-element,
         .audio-control-btn,
@@ -117,7 +241,8 @@
         .artiste-tab,
         .artiste-card,
         .bureau-card,
-        .production-card {
+        .production-card,
+        .section-end-next {
             transform: translateZ(0);
             backface-visibility: hidden;
             transition: all 0.3s ease;
@@ -130,7 +255,8 @@
         .nav-dot:focus-visible,
         .social-link:focus-visible,
         .presentation-control-btn:focus-visible,
-        .artiste-tab:focus-visible {
+        .artiste-tab:focus-visible,
+        .section-end-next:focus-visible {
             outline: 3px solid var(--gold);
             outline-offset: 2px;
         }
@@ -2273,11 +2399,27 @@
                                     <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="decorative-logo" loading="lazy">
                                 </div>
 
-                                <!-- Crédits -->
+                                <!-- Crédits finaux -->
                                 <div class="final-credits">
                                     <div class="credits-line"><span class="credits-name">Mickaël Guedj</span> - Conception d'expérience interactive et musicale, Design numérique, Musique originale, Réalisation, Production assistée par IA</div>
                                     <div class="credits-line"><span class="credits-name">Stéphanie Doméjean</span> - Créations textuelles et visuelles, Paroles, Photographies</div>
                                     <div class="credits-copyright">© 2025 Bohème Production</div>
+                                </div>
+
+                                <!-- POINT DE FIN PRÉSENTATION -->
+                                <div class="section-end-point" data-section="presentation">
+                                    <div class="section-end-ornament">
+                                        <span class="section-end-icon material-icons">auto_awesome</span>
+                                    </div>
+                                    <h3 class="section-end-title">Fin de Présentation</h3>
+                                    <p class="section-end-message">
+                                        Découvrez maintenant notre équipe dirigeante et notre organisation
+                                    </p>
+                                    <div class="section-end-divider"></div>
+                                    <a href="#" class="section-end-next" data-next-section="bureau">
+                                        Notre Bureau
+                                        <span class="material-icons">arrow_forward</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -2363,8 +2505,25 @@
                             <p class="bureau-title">Administrateur réseaux sociaux</p>
                         </div>
                     </div>
+                    <!-- Texte de fin de section Bureau -->
                     <div class="bureau-footer-text">
                         Une équipe passionnée au service de l'excellence artistique
+                    </div>
+
+                    <!-- POINT DE FIN BUREAU -->
+                    <div class="section-end-point" data-section="bureau">
+                        <div class="section-end-ornament">
+                            <span class="section-end-icon material-icons">groups</span>
+                        </div>
+                        <h3 class="section-end-title">Fin de Notre Bureau</h3>
+                        <p class="section-end-message">
+                            Rencontrez maintenant nos talentueux artistes lyriques
+                        </p>
+                        <div class="section-end-divider"></div>
+                        <a href="#" class="section-end-next" data-next-section="artistes">
+                            Nos Artistes
+                            <span class="material-icons">arrow_forward</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -2500,6 +2659,7 @@
                         </div>
                     </div>
 
+                    <!-- Lien vers le site web avec tous les artistes -->
                     <div class="artistes-website-link">
                         <p class="artistes-website-text">
                             Découvrez l'ensemble de nos 41 artistes d'exception sur notre site officiel
@@ -2507,6 +2667,22 @@
                         <a href="https://www.bohemeproduction.com" target="_blank" class="artistes-website-button">
                             <span class="material-icons">language</span>
                             Voir tous nos artistes
+                        </a>
+                    </div>
+
+                    <!-- POINT DE FIN ARTISTES -->
+                    <div class="section-end-point" data-section="artistes">
+                        <div class="section-end-ornament">
+                            <span class="section-end-icon material-icons">theater_comedy</span>
+                        </div>
+                        <h3 class="section-end-title">Fin de Nos Artistes</h3>
+                        <p class="section-end-message">
+                            Explorez maintenant nos créations et productions artistiques
+                        </p>
+                        <div class="section-end-divider"></div>
+                        <a href="#" class="section-end-next" data-next-section="productions">
+                            Nos Productions
+                            <span class="material-icons">arrow_forward</span>
                         </a>
                     </div>
                 </div>
@@ -2525,6 +2701,7 @@
                     <h2 class="section-title">Nos Productions</h2>
                 </div>
                 <div class="section-content">
+                    <!-- Grille des productions -->
                     <div class="production-grid">
                         <div class="production-card">
                             <div class="production-image">
@@ -2571,6 +2748,22 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- POINT DE FIN PRODUCTIONS -->
+                    <div class="section-end-point" data-section="productions">
+                        <div class="section-end-ornament">
+                            <span class="section-end-icon material-icons">movie</span>
+                        </div>
+                        <h3 class="section-end-title">Fin de Nos Productions</h3>
+                        <p class="section-end-message">
+                            Contactez-nous pour concrétiser vos projets artistiques
+                        </p>
+                        <div class="section-end-divider"></div>
+                        <a href="#" class="section-end-next" data-next-section="contact">
+                            Nous Contacter
+                            <span class="material-icons">arrow_forward</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2587,6 +2780,7 @@
                     <h2 class="section-title">Contact</h2>
                 </div>
                 <div class="section-content">
+                    <!-- Contenu de contact avec informations et carte -->
                     <div class="contact-content">
                         <div class="contact-info">
                             <div class="contact-item">
@@ -2647,6 +2841,22 @@
                                 <p>Rayonnement international</p>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- POINT DE FIN CONTACT -->
+                    <div class="section-end-point" data-section="contact">
+                        <div class="section-end-ornament">
+                            <span class="section-end-icon material-icons">contact_mail</span>
+                        </div>
+                        <h3 class="section-end-title">Fin de Contact</h3>
+                        <p class="section-end-message">
+                            Merci d'avoir découvert l'univers de Bohème Production
+                        </p>
+                        <div class="section-end-divider"></div>
+                        <a href="#" class="section-end-next" data-next-section="cover">
+                            Retour à l'Accueil
+                            <span class="material-icons">home</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -2738,11 +2948,26 @@
                 this.setupOptimizedWheelNavigation();
                 this.setupKeyboardNavigation();
                 this.setupPresentationMode();
+                this.setupSectionEndPoints(); // Nouveau setup pour les points de fin
                 this.startAnimations();
                 this.setupAccessibility();
 
                 document.getElementById('start-exploration')?.addEventListener('click', () => {
                     this.goToSection(1);
+                });
+            }
+
+            // Nouveau: Setup des points de fin de section
+            setupSectionEndPoints() {
+                document.querySelectorAll('.section-end-next').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const nextSection = button.dataset.nextSection;
+                        const sectionIndex = this.sections.indexOf(nextSection);
+                        if (sectionIndex !== -1) {
+                            this.goToSection(sectionIndex);
+                        }
+                    });
                 });
             }
 
@@ -2808,7 +3033,7 @@
             // Amélioration accessibilité
             setupAccessibility() {
                 // Support du focus clavier pour la navigation
-                document.querySelectorAll('.nav-dot, .artiste-tab').forEach(element => {
+                document.querySelectorAll('.nav-dot, .artiste-tab, .section-end-next').forEach(element => {
                     element.addEventListener('keydown', (e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
