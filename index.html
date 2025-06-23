@@ -24,6 +24,12 @@
             --beige-light: #F5F0E8;
             --beige-dark: #E8DDD4;
             --cream-dark: #F2E6D0;
+
+            /* Optimisation: Variables d'ombres centralisées */
+            --shadow-light: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-medium: 0 4px 16px rgba(0,0,0,0.15);
+            --shadow-heavy: 0 8px 32px rgba(0,0,0,0.2);
+            --shadow-gold: 0 0 15px rgba(212,175,55,0.3);
         }
 
         * {
@@ -40,6 +46,16 @@
             background: var(--cream);
             font-family: 'Cormorant Garamond', serif;
             color: var(--dark);
+        }
+
+        /* Amélioration accessibilité: Respect des préférences de mouvement */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
 
         /* Barre de défilement stylisée */
@@ -92,6 +108,33 @@
             object-fit: cover;
         }
 
+        /* Optimisation: Propriétés communes pour éléments interactifs */
+        .interactive-element,
+        .audio-control-btn,
+        .nav-dot,
+        .social-link,
+        .presentation-control-btn,
+        .artiste-tab,
+        .artiste-card,
+        .bureau-card,
+        .production-card {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            transition: all 0.3s ease;
+            user-select: none;
+            touch-action: manipulation;
+        }
+
+        /* Amélioration accessibilité: Focus visible */
+        .audio-control-btn:focus-visible,
+        .nav-dot:focus-visible,
+        .social-link:focus-visible,
+        .presentation-control-btn:focus-visible,
+        .artiste-tab:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 2px;
+        }
+
         /* AUDIO CONTROLS */
         .audio-controls {
             position: fixed;
@@ -103,11 +146,9 @@
             background: url('image-en-or.png') center/cover;
             padding: 8px;
             border-radius: 20px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.4), 0 0 20px rgba(212,175,55,0.6);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.4), var(--shadow-gold);
             border: 2px solid var(--black);
             font-size: 12px;
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
 
         @media (max-width: 768px) {
@@ -130,19 +171,14 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-medium);
             border: 2px solid var(--black);
-            user-select: none;
-            touch-action: manipulation;
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
 
         .audio-control-btn:hover {
             transform: scale(1.1) translateZ(0);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            box-shadow: var(--shadow-heavy);
         }
 
         .audio-control-btn .material-icons {
@@ -192,7 +228,7 @@
             background: var(--gold);
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-light);
         }
 
         /* Main container */
@@ -214,7 +250,6 @@
             flex-direction: column;
             align-items: center;
             gap: 15px;
-            backface-visibility: hidden;
         }
 
         @media (max-width: 768px) {
@@ -229,7 +264,7 @@
                 border-radius: 30px;
                 border: 2px solid var(--gold);
                 backdrop-filter: blur(10px);
-                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+                box-shadow: var(--shadow-heavy);
             }
         }
 
@@ -240,18 +275,13 @@
             background: url('image-en-or.png') center/cover;
             border: 2px solid var(--black);
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3), 0 0 10px rgba(212,175,55,0.5);
+            box-shadow: var(--shadow-medium), var(--shadow-gold);
             position: relative;
-            user-select: none;
-            touch-action: manipulation;
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
 
         .nav-dot.active {
             transform: scale(1.3) translateZ(0);
-            box-shadow: 0 0 20px rgba(212,175,55,0.8), 0 4px 8px rgba(0,0,0,0.4);
+            box-shadow: 0 0 20px rgba(212,175,55,0.8), var(--shadow-heavy);
         }
 
         .nav-dot:hover {
@@ -274,7 +304,7 @@
             transform: translateX(-10px);
             color: var(--gold);
             border: 1px solid var(--gold);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-medium);
         }
 
         .nav-dot:hover .nav-tooltip {
@@ -302,8 +332,6 @@
             visibility: hidden;
             transition: opacity 0.6s ease, visibility 0.6s ease;
             overflow: hidden;
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
 
         .section.active {
@@ -456,8 +484,6 @@
             align-items: center;
             cursor: pointer;
             transition: transform 0.3s ease;
-            user-select: none;
-            touch-action: manipulation;
             z-index: 100;
         }
 
@@ -535,7 +561,7 @@
             backdrop-filter: blur(5px);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3), 0 0 30px rgba(212,175,55,0.3);
+            box-shadow: var(--shadow-heavy), var(--shadow-gold);
             z-index: 2;
             border: 3px solid var(--gold);
         }
@@ -556,7 +582,6 @@
             backdrop-filter: blur(10px);
             border-bottom: 2px solid var(--gold);
             overflow: hidden;
-            touch-action: manipulation;
         }
 
         @media (max-width: 768px) {
@@ -601,7 +626,7 @@
             padding: 10px 20px;
             border-radius: 10px;
             border: 3px solid var(--black);
-            box-shadow: 0 0 15px rgba(0,0,0,0.4), inset 0 0 15px rgba(255,255,255,0.3);
+            box-shadow: var(--shadow-heavy), inset 0 0 15px rgba(255,255,255,0.3);
             z-index: 2;
         }
 
@@ -626,7 +651,7 @@
             width: 60%;
             height: 3px;
             background: linear-gradient(90deg, var(--gold), var(--gold-light));
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-light);
             border: 1px solid var(--black);
         }
 
@@ -697,7 +722,7 @@
             padding: 15px 25px;
             border-radius: 50px;
             border: 2px solid var(--gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            box-shadow: var(--shadow-heavy);
         }
 
         .presentation-mode .presentation-controls {
@@ -728,7 +753,6 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            transition: all 0.3s ease;
             border: 2px solid var(--black);
         }
 
@@ -1048,7 +1072,7 @@
             color: var(--black);
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px rgba(212,175,55,0.3);
+            box-shadow: var(--shadow-heavy), var(--shadow-gold);
             letter-spacing: 1px;
         }
 
@@ -1066,7 +1090,7 @@
             border: 5px solid;
             border-image: url('images-en-or-2.png') 10;
             border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.4);
+            box-shadow: var(--shadow-heavy), var(--shadow-gold);
             clear: both;
             position: relative;
         }
@@ -1085,7 +1109,7 @@
             overflow: hidden;
             border: 5px solid;
             border-image: url('images-en-or-2.png') 10;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+            box-shadow: var(--shadow-heavy);
         }
 
         @media (max-width: 768px) {
@@ -1153,7 +1177,7 @@
             border-image: url('images-en-or-2.png') 10;
             border-radius: 20px;
             margin: 25px 35px 35px 35px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            box-shadow: var(--shadow-heavy);
         }
 
         @media (max-width: 768px) {
@@ -1186,7 +1210,7 @@
             margin: 50px 0;
             overflow: hidden;
             border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+            box-shadow: var(--shadow-heavy);
             border: 5px solid;
             border-image: url('images-en-or-2.png') 10;
         }
@@ -1395,7 +1419,7 @@
             position: relative;
             overflow: hidden;
             border: 5px solid var(--gold);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 40px rgba(212,175,55,0.5);
+            box-shadow: var(--shadow-heavy), var(--shadow-gold);
             clear: both;
             max-width: 900px;
             margin-left: auto;
@@ -1535,15 +1559,14 @@
             border-radius: 10px;
             padding: 25px 20px;
             text-align: center;
-            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15), 0 0 15px rgba(212,175,55,0.3);
+            box-shadow: var(--shadow-medium), var(--shadow-gold);
         }
 
         .bureau-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2), 0 0 25px rgba(212,175,55,0.5);
+            box-shadow: var(--shadow-heavy), 0 0 25px rgba(212,175,55,0.5);
             background: rgba(255, 255, 255, 0.95);
         }
 
@@ -1574,7 +1597,7 @@
             color: var(--black);
             overflow: hidden;
             border: 3px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2), inset 0 0 20px rgba(212,175,55,0.2);
+            box-shadow: var(--shadow-medium), inset 0 0 20px rgba(212,175,55,0.2);
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
@@ -1585,7 +1608,7 @@
             border-radius: 50%;
             overflow: hidden;
             border: 3px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px rgba(212,175,55,0.3);
+            box-shadow: var(--shadow-medium), var(--shadow-gold);
         }
 
         .bureau-photo-real img {
@@ -1637,12 +1660,9 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s ease;
             position: relative;
             color: var(--black);
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-            user-select: none;
-            touch-action: manipulation;
         }
 
         .artiste-tab.active {
@@ -1660,7 +1680,7 @@
             width: 100%;
             height: 3px;
             background: var(--gold);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-light);
         }
 
         .artiste-category {
@@ -1693,16 +1713,15 @@
             border-radius: 10px;
             padding: 15px;
             text-align: center;
-            transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1), 0 0 10px rgba(212,175,55,0.2);
+            box-shadow: var(--shadow-light), 0 0 10px rgba(212,175,55,0.2);
         }
 
         .artiste-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 20px rgba(212,175,55,0.4);
+            box-shadow: var(--shadow-medium), var(--shadow-gold);
             background: rgba(255, 255, 255, 0.95);
         }
 
@@ -1719,7 +1738,7 @@
             color: var(--black);
             overflow: hidden;
             border: 2px solid var(--gold);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: var(--shadow-light);
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
@@ -1744,7 +1763,7 @@
             backdrop-filter: blur(10px);
             border-radius: 15px;
             border: 2px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-light);
         }
 
         .artistes-website-text {
@@ -1766,15 +1785,14 @@
             border-radius: 25px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 500;
-            transition: all 0.3s ease;
             border: 2px solid var(--black);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: var(--shadow-medium);
             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
         }
 
         .artistes-website-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-heavy);
         }
 
         .artistes-website-button .material-icons {
@@ -1804,15 +1822,14 @@
             backdrop-filter: blur(5px);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 20px rgba(212,175,55,0.3);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium), var(--shadow-gold);
             height: 100%;
             border: 2px solid var(--gold);
         }
 
         .production-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(212,175,55,0.5);
+            box-shadow: var(--shadow-heavy), 0 0 30px rgba(212,175,55,0.5);
             background: rgba(255, 255, 255, 0.95);
         }
 
@@ -1888,7 +1905,7 @@
             align-items: center;
             margin-right: 15px;
             color: var(--black);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px rgba(212,175,55,0.5);
+            box-shadow: var(--shadow-medium), var(--shadow-gold);
             border: 2px solid var(--gold-dark);
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
@@ -1936,16 +1953,15 @@
             justify-content: center;
             align-items: center;
             color: var(--black);
-            transition: all 0.3s ease;
             cursor: pointer;
             border: 2px solid var(--gold-dark);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            box-shadow: var(--shadow-medium);
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
         .social-link:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-heavy);
         }
 
         .map-container {
@@ -1957,7 +1973,7 @@
             overflow: hidden;
             position: relative;
             border: 2px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: var(--shadow-medium);
         }
 
         @media (max-width: 768px) {
@@ -1979,6 +1995,21 @@
             color: var(--gray);
             font-style: italic;
             text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+        }
+
+        /* Optimisation: Indicateur de chargement */
+        .loading-indicator {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            background: rgba(0,0,0,0.8);
+            color: var(--gold);
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Responsive pour tous */
@@ -2045,9 +2076,14 @@
     <div class="boheme-plaquette">
         <!-- Global background video -->
         <div class="global-background-video">
-            <video id="global-bg-video" autoplay muted loop playsinline>
+            <video id="global-bg-video" autoplay muted loop playsinline preload="auto">
                 <source src="magique-fumee.mp4" type="video/mp4">
             </video>
+        </div>
+
+        <!-- Loading indicator -->
+        <div class="loading-indicator" id="loading-indicator">
+            Chargement...
         </div>
 
         <!-- Audio element -->
@@ -2073,22 +2109,22 @@
 
         <!-- Navigation dots -->
         <div class="navigation">
-            <div class="nav-dot active" data-section="cover">
+            <div class="nav-dot active" data-section="cover" tabindex="0" role="button" aria-label="Aller à la couverture">
                 <div class="nav-tooltip">Couverture</div>
             </div>
-            <div class="nav-dot" data-section="intro">
+            <div class="nav-dot" data-section="intro" tabindex="0" role="button" aria-label="Aller à la présentation">
                 <div class="nav-tooltip">Présentation</div>
             </div>
-            <div class="nav-dot" data-section="bureau">
+            <div class="nav-dot" data-section="bureau" tabindex="0" role="button" aria-label="Aller au bureau">
                 <div class="nav-tooltip">Notre Bureau</div>
             </div>
-            <div class="nav-dot" data-section="artistes">
+            <div class="nav-dot" data-section="artistes" tabindex="0" role="button" aria-label="Aller aux artistes">
                 <div class="nav-tooltip">Nos Artistes</div>
             </div>
-            <div class="nav-dot" data-section="productions">
+            <div class="nav-dot" data-section="productions" tabindex="0" role="button" aria-label="Aller aux productions">
                 <div class="nav-tooltip">Nos Productions</div>
             </div>
-            <div class="nav-dot" data-section="contact">
+            <div class="nav-dot" data-section="contact" tabindex="0" role="button" aria-label="Aller au contact">
                 <div class="nav-tooltip">Contact</div>
             </div>
         </div>
@@ -2097,7 +2133,7 @@
         <section class="section cover-section active" id="cover">
             <div class="cover-content">
                 <div class="logo-container fade-up">
-                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'><circle cx=\'100\' cy=\'100\' r=\'90\' fill=\'%23000\' stroke=\'%23D4AF37\' stroke-width=\'5\'/><text x=\'100\' y=\'100\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\' text-anchor=\'middle\' dominant-baseline=\'middle\'>BP</text><text x=\'100\' y=\'130\' font-family=\'Arial\' font-size=\'12\' fill=\'%23D4AF37\' text-anchor=\'middle\'>Bohème Production</text></svg>'">
+                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="logo" loading="eager">
                 </div>
                 <h1 class="cover-title fade-in-delay-1">
                     <span class="cover-title-text">Bohème Production</span>
@@ -2106,7 +2142,7 @@
                 <div class="golden-line fade-in-delay-3"></div>
                 <p class="cover-interactive-text fade-in-delay-3">Plaquette Interactive</p>
 
-                <div class="cover-scroll-indicator" id="start-exploration">
+                <div class="cover-scroll-indicator" id="start-exploration" tabindex="0" role="button" aria-label="Commencer l'exploration">
                     <div class="scroll-text">Explorer</div>
                     <div class="scroll-arrow">
                         <span class="material-icons">keyboard_arrow_down</span>
@@ -2120,7 +2156,7 @@
             <div class="section-container">
                 <div class="section-header">
                     <div class="section-header-video">
-                        <video autoplay muted loop playsinline preload="auto">
+                        <video autoplay muted loop playsinline preload="metadata">
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -2133,12 +2169,11 @@
                             <!-- Photo principale avec titre -->
                             <div class="hero-image-container">
                                 <div class="hero-image-video-background">
-                                    <video autoplay muted loop playsinline>
+                                    <video autoplay muted loop playsinline preload="metadata">
                                         <source src="magique-fumee.mp4" type="video/mp4">
                                     </video>
                                 </div>
-                                <img src="artistes-boheme.jpg" alt="Concert Bohème Production au Palais Clément Massier" class="hero-image"
-                                     onerror="this.parentNode.innerHTML='<div class=hero-image-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=hero-image-placeholder>CONCERT BOHÈME PRODUCTION<br>Palais Clément Massier</div>'">
+                                <img src="artistes-boheme.jpg" alt="Concert Bohème Production au Palais Clément Massier" class="hero-image" loading="lazy">
                                 <div class="hero-image-overlay">
                                     <h3 class="hero-image-title">Concert Bohème Production<br>Palais Clément Massier</h3>
                                 </div>
@@ -2164,13 +2199,12 @@
 
                                         <div class="video-content-block">
                                             <div class="video-background-container">
-                                                <video autoplay muted loop playsinline>
+                                                <video autoplay muted loop playsinline preload="metadata">
                                                     <source src="magique-fumee.mp4" type="video/mp4">
                                                 </video>
                                             </div>
                                             <div class="image-overlay-container">
-                                                <img src="boheme-artistic-collage.png" alt="Collection Artistique Bohème Production" class="content-image"
-                                                     onerror="this.parentNode.innerHTML='<div class=image-placeholder>COLLECTION ARTISTIQUE<br>BOHÈME PRODUCTION</div>'">
+                                                <img src="boheme-artistic-collage.png" alt="Collection Artistique Bohème Production" class="content-image" loading="lazy">
                                             </div>
                                             <div class="content-text-block">
                                                 <p class="content-text">
@@ -2182,13 +2216,12 @@
                                         <!-- TRILOGIE -->
                                         <div class="trilogie-section-container">
                                             <div class="trilogie-video-background">
-                                                <video autoplay muted loop playsinline>
+                                                <video autoplay muted loop playsinline preload="metadata">
                                                     <source src="smoke_red_bg.mp4" type="video/mp4">
                                                 </video>
                                             </div>
                                             <div class="trilogie-image-overlay">
-                                                <img src="trilogie_lyrique.png" alt="Trilogie Lyrique" class="trilogie-image"
-                                                     onerror="this.parentNode.innerHTML='<div class=trilogie-image-placeholder>TRILOGIE<br>LYRIQUE</div>'">
+                                                <img src="trilogie_lyrique.png" alt="Trilogie Lyrique" class="trilogie-image" loading="lazy">
                                             </div>
                                         </div>
 
@@ -2198,13 +2231,12 @@
 
                                         <div class="video-content-block">
                                             <div class="video-background-container">
-                                                <video autoplay muted loop playsinline>
+                                                <video autoplay muted loop playsinline preload="metadata">
                                                     <source src="partitions_flow.mp4" type="video/mp4">
                                                 </video>
                                             </div>
                                             <div class="image-overlay-container">
-                                                <img src="trio_piano.png" alt="Trio Piano" class="content-image"
-                                                     onerror="this.parentNode.innerHTML='<div class=image-placeholder>TRIO<br>PIANO</div>'">
+                                                <img src="trio_piano.png" alt="Trio Piano" class="content-image" loading="lazy">
                                             </div>
                                             <div class="content-text-block">
                                                 <p class="content-text">
@@ -2225,8 +2257,7 @@
                                                 <span class="text-gold-shimmer">La musique nous transporte</span>, et <span class="text-gold-shimmer">Bohème ouvre les portes</span> de vos plus beaux rêves artistiques, créant une alchimie magique où chaque note devient une promesse d'éternité, chaque voix une caresse pour l'âme, chaque spectacle un voyage inoubliable vers l'excellence artistique universelle.
                                             </div>
                                             <div class="patrick-signature-integrated">
-                                                <img src="Boheme Production en blanc.png" alt="Bohème Production" class="boheme-signature-image"
-                                                     onerror="this.parentNode.innerHTML='<div class=boheme-signature-placeholder>BOHÈME PRODUCTION</div>'">
+                                                <img src="Boheme Production en blanc.png" alt="Bohème Production" class="boheme-signature-image" loading="lazy">
                                             </div>
                                         </div>
                                     </div>
@@ -2235,12 +2266,11 @@
                                 <!-- Logo décoratif -->
                                 <div class="decorative-logo-section">
                                     <div class="decorative-video-background">
-                                        <video autoplay muted loop playsinline>
+                                        <video autoplay muted loop playsinline preload="metadata">
                                             <source src="magique-fumee.mp4" type="video/mp4">
                                         </video>
                                     </div>
-                                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="decorative-logo"
-                                         onerror="this.parentNode.innerHTML='<div class=decorative-video-background><video autoplay muted loop playsinline><source src=magique-fumee.mp4 type=video/mp4></video></div><div class=decorative-logo-placeholder>BOHÈME<br>PRODUCTION</div>'">
+                                    <img src="logo-boheme-en-or.png" alt="Logo Bohème Production" class="decorative-logo" loading="lazy">
                                 </div>
 
                                 <!-- Crédits -->
@@ -2261,7 +2291,7 @@
             <div class="section-container">
                 <div class="section-header">
                     <div class="section-header-video">
-                        <video autoplay muted loop playsinline preload="auto">
+                        <video autoplay muted loop playsinline preload="metadata">
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -2271,7 +2301,7 @@
                     <div class="bureau-grid">
                         <div class="bureau-card">
                             <div class="bureau-photo-real">
-                                <img src="Elie Féré HD.jpg" alt="Patrick Elie Féré" onerror="this.parentNode.innerHTML='<div class=bureau-photo-placeholder><span class=material-icons>person</span></div>'">
+                                <img src="Elie Féré HD.jpg" alt="Patrick Elie Féré" loading="lazy">
                             </div>
                             <h3 class="bureau-name">Patrick Elie Féré</h3>
                             <p class="bureau-title">Fondateur - Président</p>
@@ -2345,7 +2375,7 @@
             <div class="section-container">
                 <div class="section-header">
                     <div class="section-header-video">
-                        <video autoplay muted loop playsinline preload="auto">
+                        <video autoplay muted loop playsinline preload="metadata">
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -2353,10 +2383,10 @@
                 </div>
                 <div class="section-content">
                     <div class="artistes-tabs">
-                        <div class="artiste-tab active" data-category="sopranos">Sopranos</div>
-                        <div class="artiste-tab" data-category="tenors">Ténors</div>
-                        <div class="artiste-tab" data-category="barytons">Barytons</div>
-                        <div class="artiste-tab" data-category="pianistes">Pianistes</div>
+                        <div class="artiste-tab active" data-category="sopranos" tabindex="0" role="button">Sopranos</div>
+                        <div class="artiste-tab" data-category="tenors" tabindex="0" role="button">Ténors</div>
+                        <div class="artiste-tab" data-category="barytons" tabindex="0" role="button">Barytons</div>
+                        <div class="artiste-tab" data-category="pianistes" tabindex="0" role="button">Pianistes</div>
                     </div>
 
                     <div class="artiste-category active" id="sopranos">
@@ -2488,7 +2518,7 @@
             <div class="section-container">
                 <div class="section-header">
                     <div class="section-header-video">
-                        <video autoplay muted loop playsinline preload="auto">
+                        <video autoplay muted loop playsinline preload="metadata">
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -2496,28 +2526,6 @@
                 </div>
                 <div class="section-content">
                     <div class="production-grid">
-                        <div class="production-card">
-                            <div class="production-image">
-                                <div class="production-image-overlay"></div>
-                            </div>
-                            <div class="production-content">
-                                <h3 class="production-title">Concerts Lyriques</h3>
-                                <p class="production-description">
-                                    Des performances d'exception mettant en valeur des répertoires classiques interprétés par nos artistes de renommée internationale.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="production-card">
-                            <div class="production-image">
-                                <div class="production-image-overlay"></div>
-                            </div>
-                            <div class="production-content">
-                                <h3 class="production-title">Pop Lyrique</h3>
-                                <p class="production-description">
-                                    Une fusion innovante entre technique lyrique et répertoire contemporain créant un pont accessible entre tradition et modernité.
-                                </p>
-                            </div>
-                        </div>
                         <div class="production-card">
                             <div class="production-image">
                                 <div class="production-image-overlay"></div>
@@ -2572,7 +2580,7 @@
             <div class="section-container">
                 <div class="section-header">
                     <div class="section-header-video">
-                        <video autoplay muted loop playsinline preload="auto">
+                        <video autoplay muted loop playsinline preload="metadata">
                             <source src="lasers-couleur-mouvement.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -2665,31 +2673,170 @@
     <div class="page-transition" id="page-transition"></div>
 
     <script>
+        // Configuration optimisée pour résoudre les problèmes de scroll
+        const CONFIG = {
+            navigation: {
+                // Seuils considérablement augmentés pour mobile
+                touchThreshold: 250,           // Augmenté de 100 à 250
+                velocityThreshold: 1.2,        // Augmenté de 0.5 à 1.2
+                timeThreshold: 600,            // Diminué de 800 à 600ms pour plus de précision
+
+                // Seuils pour la molette PC
+                wheelThreshold: 200,           // Augmenté de 50 à 200
+                wheelTimeout: 300,             // Augmenté de 100 à 300ms
+
+                // Zone de sécurité élargie
+                safetyZoneSize: 200,          // Augmenté de 80 à 200px
+
+                // Délai de confirmation d'intention
+                intentionConfirmationDelay: 400,
+
+                // Paramètres de débouncing
+                debounceDelay: 150,
+                maxAccumulationTime: 500
+            },
+            performance: {
+                lazyLoadOffset: '100px',
+                videoPreload: 'metadata',
+                transitionDuration: 600
+            },
+            accessibility: {
+                respectReducedMotion: true
+            }
+        };
+
         class BohemePlaquette {
             constructor() {
                 this.currentSection = 0;
                 this.sections = ['cover', 'intro', 'bureau', 'artistes', 'productions', 'contact'];
                 this.isTransitioning = false;
                 this.isPresentationMode = false;
+
+                // Optimisation: Variables de navigation intelligentes
                 this.touchStart = { x: 0, y: 0, time: 0 };
                 this.touchEnd = { x: 0, y: 0, time: 0 };
-                this.safetyZoneSize = 80;
+                this.intentionTimer = null;
+                this.wheelAccumulator = 0;
+                this.wheelTimeout = null;
+                this.lastWheelDirection = null;
+                this.wheelEventCount = 0;
+                this.lastNavigationTime = 0;
+
+                // Débouncing pour éviter les navigations multiples
+                this.navigationDebounce = null;
 
                 this.init();
             }
 
             init() {
+                this.setupErrorHandling();
+                this.setupLazyLoading();
                 this.setupAudio();
                 this.setupNavigation();
                 this.setupArtisteTabs();
-                this.setupTouchNavigation();
+                this.setupOptimizedTouchNavigation();
+                this.setupOptimizedWheelNavigation();
                 this.setupKeyboardNavigation();
                 this.setupPresentationMode();
                 this.startAnimations();
+                this.setupAccessibility();
 
                 document.getElementById('start-exploration')?.addEventListener('click', () => {
                     this.goToSection(1);
                 });
+            }
+
+            // Optimisation: Gestion d'erreurs robuste
+            setupErrorHandling() {
+                // Gestion d'erreurs pour les médias
+                document.querySelectorAll('img').forEach(img => {
+                    img.onerror = () => {
+                        console.warn(`Image non trouvée: ${img.src}`);
+                        if (img.alt && img.parentNode) {
+                            const placeholder = document.createElement('div');
+                            placeholder.className = img.classList.contains('logo') ? 'logo' : 'image-placeholder';
+                            placeholder.textContent = img.alt;
+                            placeholder.style.cssText = `
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                                color: var(--black);
+                                font-weight: bold;
+                                text-align: center;
+                                padding: 20px;
+                            `;
+                            img.parentNode.replaceChild(placeholder, img);
+                        }
+                    };
+                });
+
+                document.querySelectorAll('video').forEach(video => {
+                    video.onerror = () => {
+                        console.warn(`Vidéo non trouvée: ${video.src}`);
+                        video.style.display = 'none';
+                    };
+                });
+            }
+
+            // Optimisation: Lazy loading intelligent
+            setupLazyLoading() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: CONFIG.performance.lazyLoadOffset
+                };
+
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                                imageObserver.unobserve(img);
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                // Observer toutes les images avec data-src
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+
+            // Amélioration accessibilité
+            setupAccessibility() {
+                // Support du focus clavier pour la navigation
+                document.querySelectorAll('.nav-dot, .artiste-tab').forEach(element => {
+                    element.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            element.click();
+                        }
+                    });
+                });
+
+                // Annonces pour lecteurs d'écran
+                this.announceToScreenReader = (message) => {
+                    const announcement = document.createElement('div');
+                    announcement.setAttribute('aria-live', 'polite');
+                    announcement.setAttribute('aria-atomic', 'true');
+                    announcement.className = 'sr-only';
+                    announcement.style.cssText = `
+                        position: absolute !important;
+                        width: 1px !important;
+                        height: 1px !important;
+                        padding: 0 !important;
+                        margin: -1px !important;
+                        overflow: hidden !important;
+                        clip: rect(0,0,0,0) !important;
+                        border: 0 !important;
+                    `;
+                    announcement.textContent = message;
+                    document.body.appendChild(announcement);
+                    setTimeout(() => document.body.removeChild(announcement), 1000);
+                };
             }
 
             setupAudio() {
@@ -2700,11 +2847,19 @@
 
                 if (audio) {
                     audio.volume = 0.3;
+
+                    // Gestion d'erreurs audio
+                    audio.onerror = () => {
+                        console.warn('Erreur de chargement audio');
+                        playPauseBtn.style.display = 'none';
+                    };
                 }
 
                 playPauseBtn?.addEventListener('click', () => {
                     if (audio.paused) {
-                        audio.play().catch(e => console.log('Audio play failed:', e));
+                        audio.play().catch(e => {
+                            console.warn('Audio play failed:', e);
+                        });
                         playPauseBtn.innerHTML = '<span class="material-icons">pause</span>';
                     } else {
                         audio.pause();
@@ -2723,12 +2878,12 @@
                     audio.volume = e.target.value / 100;
                 });
 
+                // Auto-play avec gestion d'erreurs
                 const tryAutoplay = () => {
-                    if (audio) {
-                        audio.play().catch(() => {
-                            playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
-                        });
-                    }
+                    if (audio && !audio.paused) return;
+                    audio?.play().catch(() => {
+                        playPauseBtn.innerHTML = '<span class="material-icons">play_arrow</span>';
+                    });
                 };
 
                 document.addEventListener('click', tryAutoplay, { once: true });
@@ -2787,40 +2942,55 @@
                 this.isPresentationMode = true;
                 document.body.classList.add('presentation-mode');
 
-                if (document.documentElement.requestFullscreen) {
-                    document.documentElement.requestFullscreen().catch(e => {
-                        console.log('Fullscreen failed:', e);
-                    });
-                } else if (document.documentElement.webkitRequestFullscreen) {
-                    document.documentElement.webkitRequestFullscreen();
-                } else if (document.documentElement.msRequestFullscreen) {
-                    document.documentElement.msRequestFullscreen();
-                }
+                // Tentative de plein écran
+                const requestFullscreen = () => {
+                    if (document.documentElement.requestFullscreen) {
+                        return document.documentElement.requestFullscreen();
+                    } else if (document.documentElement.webkitRequestFullscreen) {
+                        return document.documentElement.webkitRequestFullscreen();
+                    } else if (document.documentElement.msRequestFullscreen) {
+                        return document.documentElement.msRequestFullscreen();
+                    }
+                    return Promise.resolve();
+                };
+
+                requestFullscreen().catch(e => {
+                    console.log('Fullscreen non supporté:', e);
+                });
 
                 const presentationBtn = document.getElementById('presentation-mode-btn');
                 if (presentationBtn) {
                     presentationBtn.innerHTML = '<span class="material-icons">fullscreen_exit</span>';
                 }
+
+                this.announceToScreenReader('Mode présentation activé');
             }
 
             exitPresentationMode() {
                 this.isPresentationMode = false;
                 document.body.classList.remove('presentation-mode');
 
-                if (document.exitFullscreen) {
-                    document.exitFullscreen().catch(e => {
-                        console.log('Exit fullscreen failed:', e);
-                    });
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
+                const exitFullscreen = () => {
+                    if (document.exitFullscreen) {
+                        return document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        return document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        return document.msExitFullscreen();
+                    }
+                    return Promise.resolve();
+                };
+
+                exitFullscreen().catch(e => {
+                    console.log('Exit fullscreen error:', e);
+                });
 
                 const presentationBtn = document.getElementById('presentation-mode-btn');
                 if (presentationBtn) {
                     presentationBtn.innerHTML = '<span class="material-icons">present_to_all</span>';
                 }
+
+                this.announceToScreenReader('Mode présentation désactivé');
             }
 
             setupNavigation() {
@@ -2844,123 +3014,233 @@
                         categories.forEach(c => c.classList.remove('active'));
 
                         tab.classList.add('active');
-                        document.getElementById(category)?.classList.add('active');
+                        const targetCategory = document.getElementById(category);
+                        if (targetCategory) {
+                            targetCategory.classList.add('active');
+                        }
                     });
                 });
             }
 
-            checkSafetyZone(sectionContent) {
-                const scrollTop = sectionContent.scrollTop;
-                const scrollHeight = sectionContent.scrollHeight;
-                const clientHeight = sectionContent.clientHeight;
+            // RÉSOLUTION DU PROBLÈME DE SCROLL - Navigation tactile optimisée
+            setupOptimizedTouchNavigation() {
+                let intentionConfirmed = false;
 
-                if (scrollHeight <= clientHeight + 10) {
-                    return true;
-                }
-
-                const isAtTop = scrollTop <= this.safetyZoneSize;
-                const isAtBottom = scrollTop >= (scrollHeight - clientHeight - this.safetyZoneSize);
-
-                return isAtTop || isAtBottom;
-            }
-
-            setupTouchNavigation() {
                 document.addEventListener('touchstart', (e) => {
                     if (this.isTransitioning) return;
+
                     const touch = e.touches[0];
                     this.touchStart = {
                         x: touch.clientX,
                         y: touch.clientY,
                         time: Date.now()
                     };
+
+                    // Reset des variables
+                    intentionConfirmed = false;
+
+                    // Clear any existing intention timer
+                    if (this.intentionTimer) {
+                        clearTimeout(this.intentionTimer);
+                        this.intentionTimer = null;
+                    }
+
+                }, { passive: true });
+
+                document.addEventListener('touchmove', (e) => {
+                    if (this.isTransitioning || intentionConfirmed) return;
+
+                    const touch = e.touches[0];
+                    const deltaY = Math.abs(touch.clientY - this.touchStart.y);
+                    const deltaX = Math.abs(touch.clientX - this.touchStart.x);
+
+                    // Si le mouvement est plus horizontal que vertical, ignorer
+                    if (deltaX > deltaY) return;
+
+                    // Si le mouvement dépasse un seuil très élevé, démarrer la confirmation d'intention
+                    if (deltaY > CONFIG.navigation.touchThreshold * 0.6) {
+                        this.intentionTimer = setTimeout(() => {
+                            intentionConfirmed = true;
+                        }, CONFIG.navigation.intentionConfirmationDelay);
+                    }
                 }, { passive: true });
 
                 document.addEventListener('touchend', (e) => {
                     if (this.isTransitioning) return;
+
                     const touch = e.changedTouches[0];
                     this.touchEnd = {
                         x: touch.clientX,
                         y: touch.clientY,
                         time: Date.now()
                     };
-                    this.handleSwipe();
+
+                    // Clear intention timer
+                    if (this.intentionTimer) {
+                        clearTimeout(this.intentionTimer);
+                        this.intentionTimer = null;
+                    }
+
+                    this.handleOptimizedSwipe(intentionConfirmed);
                 }, { passive: true });
-
-                let wheelAccumulator = 0;
-                let wheelTimeout;
-
-                document.addEventListener('wheel', (e) => {
-                    if (this.isTransitioning) return;
-
-                    const activeSection = document.querySelector('.section.active');
-                    const sectionContent = activeSection?.querySelector('.section-content');
-
-                    if (!sectionContent) {
-                        const direction = e.deltaY > 0 ? 'down' : 'up';
-                        this.handleDirectionalNavigation(direction);
-                        e.preventDefault();
-                        return;
-                    }
-
-                    const isInSafetyZone = this.checkSafetyZone(sectionContent);
-
-                    if (isInSafetyZone) {
-                        wheelAccumulator += Math.abs(e.deltaY);
-                        
-                        clearTimeout(wheelTimeout);
-                        wheelTimeout = setTimeout(() => {
-                            wheelAccumulator = 0;
-                        }, 100);
-
-                        if (wheelAccumulator > 50) {
-                            const direction = e.deltaY > 0 ? 'down' : 'up';
-                            this.handleDirectionalNavigation(direction);
-                            e.preventDefault();
-                            wheelAccumulator = 0;
-                        }
-                    }
-                }, { passive: false });
             }
 
-            handleSwipe() {
+            handleOptimizedSwipe(intentionConfirmed) {
                 const deltaX = this.touchEnd.x - this.touchStart.x;
                 const deltaY = this.touchEnd.y - this.touchStart.y;
                 const deltaTime = this.touchEnd.time - this.touchStart.time;
-
                 const distance = Math.abs(deltaY);
                 const velocity = distance / (deltaTime || 1);
 
+                // Vérification de direction - ignorer si plus horizontal que vertical
                 if (Math.abs(deltaX) > Math.abs(deltaY)) return;
 
                 const activeSection = document.querySelector('.section.active');
                 const sectionContent = activeSection?.querySelector('.section-content');
 
+                // Si pas de contenu scrollable, navigation directe avec seuils très élevés
                 if (!sectionContent) {
-                    if (distance > 80 && velocity > 0.3 && deltaTime < 800) {
+                    const shouldNavigate = distance > CONFIG.navigation.touchThreshold &&
+                                          velocity > CONFIG.navigation.velocityThreshold &&
+                                          deltaTime < CONFIG.navigation.timeThreshold;
+
+                    if (shouldNavigate) {
                         const direction = deltaY > 0 ? 'up' : 'down';
                         this.handleDirectionalNavigation(direction);
                     }
                     return;
                 }
 
-                const isInSafetyZone = this.checkSafetyZone(sectionContent);
+                // Pour les sections avec contenu scrollable
+                const isInSafetyZone = this.checkAdvancedSafetyZone(sectionContent);
 
                 if (isInSafetyZone) {
-                    const shouldNavigate = distance > 100 && velocity > 0.5 && deltaTime < 800;
+                    // Critères TRÈS stricts pour la navigation
+                    const strictNavigation = (
+                        distance > CONFIG.navigation.touchThreshold &&
+                        velocity > CONFIG.navigation.velocityThreshold &&
+                        deltaTime < CONFIG.navigation.timeThreshold &&
+                        (intentionConfirmed || velocity > CONFIG.navigation.velocityThreshold * 1.5)
+                    );
 
-                    if (shouldNavigate) {
+                    if (strictNavigation) {
+                        // Anti-rebond de navigation
+                        const now = Date.now();
+                        if (now - this.lastNavigationTime < CONFIG.navigation.debounceDelay) {
+                            return;
+                        }
+                        this.lastNavigationTime = now;
+
                         const direction = deltaY > 0 ? 'up' : 'down';
                         this.handleDirectionalNavigation(direction);
                     }
                 }
             }
 
-            handleDirectionalNavigation(direction) {
-                if (direction === 'down' && this.currentSection < this.sections.length - 1) {
-                    this.goToSection(this.currentSection + 1);
-                } else if (direction === 'up' && this.currentSection > 0) {
-                    this.goToSection(this.currentSection - 1);
+            // RÉSOLUTION DU PROBLÈME DE SCROLL - Navigation molette optimisée
+            setupOptimizedWheelNavigation() {
+                document.addEventListener('wheel', (e) => {
+                    if (this.isTransitioning) return;
+
+                    const activeSection = document.querySelector('.section.active');
+                    const sectionContent = activeSection?.querySelector('.section-content');
+
+                    // Si pas de contenu scrollable, navigation directe avec seuils élevés
+                    if (!sectionContent) {
+                        this.handleWheelNavigation(e);
+                        return;
+                    }
+
+                    // Pour les sections avec contenu scrollable
+                    const isInSafetyZone = this.checkAdvancedSafetyZone(sectionContent);
+
+                    if (isInSafetyZone) {
+                        this.handleWheelNavigation(e);
+                    }
+                }, { passive: false });
+            }
+
+            handleWheelNavigation(e) {
+                const direction = e.deltaY > 0 ? 'down' : 'up';
+
+                // Vérification de consistance de direction
+                if (this.lastWheelDirection !== direction) {
+                    this.wheelAccumulator = 0;
+                    this.wheelEventCount = 0;
                 }
+                this.lastWheelDirection = direction;
+
+                // Accumulation des événements molette
+                this.wheelAccumulator += Math.abs(e.deltaY);
+                this.wheelEventCount++;
+
+                // Clear du timeout précédent
+                if (this.wheelTimeout) {
+                    clearTimeout(this.wheelTimeout);
+                }
+
+                // Reset après délai
+                this.wheelTimeout = setTimeout(() => {
+                    this.wheelAccumulator = 0;
+                    this.wheelEventCount = 0;
+                    this.lastWheelDirection = null;
+                }, CONFIG.navigation.wheelTimeout);
+
+                // Critères TRÈS stricts pour navigation
+                const shouldNavigate = (
+                    this.wheelAccumulator > CONFIG.navigation.wheelThreshold &&
+                    this.wheelEventCount >= 3 // Au moins 3 événements molette consistants
+                );
+
+                if (shouldNavigate) {
+                    // Anti-rebond
+                    const now = Date.now();
+                    if (now - this.lastNavigationTime < CONFIG.navigation.debounceDelay) {
+                        return;
+                    }
+                    this.lastNavigationTime = now;
+
+                    this.handleDirectionalNavigation(direction);
+                    e.preventDefault();
+
+                    // Reset immédiat après navigation
+                    this.wheelAccumulator = 0;
+                    this.wheelEventCount = 0;
+                    this.lastWheelDirection = null;
+                }
+            }
+
+            // Zone de sécurité avancée et intelligente
+            checkAdvancedSafetyZone(sectionContent) {
+                const scrollTop = sectionContent.scrollTop;
+                const scrollHeight = sectionContent.scrollHeight;
+                const clientHeight = sectionContent.clientHeight;
+
+                // Si le contenu ne dépasse pas la hauteur visible, autoriser la navigation
+                if (scrollHeight <= clientHeight + 20) {
+                    return true;
+                }
+
+                const safetyZone = CONFIG.navigation.safetyZoneSize;
+                const isAtTop = scrollTop <= safetyZone;
+                const isAtBottom = scrollTop >= (scrollHeight - clientHeight - safetyZone);
+
+                return isAtTop || isAtBottom;
+            }
+
+            handleDirectionalNavigation(direction) {
+                // Débouncing pour éviter les navigations multiples
+                if (this.navigationDebounce) {
+                    clearTimeout(this.navigationDebounce);
+                }
+
+                this.navigationDebounce = setTimeout(() => {
+                    if (direction === 'down' && this.currentSection < this.sections.length - 1) {
+                        this.goToSection(this.currentSection + 1);
+                    } else if (direction === 'up' && this.currentSection > 0) {
+                        this.goToSection(this.currentSection - 1);
+                    }
+                }, 50); // Petit délai pour éviter les doubles clics
             }
 
             setupKeyboardNavigation() {
@@ -3005,6 +3285,10 @@
 
                 this.isTransitioning = true;
 
+                // Annonce pour accessibilité
+                const sectionNames = ['Couverture', 'Présentation', 'Bureau', 'Artistes', 'Productions', 'Contact'];
+                this.announceToScreenReader(`Navigation vers ${sectionNames[index]}`);
+
                 const transition = document.getElementById('page-transition');
                 transition?.classList.add('active');
 
@@ -3026,7 +3310,7 @@
                     setTimeout(() => {
                         transition?.classList.remove('active');
                         this.isTransitioning = false;
-                    }, 600);
+                    }, CONFIG.performance.transitionDuration);
                 }, 100);
             }
 
@@ -3038,6 +3322,15 @@
             }
 
             startAnimations() {
+                // Respect des préférences d'accessibilité
+                if (CONFIG.accessibility.respectReducedMotion && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    document.querySelectorAll('.fade-up, .fade-in-delay-1, .fade-in-delay-2, .fade-in-delay-3').forEach(el => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'none';
+                    });
+                    return;
+                }
+
                 setTimeout(() => {
                     document.querySelectorAll('.fade-up').forEach(el => {
                         el.style.opacity = '1';
@@ -3047,23 +3340,45 @@
             }
         }
 
-        // Initialize when DOM is ready
+        // Service Worker pour optimisation cache (Phase 1)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(e => {
+                console.log('Service Worker non disponible');
+            });
+        }
+
+        // Initialisation optimisée
         document.addEventListener('DOMContentLoaded', () => {
-            new BohemePlaquette();
+            const loadingIndicator = document.getElementById('loading-indicator');
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'block';
+            }
+
+            // Initialisation après chargement des ressources critiques
+            const init = () => {
+                new BohemePlaquette();
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+            };
+
+            // Attendre que les polices et ressources soient chargées
+            if (document.readyState === 'complete') {
+                init();
+            } else {
+                window.addEventListener('load', init);
+            }
         });
+
+        // Gestion des erreurs globales
+        window.addEventListener('error', (e) => {
+            console.warn('Erreur détectée:', e.filename, e.lineno, e.message);
+        });
+
+        // Performance monitoring
+        if ('performance' in window && 'mark' in performance) {
+            performance.mark('boheme-plaquette-loaded');
+        }
     </script>
 </body>
 </html>
-```
-
-Voilà le code HTML complet avec :
-- Tout le CSS
-- Toutes les sections HTML
-- Le JavaScript complet avec système de navigation
-- Les zones de sécurité pour le scroll
-- Le mode présentation
-- Les contrôles audio
-- Les animations
-- Tous les éléments visuels
-
-Le code est prêt à être utilisé !
